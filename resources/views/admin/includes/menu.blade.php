@@ -14,7 +14,7 @@
         <li>
             <a href="{{url('/dashboard')}}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
         </li>
-        <li>
+        <!-- <li>
             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>User Info<span class="fa arrow"></span></a>
             <ul class="nav nav-second-level">
                 <li>
@@ -23,14 +23,14 @@
                 <li>
                     <a href="{{url('/user/manage')}}">Manage User</a>
                 </li>
-            </ul>
+            </ul> -->
             <!-- /.nav-second-level -->
-        </li>
+        <!-- </li> -->
         <li>
             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Category Info<span class="fa arrow"></span></a>
             <ul class="nav nav-second-level">
                 <li>
-                    <a href="{{url('/category/add')}}">Add Category</a>
+                    <router-link to="/category-add" class="nav-link"> Category Add</router-link>
                 </li>
                 <li>
                     <a href="{{url('/category/manage')}}">Manage Category</a>
