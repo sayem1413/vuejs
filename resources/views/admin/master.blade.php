@@ -8,6 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="">
         <meta name="author" content="">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>@yield('title')</title>
 
@@ -27,6 +28,7 @@
         <link href="{{asset('admin/')}}/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
         
+        <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
         
         
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -39,29 +41,29 @@
     </head>
 
     <body>
+        <div id="app">
+            <div id="wrapper">
 
-        <div id="wrapper">
+                <!-- Navigation -->
+                <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+                    <!-- /.navbar-top-links -->
+                    @include('admin.includes.header')
+                    <div class="navbar-default sidebar" role="navigation">
+                        @include('admin.includes.menu')
+                        <!-- /.sidebar-collapse -->
+                    </div>
+                    <!-- /.navbar-static-side -->
+                </nav>
 
-            <!-- Navigation -->
-            <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-                <!-- /.navbar-top-links -->
-                @include('admin.includes.header')
-                <div class="navbar-default sidebar" role="navigation">
-                    @include('admin.includes.menu')
-                    <!-- /.sidebar-collapse -->
+                <div id="page-wrapper">
+                    <admin-main></admin-main>
                 </div>
-                <!-- /.navbar-static-side -->
-            </nav>
+                <!-- /#page-wrapper -->
 
-            <div id="page-wrapper">
-                @yield('content')
-                <!-- /.row -->
             </div>
-            <!-- /#page-wrapper -->
-
         </div>
         <!-- /#wrapper -->
-
+        <script src="{{ asset('js/app.js') }}" defer></script>
         <!-- jQuery -->
         <script src="{{asset('admin/')}}/vendor/jquery/jquery.min.js"></script>
         
@@ -80,8 +82,7 @@
 
         <!-- Custom Theme JavaScript -->
         <script src="{{asset('admin/')}}/dist/js/sb-admin-2.js"></script>
-        <script src="{{asset('admin/')}}/tinymcejs/jquery.tinymce.min.js"></script>
-        <script>tinymce.init({selector: 'textarea'});</script>
+        
 
     </body>
 
