@@ -33,7 +33,7 @@
                     <router-link to="/category-add" class="nav-link"> Category Add</router-link>
                 </li>
                 <li>
-                    <a href="{{url('/category/manage')}}">Manage Category</a>
+                    <router-link to="/category-list" class="nav-link"> Category List</router-link>
                 </li>
             </ul>
             <!-- /.nav-second-level -->

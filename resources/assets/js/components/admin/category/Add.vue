@@ -48,7 +48,9 @@
         data(){
             return {
                 form: new Form({
-                    cat_name:''
+                    categoryName:'',
+                    categoryDescription:'',
+
                 })
             }
         },
