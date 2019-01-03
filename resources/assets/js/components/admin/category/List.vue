@@ -44,7 +44,17 @@
         },
         methods:{
             deleteCategory(id){
-               
+               axios.get('/category/delete/'+id)
+                   .then(()=>{
+                       this.$store.dispatch("allCategory")
+                       toast({
+                           type: 'success',
+                           title: 'Category Deleted successfully'
+                       })
+                   })
+                   .catch(()=>{
+
+                   })
             }
         }
     }

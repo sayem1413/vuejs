@@ -122,6 +122,6 @@ class CategoryController extends Controller
     {
         $category = Category::find($id);
         $category->delete();
-        return redirect('/category/manage')->with('message','Category info deleted successfully!');
+        return response()->json(["success"=>true],200);
     }
 }

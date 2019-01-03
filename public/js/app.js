@@ -52540,7 +52540,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -52597,7 +52597,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
     },
     methods: {
-        deleteCategory: function deleteCategory(id) {}
+        deleteCategory: function deleteCategory(id) {
+            var _this = this;
+
+            axios.get('/category/delete/' + id).then(function () {
+                _this.$store.dispatch("allCategory");
+                toast({
+                    type: 'success',
+                    title: 'Category Deleted successfully'
+                });
+            }).catch(function () {});
+        }
     }
 });
 
