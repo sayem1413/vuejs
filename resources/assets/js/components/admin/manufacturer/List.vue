@@ -7,8 +7,8 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Category Name</th>
-                    <th>Category Description</th>
+                    <th>Manufacturer Name</th>
+                    <th>Manufacturer Description</th>
                     <th>Publication Status</th>
                     <th>Action</th>
                 </tr>
@@ -16,12 +16,12 @@
             <tbody>
                 <tr>
                     <td scope="row">ID</td>
-                    <td>Category Name</td>
-                    <td>Category Description</td>
+                    <td>Manufacturer Name</td>
+                    <td>Manufacturer Description</td>
                     <td>publication Status</td>
                     <td>
-                        <router-link to="/category-edit" class="btn btn-success"><span class="glyphicon glyphicon-edit"></span></router-link>
-                        <a href="#" class="btn btn-danger" @click.prevent = "deleteCategory(category.id)" >
+                        <router-link to="/manufacturer-edit" class="btn btn-success"><span class="glyphicon glyphicon-edit"></span></router-link>
+                        <a href="#" class="btn btn-danger" @click.prevent = "deleteManufacturer(manufacturer.id)" >
                             <span class="glyphicon glyphicon-trash"></span>
                         </a>
                     </td>
@@ -38,12 +38,12 @@
             
         },
         computed:{
-           getallCategory(){
+           getallManufacturer(){
                
            }
         },
         methods:{
-            deleteCategory(id){
+            deleteManufacturer(id){
                
             }
         }

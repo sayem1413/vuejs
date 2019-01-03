@@ -10,7 +10,7 @@
         <meta name="author" content="">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>@yield('title')</title>
+        <title>Admin Dashboard</title>
 
         <!-- Bootstrap Core CSS -->
         <link href="{{asset('admin/')}}/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">

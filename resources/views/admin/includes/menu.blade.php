@@ -42,10 +42,10 @@
             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Manufacturer info<span class="fa arrow"></span></a>
             <ul class="nav nav-second-level">
                 <li>
-                    <a href="{{url('/manufacturer/add')}}">Add manufacturer</a>
+                    <router-link to="/manufacturer-Add" class="nav-link"> manufacturer Add</router-link>
                 </li>
                 <li>
-                    <a href="{{url('/manufacturer/manage')}}">Manage manufacturer</a>
+                    <router-link to="/manufacturer-list" class="nav-link"> manufacturer List</router-link>
                 </li>
             </ul>
             <!-- /.nav-second-level -->
@@ -54,10 +54,10 @@
             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Product info<span class="fa arrow"></span></a>
             <ul class="nav nav-second-level">
                 <li>
-                    <a href="{{url('/product/add')}}">Add product</a>
+                    <router-link to="/product-Add" class="nav-link"> product Add</router-link>
                 </li>
                 <li>
-                    <a href="{{url('/product/manage')}}">Manage product</a>
+                    <router-link to="/product-List" class="nav-link"> product List</router-link>
                 </li>
             </ul>
             <!-- /.nav-second-level -->
