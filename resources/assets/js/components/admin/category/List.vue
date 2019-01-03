@@ -14,11 +14,11 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td scope="row">ID</td>
-                    <td>Category Name</td>
-                    <td>Category Description</td>
-                    <td>publication Status</td>
+                <tr v-for="(category,index) in getallCategory" :key="category.id">
+                    <td scope="row">{{index+1}}</td>
+                    <td>{{category.categoryName}}</td>
+                    <td>{{category.categoryDescription}}</td>
+                    <td><p v-if="category.publicationStatus == 1">Published</p><p v-else>Unpublished</p></td>
                     <td>
                         <router-link to="/category-edit" class="btn btn-success"><span class="glyphicon glyphicon-edit"></span></router-link>
                         <a href="#" class="btn btn-danger" @click.prevent = "deleteCategory(category.id)" >
@@ -35,11 +35,11 @@
     export default {
         name: "List",
         mounted(){
-            
+            this.$store.dispatch("allCategory")
         },
         computed:{
            getallCategory(){
-               
+               return this.$store.getters.getCategory
            }
         },
         methods:{

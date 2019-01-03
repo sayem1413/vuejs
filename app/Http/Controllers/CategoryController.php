@@ -36,37 +36,30 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+        // return $request->all();
         
-        $this->validate($request,[
+        /* $this->validate($request,[
             'categoryName'=>'required',
             'categoryDescription'=>'required',
-        ]);
+        ]); */
         
-        
-        //return $request->all();
         $category = new Category();
         $category->categoryName = $request->categoryName;
         $category->categoryDescription = $request->categoryDescription;
         $category->publicationStatus = $request->publicationStatus;
         $category->save();
-//        return 'Category info save successfully!';
-
-//        Category::create($request->all());
-//        return 'Category info save successfully!';
-
-//        DB::table('categories')->insert([
-//            'categoryName' => $request->categoryName,
-//            'categoryDescription' => $request->categoryDescription,
-//            'publicationStatus' => $request->publicationStatus,
-//        ]);
-        //return redirect()->back();
-        return redirect('/category/add')->with('message','Category info save successfully!');
+        return response()->json(["success"=>true],200);
+        //return redirect('/category/add')->with('message','Category info save successfully!');
     }
     
     public function manageCategory()
     {
         $categories = Category::all();
-        return view('admin.category.manageCategory',['categories'=>$categories]);
+        return response()->json([
+            'categories'=>$categories
+        ],200);
+        //return view('admin.category.manageCategory',['categories'=>$categories]);
+
     }
 
     /**
