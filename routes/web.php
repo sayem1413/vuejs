@@ -67,7 +67,7 @@ Route::group(['middleware' => 'AuthenticateMiddleware'], function() {
 
     Route::get('/category/manage', 'CategoryController@manageCategory');
     Route::get('/category/edit/{id}', 'CategoryController@edit');
-    Route::post('/category/update', 'CategoryController@update');
+    Route::post('/category/update/{id}', 'CategoryController@update');
     Route::get('/category/delete/{id}', 'CategoryController@destroy');
     /* Category Info */
 

@@ -38,10 +38,10 @@ class CategoryController extends Controller
     {
         // return $request->all();
         
-        /* $this->validate($request,[
+        $this->validate($request,[
             'categoryName'=>'required',
             'categoryDescription'=>'required',
-        ]); */
+        ]);
         
         $category = new Category();
         $category->categoryName = $request->categoryName;
@@ -82,7 +82,9 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $categoryById = Category::where('id',$id)->first();
-        return view('admin.category.editCategory',['categoryById'=>$categoryById]);
+        return response()->json([
+            'categoryById'=>$categoryById
+        ],200);
     }
 
     /**
@@ -92,19 +94,22 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
+
+        //return $id;
+
         $this->validate($request,[
             'categoryName'=>'required',
             'categoryDescription'=>'required',
         ]);
         
-        $category = Category::find($request->categoryId);
+        $category = Category::where('id',$id)->first();
         $category->categoryName = $request->categoryName;
         $category->categoryDescription = $request->categoryDescription;
         $category->publicationStatus = $request->publicationStatus;
         $category->save();
-        return redirect('/category/manage')->with('message','Category info updated successfully!');
+        return response()->json(["success"=>true],200);
     }
 
     /**

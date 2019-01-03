@@ -27,7 +27,7 @@ export const routes = [
         component:CategoryList
     },
     {
-        path:'/category-edit',
+        path:'/category-edit/:categoryid',
         component:CategoryEdit
     },
 
