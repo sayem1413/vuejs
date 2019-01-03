@@ -48,13 +48,15 @@ class ManufacturerController extends Controller
         $manufacturer->publicationStatus = $request->publicationStatus;
         $manufacturer->save();
         
-        return redirect('/manufacturer/add')->with('message','Manufacturer info save successfully!');
+        return response()->json(["success"=>true],200);
     }
     
     public function manageManufacturer()
     {
         $manufacturers = Manufacturer::all();
-        return view('admin.manufacturer.manageManufacturer', ['manufacturers'=>$manufacturers]);
+        return response()->json([
+            'manufacturers'=>$manufacturers
+        ],200);
     }
 
     /**
@@ -77,7 +79,9 @@ class ManufacturerController extends Controller
     public function edit($id)
     {
         $manufacturerById = Manufacturer::where('id',$id)->first();
-        return view('admin.manufacturer.editManufacturer',['manufacturerById'=>$manufacturerById]);
+        return response()->json([
+            'manufacturerById'=>$manufacturerById
+        ],200);
     }
 
     /**
@@ -87,7 +91,7 @@ class ManufacturerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
         $this->validate($request,[
             'manufacturerName'=>'required',
@@ -96,13 +100,13 @@ class ManufacturerController extends Controller
         
         
         //return $request->all();
-        $manufacturer = Manufacturer::find($request->manufacturerId);
+        $manufacturer = Manufacturer::where('id',$id)->first();
         $manufacturer->manufacturerName = $request->manufacturerName;
         $manufacturer->manufacturerDescription = $request->manufacturerDescription;
         $manufacturer->publicationStatus = $request->publicationStatus;
         $manufacturer->save();
         
-        return redirect('/manufacturer/manage')->with('message','Manufacturer info updated successfully!');
+        return response()->json(["success"=>true],200);
     }
 
     /**
@@ -115,6 +119,6 @@ class ManufacturerController extends Controller
     {
         $manufacturer = Manufacturer::find($id);
         $manufacturer->delete();
-        return redirect('/manufacturer/manage')->with('message','Manufacturer info deleted successfully!');
+        return response()->json(["success"=>true],200);
     }
 }

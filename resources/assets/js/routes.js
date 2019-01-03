@@ -40,7 +40,7 @@ export const routes = [
         component:ManufacturerList
     },
     {
-        path:'/manufacturer-edit',
+        path:'/manufacturer-edit/:manufacturerid',
         component:ManufacturerEdit
     },
 

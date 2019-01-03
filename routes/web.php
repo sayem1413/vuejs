@@ -77,7 +77,7 @@ Route::group(['middleware' => 'AuthenticateMiddleware'], function() {
 
     Route::get('/manufacturer/manage', 'ManufacturerController@manageManufacturer');
     Route::get('/manufacturer/edit/{id}', 'ManufacturerController@edit');
-    Route::post('/manufacturer/update', 'ManufacturerController@update');
+    Route::post('/manufacturer/update/{id}', 'ManufacturerController@update');
     Route::get('/manufacturer/delete/{id}', 'ManufacturerController@destroy');
     /* Manufacturer Info */
 
