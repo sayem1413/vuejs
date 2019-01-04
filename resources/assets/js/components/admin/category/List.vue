@@ -20,7 +20,7 @@
                     <td>{{category.categoryDescription}}</td>
                     <td><p v-if="category.publicationStatus == 1">Published</p><p v-else>Unpublished</p></td>
                     <td>
-                        <router-link :to="`/category-edit/${category.id}`" class="btn btn-success"><span class="glyphicon glyphicon-edit"></span></router-link>
+                        <router-link :to="`/category/edit/${category.id}`" class="btn btn-success"><span class="glyphicon glyphicon-edit"></span></router-link>
                         <a href="#" class="btn btn-danger" @click.prevent = "deleteCategory(category.id)" >
                             <span class="glyphicon glyphicon-trash"></span>
                         </a>

@@ -80,7 +80,7 @@ export default {
       axios
         .post("/category/save", this.form)
         .then(response => {
-          this.$router.push("/category-list");
+          this.$router.push("/category/list");
           toast({
             type: "success",
             title: "Category Added successfully"

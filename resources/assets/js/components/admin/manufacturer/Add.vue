@@ -68,7 +68,7 @@
                 console.log("okk");
                 axios.post("/manufacturer/save", this.form)
                     .then(response => {
-                        this.$router.push("/manufacturer-list");
+                        this.$router.push("/manufacturer/list");
                         toast({
                             type: "success",
                             title: "Manufacturer Added successfully"

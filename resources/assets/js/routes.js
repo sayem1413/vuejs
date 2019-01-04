@@ -19,41 +19,41 @@ export const routes = [
     },
 
     {
-        path:'/category-add',
+        path:'/category/add',
         component:CategoryAdd
     },
     {
-        path:'/category-list',
+        path:'/category/list',
         component:CategoryList
     },
     {
-        path:'/category-edit/:categoryid',
+        path:'/category/edit/:categoryid',
         component:CategoryEdit
     },
 
     {
-        path:'/manufacturer-add',
+        path:'/manufacturer/add',
         component:ManufacturerAdd
     },
     {
-        path:'/manufacturer-list',
+        path:'/manufacturer/list',
         component:ManufacturerList
     },
     {
-        path:'/manufacturer-edit/:manufacturerid',
+        path:'/manufacturer/edit/:manufacturerid',
         component:ManufacturerEdit
     },
 
     {
-        path:'/product-add',
+        path:'/product/add',
         component:ProductAdd
     },
     {
-        path:'/product-list',
+        path:'/product/list',
         component:ProductList
     },
     {
-        path:'/product-Edit',
+        path:'/product/edit',
         component:ProductEdit
     },
 ];

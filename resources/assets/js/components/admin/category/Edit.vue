@@ -83,7 +83,7 @@
             updateCategory(){
                 axios.post(`/category/update/${this.$route.params.categoryid}`,  this.form)
                     .then((response)=>{
-                        this.$router.push('/category-list')
+                        this.$router.push('/category/list')
                         toast({
                             type: 'success',
                             title: 'Category Updated successfully'

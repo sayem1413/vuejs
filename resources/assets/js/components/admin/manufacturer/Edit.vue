@@ -71,7 +71,7 @@
             updateManufacturer(){
                 axios.post(`/manufacturer/update/${this.$route.params.manufacturerid}`,  this.form)
                     .then((response)=>{
-                        this.$router.push('/manufacturer-list')
+                        this.$router.push('/manufacturer/list')
                         toast({
                             type: 'success',
                             title: 'Manufacturer Updated successfully'

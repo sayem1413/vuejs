@@ -32,7 +32,7 @@
                     <td>image</td>
                     <td>Publication Status </td>
                     <td>
-                        <router-link to="/product-Edit" class="btn btn-success"><span class="glyphicon glyphicon-edit"></span></router-link>
+                        <router-link to="/product/edit" class="btn btn-success"><span class="glyphicon glyphicon-edit"></span></router-link>
                         <a href="" class="btn btn-danger">
                             <span class="glyphicon glyphicon-trash"></span>
                         </a>

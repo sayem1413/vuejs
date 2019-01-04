@@ -20,7 +20,7 @@
                     <td>{{manufacturer.manufacturerDescription}}</td>
                     <td><p v-if="manufacturer.publicationStatus == 1">Published</p><p v-else>Unpublished</p></td>
                     <td>
-                        <router-link :to="`/manufacturer-edit/${manufacturer.id}`" class="btn btn-success"><span class="glyphicon glyphicon-edit"></span></router-link>
+                        <router-link :to="`/manufacturer/edit/${manufacturer.id}`" class="btn btn-success"><span class="glyphicon glyphicon-edit"></span></router-link>
                         <a href="#" class="btn btn-danger" @click.prevent = "deleteManufacturer(manufacturer.id)" >
                             <span class="glyphicon glyphicon-trash"></span>
                         </a>

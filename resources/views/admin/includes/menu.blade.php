@@ -30,10 +30,10 @@
             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Category Info<span class="fa arrow"></span></a>
             <ul class="nav nav-second-level">
                 <li>
-                    <router-link to="/category-add" class="nav-link"> Category Add</router-link>
+                    <router-link to="/category/add" class="nav-link"> Category Add</router-link>
                 </li>
                 <li>
-                    <router-link to="/category-list" class="nav-link"> Category List</router-link>
+                    <router-link to="/category/list" class="nav-link"> Category List</router-link>
                 </li>
             </ul>
             <!-- /.nav-second-level -->
@@ -42,10 +42,10 @@
             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Manufacturer info<span class="fa arrow"></span></a>
             <ul class="nav nav-second-level">
                 <li>
-                    <router-link to="/manufacturer-Add" class="nav-link"> manufacturer Add</router-link>
+                    <router-link to="/manufacturer/Add" class="nav-link"> manufacturer Add</router-link>
                 </li>
                 <li>
-                    <router-link to="/manufacturer-list" class="nav-link"> manufacturer List</router-link>
+                    <router-link to="/manufacturer/list" class="nav-link"> manufacturer List</router-link>
                 </li>
             </ul>
             <!-- /.nav-second-level -->
@@ -54,10 +54,10 @@
             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>Product info<span class="fa arrow"></span></a>
             <ul class="nav nav-second-level">
                 <li>
-                    <router-link to="/product-Add" class="nav-link"> product Add</router-link>
+                    <router-link to="/product/add" class="nav-link"> product Add</router-link>
                 </li>
                 <li>
-                    <router-link to="/product-List" class="nav-link"> product List</router-link>
+                    <router-link to="/product/list" class="nav-link"> product List</router-link>
                 </li>
             </ul>
             <!-- /.nav-second-level -->
