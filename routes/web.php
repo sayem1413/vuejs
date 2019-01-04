@@ -88,7 +88,7 @@ Route::group(['middleware' => 'AuthenticateMiddleware'], function() {
     Route::get('/product/manage', 'ProductController@manageProduct');
     Route::get('/product/view/{id}', 'ProductController@show');
     Route::get('/product/edit/{id}', 'ProductController@edit');
-    Route::post('/product/update', 'ProductController@update');
+    Route::post('/product/update/{id}', 'ProductController@update');
     Route::get('/product/delete/{id}', 'ProductController@destroy');
     /* Product Info */
     

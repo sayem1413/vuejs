@@ -29,11 +29,11 @@
                     <td>{{product.productQuantity}}</td>
                     <td>{{product.productShortDescription}}</td>
                     <td>{{product.productLongDescription}}</td>
-                    <td><img :src="product.productImage" alt="" height="150px" width="150px"></td>
+                    <td><img :src="ourImage(product.productImage)" alt="" height="150px" width="150px"></td>
                     <td><p v-if="product.publicationStatus == 1">Published</p><p v-else>Unpublished</p></td>
                     <td>
-                        <router-link to="/product/edit" class="btn btn-success"><span class="glyphicon glyphicon-edit"></span></router-link>
-                        <a href="" class="btn btn-danger">
+                        <router-link :to="`/product/edit/${product.id}`" class="btn btn-success"><span class="glyphicon glyphicon-edit"></span></router-link>
+                        <a href="" class="btn btn-danger" @click.prevent = "deleteProduct(product.id)" >
                             <span class="glyphicon glyphicon-trash"></span>
                         </a>
                     </td>
@@ -59,7 +59,17 @@
                 return "public/productImage/"+img;
             },
             deleteProduct(id){
-               
+               axios.get('/product/delete/'+id)
+                   .then(()=>{
+                       this.$store.dispatch("allProduct")
+                       toast({
+                           type: 'success',
+                           title: 'Product Deleted successfully'
+                       })
+                   })
+                   .catch(()=>{
+
+                   })
             }
         }
     }

@@ -53,7 +53,7 @@ export const routes = [
         component:ProductList
     },
     {
-        path:'/product/edit',
+        path:'/product/edit/:productId',
         component:ProductEdit
     },
 ];

@@ -7,6 +7,7 @@ use App\Category;
 use App\Manufacturer;
 use App\Product;
 use DB;
+use Image;
 
 class ProductController extends Controller {
 
@@ -38,17 +39,25 @@ class ProductController extends Controller {
             'productImage' => 'required',
         ]);
 
-        $productImage = $request->file('productImage');
+        $strpos = strpos($request->productImage,';');
+        $sub = substr($request->productImage,0,$strpos);
+        $ex = explode('/',$sub)[1];
+        $name = time().".".$ex;
+        $img = Image::make($request->productImage)->resize(200, 200);
+        $upload_path = public_path()."/public/productImage/";
+        $img->save($upload_path.$name);
+
+        /* $productImage = $request->file('productImage');
         $imageName = $productImage->getClientOriginalName();
         $uploadPath = 'public/productImage/';
         $productImage->move($uploadPath, $imageName);
-        $imageUrl = $uploadPath . $imageName;
+        $imageUrl = $uploadPath . $imageName; */
 
-        $this->saveProductInfo($request, $imageUrl);
-        return redirect('/product/add')->with('message', 'Product Info save successfully!');
+        $this->saveProductInfo($request, $name);
+        return response()->json(["success"=>true],200);
     }
 
-    protected function saveProductInfo($request, $imageUrl) {
+    protected function saveProductInfo($request, $name) {
         $product = new Product();
         $product->productName = $request->productName;
         $product->categoryId = $request->categoryId;
@@ -57,7 +66,7 @@ class ProductController extends Controller {
         $product->productQuantity = $request->productQuantity;
         $product->productShortDescription = $request->productShortDescription;
         $product->productLongDescription = $request->productLongDescription;
-        $product->productImage = $imageUrl;
+        $product->productImage = $name;
         $product->publicationStatus = $request->publicationStatus;
         $product->save();
     }
@@ -97,14 +106,23 @@ class ProductController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit($id) {
-        $categories = Category::where('publicationStatus', 1)->get();
-        $manufacturers = Manufacturer::where('publicationStatus', 1)->get();
-        $productById = Product::where('id', $id)->first();
+        //$categories = Category::where('publicationStatus', 1)->get();
+        //$manufacturers = Manufacturer::where('publicationStatus', 1)->get();
+        /* $productById = DB::table('products')
+                ->join('categories', 'products.categoryId', '=', 'categories.id')
+                ->join('manufacturers', 'products.manufacturerId', '=', 'manufacturers.id')
+                ->select('products.*','categories.id as categoryId', 'categories.categoryName','manufacturers.id as manufacturerId', 'manufacturers.manufacturerName')
+                ->where('products.id', $id)
+                ->first(); */
         //return view('admin.product.editProduct', ['productById' => $productById, 'categories' => $categories, 'manufacturers' => $manufacturers]);
-        return view('admin.product.editProduct')
+        $productById = Product::where('id', $id)->first();
+        return response()->json([
+            'productById'=>$productById
+        ],200);
+        /* return view('admin.product.editProduct')
                         ->with('productById', $productById)
                         ->with('categories', $categories)
-                        ->with('manufacturers', $manufacturers);
+                        ->with('manufacturers', $manufacturers); */
     }
 
     /**
@@ -114,36 +132,39 @@ class ProductController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request) {
+    public function update(Request $request, $id) {
         $this->validate($request, [
             'productName' => 'required',
             'productPrice' => 'required',
             'productImage' => 'required',
         ]);
         
-        $imageUrl = $this->imageExistStatus($request);
+        $imageUrl = $this->imageExistStatus($request, $id);
 
-        $this->updateProductInfo($request, $imageUrl);
-        return redirect('/product/manage')->with('message', 'Product Info update successfully!');
+        $this->updateProductInfo($request, $imageUrl, $id);
+        return response()->json(["success"=>true],200);
     }
 
-    private function imageExistStatus($request) {
-        $productById = Product::where('id', $request->productId)->first();
-        $productImage = $request->file('productImage');
-        if($productImage) {
-            unlink($productById->productImage);
-            $imageName = $productImage->getClientOriginalName();
-            $uploadPath = 'public/productImage/';
-            $productImage->move($uploadPath, $imageName);
-            $imageUrl = $uploadPath . $imageName;
+    private function imageExistStatus($request, $id) {
+        $productById = Product::where('id', $id)->first();
+        $productImage = $request->productImage;
+        if(file_exists($productImage)) {
+            //unlink($productById->productImage);
+            $strpos = strpos($request->productImage,';');
+            $sub = substr($request->productImage,0,$strpos);
+            $ex = explode('/',$sub)[1];
+            $name = time().".".$ex;
+            $img = Image::make($request->productImage)->resize(200, 200);
+            $upload_path = public_path()."/public/productImage/";
+            $img->save($upload_path.$name);
         } else {
-            $imageUrl = $productById->productImage;
+            $name = $productById->productImage;
         }
-        return $imageUrl;
+        return $name;
     }
 
-    protected function updateProductInfo($request, $imageUrl) {
-        $product = Product::find($request->productId);
+    protected function updateProductInfo($request, $imageUrl, $id) {
+        $product = Product::find($id);
         $product->productName = $request->productName;
         $product->categoryId = $request->categoryId;
         $product->manufacturerId = $request->manufacturerId;
@@ -164,8 +185,11 @@ class ProductController extends Controller {
      */
     public function destroy($id) {
         $product = Product::find($id);
+        /* if(file_exists($product->productImage)){
+            unlink($product->productImage);
+        } */
         $product->delete();
-        return redirect('/product/manage')->with('message', 'Product Info deleted successfully!');
+        return response()->json(["success"=>true],200);
     }
 
 }
