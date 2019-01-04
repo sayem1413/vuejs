@@ -49068,7 +49068,8 @@ var index_esm = {
 /* harmony default export */ __webpack_exports__["a"] = ({
     state: {
         category: [],
-        manufacturer: []
+        manufacturer: [],
+        product: []
     },
     getters: {
         getCategory: function getCategory(state) {
@@ -49076,6 +49077,9 @@ var index_esm = {
         },
         getManufacturer: function getManufacturer(state) {
             return state.manufacturer;
+        },
+        getPrduct: function getPrduct(state) {
+            return state.product;
         }
     },
     actions: {
@@ -49088,6 +49092,11 @@ var index_esm = {
             axios.get('/manufacturer/manage').then(function (response) {
                 context.commit('manufacturers', response.data.manufacturers);
             });
+        },
+        allProduct: function allProduct(context) {
+            axios.get('/product/manage').then(function (response) {
+                context.commit('products', response.data.products);
+            });
         }
     },
     mutations: {
@@ -49096,6 +49105,9 @@ var index_esm = {
         },
         manufacturers: function manufacturers(state, data) {
             return state.manufacturer = data;
+        },
+        products: function products(state, data) {
+            return state.product = data;
         }
     }
 });
@@ -54399,7 +54411,7 @@ var render = function() {
             staticClass: "form-horizontal",
             attrs: { role: "form" },
             on: {
-              click: function($event) {
+              submit: function($event) {
                 $event.preventDefault()
                 _vm.addProduct()
               }
@@ -54759,7 +54771,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -54818,12 +54830,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: "List",
-    mounted: function mounted() {},
+    mounted: function mounted() {
+        this.$store.dispatch("allProduct");
+    },
 
     computed: {
-        getallProduct: function getallProduct() {}
+        getallProduct: function getallProduct() {
+            return this.$store.getters.getPrduct;
+        }
     },
     methods: {
+        ourImage: function ourImage(img) {
+            return "public/productImage/" + img;
+        },
         deleteProduct: function deleteProduct(id) {}
     }
 });
@@ -54846,46 +54865,63 @@ var render = function() {
     _c("table", { staticClass: "table table-hover table-bordered" }, [
       _vm._m(0),
       _vm._v(" "),
-      _c("tbody", [
-        _c("tr", [
-          _c("td", { attrs: { scope: "row" } }, [_vm._v("Product Id")]),
-          _vm._v(" "),
-          _c("td", [_vm._v("Product Name")]),
-          _vm._v(" "),
-          _c("td", [_vm._v("Category Name")]),
-          _vm._v(" "),
-          _c("td", [_vm._v("Manufacturer Name")]),
-          _vm._v(" "),
-          _c("td", [_vm._v("TK. Product Price")]),
-          _vm._v(" "),
-          _c("td", [_vm._v("Product Quantity")]),
-          _vm._v(" "),
-          _c("td", [_vm._v("Product Short Description")]),
-          _vm._v(" "),
-          _c("td", [_vm._v("Product Long Description")]),
-          _vm._v(" "),
-          _c("td", [_vm._v("image")]),
-          _vm._v(" "),
-          _c("td", [_vm._v("Publication Status ")]),
-          _vm._v(" "),
-          _c(
-            "td",
-            [
-              _c(
-                "router-link",
-                {
-                  staticClass: "btn btn-success",
-                  attrs: { to: "/product/edit" }
-                },
-                [_c("span", { staticClass: "glyphicon glyphicon-edit" })]
-              ),
-              _vm._v(" "),
-              _vm._m(1)
-            ],
-            1
-          )
-        ])
-      ])
+      _c(
+        "tbody",
+        _vm._l(_vm.getallProduct, function(product, index) {
+          return _c("tr", { key: product.id }, [
+            _c("td", { attrs: { scope: "row" } }, [_vm._v(_vm._s(index + 1))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(product.productName))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(product.categoryName))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(product.manufacturerName))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(product.productPrice))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(product.productQuantity))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(product.productShortDescription))]),
+            _vm._v(" "),
+            _c("td", [_vm._v(_vm._s(product.productLongDescription))]),
+            _vm._v(" "),
+            _c("td", [
+              _c("img", {
+                attrs: {
+                  src: product.productImage,
+                  alt: "",
+                  height: "150px",
+                  width: "150px"
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _c("td", [
+              product.publicationStatus == 1
+                ? _c("p", [_vm._v("Published")])
+                : _c("p", [_vm._v("Unpublished")])
+            ]),
+            _vm._v(" "),
+            _c(
+              "td",
+              [
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "btn btn-success",
+                    attrs: { to: "/product/edit" }
+                  },
+                  [_c("span", { staticClass: "glyphicon glyphicon-edit" })]
+                ),
+                _vm._v(" "),
+                _vm._m(1, true)
+              ],
+              1
+            )
+          ])
+        }),
+        0
+      )
     ])
   ])
 }

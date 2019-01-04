@@ -6,7 +6,7 @@
 
             <hr/>
             <div class="well">
-                <form role="form" class="form-horizontal" @click.prevent="addProduct()">
+                <form role="form" class="form-horizontal" @submit.prevent="addProduct()">
                 <div class="form-group">
                     <label for="productName" class="col-sm-2 control-label">Product Name</label>
                     <div class="col-sm-10">

@@ -20,17 +20,17 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td scope="row">Product Id</td>
-                    <td>Product Name</td>
-                    <td>Category Name</td>
-                    <td>Manufacturer Name</td>
-                    <td>TK. Product Price</td>
-                    <td>Product Quantity</td>
-                    <td>Product Short Description</td>
-                    <td>Product Long Description</td>
-                    <td>image</td>
-                    <td>Publication Status </td>
+                <tr v-for="(product,index) in getallProduct" :key="product.id">
+                    <td scope="row">{{index+1}}</td>
+                    <td>{{product.productName}}</td>
+                    <td>{{product.categoryName}}</td>
+                    <td>{{product.manufacturerName}}</td>
+                    <td>{{product.productPrice}}</td>
+                    <td>{{product.productQuantity}}</td>
+                    <td>{{product.productShortDescription}}</td>
+                    <td>{{product.productLongDescription}}</td>
+                    <td><img :src="product.productImage" alt="" height="150px" width="150px"></td>
+                    <td><p v-if="product.publicationStatus == 1">Published</p><p v-else>Unpublished</p></td>
                     <td>
                         <router-link to="/product/edit" class="btn btn-success"><span class="glyphicon glyphicon-edit"></span></router-link>
                         <a href="" class="btn btn-danger">
@@ -47,14 +47,17 @@
     export default {
         name: "List",
         mounted(){
-            
+            this.$store.dispatch("allProduct")
         },
         computed:{
            getallProduct(){
-               
+               return this.$store.getters.getPrduct
            }
         },
         methods:{
+            ourImage(img){
+                return "public/productImage/"+img;
+            },
             deleteProduct(id){
                
             }

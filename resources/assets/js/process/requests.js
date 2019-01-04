@@ -1,7 +1,8 @@
 export default {
     state:{
         category:[],
-        manufacturer:[]
+        manufacturer:[],
+        product:[]
     },
     getters:{
         getCategory(state){
@@ -9,6 +10,9 @@ export default {
         },
         getManufacturer(state){
             return state.manufacturer
+        },
+        getPrduct(state){
+            return state.product
         }
     },
     actions:{
@@ -23,6 +27,12 @@ export default {
                 .then((response)=>{
                     context.commit('manufacturers',response.data.manufacturers)
                 })
+        },
+        allProduct(context){
+            axios.get('/product/manage')
+                .then((response) => {
+                    context.commit('products',response.data.products)
+                })
         }
     },
     mutations:{
@@ -31,6 +41,9 @@ export default {
         },
         manufacturers(state,data){
             return state.manufacturer = data
+        },
+        products(state,data){
+            return state.product = data
         }
     }
 }

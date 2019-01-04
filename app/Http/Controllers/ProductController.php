@@ -69,7 +69,9 @@ class ProductController extends Controller {
                 ->join('manufacturers', 'products.manufacturerId', '=', 'manufacturers.id')
                 ->select('products.id', 'products.productName', 'categories.categoryName', 'manufacturers.manufacturerName', 'products.productPrice', 'products.productQuantity', 'products.productShortDescription', 'products.productLongDescription', 'products.productImage', 'products.productImage', 'products.publicationStatus')
                 ->get();
-        return view('admin.product.manageProduct', ['products' => $products]);
+        return response()->json([
+            'products'=>$products
+        ],200);
     }
 
     /**
