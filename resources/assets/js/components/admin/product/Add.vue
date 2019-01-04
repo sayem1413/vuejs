@@ -16,21 +16,21 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="" class="col-sm-2 control-label">Category Name</label>
+                    <label for="" class="col-sm-2 control-label">Category</label>
                     <div class="col-sm-10">
                         <select class="form-control" name="categoryId" :class="{ 'is-invalid': form.errors.has('categoryId') }" v-model="form.categoryId">
-                            <option :value="null">Select Category Name</option>
-                            <option v-for="category in getallCategory" :key="category.id"  :value="category.id">{{category.categoryName}}</option>
+                            <option :value="null">Select Category</option>
+                            <option v-for="category in getallCategory" v-show="category.publicationStatus == 1" :key="category.id"  :value="category.id">{{category.categoryName}}</option>
                         </select>
                         <has-error :form="form" field="categoryId"></has-error>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="" class="col-sm-2 control-label">Manufacturer Name</label>
+                    <label for="" class="col-sm-2 control-label">Manufacturer</label>
                     <div class="col-sm-10">
                         <select class="form-control" name="manufacturerId" :class="{ 'is-invalid': form.errors.has('manufacturerId') }" v-model="form.manufacturerId">
-                            <option :value="null">Select Manufacturer Name</option>
-                            <option v-for="manufacturer in getallManufacturer" :key="manufacturer.id"  :value="manufacturer.id">{{manufacturer.manufacturerName}}</option>
+                            <option :value="null">Select Manufacturer</option>
+                            <option v-for="manufacturer in getallManufacturer" v-show="manufacturer.publicationStatus == 1" :key="manufacturer.id"  :value="manufacturer.id">{{manufacturer.manufacturerName}}</option>
                         </select>
                         <has-error :form="form" field="manufacturerId"></has-error>
                     </div>
@@ -77,7 +77,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="" class="col-sm-2 control-label"></label>
+                    <label for="" class="col-sm-2 control-label">Publication Status</label>
                     <div class="col-sm-10">
                         <select
                             class="form-control"

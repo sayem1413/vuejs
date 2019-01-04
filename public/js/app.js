@@ -54536,7 +54536,7 @@ var render = function() {
               _c(
                 "label",
                 { staticClass: "col-sm-2 control-label", attrs: { for: "" } },
-                [_vm._v("Category Name")]
+                [_vm._v("Category")]
               ),
               _vm._v(" "),
               _c(
@@ -54581,13 +54581,21 @@ var render = function() {
                     },
                     [
                       _c("option", { domProps: { value: null } }, [
-                        _vm._v("Select Category Name")
+                        _vm._v("Select Category")
                       ]),
                       _vm._v(" "),
                       _vm._l(_vm.getallCategory, function(category) {
                         return _c(
                           "option",
                           {
+                            directives: [
+                              {
+                                name: "show",
+                                rawName: "v-show",
+                                value: category.publicationStatus == 1,
+                                expression: "category.publicationStatus == 1"
+                              }
+                            ],
                             key: category.id,
                             domProps: { value: category.id }
                           },
@@ -54610,7 +54618,7 @@ var render = function() {
               _c(
                 "label",
                 { staticClass: "col-sm-2 control-label", attrs: { for: "" } },
-                [_vm._v("Manufacturer Name")]
+                [_vm._v("Manufacturer")]
               ),
               _vm._v(" "),
               _c(
@@ -54655,13 +54663,22 @@ var render = function() {
                     },
                     [
                       _c("option", { domProps: { value: null } }, [
-                        _vm._v("Select Manufacturer Name")
+                        _vm._v("Select Manufacturer")
                       ]),
                       _vm._v(" "),
                       _vm._l(_vm.getallManufacturer, function(manufacturer) {
                         return _c(
                           "option",
                           {
+                            directives: [
+                              {
+                                name: "show",
+                                rawName: "v-show",
+                                value: manufacturer.publicationStatus == 1,
+                                expression:
+                                  "manufacturer.publicationStatus == 1"
+                              }
+                            ],
                             key: manufacturer.id,
                             domProps: { value: manufacturer.id }
                           },
@@ -54955,10 +54972,11 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
-              _c("label", {
-                staticClass: "col-sm-2 control-label",
-                attrs: { for: "" }
-              }),
+              _c(
+                "label",
+                { staticClass: "col-sm-2 control-label", attrs: { for: "" } },
+                [_vm._v("Publication Status")]
+              ),
               _vm._v(" "),
               _c(
                 "div",
@@ -55448,7 +55466,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -55578,13 +55596,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 productQuantity: '',
                 productShortDescription: '',
                 productLongDescription: '',
-                productImage: ''
+                productImage: '',
+                publicationStatus: ''
             })
         };
     },
     mounted: function mounted() {
+        var _this = this;
+
         this.$store.dispatch("allCategory");
         this.$store.dispatch("allManufacturer");
+        axios.get('/product/edit/' + this.$route.params.productId).then(function (response) {
+            _this.form.fill(response.data.productById);
+        });
     },
 
     computed: {
@@ -55595,13 +55619,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             return this.$store.getters.getManufacturer;
         }
     },
-    created: function created() {
-        var _this = this;
-
-        axios.get('/product/edit/' + this.$route.params.productId).then(function (response) {
-            _this.form.fill(response.data.productById);
-        });
-    },
+    created: function created() {},
 
     methods: {
         changeImage: function changeImage(event) {
@@ -55733,7 +55751,7 @@ var render = function() {
               _c(
                 "label",
                 { staticClass: "col-sm-2 control-label", attrs: { for: "" } },
-                [_vm._v("Category Name")]
+                [_vm._v("Category")]
               ),
               _vm._v(" "),
               _c(
@@ -55778,13 +55796,21 @@ var render = function() {
                     },
                     [
                       _c("option", { domProps: { value: null } }, [
-                        _vm._v("Select Category Name")
+                        _vm._v("Select Category")
                       ]),
                       _vm._v(" "),
                       _vm._l(_vm.getallCategory, function(category) {
                         return _c(
                           "option",
                           {
+                            directives: [
+                              {
+                                name: "show",
+                                rawName: "v-show",
+                                value: category.publicationStatus == 1,
+                                expression: "category.publicationStatus == 1"
+                              }
+                            ],
                             key: category.id,
                             domProps: { value: category.id }
                           },
@@ -55807,7 +55833,7 @@ var render = function() {
               _c(
                 "label",
                 { staticClass: "col-sm-2 control-label", attrs: { for: "" } },
-                [_vm._v("Manufacturer Name")]
+                [_vm._v("Manufacturer")]
               ),
               _vm._v(" "),
               _c(
@@ -55852,13 +55878,22 @@ var render = function() {
                     },
                     [
                       _c("option", { domProps: { value: null } }, [
-                        _vm._v("Select Manufacturer Name")
+                        _vm._v("Select Manufacturer")
                       ]),
                       _vm._v(" "),
                       _vm._l(_vm.getallManufacturer, function(manufacturer) {
                         return _c(
                           "option",
                           {
+                            directives: [
+                              {
+                                name: "show",
+                                rawName: "v-show",
+                                value: manufacturer.publicationStatus == 1,
+                                expression:
+                                  "manufacturer.publicationStatus == 1"
+                              }
+                            ],
                             key: manufacturer.id,
                             domProps: { value: manufacturer.id }
                           },
@@ -56152,10 +56187,11 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
-              _c("label", {
-                staticClass: "col-sm-2 control-label",
-                attrs: { for: "" }
-              }),
+              _c(
+                "label",
+                { staticClass: "col-sm-2 control-label", attrs: { for: "" } },
+                [_vm._v("Publication Status")]
+              ),
               _vm._v(" "),
               _c(
                 "div",
