@@ -35,8 +35,14 @@ class ProductController extends Controller {
     public function store(Request $request) {
         $this->validate($request, [
             'productName' => 'required',
+            'categoryId' => 'required|not_in:""',
+            'manufacturerId' => 'required|not_in:""',
             'productPrice' => 'required',
+            'productQuantity' => 'required',
+            'productShortDescription' => 'required',
+            'productLongDescription' => 'required',
             'productImage' => 'required',
+            'publicationStatus' => 'required|not_in:""',
         ]);
 
         $strpos = strpos($request->productImage,';');
@@ -135,10 +141,16 @@ class ProductController extends Controller {
     public function update(Request $request, $id) {
         $this->validate($request, [
             'productName' => 'required',
+            'categoryId' => 'required|not_in:""',
+            'manufacturerId' => 'required|not_in:""',
             'productPrice' => 'required',
+            'productQuantity' => 'required',
+            'productShortDescription' => 'required',
+            'productLongDescription' => 'required',
             'productImage' => 'required',
+            'publicationStatus' => 'required|not_in:""',
         ]);
-        
+
         $imageUrl = $this->imageExistStatus($request, $id);
 
         $this->updateProductInfo($request, $imageUrl, $id);
@@ -147,7 +159,7 @@ class ProductController extends Controller {
 
     private function imageExistStatus($request, $id) {
         $productById = Product::where('id', $id)->first();
-        $productImage = $request->productImage;
+        /* $productImage = $request->productImage;
         if(file_exists($productImage)) {
             //unlink($productById->productImage);
             $strpos = strpos($request->productImage,';');
@@ -158,6 +170,24 @@ class ProductController extends Controller {
             $upload_path = public_path()."/public/productImage/";
             $img->save($upload_path.$name);
         } else {
+            $name = $productById->productImage;
+        }
+        return $name; */
+
+        if($request->productImage!=$productById->productImage){
+            $strpos = strpos($request->productImage,';');
+            $sub = substr($request->productImage,0,$strpos);
+            $ex = explode('/',$sub)[1];
+            $name = time().".".$ex;
+            $img = Image::make($request->productImage)->resize(200, 200);
+            $upload_path = public_path()."/public/productImage/";
+            $image = $upload_path. $productById->productImage;
+            $img->save($upload_path.$name);
+
+            if(file_exists($image)){
+                @unlink($image);
+            }
+        }else{
             $name = $productById->productImage;
         }
         return $name;
@@ -185,9 +215,12 @@ class ProductController extends Controller {
      */
     public function destroy($id) {
         $product = Product::find($id);
-        /* if(file_exists($product->productImage)){
-            unlink($product->productImage);
-        } */
+
+        $image_path = public_path()."/public/productImage/";
+        $image = $image_path. $product->productImage;
+        if(file_exists($image)){
+            @unlink($image);
+        }
         $product->delete();
         return response()->json(["success"=>true],200);
     }
