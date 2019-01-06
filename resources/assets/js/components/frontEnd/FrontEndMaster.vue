@@ -1,0 +1,15 @@
+<template>
+    <div id="frontendmain">
+        <router-view></router-view>
+    </div>
+</template>
+
+<script>
+    export default {
+        name: "FrontEndMaster"
+    }
+</script>
+
+<style scoped>
+
+</style>

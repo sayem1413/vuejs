@@ -3,6 +3,7 @@
     <head>
         <title>@yield('title')</title>
         <!-- for-mobile-apps -->
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="keywords" content="Smart Shop Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
@@ -43,7 +44,10 @@
         <!-- banner -->
         @include('frontEnd.includes.menu')
         <!-- //banner-top -->
-        @yield('mainContent')
+        <div id="app">
+            <frontend-main></frontend-main>
+        </div>
+        <script src="{{ asset('js/app.js') }}" defer></script>
         <!-- product-nav -->
         @include('frontEnd.includes.cupon')
         <!-- footer -->
