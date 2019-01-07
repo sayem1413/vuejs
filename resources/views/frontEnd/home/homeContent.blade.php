@@ -189,8 +189,8 @@ $(document).ready(function () {
                         <div class="col-md-3 product-men">
                             <div class="men-pro-item simpleCart_shelfItem">
                                 <div class="men-thumb-item">
-                                    <img src="{{asset($publishedProduct->productImage)}}" alt="image" class="pro-image-front">
-                                    <img src="{{asset($publishedProduct->productImage)}}" alt="image" class="pro-image-back">
+                                    <img src="{{asset('public/productImage/'.$publishedProduct->productImage)}}" alt="image" class="pro-image-front">
+                                    <img src="{{asset('public/productImage/'.$publishedProduct->productImage)}}" alt="image" class="pro-image-back">
                                     <div class="men-cart-pro">
                                         <div class="inner-men-cart-pro">
                                             <a href="{{url('/product-details/'.$publishedProduct->id)}}" class="link-product-add-cart">Quick View</a>

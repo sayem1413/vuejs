@@ -2,7 +2,8 @@ export default {
     state:{
         category:[],
         manufacturer:[],
-        product:[]
+        product:[],
+        latestproduct:[],
     },
     getters:{
         getCategory(state){
@@ -13,6 +14,10 @@ export default {
         },
         getPrduct(state){
             return state.product
+        },
+        getLatestProducts(state){
+            console.log(state.latestproduct)
+            return state.latestproduct
         }
     },
     actions:{
@@ -33,6 +38,12 @@ export default {
                 .then((response) => {
                     context.commit('products',response.data.products)
                 })
+        },
+        latestProducts(context){
+            axios.get('/latest/products')
+                .then((response) => {
+                    context.commit('latestproducts',response.data.latestPublishedProducts)
+                })
         }
     },
     mutations:{
@@ -44,6 +55,9 @@ export default {
         },
         products(state,data){
             return state.product = data
+        },
+        latestproducts(state,data){
+            return state.latestproduct = data
         }
     }
 }

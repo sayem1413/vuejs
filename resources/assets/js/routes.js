@@ -12,9 +12,13 @@ import ProductAdd from './components/admin/product/Add.vue'
 import ProductList from './components/admin/product/List.vue'
 import ProductEdit from './components/admin/product/Edit.vue'
 
+import FrontEndHome from './components/frontEnd/FrontEndHome.vue'
+
+
+
 export const routes = [
     {
-        path:'/',
+        path:'/home',
         component:AdminHome
     },
 
@@ -55,5 +59,9 @@ export const routes = [
     {
         path:'/product/edit/:productId',
         component:ProductEdit
+    },
+    {
+        path:'/',
+        component:FrontEndHome
     },
 ];

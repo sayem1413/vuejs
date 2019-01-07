@@ -17,6 +17,7 @@
 //});
 
 Route::get('/', 'HomeViewController@index');
+Route::get('/latest/products', 'HomeViewController@latestProducts');
 
 // Just Practise JFile
 //Route::get('/mens-category','MensCategoryController@mensCategoryView');
