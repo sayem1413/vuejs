@@ -14,12 +14,15 @@ class HomeViewController extends Controller {
             'publishedProducts'=>$publishedProducts
         ],200); */
         return view('frontEnd.master');
+<<<<<<< HEAD
     }
     public function latestProducts(){
         $latestPublishedProducts = Product::where('publicationStatus',1)->latest()->get();
         return response()->json([
             'latestPublishedProducts'=>$latestPublishedProducts
         ],200);
+=======
+>>>>>>> 1d6aafad38d36499c1fbaf2ee1493ac21f5e7aaf
     }
 
 }

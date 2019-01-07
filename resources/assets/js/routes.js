@@ -14,11 +14,17 @@ import ProductEdit from './components/admin/product/Edit.vue'
 
 import FrontEndHome from './components/frontEnd/FrontEndHome.vue'
 
+<<<<<<< HEAD
 
 
 export const routes = [
     {
         path:'/home',
+=======
+export const routes = [
+    {
+        path:'/admin',
+>>>>>>> 1d6aafad38d36499c1fbaf2ee1493ac21f5e7aaf
         component:AdminHome
     },
 

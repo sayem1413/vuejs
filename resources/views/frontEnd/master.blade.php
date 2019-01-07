@@ -48,6 +48,11 @@
             <frontend-main></frontend-main>
         </div>
         <script src="{{ asset('js/app.js') }}" defer></script>
+<<<<<<< HEAD
+=======
+        <!-- product-nav -->
+        @include('frontEnd.includes.cupon')
+>>>>>>> 1d6aafad38d36499c1fbaf2ee1493ac21f5e7aaf
         <!-- footer -->
         @include('frontEnd.includes.footer')
         <!-- //footer -->
