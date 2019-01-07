@@ -14,8 +14,8 @@
                                 <div class="col-md-3 product-men">
                                     <div class="men-pro-item simpleCart_shelfItem">
                                         <div class="men-thumb-item">
-                                            <img src="#" alt="image" class="pro-image-front">
-                                            <img src="#" alt="image" class="pro-image-back">
+                                            <img :src="`frontEnd/images/w3.png`" alt="image" class="pro-image-front">
+                                            <img :src="`frontEnd/images/w3.png`" alt="image" class="pro-image-back">
                                             <div class="men-cart-pro">
                                                 <div class="inner-men-cart-pro">
                                                     <a href="#" class="link-product-add-cart">Quick View</a>
@@ -35,9 +35,9 @@
                                 </div>
                                 <!-- Foreach -->
                                 
-                            <div class="clearfix"></div>
+                                <div class="clearfix"></div>
+                            </div>
                         </div>
-                        
                     </div>
                 </div>
             </div>

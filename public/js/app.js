@@ -56452,7 +56452,128 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* 94 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports={render:function(){},staticRenderFns:[]}
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "banner-grid" }, [
+    _c("div", { attrs: { id: "visual" } }, [
+      _c("div", { staticClass: "sap_tabs" }, [
+        _c(
+          "div",
+          {
+            staticStyle: { display: "block", width: "100%", margin: "0px" },
+            attrs: { id: "horizontalTab" }
+          },
+          [
+            _vm._m(0),
+            _vm._v(" "),
+            _c("div", { staticClass: "resp-tabs-container" }, [
+              _c(
+                "div",
+                {
+                  staticClass: "tab-1 resp-tab-content",
+                  attrs: { "aria-labelledby": "tab_item-0" }
+                },
+                [
+                  _c("div", { staticClass: "col-md-3 product-men" }, [
+                    _c(
+                      "div",
+                      { staticClass: "men-pro-item simpleCart_shelfItem" },
+                      [
+                        _c("div", { staticClass: "men-thumb-item" }, [
+                          _c("img", {
+                            staticClass: "pro-image-front",
+                            attrs: {
+                              src: "frontEnd/images/w3.png",
+                              alt: "image"
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("img", {
+                            staticClass: "pro-image-back",
+                            attrs: {
+                              src: "frontEnd/images/w3.png",
+                              alt: "image"
+                            }
+                          }),
+                          _vm._v(" "),
+                          _vm._m(1),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "product-new-top" }, [
+                            _vm._v("New")
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _vm._m(2)
+                      ]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "clearfix" })
+                ]
+              )
+            ])
+          ]
+        )
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("ul", { staticClass: "resp-tabs-list" }, [
+      _c(
+        "li",
+        {
+          staticClass: "resp-tab-item",
+          attrs: { "aria-controls": "tab_item-0", role: "tab" }
+        },
+        [_c("span", [_vm._v("Latest Product")])]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "men-cart-pro" }, [
+      _c("div", { staticClass: "inner-men-cart-pro" }, [
+        _c(
+          "a",
+          { staticClass: "link-product-add-cart", attrs: { href: "#" } },
+          [_vm._v("Quick View")]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "item-info-product " }, [
+      _c("h4", [_c("a", { attrs: { href: "#" } })]),
+      _vm._v(" "),
+      _c("div", { staticClass: "info-product-price" }, [
+        _c("span", { staticClass: "item_price" }, [_vm._v("BDT 15000")])
+      ]),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          staticClass: "item_add single-item hvr-outline-out button2",
+          attrs: { href: "#" }
+        },
+        [_vm._v("Add to cart")]
+      )
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
