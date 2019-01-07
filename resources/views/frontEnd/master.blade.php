@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>@yield('title')</title>
+        <title>E-Shop BD</title>
         <!-- for-mobile-apps -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -44,15 +44,11 @@
         <!-- banner -->
         @include('frontEnd.includes.menu')
         <!-- //banner-top -->
-        <div id="app">
+        <!-- <div id="app">
             <frontend-main></frontend-main>
-        </div>
-        <script src="{{ asset('js/app.js') }}" defer></script>
-<<<<<<< HEAD
-=======
-        <!-- product-nav -->
-        @include('frontEnd.includes.cupon')
->>>>>>> 1d6aafad38d36499c1fbaf2ee1493ac21f5e7aaf
+        </div> -->
+        @yield('mainContent')
+        <!-- <script src="{{ asset('js/app.js') }}" defer></script> -->
         <!-- footer -->
         @include('frontEnd.includes.footer')
         <!-- //footer -->

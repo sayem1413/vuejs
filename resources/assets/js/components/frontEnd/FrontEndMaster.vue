@@ -1,6 +1,6 @@
 <template>
-    <div id="frontendmain">
-        <router-view></router-view>
+    <div>
+       <router-view></router-view>
     </div>
 </template>
 

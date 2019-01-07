@@ -14,60 +14,63 @@ import ProductEdit from './components/admin/product/Edit.vue'
 
 import FrontEndHome from './components/frontEnd/FrontEndHome.vue'
 
-<<<<<<< HEAD
+import CategoryProducts from './components/frontEnd/category/CategoryProducts.vue'
 
-
+import Test from "./components/test.vue";
 export const routes = [
     {
-        path:'/home',
-=======
-export const routes = [
+        path: '/test/:category_id',
+        component: Test
+    },
     {
-        path:'/admin',
->>>>>>> 1d6aafad38d36499c1fbaf2ee1493ac21f5e7aaf
-        component:AdminHome
+        path: '/home',
+        component: AdminHome
     },
 
     {
-        path:'/category/add',
-        component:CategoryAdd
+        path: '/category/add',
+        component: CategoryAdd
     },
     {
-        path:'/category/list',
-        component:CategoryList
+        path: '/category/list',
+        component: CategoryList
     },
     {
-        path:'/category/edit/:categoryid',
-        component:CategoryEdit
-    },
-
-    {
-        path:'/manufacturer/add',
-        component:ManufacturerAdd
-    },
-    {
-        path:'/manufacturer/list',
-        component:ManufacturerList
-    },
-    {
-        path:'/manufacturer/edit/:manufacturerid',
-        component:ManufacturerEdit
+        path: '/category/edit/:categoryid',
+        component: CategoryEdit
     },
 
     {
-        path:'/product/add',
-        component:ProductAdd
+        path: '/manufacturer/add',
+        component: ManufacturerAdd
     },
     {
-        path:'/product/list',
-        component:ProductList
+        path: '/manufacturer/list',
+        component: ManufacturerList
     },
     {
-        path:'/product/edit/:productId',
-        component:ProductEdit
+        path: '/manufacturer/edit/:manufacturerid',
+        component: ManufacturerEdit
+    },
+
+    {
+        path: '/product/add',
+        component: ProductAdd
     },
     {
-        path:'/',
-        component:FrontEndHome
+        path: '/product/list',
+        component: ProductList
+    },
+    {
+        path: '/product/edit/:productId',
+        component: ProductEdit
+    },
+    {
+        path: '/',
+        component: FrontEndHome
+    },
+    {
+        path: '/category/view/:categoryId',
+        component: CategoryProducts
     },
 ];

@@ -29,17 +29,17 @@
                     </script>
                     <!-- //FlexSlider-->
                     <ul class="slides">
-                        <li data-thumb="{{asset($productById->productImage)}}">
-                            <div class="thumb-image"> <img src="{{asset($productById->productImage)}}" data-imagezoom="true" class="img-responsive"> </div>
+                        <li data-thumb="{{asset('public/productImage/'.$productById->productImage)}}">
+                            <div class="thumb-image"> <img src="{{asset('public/productImage/'.$productById->productImage)}}" data-imagezoom="true" class="img-responsive"> </div>
                         </li>
-                        <li data-thumb="{{asset($productById->productImage)}}">
-                            <div class="thumb-image"> <img src="{{asset($productById->productImage)}}" data-imagezoom="true" class="img-responsive"> </div>
+                        <li data-thumb="{{asset('public/productImage/'.$productById->productImage)}}">
+                            <div class="thumb-image"> <img src="{{asset('public/productImage/'.$productById->productImage)}}" data-imagezoom="true" class="img-responsive"> </div>
                         </li>	
-                        <li data-thumb="{{asset($productById->productImage)}}">
-                            <div class="thumb-image"> <img src="{{asset($productById->productImage)}}" data-imagezoom="true" class="img-responsive"> </div>
+                        <li data-thumb="{{asset('public/productImage/'.$productById->productImage)}}">
+                            <div class="thumb-image"> <img src="{{asset('public/productImage/'.$productById->productImage)}}" data-imagezoom="true" class="img-responsive"> </div>
                         </li>
-                        <li data-thumb="{{asset($productById->productImage)}}">
-                            <div class="thumb-image"> <img src="{{asset($productById->productImage)}}" data-imagezoom="true" class="img-responsive"> </div>
+                        <li data-thumb="{{asset('public/productImage/'.$productById->productImage)}}">
+                            <div class="thumb-image"> <img src="{{asset('public/productImage/'.$productById->productImage)}}" data-imagezoom="true" class="img-responsive"> </div>
                         </li>	
                     </ul>
                     <div class="clearfix"></div>

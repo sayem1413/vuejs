@@ -52,6 +52,8 @@ Route::get('/product-details/{id}', 'WelcomeController@productDetails');
 
 Auth::routes();
 
+Route::get("/test","WelcomeController@test");
+
 Route::get('/dashboard', 'HomeController@index')->name('home');
 
 

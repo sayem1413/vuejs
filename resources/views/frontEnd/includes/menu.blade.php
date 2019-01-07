@@ -20,6 +20,8 @@
                             @foreach($publishedCategories as $publishedCategory)
                             <li class="dropdown menu__item">
                                 <a href="{{url('/category-view/'.$publishedCategory->id)}}" class="dropdown-toggle menu__link">{{$publishedCategory->categoryName}}</a>
+                                <!-- <router-link :to="/category/view/{{$publishedCategory->id}}" class="dropdown-toggle menu__link">{{$publishedCategory->categoryName}}</router-link> -->
+                                <!-- <a href="{{url('/').'#/test/'.$publishedCategory->id}}"> {{$publishedCategory->categoryName}}</a> -->
                             </li>
                             @endforeach
                         </ul>

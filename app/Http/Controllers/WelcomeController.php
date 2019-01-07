@@ -24,4 +24,5 @@ class WelcomeController extends Controller
         $productById = Product::where('id',$id)->first();
         return view('frontEnd.product.productContent',['productById'=>$productById]);
     }
+  
 }
