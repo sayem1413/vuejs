@@ -42,13 +42,14 @@
         <!-- header-bot -->
         <!-- //header-bot -->
         <!-- banner -->
-        @include('frontEnd.includes.menu')
+        
         <!-- //banner-top -->
-        <!-- <div id="app">
+        <div id="app">
+            <frontend-menu></frontend-menu>
             <frontend-main></frontend-main>
-        </div> -->
-        @yield('mainContent')
-        <!-- <script src="{{ asset('js/app.js') }}" defer></script> -->
+        </div>
+        
+        <script src="{{ asset('js/app.js') }}" defer></script>
         <!-- footer -->
         @include('frontEnd.includes.footer')
         <!-- //footer -->

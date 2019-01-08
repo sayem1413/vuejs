@@ -3,32 +3,32 @@
         <div>
             <div>
                 
-                <div>
-                    <div>
-                        <ul>
-                            <li><span>Latest Product</span></li>
+                <div class="sap_tabs">
+                    <div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
+                        <ul class="resp-tabs-list">
+                            <li class="resp-tab-item"><span>Latest Product</span></li>
                         </ul>				  	 
-                        <div>
-                            <div>
+                        <div class="resp-tabs-container">
+                            <div class="row single-pro">
                                 <!-- Foreach -->
                                 <div v-for="product in getLatestProducts" :key="product.id" class="col-md-3">
-                                    <div>
-                                        <div>
+                                    <div class="men-pro-item simpleCart_shelfItem">
+                                        <div class="men-thumb-item">
                                             <img :src="ourImage(product.productImage)" alt="image" class="pro-image-front">
                                             <img :src="ourImage(product.productImage)" alt="image" class="pro-image-back">
-                                            <div>
-                                                <div>
-                                                    <a href="#">Quick View</a>
+                                            <div class="men-cart-pro">
+                                                <div class="inner-men-cart-pro">
+                                                    <a href="#" class="link-product-add-cart">Quick View</a>
                                                 </div>
                                             </div>
-                                            <span>New</span>
+                                            <span class="product-new-top">New</span>
                                         </div>
                                         <div>
-                                            <h4><a href="#">{{product.productName}}</a></h4>
-                                            <div>
+                                            <h4><router-link :to="`/product/${product.id}`">{{product.productName}}</router-link></h4>
+                                            <div class="info-product-price">
                                                 <span class="item_price">BDT {{product.productPrice}}</span>
                                             </div>
-                                            <a href="#">Add to cart</a>
+                                            <a href="#" class="item_add single-item hvr-outline-out button2">Add to cart</a>
                                         </div>
                                     </div>
                                 </div>

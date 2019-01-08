@@ -4,6 +4,8 @@ export default {
         manufacturer:[],
         product:[],
         latestproduct:[],
+        productsbycategoryid:[],
+        productbyid:[]
     },
     getters:{
         getCategory(state){
@@ -18,6 +20,14 @@ export default {
         getLatestProducts(state){
             console.log(state.latestproduct)
             return state.latestproduct
+        },
+        getAllProductsByCategoryId(state){
+            console.log(state.productsbycategoryid)
+            return state.productsbycategoryid
+        },
+        getproductbyid(state){
+            console.log(state.productbyid)
+            return state.productbyid
         }
     },
     actions:{
@@ -44,6 +54,20 @@ export default {
                 .then((response) => {
                     context.commit('latestproducts',response.data.latestPublishedProducts)
                 })
+        },
+        getProductsByCatId(context,payload){
+            axios.get('/category-view/'+payload)
+                .then((response)=>{
+                    console.log(response.data)
+                    context.commit('productsByCategory',response.data.publishedCategoryProducts)
+                })
+        },
+        getProductById(context,payload){
+            axios.get('/product-details/'+payload)
+                .then((response)=>{
+                    console.log(response.data)
+                    context.commit('productById',response.data.productById)
+                })
         }
     },
     mutations:{
@@ -58,6 +82,12 @@ export default {
         },
         latestproducts(state,data){
             return state.latestproduct = data
+        },
+        productsByCategory(state,payload){
+            return state.productsbycategoryid = payload
+        },
+        productById(state,payload){
+            return state.productbyid = payload
         }
     }
 }

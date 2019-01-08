@@ -15,6 +15,7 @@ import ProductEdit from './components/admin/product/Edit.vue'
 import FrontEndHome from './components/frontEnd/FrontEndHome.vue'
 
 import CategoryProducts from './components/frontEnd/category/CategoryProducts.vue'
+import ProductDetails from './components/frontEnd/productDetails/ProductDetails.vue'
 
 import Test from "./components/test.vue";
 export const routes = [
@@ -70,7 +71,11 @@ export const routes = [
         component: FrontEndHome
     },
     {
-        path: '/category/view/:categoryId',
+        path: '/category/:categoryId',
         component: CategoryProducts
     },
+    {
+        path: '/product/:id',
+        component: ProductDetails
+    }
 ];

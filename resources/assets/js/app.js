@@ -20,6 +20,7 @@ import {
 //import AdminMaster from './components/admin/AdminMaster.vue'
 Vue.component('admin-main', require('./components/admin/AdminMaster.vue'));
 Vue.component('frontend-main', require('./components/frontEnd/FrontEndMaster.vue'));
+Vue.component('frontend-menu', require('./components/frontEnd/FrontEndMenu.vue'));
 
 // V-form
 import {

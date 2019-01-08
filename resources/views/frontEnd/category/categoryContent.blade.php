@@ -321,14 +321,6 @@ Category
                 </div>
             </div>
             @endforeach
-            
-            
-           
-            
-            
-            
-            
-            
             <div class="clearfix"></div>
         </div>
         <div class="pagination-grid text-right">

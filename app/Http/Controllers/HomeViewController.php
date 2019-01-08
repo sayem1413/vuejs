@@ -13,8 +13,8 @@ class HomeViewController extends Controller {
         /* return response()->json([
             'publishedProducts'=>$publishedProducts
         ],200); */
-        //return view('frontEnd.master');
-        return view('frontEnd.home.homeContent', ['publishedProducts'=>$publishedProducts]);
+        return view('frontEnd.master');
+        //return view('frontEnd.home.homeContent', ['publishedProducts'=>$publishedProducts]);
     }
     public function latestProducts(){
         $latestPublishedProducts = Product::where('publicationStatus',1)->latest()->get();
