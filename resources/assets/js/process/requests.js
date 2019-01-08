@@ -5,7 +5,8 @@ export default {
         product:[],
         latestproduct:[],
         productsbycategoryid:[],
-        productbyid:[]
+        productbyid:[],
+        cartproduct:[]
     },
     getters:{
         getCategory(state){
@@ -28,6 +29,10 @@ export default {
         getproductbyid(state){
             console.log(state.productbyid)
             return state.productbyid
+        },
+        getCartProducts(state){
+            console.log(state.cartproduct)
+            return state.cartproduct
         }
     },
     actions:{
@@ -68,7 +73,14 @@ export default {
                     console.log(response.data)
                     context.commit('productById',response.data.productById)
                 })
-        }
+        },
+        getCartProducts(context){
+            axios.get('/cart/show')
+                .then((response) => {
+                    console.log(response.data)
+                    context.commit('cartproducts',response.data.cartProducts)
+                })
+        },
     },
     mutations:{
         categoreis(state,data){
@@ -88,6 +100,9 @@ export default {
         },
         productById(state,payload){
             return state.productbyid = payload
+        },
+        cartproducts(state,payload){
+            return state.cartproduct = payload
         }
     }
 }

@@ -20,17 +20,21 @@ class CartController extends Controller {
 //        $cartProducts = Cart::content();
 //        echo '<pre>';
 //        print_r($cartProducts);
-        return redirect('/cart/show');
+        //return redirect('/cart/show');
+        return response()->json(["success"=>true],200);
     }
 
     public function viewCart() {
         $cartProducts = Cart::content();
-        return view('frontEnd.checkOut.viewCart',['cartProducts' => $cartProducts]);
+        //return view('frontEnd.checkOut.viewCart',['cartProducts' => $cartProducts]);
+        return response()->json([
+            'cartProducts'=>$cartProducts
+        ],200);
     }
 
     public function deleteCartProduct($id) {
         Cart::remove($id);
-        return redirect('/cart/show');
+        return response()->json(["success"=>true],200);
     }
 
 }

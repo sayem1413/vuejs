@@ -16,7 +16,7 @@
                     <div class="item-info-product ">
                         <h4><router-link :to="`/product/${product.id}`">{{product.productName}}</router-link></h4>
                         <div class="info-product-price">
-                            <span class="item_price">BDT {{product.id}}</span>
+                            <span class="item_price">BDT {{product.productPrice}}</span>
                         </div>
                         <a href="#" class="item_add single-item hvr-outline-out button2">Add to cart</a>									
                     </div>

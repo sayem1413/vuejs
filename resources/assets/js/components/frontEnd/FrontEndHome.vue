@@ -28,7 +28,7 @@
                                             <div class="info-product-price">
                                                 <span class="item_price">BDT {{product.productPrice}}</span>
                                             </div>
-                                            <a href="#" class="item_add single-item hvr-outline-out button2">Add to cart</a>
+                                            <a href="#" @click.prevent="addCart(product.id)" class="item_add single-item hvr-outline-out button2">Add to cart</a>
                                         </div>
                                     </div>
                                 </div>
@@ -58,6 +58,17 @@
         methods:{
             ourImage(img){
                 return "public/productImage/"+img;
+            },
+            addCart(id){
+                axios.get('/cart/add/'+id)
+                    .then(response => {
+                        this.$router.push("/cart");
+                        toast({
+                            type: "success",
+                            title: "Cart Added successfully"
+                        });
+                    })
+                    .catch(() => {});
             }
         }
     }

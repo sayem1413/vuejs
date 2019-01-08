@@ -16,8 +16,10 @@ import FrontEndHome from './components/frontEnd/FrontEndHome.vue'
 
 import CategoryProducts from './components/frontEnd/category/CategoryProducts.vue'
 import ProductDetails from './components/frontEnd/productDetails/ProductDetails.vue'
+import Cart from './components/frontEnd/cart/Cart.vue'
 
 import Test from "./components/test.vue";
+
 export const routes = [
     {
         path: '/test/:category_id',
@@ -77,5 +79,9 @@ export const routes = [
     {
         path: '/product/:id',
         component: ProductDetails
+    },
+    {
+        path: '/cart',
+        component: Cart
     }
 ];

@@ -19,15 +19,10 @@
                                 <ul class="nav navbar-nav menu__list">
                                     <li class="active menu__item menu__item--current">
                                         <router-link to="/" class="dropdown-toggle menu__link">Home <span class="sr-only">(current)</span></router-link>
-                                        <!-- <a class="menu__link" href="">Home <span class="sr-only">(current)</span></a> -->
                                     </li>
-                                    
                                     <li v-for="category in getallCategory" :key="category.id" class="dropdown menu__item">
-                                        
                                         <router-link v-show="category.publicationStatus == 1" :to="`/category/${category.id}`" class="dropdown-toggle menu__link">{{category.categoryName}}</router-link>
-                                        
                                     </li>
-
                                 </ul>
                             </div>
                         </div>
@@ -35,14 +30,14 @@
                 </div>
                 <div class="top_nav_right">
                     <div class="cart box_1">
-                        <a href="">
+                         <router-link to="/cart">
                             <h3>
                                 <div class="total">
                                     <i class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></i>
                                     <span class="simpleCart_total"></span> (<span id="simpleCart_quantity" class="simpleCart_quantity"></span> items)
                                 </div>
                             </h3>
-                        </a>
+                        </router-link>
                         <p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>
                     </div>	
                 </div>
