@@ -29,7 +29,7 @@
                             <td class="invert">{{cart.name}}</td>
                             <td class="invert">
                                 <div class="quantity"> 
-                                    <form>
+                                    <form @submit.prevent = "updateProductCart(cart.rowId)" role="form" id="productQuantity">
                                         <div class="input-group">
                                             <input type="number" name="qty" class="form-control" :value="cart.qty">
                                             <span class="input-group-btn"></span>
@@ -67,9 +67,8 @@
                     <div v-for="cart in getCartList" :key="cart.id" class="hidden">{{ totall += cart.qty*cart.price}}</div>
                     <div class="checkout-left-basket animated wow slideInLeft" data-wow-delay=".5s">
                         <h4>Shopping basket</h4>
-                        
                         <ul>
-                            <li>Total: {{totall}}</li>
+                            <li><h5>Total: {{totall}}</h5></li>
                         </ul>
                     </div>
                     <div class="clearfix"> </div>
@@ -99,6 +98,20 @@ export default {
                     toast({
                         type: 'success',
                         title: 'Cart Product Deleted successfully'
+                    })
+                })
+                .catch(()=>{
+
+                })
+        },
+        updateProductCart(id){
+            console.log(id)
+            axios.get('/cart/update/'+id , this.productQuantity)
+                .then(()=>{
+                    this.$store.dispatch("allCartProducts")
+                    toast({
+                        type: 'success',
+                        title: 'Cart Product updated successfully'
                     })
                 })
                 .catch(()=>{

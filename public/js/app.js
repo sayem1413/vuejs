@@ -57497,7 +57497,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -57508,7 +57508,6 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
 //
 //
 //
@@ -57613,6 +57612,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     title: 'Cart Product Deleted successfully'
                 });
             }).catch(function () {});
+        },
+        updateProductCart: function updateProductCart(id) {
+            var _this2 = this;
+
+            console.log(id);
+            axios.get('/cart/update/' + id, this.productQuantity).then(function () {
+                _this2.$store.dispatch("allCartProducts");
+                toast({
+                    type: 'success',
+                    title: 'Cart Product updated successfully'
+                });
+            }).catch(function () {});
         }
     }
 });
@@ -57669,19 +57680,31 @@ var render = function() {
                     _vm._v(" "),
                     _c("td", { staticClass: "invert" }, [
                       _c("div", { staticClass: "quantity" }, [
-                        _c("form", [
-                          _c("div", { staticClass: "input-group" }, [
-                            _c("input", {
-                              staticClass: "form-control",
-                              attrs: { type: "number", name: "qty" },
-                              domProps: { value: cart.qty }
-                            }),
-                            _vm._v(" "),
-                            _c("span", { staticClass: "input-group-btn" }),
-                            _vm._v(" "),
-                            _vm._m(2, true)
-                          ])
-                        ])
+                        _c(
+                          "form",
+                          {
+                            attrs: { role: "form", id: "productQuantity" },
+                            on: {
+                              submit: function($event) {
+                                $event.preventDefault()
+                                _vm.updateProductCart(cart.rowId)
+                              }
+                            }
+                          },
+                          [
+                            _c("div", { staticClass: "input-group" }, [
+                              _c("input", {
+                                staticClass: "form-control",
+                                attrs: { type: "number", name: "qty" },
+                                domProps: { value: cart.qty }
+                              }),
+                              _vm._v(" "),
+                              _c("span", { staticClass: "input-group-btn" }),
+                              _vm._v(" "),
+                              _vm._m(2, true)
+                            ])
+                          ]
+                        )
                       ])
                     ]),
                     _vm._v(" "),
@@ -57725,7 +57748,9 @@ var render = function() {
               [
                 _c("h4", [_vm._v("Shopping basket")]),
                 _vm._v(" "),
-                _c("ul", [_c("li", [_vm._v("Total: " + _vm._s(_vm.totall))])])
+                _c("ul", [
+                  _c("li", [_c("h5", [_vm._v("Total: " + _vm._s(_vm.totall))])])
+                ])
               ]
             ),
             _vm._v(" "),

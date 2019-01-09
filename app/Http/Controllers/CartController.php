@@ -32,6 +32,11 @@ class CartController extends Controller {
         ],200);
     }
 
+    public function updateCartProduct(Request $request, $id) {
+        Cart::update($id, ['qty' => $request->qty]);
+        return response()->json(["success"=>true],200);
+    }
+    
     public function deleteCartProduct($id) {
         Cart::remove($id);
         return response()->json(["success"=>true],200);
