@@ -57497,7 +57497,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -57508,6 +57508,8 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
 //
 //
 //
@@ -57644,19 +57646,16 @@ var render = function() {
                     _c("td", [
                       _c("div", [
                         _c(
-                          "a",
+                          "form",
                           {
-                            staticClass: "btn btn-danger",
-                            attrs: {
-                              href: "",
-                              click: _vm.deleteProductCart(cart.id)
+                            on: {
+                              submit: function($event) {
+                                $event.preventDefault()
+                                _vm.deleteProductCart(cart.rowId)
+                              }
                             }
                           },
-                          [
-                            _c("span", {
-                              staticClass: "glyphicon glyphicon-trash"
-                            })
-                          ]
+                          [_vm._m(1, true)]
                         )
                       ])
                     ]),
@@ -57677,7 +57676,7 @@ var render = function() {
                             _vm._v(" "),
                             _c("span", { staticClass: "input-group-btn" }),
                             _vm._v(" "),
-                            _vm._m(1, true)
+                            _vm._m(2, true)
                           ])
                         ])
                       ])
@@ -57698,7 +57697,7 @@ var render = function() {
           ]
         ),
         _vm._v(" "),
-        _vm._m(2)
+        _vm._m(3)
       ])
     ])
   ])
@@ -57721,6 +57720,16 @@ var staticRenderFns = [
         _c("th", [_vm._v("Price")])
       ])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      { staticClass: "btn btn-danger", attrs: { type: "submit" } },
+      [_c("span", { staticClass: "glyphicon glyphicon-trash" })]
+    )
   },
   function() {
     var _vm = this

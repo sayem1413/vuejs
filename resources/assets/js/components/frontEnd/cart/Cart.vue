@@ -19,9 +19,11 @@
                         <tr v-for="cart in getCartList" :key="cart.id">
                             <td>
                                 <div>
-                                    <a href="" class="btn btn-danger" :click = "deleteProductCart(cart.id)" >
-                                        <span class="glyphicon glyphicon-trash"></span>
-                                    </a>
+                                    <form @submit.prevent = "deleteProductCart(cart.rowId)">
+                                        <button type="submit" class="btn btn-danger" >
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                        </button>
+                                    </form>
                                 </div>
                             </td>
                             <td class="invert">{{cart.name}}</td>
