@@ -16,10 +16,10 @@
                         </thead>
                         <!-- php code -> $total = 0; -->
                         <!-- foreach -->
-                        <tr v-for="cart in getCartList" :key="cart.id" class="rem1">
-                            <td class="invert-closeb">
-                                <div class="rem">
-                                    <a href=""  @click.prevent = "deleteProductCart(cart.id)" class="btn btn-danger">
+                        <tr v-for="cart in getCartList" :key="cart.id">
+                            <td>
+                                <div>
+                                    <a href="" class="btn btn-danger" :click = "deleteProductCart(cart.id)" >
                                         <span class="glyphicon glyphicon-trash"></span>
                                     </a>
                                 </div>
@@ -48,13 +48,13 @@
                 <div class="checkout-left">	
 
                     <div class="checkout-right-basket animated wow slideInRight" data-wow-delay=".5s">
-                        <a href="#home"><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>Back To Shopping</a>
+                        <a href=""><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>Back To Shopping</a>
                         <!-- php code ->
                             $customerId = Session::get('customerId');
                             $shippingId = Session::get('shippingId');
                             if($customerId!=null && $shippingId!=null){
                         -->
-                        <a href="#checkout/payment"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>Checkout</a>
+                        <a href=""><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>Checkout</a>
                             <!-- php code -> } else if($customerId!=null){ -->
                         <!-- <a href="#checkout/shipping"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>Checkout</a> -->
                             <!-- php code -> } else { -->
@@ -78,7 +78,7 @@
 export default {
     name: 'Cart',
     mounted(){
-        this.$store.dispatch("getCartProducts")
+        this.$store.dispatch("allCartProducts")
     },
     computed:{
         getCartList(){
@@ -87,12 +87,13 @@ export default {
     },
     methods:{
         deleteProductCart(id){
+            console.log(id)
             axios.get('/cart/delete/'+id)
                 .then(()=>{
-                    this.$store.dispatch("getCartProducts")
+                    this.$store.dispatch("allCartProducts")
                     toast({
                         type: 'success',
-                        title: 'Product cart Deleted successfully'
+                        title: 'Cart Product Deleted successfully'
                     })
                 })
                 .catch(()=>{

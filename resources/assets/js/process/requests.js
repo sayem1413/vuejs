@@ -42,6 +42,12 @@ export default {
                     context.commit('categoreis',response.data.categories)
                 })
         },
+        allPublishedCategory(context){
+            axios.get('/published/categories')
+                .then((response)=>{
+                    context.commit('categoreis',response.data.categories)
+                })
+        },
         allManufacturer(context){
             axios.get('/manufacturer/manage')
                 .then((response)=>{
@@ -74,7 +80,7 @@ export default {
                     context.commit('productById',response.data.productById)
                 })
         },
-        getCartProducts(context){
+        allCartProducts(context){
             axios.get('/cart/show')
                 .then((response) => {
                     console.log(response.data)

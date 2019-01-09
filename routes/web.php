@@ -17,6 +17,8 @@
 //});
 
 Route::get('/', 'HomeViewController@index');
+Route::get('/published/categories', 'CategoryController@manageCategory');
+
 Route::get('/latest/products', 'HomeViewController@latestProducts');
 
 // Just Practise JFile

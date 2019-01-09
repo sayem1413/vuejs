@@ -49110,6 +49110,11 @@ var index_esm = {
                 context.commit('categoreis', response.data.categories);
             });
         },
+        allPublishedCategory: function allPublishedCategory(context) {
+            axios.get('/published/categories').then(function (response) {
+                context.commit('categoreis', response.data.categories);
+            });
+        },
         allManufacturer: function allManufacturer(context) {
             axios.get('/manufacturer/manage').then(function (response) {
                 context.commit('manufacturers', response.data.manufacturers);
@@ -49137,7 +49142,7 @@ var index_esm = {
                 context.commit('productById', response.data.productById);
             });
         },
-        getCartProducts: function getCartProducts(context) {
+        allCartProducts: function allCartProducts(context) {
             axios.get('/cart/show').then(function (response) {
                 console.log(response.data);
                 context.commit('cartproducts', response.data.cartProducts);
@@ -57492,7 +57497,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -57583,7 +57588,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'Cart',
     mounted: function mounted() {
-        this.$store.dispatch("getCartProducts");
+        this.$store.dispatch("allCartProducts");
     },
 
     computed: {
@@ -57595,11 +57600,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         deleteProductCart: function deleteProductCart(id) {
             var _this = this;
 
+            console.log(id);
             axios.get('/cart/delete/' + id).then(function () {
-                _this.$store.dispatch("getCartProducts");
+                _this.$store.dispatch("allCartProducts");
                 toast({
                     type: 'success',
-                    title: 'Product cart Deleted successfully'
+                    title: 'Cart Product Deleted successfully'
                 });
             }).catch(function () {});
         }
@@ -57634,19 +57640,16 @@ var render = function() {
                 _vm._m(0),
                 _vm._v(" "),
                 _vm._l(_vm.getCartList, function(cart) {
-                  return _c("tr", { key: cart.id, staticClass: "rem1" }, [
-                    _c("td", { staticClass: "invert-closeb" }, [
-                      _c("div", { staticClass: "rem" }, [
+                  return _c("tr", { key: cart.id }, [
+                    _c("td", [
+                      _c("div", [
                         _c(
                           "a",
                           {
                             staticClass: "btn btn-danger",
-                            attrs: { href: "" },
-                            on: {
-                              click: function($event) {
-                                $event.preventDefault()
-                                _vm.deleteProductCart(cart.id)
-                              }
+                            attrs: {
+                              href: "",
+                              click: _vm.deleteProductCart(cart.id)
                             }
                           },
                           [
@@ -57744,7 +57747,7 @@ var staticRenderFns = [
           attrs: { "data-wow-delay": ".5s" }
         },
         [
-          _c("a", { attrs: { href: "#home" } }, [
+          _c("a", { attrs: { href: "" } }, [
             _c("span", {
               staticClass: "glyphicon glyphicon-menu-left",
               attrs: { "aria-hidden": "true" }
@@ -57752,7 +57755,7 @@ var staticRenderFns = [
             _vm._v("Back To Shopping")
           ]),
           _vm._v(" "),
-          _c("a", { attrs: { href: "#checkout/payment" } }, [
+          _c("a", { attrs: { href: "" } }, [
             _c("span", {
               staticClass: "glyphicon glyphicon-menu-right",
               attrs: { "aria-hidden": "true" }
@@ -58216,7 +58219,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'FrontEndMenu',
     mounted: function mounted() {
-        this.$store.dispatch("allCategory");
+        this.$store.dispatch("allPublishedCategory");
     },
 
     computed: {

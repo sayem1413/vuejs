@@ -51,7 +51,7 @@
 export default {
     name: 'FrontEndMenu',
     mounted(){
-        this.$store.dispatch("allCategory")
+        this.$store.dispatch("allPublishedCategory")
     },
     computed:{
         getallCategory(){
