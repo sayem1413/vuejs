@@ -56472,7 +56472,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -56528,34 +56528,41 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    name: "FrontEndHome",
-    mounted: function mounted() {
-        this.$store.dispatch("latestProducts");
-    },
+  name: "FrontEndHome",
+  mounted: function mounted() {
+    this.$store.dispatch("latestProducts");
+  },
 
-    computed: {
-        getLatestProducts: function getLatestProducts() {
-            return this.$store.getters.getLatestProducts;
-        }
-    },
-    methods: {
-        ourImage: function ourImage(img) {
-            return "public/productImage/" + img;
-        },
-        addCart: function addCart(id) {
-            var _this = this;
-
-            axios.get('/cart/add/' + id).then(function (response) {
-                _this.$router.push("/cart");
-                toast({
-                    type: "success",
-                    title: "Cart Added successfully"
-                });
-            }).catch(function () {});
-        }
+  computed: {
+    getLatestProducts: function getLatestProducts() {
+      return this.$store.getters.getLatestProducts;
     }
+  },
+  methods: {
+    ourImage: function ourImage(img) {
+      return "public/productImage/" + img;
+    },
+    addCart: function addCart(id) {
+      var _this = this;
+
+      axios.get("/cart/add/" + id).then(function (response) {
+        _this.$router.push("/cart");
+        toast({
+          type: "success",
+          title: "Cart Added successfully"
+        });
+      }).catch(function () {});
+    }
+  }
 });
 
 /***/ }),
@@ -56609,7 +56616,23 @@ var render = function() {
                                 }
                               }),
                               _vm._v(" "),
-                              _vm._m(1, true),
+                              _c("div", { staticClass: "men-cart-pro" }, [
+                                _c(
+                                  "div",
+                                  { staticClass: "inner-men-cart-pro" },
+                                  [
+                                    _c(
+                                      "router-link",
+                                      {
+                                        staticClass: "link-product-add-cart",
+                                        attrs: { to: "/product/" + product.id }
+                                      },
+                                      [_vm._v("Quick View")]
+                                    )
+                                  ],
+                                  1
+                                )
+                              ]),
                               _vm._v(" "),
                               _c("span", { staticClass: "product-new-top" }, [
                                 _vm._v("New")
@@ -56676,20 +56699,6 @@ var staticRenderFns = [
     return _c("ul", { staticClass: "resp-tabs-list" }, [
       _c("li", { staticClass: "resp-tab-item" }, [
         _c("span", [_vm._v("Latest Product")])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "men-cart-pro" }, [
-      _c("div", { staticClass: "inner-men-cart-pro" }, [
-        _c(
-          "a",
-          { staticClass: "link-product-add-cart", attrs: { href: "#" } },
-          [_vm._v("Quick View")]
-        )
       ])
     ])
   }
@@ -56789,7 +56798,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -56828,41 +56837,61 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    name: "CategoryProducts",
-    mounted: function mounted() {
-        //this.$store.dispatch('getProductsByCatId',this.$route.params.categoryId);
-        //console.log('mounted!')
+  name: "CategoryProducts",
+  mounted: function mounted() {
+    //this.$store.dispatch('getProductsByCatId',this.$route.params.categoryId);
+    //console.log('mounted!')
 
-        this.categoryProduct();
-    },
+    this.categoryProduct();
+  },
 
-    computed: {
-        categoryProducts: function categoryProducts() {
-
-            console.log(this.$store.getters.getAllProductsByCategoryId);
-            return this.$store.getters.getAllProductsByCategoryId;
-            /* axios.get(`/category-view/${this.$route.params.categoryId}`)
+  computed: {
+    categoryProducts: function categoryProducts() {
+      console.log(this.$store.getters.getAllProductsByCategoryId);
+      return this.$store.getters.getAllProductsByCategoryId;
+      /* axios.get(`/category-view/${this.$route.params.categoryId}`)
                 .then((response)=>{
                     console.log(response.data.publishedCategoryProducts)
                     return response.data.publishedCategoryProducts
                 }) */
-        }
-    },
-    methods: {
-        categoryProduct: function categoryProduct() {
-            this.$store.dispatch('getProductsByCatId', this.$route.params.categoryId);
-        },
-        ourImage: function ourImage(img) {
-            return "public/productImage/" + img;
-        }
-    },
-    watch: {
-        $route: function $route(to, from) {
-            this.categoryProduct();
-        }
     }
+  },
+  methods: {
+    categoryProduct: function categoryProduct() {
+      this.$store.dispatch("getProductsByCatId", this.$route.params.categoryId);
+    },
+    ourImage: function ourImage(img) {
+      return "public/productImage/" + img;
+    },
+    addCart: function addCart(id) {
+      var _this = this;
+
+      axios.get("/cart/add/" + id).then(function (response) {
+        _this.$router.push("/cart");
+        toast({
+          type: "success",
+          title: "Cart Added successfully"
+        });
+      }).catch(function () {});
+    }
+  },
+  watch: {
+    $route: function $route(to, from) {
+      this.categoryProduct();
+    }
+  }
 });
 
 /***/ }),
@@ -56901,14 +56930,30 @@ var render = function() {
                     }
                   }),
                   _vm._v(" "),
-                  _vm._m(0, true),
+                  _c("div", { staticClass: "men-cart-pro" }, [
+                    _c(
+                      "div",
+                      { staticClass: "inner-men-cart-pro" },
+                      [
+                        _c(
+                          "router-link",
+                          {
+                            staticClass: "link-product-add-cart",
+                            attrs: { to: "/product/" + product.id }
+                          },
+                          [_vm._v("Quick View")]
+                        )
+                      ],
+                      1
+                    )
+                  ]),
                   _vm._v(" "),
                   _c("span", { staticClass: "product-new-top" }, [
                     _vm._v("New")
                   ])
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "item-info-product " }, [
+                _c("div", { staticClass: "item-info-product" }, [
                   _c(
                     "h4",
                     [
@@ -56932,7 +56977,13 @@ var render = function() {
                     {
                       staticClass:
                         "item_add single-item hvr-outline-out button2",
-                      attrs: { href: "#" }
+                      attrs: { href: "#" },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          _vm.addCart(product.id)
+                        }
+                      }
                     },
                     [_vm._v("Add to cart")]
                   )
@@ -56948,22 +56999,7 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "men-cart-pro" }, [
-      _c("div", { staticClass: "inner-men-cart-pro" }, [
-        _c(
-          "a",
-          { staticClass: "link-product-add-cart", attrs: { href: "#" } },
-          [_vm._v("Quick View")]
-        )
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -57059,7 +57095,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -57142,32 +57178,71 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    name: 'ProductDetails',
-    mounted: function mounted() {
-        this.singleProduct();
-    },
+  name: "ProductDetails",
+  mounted: function mounted() {
+    this.singleProduct();
+  },
 
-    computed: {
-        singleproduct: function singleproduct() {
-            return this.$store.getters.getproductbyid;
-        }
-    },
-    methods: {
-        singleProduct: function singleProduct() {
-            this.$store.dispatch('getProductById', this.$route.params.id);
-        },
-        ourImage: function ourImage(img) {
-            return "public/productImage/" + img;
-        }
-    },
-    watch: {
-        $route: function $route(to, from) {
-            this.singleProduct();
-        }
+  computed: {
+    singleproduct: function singleproduct() {
+      return this.$store.getters.getproductbyid;
     }
+  },
+  methods: {
+    singleProduct: function singleProduct() {
+      this.$store.dispatch("getProductById", this.$route.params.id);
+    },
+    ourImage: function ourImage(img) {
+      return "public/productImage/" + img;
+    },
+    addCart: function addCart(id) {
+      var _this = this;
+
+      axios.get("/cart/add/" + id).then(function (response) {
+        _this.$router.push("/cart");
+        toast({
+          type: "success",
+          title: "Cart Added successfully"
+        });
+      }).catch(function () {});
+    }
+  },
+  watch: {
+    $route: function $route(to, from) {
+      this.singleProduct();
+    }
+  }
 });
 
 /***/ }),
@@ -57246,15 +57321,35 @@ var render = function() {
                   _c("input", {
                     attrs: { type: "radio", name: "radio", checked: "" }
                   }),
+                  _vm._v(" "),
                   _c("i"),
-                  _vm._v(_vm._s(_vm.singleproduct.productName))
+                  _vm._v(
+                    "\n              " +
+                      _vm._s(_vm.singleproduct.productName) +
+                      "\n            "
+                  )
                 ])
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "clearfix" })
             ]),
             _vm._v(" "),
-            _vm._m(2)
+            _c("div", { staticClass: "occasion-cart" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "item_add hvr-outline-out button2",
+                  attrs: { href: "#" },
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      _vm.addCart(_vm.singleproduct.id)
+                    }
+                  }
+                },
+                [_vm._v("Add to cart")]
+              )
+            ])
           ]
         ),
         _vm._v(" "),
@@ -57384,21 +57479,6 @@ var staticRenderFns = [
           ]
         )
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "occasion-cart" }, [
-      _c(
-        "a",
-        {
-          staticClass: "item_add hvr-outline-out button2",
-          attrs: { href: "#" }
-        },
-        [_vm._v("Add to cart")]
-      )
     ])
   }
 ]
