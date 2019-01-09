@@ -36,7 +36,7 @@ Route::get('/latest/products', 'HomeViewController@latestProducts');
 
 Route::get('/cart/add/{id}','CartController@addToCart');
 Route::get('/cart/show','CartController@viewCart');
-Route::get('/cart/update/{id}','CartController@updateCartProduct');
+Route::patch('/cart/update/{id}','CartController@updateCartProduct');
 Route::get('/cart/delete/{id}','CartController@deleteCartProduct');
 
 Route::get('/checkout','CheckOutController@index');

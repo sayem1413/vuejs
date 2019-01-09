@@ -48126,7 +48126,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* unused harmony export install */
 /* unused harmony export mapState */
 /* unused harmony export mapMutations */
-/* unused harmony export mapGetters */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return mapGetters; });
 /* unused harmony export mapActions */
 /* unused harmony export createNamespacedHelpers */
 /**
@@ -49088,19 +49088,19 @@ var index_esm = {
             return state.product;
         },
         getLatestProducts: function getLatestProducts(state) {
-            console.log(state.latestproduct);
+            // console.log(state.latestproduct)
             return state.latestproduct;
         },
         getAllProductsByCategoryId: function getAllProductsByCategoryId(state) {
-            console.log(state.productsbycategoryid);
+            // console.log(state.productsbycategoryid)
             return state.productsbycategoryid;
         },
         getproductbyid: function getproductbyid(state) {
-            console.log(state.productbyid);
+            // console.log(state.productbyid)
             return state.productbyid;
         },
         getCartProducts: function getCartProducts(state) {
-            console.log(state.cartproduct);
+            // console.log(state.cartproduct)
             return state.cartproduct;
         }
     },
@@ -49132,19 +49132,19 @@ var index_esm = {
         },
         getProductsByCatId: function getProductsByCatId(context, payload) {
             axios.get('/category-view/' + payload).then(function (response) {
-                console.log(response.data);
+                // console.log(response.data)
                 context.commit('productsByCategory', response.data.publishedCategoryProducts);
             });
         },
         getProductById: function getProductById(context, payload) {
             axios.get('/product-details/' + payload).then(function (response) {
-                console.log(response.data);
+                // console.log(response.data)
                 context.commit('productById', response.data.productById);
             });
         },
         allCartProducts: function allCartProducts(context) {
             axios.get('/cart/show').then(function (response) {
-                console.log(response.data);
+                // console.log(response.data)
                 context.commit('cartproducts', response.data.cartProducts);
             });
         }
@@ -54524,7 +54524,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 var reader = new FileReader();
                 reader.onload = function (event) {
                     _this.form.productImage = event.target.result;
-                    console.log(event.target.result);
+                    //  console.log(event.target.result)
                 };
                 reader.readAsDataURL(file);
             }
@@ -57497,7 +57497,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -57508,6 +57508,9 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(42);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 //
 //
 //
@@ -57588,44 +57591,70 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    name: 'Cart',
-    mounted: function mounted() {
-        this.$store.dispatch("allCartProducts");
-    },
+  name: "Cart",
+  data: function data() {
+    return {
+      qty: 1
+    };
+  },
+  mounted: function mounted() {
+    this.$store.dispatch("allCartProducts");
+  },
 
-    computed: {
-        getCartList: function getCartList() {
-            return this.$store.getters.getCartProducts;
-        }
-    },
-    methods: {
-        deleteProductCart: function deleteProductCart(id) {
-            var _this = this;
-
-            console.log(id);
-            axios.get('/cart/delete/' + id).then(function () {
-                _this.$store.dispatch("allCartProducts");
-                toast({
-                    type: 'success',
-                    title: 'Cart Product Deleted successfully'
-                });
-            }).catch(function () {});
-        },
-        updateProductCart: function updateProductCart(id) {
-            var _this2 = this;
-
-            console.log(id);
-            axios.get('/cart/update/' + id, this.productQuantity).then(function () {
-                _this2.$store.dispatch("allCartProducts");
-                toast({
-                    type: 'success',
-                    title: 'Cart Product updated successfully'
-                });
-            }).catch(function () {});
-        }
+  computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapGetters */])(["getCartProducts"]), {
+    getCartList: function getCartList() {
+      return this.$store.getters.getCartProducts;
     }
+  }),
+  methods: {
+    deleteProductCart: function deleteProductCart(id) {
+      var _this = this;
+
+      //   console.log(id);
+      axios.get("/cart/delete/" + id, this.form).then(function () {
+        _this.$store.dispatch("allCartProducts");
+        toast({
+          type: "success",
+          title: "Cart Product Deleted successfully"
+        });
+      }).catch(function () {});
+    },
+    updateProductCart: function updateProductCart(id) {
+      var _this2 = this;
+
+      //   console.log(this.dataQty);
+      axios.patch("/cart/update/" + id, { qty: this.qty }).then(function () {
+        _this2.$store.dispatch("allCartProducts");
+        toast({
+          type: "success",
+          title: "Cart Product updated successfully"
+        });
+      }).catch(function () {});
+    }
+  }
 });
 
 /***/ }),
@@ -57655,21 +57684,27 @@ var render = function() {
               [
                 _vm._m(0),
                 _vm._v(" "),
-                _vm._l(_vm.getCartList, function(cart) {
+                _vm._l(_vm.getCartList, function(cart, index) {
                   return _c("tr", { key: cart.id }, [
                     _c("td", [
                       _c("div", [
                         _c(
-                          "form",
+                          "a",
                           {
+                            staticClass: "btn btn-danger",
+                            attrs: { href: "", type: "submit" },
                             on: {
-                              submit: function($event) {
+                              click: function($event) {
                                 $event.preventDefault()
                                 _vm.deleteProductCart(cart.rowId)
                               }
                             }
                           },
-                          [_vm._m(1, true)]
+                          [
+                            _c("span", {
+                              staticClass: "glyphicon glyphicon-trash"
+                            })
+                          ]
                         )
                       ])
                     ]),
@@ -57680,31 +57715,38 @@ var render = function() {
                     _vm._v(" "),
                     _c("td", { staticClass: "invert" }, [
                       _c("div", { staticClass: "quantity" }, [
-                        _c(
-                          "form",
-                          {
-                            attrs: { role: "form", id: "productQuantity" },
+                        _c("div", { staticClass: "input-group" }, [
+                          _c("input", {
+                            staticClass: "form-control",
+                            attrs: { type: "number", name: "qty" },
+                            domProps: { value: _vm.getCartList[index].qty },
                             on: {
-                              submit: function($event) {
-                                $event.preventDefault()
-                                _vm.updateProductCart(cart.rowId)
+                              change: function($event) {
+                                _vm.qty = $event.target.value
                               }
                             }
-                          },
-                          [
-                            _c("div", { staticClass: "input-group" }, [
-                              _c("input", {
-                                staticClass: "form-control",
-                                attrs: { type: "number", name: "qty" },
-                                domProps: { value: cart.qty }
-                              }),
-                              _vm._v(" "),
-                              _c("span", { staticClass: "input-group-btn" }),
-                              _vm._v(" "),
-                              _vm._m(2, true)
-                            ])
-                          ]
-                        )
+                          }),
+                          _vm._v(" "),
+                          _c("span", { staticClass: "input-group-btn" }),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-primary",
+                              attrs: { type: "submit" },
+                              on: {
+                                click: function($event) {
+                                  _vm.updateProductCart(cart.rowId)
+                                }
+                              }
+                            },
+                            [
+                              _c("span", {
+                                staticClass: "glyphicon glyphicon-upload"
+                              })
+                            ]
+                          )
+                        ])
                       ])
                     ]),
                     _vm._v(" "),
@@ -57727,7 +57769,7 @@ var render = function() {
           "div",
           { staticClass: "checkout-left" },
           [
-            _vm._m(3),
+            _vm._m(1),
             _vm._v(" "),
             _c("div", { staticClass: "hidden" }, [
               _vm._v(_vm._s((_vm.totall = 0)))
@@ -57786,29 +57828,6 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c(
-      "button",
-      { staticClass: "btn btn-danger", attrs: { type: "submit" } },
-      [_c("span", { staticClass: "glyphicon glyphicon-trash" })]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      {
-        staticClass: "btn btn-primary",
-        attrs: { type: "submit", name: "btn" }
-      },
-      [_c("span", { staticClass: "glyphicon glyphicon-upload" })]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
       "div",
       {
         staticClass: "checkout-right-basket animated wow slideInRight",
@@ -57820,7 +57839,7 @@ var staticRenderFns = [
             staticClass: "glyphicon glyphicon-menu-left",
             attrs: { "aria-hidden": "true" }
           }),
-          _vm._v("Back To Shopping")
+          _vm._v("Back To Shopping\n          ")
         ]),
         _vm._v(" "),
         _c("a", { attrs: { href: "" } }, [
@@ -57828,7 +57847,7 @@ var staticRenderFns = [
             staticClass: "glyphicon glyphicon-menu-right",
             attrs: { "aria-hidden": "true" }
           }),
-          _vm._v("Checkout")
+          _vm._v("Checkout\n          ")
         ])
       ]
     )

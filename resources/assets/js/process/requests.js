@@ -19,19 +19,19 @@ export default {
             return state.product
         },
         getLatestProducts(state){
-            console.log(state.latestproduct)
+            // console.log(state.latestproduct)
             return state.latestproduct
         },
         getAllProductsByCategoryId(state){
-            console.log(state.productsbycategoryid)
+            // console.log(state.productsbycategoryid)
             return state.productsbycategoryid
         },
         getproductbyid(state){
-            console.log(state.productbyid)
+            // console.log(state.productbyid)
             return state.productbyid
         },
         getCartProducts(state){
-            console.log(state.cartproduct)
+            // console.log(state.cartproduct)
             return state.cartproduct
         }
     },
@@ -69,21 +69,21 @@ export default {
         getProductsByCatId(context,payload){
             axios.get('/category-view/'+payload)
                 .then((response)=>{
-                    console.log(response.data)
+                    // console.log(response.data)
                     context.commit('productsByCategory',response.data.publishedCategoryProducts)
                 })
         },
         getProductById(context,payload){
             axios.get('/product-details/'+payload)
                 .then((response)=>{
-                    console.log(response.data)
+                    // console.log(response.data)
                     context.commit('productById',response.data.productById)
                 })
         },
         allCartProducts(context){
             axios.get('/cart/show')
                 .then((response) => {
-                    console.log(response.data)
+                    // console.log(response.data)
                     context.commit('cartproducts',response.data.cartProducts)
                 })
         },
