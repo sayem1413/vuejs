@@ -63,10 +63,13 @@
                         <!-- <a href="#checkout"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>Checkout</a> -->
                         <!-- php code -> } -->
                     </div>
+                    <div class="hidden">{{totall = 0}}</div>
+                    <div v-for="cart in getCartList" :key="cart.id" class="hidden">{{ totall += cart.qty*cart.price}}</div>
                     <div class="checkout-left-basket animated wow slideInLeft" data-wow-delay=".5s">
                         <h4>Shopping basket</h4>
+                        
                         <ul>
-                            <li>Total: </li>
+                            <li>Total: {{totall}}</li>
                         </ul>
                     </div>
                     <div class="clearfix"> </div>

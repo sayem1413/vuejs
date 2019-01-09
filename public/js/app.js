@@ -57497,7 +57497,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -57508,6 +57508,9 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
 //
 //
 //
@@ -57697,7 +57700,39 @@ var render = function() {
           ]
         ),
         _vm._v(" "),
-        _vm._m(3)
+        _c(
+          "div",
+          { staticClass: "checkout-left" },
+          [
+            _vm._m(3),
+            _vm._v(" "),
+            _c("div", { staticClass: "hidden" }, [
+              _vm._v(_vm._s((_vm.totall = 0)))
+            ]),
+            _vm._v(" "),
+            _vm._l(_vm.getCartList, function(cart) {
+              return _c("div", { key: cart.id, staticClass: "hidden" }, [
+                _vm._v(_vm._s((_vm.totall += cart.qty * cart.price)))
+              ])
+            }),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "checkout-left-basket animated wow slideInLeft",
+                attrs: { "data-wow-delay": ".5s" }
+              },
+              [
+                _c("h4", [_vm._v("Shopping basket")]),
+                _vm._v(" "),
+                _c("ul", [_c("li", [_vm._v("Total: " + _vm._s(_vm.totall))])])
+              ]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "clearfix" })
+          ],
+          2
+        )
       ])
     ])
   ])
@@ -57748,47 +57783,30 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "checkout-left" }, [
-      _c(
-        "div",
-        {
-          staticClass: "checkout-right-basket animated wow slideInRight",
-          attrs: { "data-wow-delay": ".5s" }
-        },
-        [
-          _c("a", { attrs: { href: "" } }, [
-            _c("span", {
-              staticClass: "glyphicon glyphicon-menu-left",
-              attrs: { "aria-hidden": "true" }
-            }),
-            _vm._v("Back To Shopping")
-          ]),
-          _vm._v(" "),
-          _c("a", { attrs: { href: "" } }, [
-            _c("span", {
-              staticClass: "glyphicon glyphicon-menu-right",
-              attrs: { "aria-hidden": "true" }
-            }),
-            _vm._v("Checkout")
-          ])
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass: "checkout-left-basket animated wow slideInLeft",
-          attrs: { "data-wow-delay": ".5s" }
-        },
-        [
-          _c("h4", [_vm._v("Shopping basket")]),
-          _vm._v(" "),
-          _c("ul", [_c("li", [_vm._v("Total: ")])])
-        ]
-      ),
-      _vm._v(" "),
-      _c("div", { staticClass: "clearfix" })
-    ])
+    return _c(
+      "div",
+      {
+        staticClass: "checkout-right-basket animated wow slideInRight",
+        attrs: { "data-wow-delay": ".5s" }
+      },
+      [
+        _c("a", { attrs: { href: "" } }, [
+          _c("span", {
+            staticClass: "glyphicon glyphicon-menu-left",
+            attrs: { "aria-hidden": "true" }
+          }),
+          _vm._v("Back To Shopping")
+        ]),
+        _vm._v(" "),
+        _c("a", { attrs: { href: "" } }, [
+          _c("span", {
+            staticClass: "glyphicon glyphicon-menu-right",
+            attrs: { "aria-hidden": "true" }
+          }),
+          _vm._v("Checkout")
+        ])
+      ]
+    )
   }
 ]
 render._withStripped = true
