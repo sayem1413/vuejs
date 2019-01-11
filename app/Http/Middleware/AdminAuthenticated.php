@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Support\Facades\Auth;
 use App\Enumeration\Role;
 
-class AuthenticateMiddleware
+class AdminAuthenticated
 {
     /**
      * Handle an incoming request.
@@ -17,11 +17,10 @@ class AuthenticateMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::check() && Auth::user()->role == Role::USER)
+        if (Auth::check() && Auth::user()->role == Role::ADMIN)
             return $next($request);
         else
             return redirect('/');
-        
         
         return $next($request);
     }

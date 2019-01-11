@@ -15,7 +15,7 @@
         <div class="col-md-3 header-left">
             <h1><a href="{{url('/')}}"><img src="{{asset('frontEnd/images/')}}/logo3.jpg"></a></h1>
         </div>
-        <div class="col-md-6 header-middle">
+        <div class="col-md-3 header-middle">
             <form>
                 <div class="search">
                     <input type="search" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {
@@ -50,6 +50,33 @@
             </ul>
         </div>
         <div class="clearfix"></div>
+        <div class="col-md-3 ">
+        @guest
+        <a href="#" class="use1" data-toggle="modal" data-target="#myModal4"><span>Login</span></a>
+        @else
+        <ul class="navbar-nav" style="padding-top: 27px;">
+            <li>
+                <a href="{{route('profile').'#/profile'}}">Profile</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a id="navbarDropdown" class="nav-link-text dropdown-toggle" href="{{route('profile').'#/profile'}}" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                    {{ Auth::user()->name }} <span class="caret"></span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item btn btn-block" href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">
+                        {{ __('Logout') }}
+                    </a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                </div>
+            </li>
+        </ul>
+        @endguest
+        </div>
     </div>
 </div>
 <!-- //header-bot -->

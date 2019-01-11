@@ -65,34 +65,51 @@
                             <div class="login">
                                 <div class="login-bottom">
                                     <h3>Sign up for free</h3>
-                                    <a href="{{route('register')}}" class="btn btn-primary">Register Here!</a>
+                                    <form>
+                                        <div class="sign-up">
+                                            <h4>Email :</h4>
+                                            <input type="text" value="Type here" onfocus="this.value = '';" onblur="if (this.value == '') {
+                                                                                                            this.value = 'Type here';
+                                                                                                        }" required="">	
+                                        </div>
+                                        <div class="sign-up">
+                                            <h4>Password :</h4>
+                                            <input type="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {
+                                                                                                            this.value = 'Password';
+                                                                                                        }" required="">
+
+                                        </div>
+                                        <div class="sign-up">
+                                            <h4>Re-type Password :</h4>
+                                            <input type="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {
+                                                                                                            this.value = 'Password';
+                                                                                                        }" required="">
+
+                                        </div>
+                                        <div class="sign-up">
+                                            <input type="submit" value="REGISTER NOW" >
+                                        </div>
+
+                                    </form>
                                 </div>
                                 <div class="login-right">
                                     <h3>Sign in with your account</h3>
-                                    <form method="POST" action="{{ url('/user/login') }}">
-                                    @csrf
+                                    <form>
                                         <div class="sign-in">
                                             <h4>Email :</h4>
-                                            <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
-                                            @if ($errors->has('email'))
-                                                <span class="help-block">
-                                                    <strong>{{ $errors->first('email') }}</strong>
-                                                </span>
-                                            @endif
+                                            <input type="text" value="Type here" onfocus="this.value = '';" onblur="if (this.value == '') {
+                                                                                                            this.value = 'Type here';
+                                                                                                        }" required="">	
                                         </div>
                                         <div class="sign-in">
                                             <h4>Password :</h4>
-                                            <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
-
-                                            @if ($errors->has('password'))
-                                                <span class="help-block">
-                                                    <strong>{{ $errors->first('password') }}</strong>
-                                                </span>
-                                            @endif
+                                            <input type="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {
+                                                                                                            this.value = 'Password';
+                                                                                                        }" required="">
                                             <a href="#">Forgot password?</a>
                                         </div>
                                         <div class="single-bottom">
-                                            <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> {{ __('Remember Me') }}
+                                            <input type="checkbox"  id="brand" value="">
                                             <label for="brand"><span></span>Remember Me.</label>
                                         </div>
                                         <div class="sign-in">

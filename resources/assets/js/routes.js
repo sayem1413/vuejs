@@ -16,7 +16,13 @@ import FrontEndHome from './components/frontEnd/FrontEndHome.vue'
 
 import CategoryProducts from './components/frontEnd/category/CategoryProducts.vue'
 import ProductDetails from './components/frontEnd/productDetails/ProductDetails.vue'
+
 import Cart from './components/frontEnd/cart/Cart.vue'
+
+import Register from './components/frontEnd/auth/Register.vue'
+import Login from './components/frontEnd/auth/Login.vue'
+
+import UserProfile from './components/frontEnd/userHome/UserProfile.vue'
 
 import Test from "./components/test.vue";
 
@@ -83,5 +89,17 @@ export const routes = [
     {
         path: '/cart',
         component: Cart
+    },
+    {
+        path: '/register',
+        component: Register
+    },
+    {
+        path: '/login',
+        component: Login
+    },
+    {
+        path: '/profile',
+        component: UserProfile
     }
 ];

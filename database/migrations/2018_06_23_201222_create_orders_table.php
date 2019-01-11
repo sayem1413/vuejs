@@ -15,10 +15,10 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('customerId');
-            $table->integer('shippingId');
-            $table->float('orderTotall', 10,2);
-            $table->string('orderStatus')->default('pending');
+            $table->integer('customer_id');
+            $table->integer('shipping_id');
+            $table->float('order_totall', 10,2);
+            $table->string('order_status')->default('pending');
             $table->timestamps();
         });
     }

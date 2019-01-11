@@ -60,17 +60,15 @@
         </div>
         <div class="checkout-left">
           <div class="checkout-right-basket animated wow slideInRight" data-wow-delay=".5s">
-            <a href>
-              <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>Back To Shopping
-            </a>
+            <router-link to="/" ><span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>Back To Shopping</router-link>
             <!-- php code ->
                             $customerId = Session::get('customerId');
                             $shippingId = Session::get('shippingId');
                             if($customerId!=null && $shippingId!=null){
             -->
-            <a href>
+            <router-link to="/register" >
               <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>Checkout
-            </a>
+            </router-link>
             <!-- php code -> } else if($customerId!=null){ -->
             <!-- <a href="#checkout/shipping"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>Checkout</a> -->
             <!-- php code -> } else { -->

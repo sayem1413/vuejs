@@ -12,7 +12,7 @@
             <!-- /input-group -->
         </li>
         <li>
-            <a href="{{url('/dashboard')}}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+            <a href="{{url('/admin').'#/home'}}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
         </li>
         <!-- <li>
             <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>User Info<span class="fa arrow"></span></a>

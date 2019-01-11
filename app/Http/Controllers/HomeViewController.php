@@ -23,4 +23,8 @@ class HomeViewController extends Controller {
         ],200);
     }
 
+    public function test(){
+        return view('home');
+    }
+
 }

@@ -15,11 +15,11 @@ class CreateOrderDetailsTable extends Migration
     {
         Schema::create('order_details', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('orderId');
-            $table->integer('productId');
-            $table->string('productName');
-            $table->float('productPrice',10,2);
-            $table->integer('productQuantity');
+            $table->integer('order_id');
+            $table->integer('product_id');
+            $table->string('product_name');
+            $table->float('product_price',10,2);
+            $table->integer('product_quantity');
             $table->timestamps();
         });
     }

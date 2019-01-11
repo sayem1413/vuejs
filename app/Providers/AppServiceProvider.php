@@ -20,15 +20,9 @@ class AppServiceProvider extends ServiceProvider
         //View::share('key','value');
         
         View::composer('frontEnd.includes.menu',function($view){
-            //$publishedCategories = Category::where('publicationStatus',1)->get()->toJson();
             $publishedCategories = Category::where('publicationStatus',1)->get();
             $view->with('publishedCategories',$publishedCategories);
-            /* $view->response()->json([
-                'publishedCategories'=>$publishedCategories
-            ],200); */
-           /*  $view->with(response()->json([
-                'publishedCategories'=>$publishedCategories
-            ],200)); */
+            
         });
         
     }

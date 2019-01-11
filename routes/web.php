@@ -11,28 +11,11 @@
   |
  */
 
-//Route::get('/', function () {
-//    //return resource_path('views');(Example from BITM)
-//    return view('welcome');
-//});
 
 Route::get('/', 'HomeViewController@index');
 Route::get('/published/categories', 'CategoryController@manageCategory');
 
 Route::get('/latest/products', 'HomeViewController@latestProducts');
-
-// Just Practise JFile
-//Route::get('/mens-category','MensCategoryController@mensCategoryView');
-//Route::get('/womens-category','WomensCategoryController@womensCategoryView');
-//Route::get('/electronics','ElectronicsController@electronicsView');
-//Route::get('/products-codes','ProductsCodesController@productsCodesView');
-//Route::get('/contact','ContactController@contactView');
-//Route::post('/cart/add', function (Request $request) {
-//    $result = $request;
-//    echo '<pre>';
-//    print_r($result);
-//});
-
 
 Route::get('/cart/add/{id}','CartController@addToCart');
 Route::get('/cart/show','CartController@viewCart');
@@ -47,8 +30,6 @@ Route::get('/checkout/payment','CheckOutController@showPaymentForm');
 Route::post('/checkout/save-order','CheckOutController@saveOrderInfo');
 Route::get('/checkout/my-home','CheckOutController@customerHome');
 
-//Route::get('/product-details','ProductDetailsViewController@viewProductDetails');
-//Just Practise JFile
 
 Route::get('/category-view/{id}', 'WelcomeController@category');
 Route::get('/product-details/{id}', 'WelcomeController@productDetails');
@@ -57,17 +38,17 @@ Auth::routes();
 
 Route::get("/test","WelcomeController@test");
 
-Route::get('/dashboard', 'HomeController@index')->name('home');
+Route::get('/admin', 'HomeController@index');
+
+Route::post('/user/login', 'UserLoginController@login');
 
 
+//Route::get('admin2', 'HomeViewController@test');
 
 //For Middleware Group
-Route::group(['middleware' => 'AuthenticateMiddleware'], function() {
+Route::group(['middleware' => 'AdminAuthenticated'], function() {
 
-/* Category Info */
-//For Specific Middleware
-//Route::get('/category/add','CategoryController@index')->middleware('AuthenticateMiddleware');
-//For Specific Middleware
+    /* Category Info */
     Route::get('/category/add', 'CategoryController@index');
     Route::post('/category/save', 'CategoryController@store');
 
@@ -111,7 +92,9 @@ Route::group(['middleware' => 'AuthenticateMiddleware'], function() {
 });
 //For Middleware Group
 
-
+Route::group(['middleware' => 'AuthenticateMiddleware'], function() {
+    Route::get('/user','HomeViewController@index')->name('profile');
+});
 
 
 
