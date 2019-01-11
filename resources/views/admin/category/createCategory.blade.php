@@ -16,23 +16,23 @@ Add Category
         <div class="well">
             {!! Form::open(['url'=>'/category/save', 'method'=>'POST','class'=>'form-horizontal'])!!}
                 <div class="form-group">
-                    <label for="categoryName" class="col-sm-2 control-label">Category Name</label>
+                    <label for="category_name" class="col-sm-2 control-label">Category Name</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="categoryName">
-                        <span class="text-danger">{{$errors->has('categoryName')?$errors->first('categoryName'):''}}</span>
+                        <input type="text" class="form-control" name="category_name">
+                        <span class="text-danger">{{$errors->has('category_name')?$errors->first('category_name'):''}}</span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="categoryDescription" class="col-sm-2 control-label">Category Description</label>
+                    <label for="category_description" class="col-sm-2 control-label">Category Description</label>
                     <div class="col-sm-10">
-                        <textarea class="form-control" name="categoryDescription" rows="8"></textarea>
-                        <span class="text-danger">{{$errors->has('categoryDescription')?$errors->first('categoryDescription'):''}}</span>
+                        <textarea class="form-control" name="category_description" rows="8"></textarea>
+                        <span class="text-danger">{{$errors->has('category_description')?$errors->first('category_description'):''}}</span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="" class="col-sm-2 control-label"></label>
                     <div class="col-sm-10">
-                        <select class="form-control" name="publicationStatus">
+                        <select class="form-control" name="active">
                             <option>Select Publication Status</option>
                             <option value="1">Published</option>
                             <option value="0">Unpublished</option>

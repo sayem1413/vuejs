@@ -22,15 +22,15 @@
             <tbody>
                 <tr v-for="(product,index) in getallProduct" :key="product.id">
                     <td scope="row">{{index+1}}</td>
-                    <td>{{product.productName}}</td>
-                    <td>{{product.categoryName}}</td>
-                    <td>{{product.manufacturerName}}</td>
-                    <td>{{product.productPrice}}</td>
-                    <td>{{product.productQuantity}}</td>
-                    <td>{{product.productShortDescription}}</td>
-                    <td>{{product.productLongDescription}}</td>
-                    <td><img :src="ourImage(product.productImage)" alt="" height="150px" width="150px"></td>
-                    <td><p v-if="product.publicationStatus == 1">Published</p><p v-else>Unpublished</p></td>
+                    <td>{{product.product_name}}</td>
+                    <td>{{product.category_name}}</td>
+                    <td>{{product.manufacturer_name}}</td>
+                    <td>{{product.product_price}}</td>
+                    <td>{{product.product_quantity}}</td>
+                    <td>{{product.product_short_description}}</td>
+                    <td>{{product.product_long_description}}</td>
+                    <td><img :src="ourImage(product.product_image)" alt="" height="150px" width="150px"></td>
+                    <td><p v-if="product.active == 1">Published</p><p v-else>Unpublished</p></td>
                     <td>
                         <router-link :to="`/product/edit/${product.id}`" class="btn btn-success"><span class="glyphicon glyphicon-edit"></span></router-link>
                         <a href="" class="btn btn-danger" @click.prevent = "deleteProduct(product.id)" >

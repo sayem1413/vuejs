@@ -12,8 +12,8 @@ use Image;
 class ProductController extends Controller {
 
     public function index() {
-        $categories = Category::where('publicationStatus', 1)->get();
-        $manufacturers = Manufacturer::where('publicationStatus', 1)->get();
+        $categories = Category::where('active', 1)->get();
+        $manufacturers = Manufacturer::where('active', 1)->get();
         return view('admin.product.createProduct', ['categories' => $categories, 'manufacturers' => $manufacturers]);
     }
 
@@ -34,30 +34,30 @@ class ProductController extends Controller {
      */
     public function store(Request $request) {
         $this->validate($request, [
-            'productName' => 'required',
-            'categoryId' => 'required|not_in:""',
-            'manufacturerId' => 'required|not_in:""',
-            'productPrice' => 'required',
-            'productQuantity' => 'required',
-            'productShortDescription' => 'required',
-            'productLongDescription' => 'required',
-            'productImage' => 'required',
-            'publicationStatus' => 'required|not_in:""',
+            'product_name' => 'required',
+            'category_id' => 'required|not_in:""',
+            'manufacturer_id' => 'required|not_in:""',
+            'product_price' => 'required',
+            'product_quantity' => 'required',
+            'product_short_description' => 'required',
+            'product_long_description' => 'required',
+            'product_image' => 'required',
+            'active' => 'required|not_in:""',
         ]);
 
-        $strpos = strpos($request->productImage,';');
-        $sub = substr($request->productImage,0,$strpos);
+        $strpos = strpos($request->product_image,';');
+        $sub = substr($request->product_image,0,$strpos);
         $ex = explode('/',$sub)[1];
         $name = time().".".$ex;
-        $img = Image::make($request->productImage)->resize(200, 200);
+        $img = Image::make($request->product_image)->resize(200, 200);
         $upload_path = public_path()."/public/productImage/";
         $img->save($upload_path.$name);
 
-        /* $productImage = $request->file('productImage');
-        $imageName = $productImage->getClientOriginalName();
-        $uploadPath = 'public/productImage/';
-        $productImage->move($uploadPath, $imageName);
-        $imageUrl = $uploadPath . $imageName; */
+        /* $product_image = $request->file('product_image');
+        $image_name = $product_image->getClientOriginalName();
+        $upload_path = 'public/productImage/';
+        $product_image->move($upload_path, $image_name);
+        $imageUrl = $upload_path . $image_name; */
 
         $this->saveProductInfo($request, $name);
         return response()->json(["success"=>true],200);
@@ -65,24 +65,24 @@ class ProductController extends Controller {
 
     protected function saveProductInfo($request, $name) {
         $product = new Product();
-        $product->productName = $request->productName;
-        $product->categoryId = $request->categoryId;
-        $product->manufacturerId = $request->manufacturerId;
-        $product->productPrice = $request->productPrice;
-        $product->productQuantity = $request->productQuantity;
-        $product->productShortDescription = $request->productShortDescription;
-        $product->productLongDescription = $request->productLongDescription;
-        $product->productImage = $name;
-        $product->publicationStatus = $request->publicationStatus;
+        $product->product_name = $request->product_name;
+        $product->category_id = $request->category_id;
+        $product->manufacturer_id = $request->manufacturer_id;
+        $product->product_price = $request->product_price;
+        $product->product_quantity = $request->product_quantity;
+        $product->product_short_description = $request->product_short_description;
+        $product->product_long_description = $request->product_long_description;
+        $product->product_image = $name;
+        $product->active = $request->active;
         $product->save();
     }
 
     public function manageProduct() {
         //$products = Product::all();
         $products = DB::table('products')
-                ->join('categories', 'products.categoryId', '=', 'categories.id')
-                ->join('manufacturers', 'products.manufacturerId', '=', 'manufacturers.id')
-                ->select('products.id', 'products.productName', 'categories.categoryName', 'manufacturers.manufacturerName', 'products.productPrice', 'products.productQuantity', 'products.productShortDescription', 'products.productLongDescription', 'products.productImage', 'products.productImage', 'products.publicationStatus')
+                ->join('categories', 'products.category_id', '=', 'categories.id')
+                ->join('manufacturers', 'products.manufacturer_id', '=', 'manufacturers.id')
+                ->select('products.id', 'products.product_name', 'categories.category_name', 'manufacturers.manufacturer_name', 'products.product_price', 'products.product_quantity', 'products.product_short_description', 'products.product_long_description', 'products.product_image', 'products.active')
                 ->get();
         return response()->json([
             'products'=>$products
@@ -97,9 +97,9 @@ class ProductController extends Controller {
      */
     public function show($id) {
         $productById = DB::table('products')
-                ->join('categories', 'products.categoryId', '=', 'categories.id')
-                ->join('manufacturers', 'products.manufacturerId', '=', 'manufacturers.id')
-                ->select('products.*', 'categories.categoryName', 'manufacturers.manufacturerName')
+                ->join('categories', 'products.category_id', '=', 'categories.id')
+                ->join('manufacturers', 'products.manufacturer_id', '=', 'manufacturers.id')
+                ->select('products.*', 'categories.category_name', 'manufacturers.manufacturer_name')
                 ->where('products.id', $id)
                 ->first();
         return view('admin.product.viewProduct', ['product' => $productById]);
@@ -112,12 +112,12 @@ class ProductController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit($id) {
-        //$categories = Category::where('publicationStatus', 1)->get();
-        //$manufacturers = Manufacturer::where('publicationStatus', 1)->get();
+        //$categories = Category::where('active', 1)->get();
+        //$manufacturers = Manufacturer::where('active', 1)->get();
         /* $productById = DB::table('products')
-                ->join('categories', 'products.categoryId', '=', 'categories.id')
-                ->join('manufacturers', 'products.manufacturerId', '=', 'manufacturers.id')
-                ->select('products.*','categories.id as categoryId', 'categories.categoryName','manufacturers.id as manufacturerId', 'manufacturers.manufacturerName')
+                ->join('categories', 'products.category_id', '=', 'categories.id')
+                ->join('manufacturers', 'products.manufacturer_id', '=', 'manufacturers.id')
+                ->select('products.*','categories.id as category_id', 'categories.categoryName','manufacturers.id as manufacturer_id', 'manufacturers.manufacturerName')
                 ->where('products.id', $id)
                 ->first(); */
         //return view('admin.product.editProduct', ['productById' => $productById, 'categories' => $categories, 'manufacturers' => $manufacturers]);
@@ -140,15 +140,15 @@ class ProductController extends Controller {
      */
     public function update(Request $request, $id) {
         $this->validate($request, [
-            'productName' => 'required',
-            'categoryId' => 'required|not_in:""',
-            'manufacturerId' => 'required|not_in:""',
-            'productPrice' => 'required',
-            'productQuantity' => 'required',
-            'productShortDescription' => 'required',
-            'productLongDescription' => 'required',
-            'productImage' => 'required',
-            'publicationStatus' => 'required|not_in:""',
+            'product_name' => 'required',
+            'category_id' => 'required|not_in:""',
+            'manufacturer_id' => 'required|not_in:""',
+            'product_price' => 'required',
+            'product_quantity' => 'required',
+            'product_short_description' => 'required',
+            'product_long_description' => 'required',
+            'product_image' => 'required',
+            'active' => 'required|not_in:""',
         ]);
 
         $imageUrl = $this->imageExistStatus($request, $id);
@@ -159,51 +159,51 @@ class ProductController extends Controller {
 
     private function imageExistStatus($request, $id) {
         $productById = Product::where('id', $id)->first();
-        /* $productImage = $request->productImage;
-        if(file_exists($productImage)) {
-            //unlink($productById->productImage);
-            $strpos = strpos($request->productImage,';');
-            $sub = substr($request->productImage,0,$strpos);
+        /* $product_image = $request->product_image;
+        if(file_exists($product_image)) {
+            //unlink($productById->product_image);
+            $strpos = strpos($request->product_image,';');
+            $sub = substr($request->product_image,0,$strpos);
             $ex = explode('/',$sub)[1];
             $name = time().".".$ex;
-            $img = Image::make($request->productImage)->resize(200, 200);
-            $upload_path = public_path()."/public/productImage/";
+            $img = Image::make($request->product_image)->resize(200, 200);
+            $upload_path = public_path()."/public/product_image/";
             $img->save($upload_path.$name);
         } else {
-            $name = $productById->productImage;
+            $name = $productById->product_image;
         }
         return $name; */
 
-        if($request->productImage!=$productById->productImage){
-            $strpos = strpos($request->productImage,';');
-            $sub = substr($request->productImage,0,$strpos);
+        if($request->product_image!=$productById->product_image){
+            $strpos = strpos($request->product_image,';');
+            $sub = substr($request->product_image,0,$strpos);
             $ex = explode('/',$sub)[1];
             $name = time().".".$ex;
-            $img = Image::make($request->productImage)->resize(200, 200);
+            $img = Image::make($request->product_image)->resize(200, 200);
             $upload_path = public_path()."/public/productImage/";
-            $image = $upload_path. $productById->productImage;
+            $image = $upload_path. $productById->product_image;
             $img->save($upload_path.$name);
 
             if(file_exists($image)){
                 @unlink($image);
             }
         }else{
-            $name = $productById->productImage;
+            $name = $productById->product_image;
         }
         return $name;
     }
 
     protected function updateProductInfo($request, $imageUrl, $id) {
         $product = Product::find($id);
-        $product->productName = $request->productName;
-        $product->categoryId = $request->categoryId;
-        $product->manufacturerId = $request->manufacturerId;
-        $product->productPrice = $request->productPrice;
-        $product->productQuantity = $request->productQuantity;
-        $product->productShortDescription = $request->productShortDescription;
-        $product->productLongDescription = $request->productLongDescription;
-        $product->productImage = $imageUrl;
-        $product->publicationStatus = $request->publicationStatus;
+        $product->product_name = $request->product_name;
+        $product->category_id = $request->category_id;
+        $product->manufacturer_id = $request->manufacturer_id;
+        $product->product_price = $request->product_price;
+        $product->product_quantity = $request->product_quantity;
+        $product->product_short_description = $request->product_short_description;
+        $product->product_long_description = $request->product_long_description;
+        $product->product_image = $imageUrl;
+        $product->active = $request->active;
         $product->save();
     }
 
@@ -217,7 +217,7 @@ class ProductController extends Controller {
         $product = Product::find($id);
 
         $image_path = public_path()."/public/productImage/";
-        $image = $image_path. $product->productImage;
+        $image = $image_path. $product->product_image;
         if(file_exists($image)){
             @unlink($image);
         }

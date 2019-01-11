@@ -5,13 +5,13 @@
         <div class="men-pro-item simpleCart_shelfItem">
           <div class="men-thumb-item">
             <img
-              :src="ourImage(product.productImage)"
+              :src="ourImage(product.product_image)"
               :alt="product.productName"
               class="pro-image-front"
             >
             <img
-              :src="ourImage(product.productImage)"
-              :alt="product.productName"
+              :src="ourImage(product.product_image)"
+              :alt="product.product_name"
               class="pro-image-back"
             >
             <div class="men-cart-pro">
@@ -23,10 +23,10 @@
           </div>
           <div class="item-info-product">
             <h4>
-              <router-link :to="`/product/${product.id}`">{{product.productName}}</router-link>
+              <router-link :to="`/product/${product.id}`">{{product.product_name}}</router-link>
             </h4>
             <div class="info-product-price">
-              <span class="item_price">BDT {{product.productPrice}}</span>
+              <span class="item_price">BDT {{product.product_price}}</span>
             </div>
             <a href="#" @click.prevent="addCart(product.id)" class="item_add single-item hvr-outline-out button2">Add to cart</a>
           </div>

@@ -9,7 +9,7 @@ use App\Product;
 class HomeViewController extends Controller {
 
     public function index() {
-        $publishedProducts = Product::where('publicationStatus',1)->get();
+        $publishedProducts = Product::where('active',1)->get();
         /* return response()->json([
             'publishedProducts'=>$publishedProducts
         ],200); */
@@ -17,7 +17,7 @@ class HomeViewController extends Controller {
         //return view('frontEnd.home.homeContent', ['publishedProducts'=>$publishedProducts]);
     }
     public function latestProducts(){
-        $latestPublishedProducts = Product::where('publicationStatus',1)->latest()->get();
+        $latestPublishedProducts = Product::where('active',1)->latest()->get();
         return response()->json([
             'latestPublishedProducts'=>$latestPublishedProducts
         ],200);

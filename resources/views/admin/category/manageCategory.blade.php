@@ -23,9 +23,9 @@ Manage Category
         @foreach($categories as $category)
         <tr>
             <td scope="row">{{$category->id}}</td>
-            <td>{{$category->categoryName}}</td>
-            <td>{{$category->categoryDescription}}</td>
-            <td>{{$category->publicationStatus == 1 ? 'Published':'Unpublished' }}</td>
+            <td>{{$category->category_name}}</td>
+            <td>{{$category->category_description}}</td>
+            <td>{{$category->active == 1 ? 'Published':'Unpublished' }}</td>
             <td>
                 <a href="{{url('/category/edit/'.$category->id)}}" class="btn btn-success">
                     <span class="glyphicon glyphicon-edit"></span>

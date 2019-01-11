@@ -21,7 +21,7 @@
                                         <router-link to="/" class="dropdown-toggle menu__link">Home <span class="sr-only">(current)</span></router-link>
                                     </li>
                                     <li v-for="category in getallCategory" :key="category.id" class="dropdown menu__item">
-                                        <router-link v-show="category.publicationStatus == 1" :to="`/category/${category.id}`" class="dropdown-toggle menu__link">{{category.categoryName}}</router-link>
+                                        <router-link v-show="category.active == 1" :to="`/category/${category.id}`" class="dropdown-toggle menu__link">{{category.category_name}}</router-link>
                                     </li>
                                 </ul>
                             </div>

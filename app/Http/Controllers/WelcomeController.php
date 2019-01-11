@@ -12,8 +12,8 @@ class WelcomeController extends Controller
 {
     public function category($id) {
         
-        $publishedCategoryProducts = Product::where('categoryId',$id)
-                                  ->where('publicationStatus',1)
+        $publishedCategoryProducts = Product::where('category_id',$id)
+                                  ->where('active',1)
                                   ->get();
         //return view('frontEnd.category.categoryContent',['publishedCategoryProducts'=>$publishedCategoryProducts]);
         return response()->json([

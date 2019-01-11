@@ -7,18 +7,18 @@
             <div class="well">
                 <form role="form" class="form-horizontal" @submit.prevent="updateManufacturer()">
                     <div class="form-group">
-                        <label for="manufacturerName" class="col-sm-2 control-label">Manufacturer Name</label>
+                        <label for="manufacturer_name" class="col-sm-2 control-label">Manufacturer Name</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="form.manufacturerName" name="manufacturerName" :class="{ 'is-invalid': form.errors.has('manufacturerName') }">
-                            <has-error :form="form" field="manufacturerName"></has-error>
+                            <input type="text" class="form-control" v-model="form.manufacturer_name" name="manufacturer_name" :class="{ 'is-invalid': form.errors.has('manufacturer_name') }">
+                            <has-error :form="form" field="manufacturer_name"></has-error>
                             <span class="text-danger"></span>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="manufacturerDescription" class="col-sm-2 control-label">Manufacturer Description</label>
+                        <label for="manufacturer_description" class="col-sm-2 control-label">Manufacturer Description</label>
                         <div class="col-sm-10">
-                            <textarea class="form-control" v-model="form.manufacturerDescription" name="manufacturerDescription" rows="8" :class="{ 'is-invalid': form.errors.has('manufacturerDescription') }"></textarea>
-                            <has-error :form="form" field="manufacturerDescription"></has-error>
+                            <textarea class="form-control" v-model="form.manufacturer_description" name="manufacturer_description" rows="8" :class="{ 'is-invalid': form.errors.has('manufacturer_description') }"></textarea>
+                            <has-error :form="form" field="manufacturer_description"></has-error>
                             <span class="text-danger"></span>
                         </div>
                     </div>
@@ -27,15 +27,15 @@
                         <div class="col-sm-10">
                             <select
                                 class="form-control"
-                                name="publicationStatus"
-                                v-model="form.publicationStatus"
-                                :class="{ 'is-invalid': form.errors.has('publicationStatus') }"
+                                name="active"
+                                v-model="form.active"
+                                :class="{ 'is-invalid': form.errors.has('active') }"
                             >
                                 <option :value="null">Select Publication Status</option>
                                 <option :value="1">Published</option>
                                 <option :value="0">Unpublished</option>
                             </select>
-                            <has-error :form="form" field="publicationStatus"></has-error>
+                            <has-error :form="form" field="active"></has-error>
                         </div>
                     </div>
                     <div class="form-group">
@@ -61,9 +61,9 @@
         data(){
             return {
                 form: new Form({
-                    manufacturerName:'',
-                    manufacturerDescription:'',
-                    publicationStatus: ''
+                    manufacturer_name:'',
+                    manufacturer_description:'',
+                    active: ''
                 })
             }
         },

@@ -39,14 +39,14 @@ class CategoryController extends Controller
         // return $request->all();
         
         $this->validate($request,[
-            'categoryName'=>'required',
-            'categoryDescription'=>'required',
+            'category_name'=>'required',
+            'category_description'=>'required',
         ]);
         
         $category = new Category();
-        $category->categoryName = $request->categoryName;
-        $category->categoryDescription = $request->categoryDescription;
-        $category->publicationStatus = $request->publicationStatus;
+        $category->category_name = $request->category_name;
+        $category->category_description = $request->category_description;
+        $category->active = $request->active;
         $category->save();
         return response()->json(["success"=>true],200);
         //return redirect('/category/add')->with('message','Category info save successfully!');
@@ -100,14 +100,14 @@ class CategoryController extends Controller
         //return $id;
 
         $this->validate($request,[
-            'categoryName'=>'required',
-            'categoryDescription'=>'required',
+            'category_name'=>'required',
+            'category_description'=>'required',
         ]);
         
         $category = Category::where('id',$id)->first();
-        $category->categoryName = $request->categoryName;
-        $category->categoryDescription = $request->categoryDescription;
-        $category->publicationStatus = $request->publicationStatus;
+        $category->category_name = $request->category_name;
+        $category->category_description = $request->category_description;
+        $category->active = $request->active;
         $category->save();
         return response()->json(["success"=>true],200);
     }

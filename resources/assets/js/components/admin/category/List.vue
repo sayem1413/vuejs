@@ -16,9 +16,9 @@
             <tbody>
                 <tr v-for="(category,index) in getallCategory" :key="category.id">
                     <td scope="row">{{index+1}}</td>
-                    <td>{{category.categoryName}}</td>
-                    <td>{{category.categoryDescription}}</td>
-                    <td><p v-if="category.publicationStatus == 1">Published</p><p v-else>Unpublished</p></td>
+                    <td>{{category.category_name}}</td>
+                    <td>{{category.category_description}}</td>
+                    <td><p v-if="category.active == 1">Published</p><p v-else>Unpublished</p></td>
                     <td>
                         <router-link :to="`/category/edit/${category.id}`" class="btn btn-success"><span class="glyphicon glyphicon-edit"></span></router-link>
                         <a href="#" class="btn btn-danger" @click.prevent = "deleteCategory(category.id)" >

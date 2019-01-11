@@ -13,8 +13,8 @@ class CartController extends Controller {
         $productById = Product::where('id',$id)->first();
         Cart::add([
             'id' => $id,
-            'name' => $productById->productName,
-            'price' => $productById->productPrice,
+            'name' => $productById->product_name,
+            'price' => $productById->product_price,
             'qty' => 1,
         ]);
 //        $cartProducts = Cart::content();

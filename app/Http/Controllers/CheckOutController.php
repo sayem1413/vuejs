@@ -19,13 +19,13 @@ class CheckOutController extends Controller {
 
     public function customerRegistration(Request $request) {
         $customer = new Customer();
-        $customer->firstName = $request->firstName;
-        $customer->lastName = $request->lastName;
+        $customer->first_name = $request->first_name;
+        $customer->last_name = $request->last_name;
         $customer->email = $request->email;
         $customer->password = bcrypt($request->password);
         $customer->address = $request->address;
-        $customer->phoneNumber = $request->phoneNumber;
-        $customer->districtName = $request->districtName;
+        $customer->phone_number = $request->phone_number;
+        $customer->district_name = $request->district_name;
         $customer->save();
         $customerId = $customer->id;
         Session::put('customerId', $customerId);
@@ -41,14 +41,14 @@ class CheckOutController extends Controller {
     public function saveShippingInfo(Request $request) {
         $shipping = new Shipping();
 
-        $shipping->fullName = $request->fullName;
+        $shipping->full_name = $request->full_name;
         $shipping->email = $request->email;
         $shipping->address = $request->address;
-        $shipping->phoneNumber = $request->phoneNumber;
-        $shipping->districtName = $request->districtName;
+        $shipping->phone_number = $request->phone_number;
+        $shipping->district_name = $request->district_name;
         $shipping->save();
-        $shippingId = $shipping->id;
-        Session::put('shippingId', $shippingId);
+        $shipping_id = $shipping->id;
+        Session::put('shipping_id', $shipping_id);
         return redirect('/checkout/payment');
     }
 
@@ -57,30 +57,30 @@ class CheckOutController extends Controller {
     }
 
     public function saveOrderInfo(Request $request) {
-        $paymentType = $request->paymentType;
+        $paymentType = $request->payment_type;
 
         if ($paymentType == 'cashOnDelivery') {
             $order = new Order();
-            $order->customerId = Session::get('customerId');
-            $order->shippingId = Session::get('shippingId');
-            $order->orderTotall = Session::get('orderTotall');
+            $order->customer_id = Session::get('customer_id');
+            $order->shipping_id = Session::get('shipping_id');
+            $order->order_totall = Session::get('order_totall');
             $order->save();
             $orderId = $order->id;
-            Session::put('orderId', $orderId);
+            Session::put('order_id', $orderId);
 
             $payment = new Payment();
-            $payment->orderId = Session::get('orderId');
-            $payment->paymentType = $paymentType;
+            $payment->order_id = Session::get('order_id');
+            $payment->payment_type = $paymentType;
             $payment->save();
 
             $orderDetail = new OrderDetail();
             $cartProducts = Cart::content();
             foreach ($cartProducts as $cartProduct) {
-                $orderDetail->orderId = Session::get('orderId');
-                $orderDetail->productId = $cartProduct->id;
-                $orderDetail->productName = $cartProduct->name;
-                $orderDetail->productPrice = $cartProduct->price;
-                $orderDetail->productQuantity = $cartProduct->qty;
+                $orderDetail->order_id = Session::get('order_id');
+                $orderDetail->product_id = $cartProduct->id;
+                $orderDetail->product_name = $cartProduct->name;
+                $orderDetail->product_price = $cartProduct->price;
+                $orderDetail->product_quantity = $cartProduct->qty;
                 $orderDetail->save();
                 Cart::remove($cartProduct->rowId);
             }

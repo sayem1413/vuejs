@@ -7,30 +7,30 @@
             <div class="well">
                 <form role="form" class="form-horizontal" @submit.prevent="updateCategory()">
                     <div class="form-group">
-                        <label for="categoryName" class="col-sm-2 control-label">Category Name</label>
+                        <label for="category_name" class="col-sm-2 control-label">Category Name</label>
                         <div class="col-sm-10">
                             <input
                                 type="text"
                                 class="form-control"
-                                v-model="form.categoryName"
-                                name="categoryName"
-                                :class="{ 'is-invalid': form.errors.has('categoryName') }"
+                                v-model="form.category_name"
+                                name="category_name"
+                                :class="{ 'is-invalid': form.errors.has('category_name') }"
                             >
-                            <has-error :form="form" field="categoryName"></has-error>
+                            <has-error :form="form" field="category_name"></has-error>
                             <span class="text-danger"></span>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="categoryDescription" class="col-sm-2 control-label">Category Description</label>
+                        <label for="category_description" class="col-sm-2 control-label">Category Description</label>
                         <div class="col-sm-10">
                             <textarea
                                 class="form-control"
-                                v-model="form.categoryDescription"
-                                name="categoryDescription"
+                                v-model="form.category_description"
+                                name="category_description"
                                 rows="8"
-                                :class="{ 'is-invalid': form.errors.has('categoryDescription') }"
+                                :class="{ 'is-invalid': form.errors.has('category_description') }"
                             ></textarea>
-                            <has-error :form="form" field="categoryDescription"></has-error>
+                            <has-error :form="form" field="category_description"></has-error>
                             <span class="text-danger"></span>
                         </div>
                     </div>
@@ -39,15 +39,15 @@
                         <div class="col-sm-10">
                             <select
                                 class="form-control"
-                                name="publicationStatus"
-                                v-model="form.publicationStatus"
-                                :class="{ 'is-invalid': form.errors.has('publicationStatus') }"
+                                name="active"
+                                v-model="form.active"
+                                :class="{ 'is-invalid': form.errors.has('active') }"
                             >
                                 <option :value="null">Select Publication Status</option>
                                 <option :value="1">Published</option>
                                 <option :value="0">Unpublished</option>
                             </select>
-                            <has-error :form="form" field="publicationStatus"></has-error>
+                            <has-error :form="form" field="active"></has-error>
                         </div>
                     </div>
                     <div class="form-group">
@@ -73,9 +73,9 @@
         data(){
             return {
                 form: new Form({
-                    categoryName:'',
-                    categoryDescription:'',
-                    publicationStatus:''
+                    category_name:'',
+                    category_description:'',
+                    active:''
                 })
             }
         },

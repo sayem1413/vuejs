@@ -36,16 +36,16 @@ class ManufacturerController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'manufacturerName'=>'required',
-            'manufacturerDescription'=>'required',
+            'manufacturer_name'=>'required',
+            'manufacturer_description'=>'required',
         ]);
         
         
         //return $request->all();
         $manufacturer = new Manufacturer();
-        $manufacturer->manufacturerName = $request->manufacturerName;
-        $manufacturer->manufacturerDescription = $request->manufacturerDescription;
-        $manufacturer->publicationStatus = $request->publicationStatus;
+        $manufacturer->manufacturer_name = $request->manufacturer_name;
+        $manufacturer->manufacturer_description = $request->manufacturer_description;
+        $manufacturer->active = $request->active;
         $manufacturer->save();
         
         return response()->json(["success"=>true],200);
@@ -94,16 +94,16 @@ class ManufacturerController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request,[
-            'manufacturerName'=>'required',
-            'manufacturerDescription'=>'required',
+            'manufacturer_name'=>'required',
+            'manufacturer_description'=>'required',
         ]);
         
         
         //return $request->all();
         $manufacturer = Manufacturer::where('id',$id)->first();
-        $manufacturer->manufacturerName = $request->manufacturerName;
-        $manufacturer->manufacturerDescription = $request->manufacturerDescription;
-        $manufacturer->publicationStatus = $request->publicationStatus;
+        $manufacturer->manufacturer_name = $request->manufacturer_name;
+        $manufacturer->manufacturer_description = $request->manufacturer_description;
+        $manufacturer->active = $request->active;
         $manufacturer->save();
         
         return response()->json(["success"=>true],200);

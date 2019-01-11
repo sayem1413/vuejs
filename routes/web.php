@@ -38,7 +38,6 @@ Auth::routes();
 
 Route::get("/test","WelcomeController@test");
 
-Route::get('/admin', 'HomeController@index');
 
 Route::post('/user/login', 'UserLoginController@login');
 
@@ -46,7 +45,8 @@ Route::post('/user/login', 'UserLoginController@login');
 //Route::get('admin2', 'HomeViewController@test');
 
 //For Middleware Group
-Route::group(['middleware' => 'AdminAuthenticated'], function() {
+Route::group(['middleware' => ['auth', 'AdminAuthenticated'] ], function() {
+    Route::get('/admin', 'HomeController@index');
 
     /* Category Info */
     Route::get('/category/add', 'CategoryController@index');
@@ -92,7 +92,7 @@ Route::group(['middleware' => 'AdminAuthenticated'], function() {
 });
 //For Middleware Group
 
-Route::group(['middleware' => 'AuthenticateMiddleware'], function() {
+Route::group(['middleware' => ['auth', 'AuthenticateMiddleware']], function() {
     Route::get('/user','HomeViewController@index')->name('profile');
 });
 

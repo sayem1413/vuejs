@@ -16,9 +16,9 @@
             <tbody>
                 <tr v-for="(manufacturer,index) in getallManufacturer" :key="manufacturer.id">
                     <td scope="row">{{index+1}}</td>
-                    <td>{{manufacturer.manufacturerName}}</td>
-                    <td>{{manufacturer.manufacturerDescription}}</td>
-                    <td><p v-if="manufacturer.publicationStatus == 1">Published</p><p v-else>Unpublished</p></td>
+                    <td>{{manufacturer.manufacturer_name}}</td>
+                    <td>{{manufacturer.manufacturer_description}}</td>
+                    <td><p v-if="manufacturer.active == 1">Published</p><p v-else>Unpublished</p></td>
                     <td>
                         <router-link :to="`/manufacturer/edit/${manufacturer.id}`" class="btn btn-success"><span class="glyphicon glyphicon-edit"></span></router-link>
                         <a href="#" class="btn btn-danger" @click.prevent = "deleteManufacturer(manufacturer.id)" >

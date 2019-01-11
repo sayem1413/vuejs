@@ -52335,9 +52335,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   data: function data() {
     return {
       form: new Form({
-        categoryName: "",
-        categoryDescription: "",
-        publicationStatus: ""
+        category_name: "",
+        category_description: "",
+        active: ""
       })
     };
   },
@@ -52393,7 +52393,7 @@ var render = function() {
                 "label",
                 {
                   staticClass: "col-sm-2 control-label",
-                  attrs: { for: "categoryName" }
+                  attrs: { for: "category_name" }
                 },
                 [_vm._v("Category Name")]
               ),
@@ -52407,28 +52407,28 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.form.categoryName,
-                        expression: "form.categoryName"
+                        value: _vm.form.category_name,
+                        expression: "form.category_name"
                       }
                     ],
                     staticClass: "form-control",
                     class: {
-                      "is-invalid": _vm.form.errors.has("categoryName")
+                      "is-invalid": _vm.form.errors.has("category_name")
                     },
-                    attrs: { type: "text", name: "categoryName" },
-                    domProps: { value: _vm.form.categoryName },
+                    attrs: { type: "text", name: "category_name" },
+                    domProps: { value: _vm.form.category_name },
                     on: {
                       input: function($event) {
                         if ($event.target.composing) {
                           return
                         }
-                        _vm.$set(_vm.form, "categoryName", $event.target.value)
+                        _vm.$set(_vm.form, "category_name", $event.target.value)
                       }
                     }
                   }),
                   _vm._v(" "),
                   _c("has-error", {
-                    attrs: { form: _vm.form, field: "categoryName" }
+                    attrs: { form: _vm.form, field: "category_name" }
                   }),
                   _vm._v(" "),
                   _c("span", { staticClass: "text-danger" })
@@ -52442,7 +52442,7 @@ var render = function() {
                 "label",
                 {
                   staticClass: "col-sm-2 control-label",
-                  attrs: { for: "categoryDescription" }
+                  attrs: { for: "category_description" }
                 },
                 [_vm._v("Category Description")]
               ),
@@ -52456,16 +52456,16 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.form.categoryDescription,
-                        expression: "form.categoryDescription"
+                        value: _vm.form.category_description,
+                        expression: "form.category_description"
                       }
                     ],
                     staticClass: "form-control",
                     class: {
-                      "is-invalid": _vm.form.errors.has("categoryDescription")
+                      "is-invalid": _vm.form.errors.has("category_description")
                     },
-                    attrs: { name: "categoryDescription", rows: "8" },
-                    domProps: { value: _vm.form.categoryDescription },
+                    attrs: { name: "category_description", rows: "8" },
+                    domProps: { value: _vm.form.category_description },
                     on: {
                       input: function($event) {
                         if ($event.target.composing) {
@@ -52473,7 +52473,7 @@ var render = function() {
                         }
                         _vm.$set(
                           _vm.form,
-                          "categoryDescription",
+                          "category_description",
                           $event.target.value
                         )
                       }
@@ -52481,7 +52481,7 @@ var render = function() {
                   }),
                   _vm._v(" "),
                   _c("has-error", {
-                    attrs: { form: _vm.form, field: "categoryDescription" }
+                    attrs: { form: _vm.form, field: "category_description" }
                   }),
                   _vm._v(" "),
                   _c("span", { staticClass: "text-danger" })
@@ -52507,15 +52507,13 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.form.publicationStatus,
-                          expression: "form.publicationStatus"
+                          value: _vm.form.active,
+                          expression: "form.active"
                         }
                       ],
                       staticClass: "form-control",
-                      class: {
-                        "is-invalid": _vm.form.errors.has("publicationStatus")
-                      },
-                      attrs: { name: "publicationStatus" },
+                      class: { "is-invalid": _vm.form.errors.has("active") },
+                      attrs: { name: "active" },
                       on: {
                         change: function($event) {
                           var $$selectedVal = Array.prototype.filter
@@ -52528,7 +52526,7 @@ var render = function() {
                             })
                           _vm.$set(
                             _vm.form,
-                            "publicationStatus",
+                            "active",
                             $event.target.multiple
                               ? $$selectedVal
                               : $$selectedVal[0]
@@ -52552,7 +52550,7 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("has-error", {
-                    attrs: { form: _vm.form, field: "publicationStatus" }
+                    attrs: { form: _vm.form, field: "active" }
                   })
                 ],
                 1
@@ -52775,12 +52773,12 @@ var render = function() {
           return _c("tr", { key: category.id }, [
             _c("td", { attrs: { scope: "row" } }, [_vm._v(_vm._s(index + 1))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(category.categoryName))]),
+            _c("td", [_vm._v(_vm._s(category.category_name))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(category.categoryDescription))]),
+            _c("td", [_vm._v(_vm._s(category.category_description))]),
             _vm._v(" "),
             _c("td", [
-              category.publicationStatus == 1
+              category.active == 1
                 ? _c("p", [_vm._v("Published")])
                 : _c("p", [_vm._v("Unpublished")])
             ]),
@@ -52979,9 +52977,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             form: new Form({
-                categoryName: '',
-                categoryDescription: '',
-                publicationStatus: ''
+                category_name: '',
+                category_description: '',
+                active: ''
             })
         };
     },
@@ -53036,7 +53034,7 @@ var render = function() {
                 "label",
                 {
                   staticClass: "col-sm-2 control-label",
-                  attrs: { for: "categoryName" }
+                  attrs: { for: "category_name" }
                 },
                 [_vm._v("Category Name")]
               ),
@@ -53050,28 +53048,28 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.form.categoryName,
-                        expression: "form.categoryName"
+                        value: _vm.form.category_name,
+                        expression: "form.category_name"
                       }
                     ],
                     staticClass: "form-control",
                     class: {
-                      "is-invalid": _vm.form.errors.has("categoryName")
+                      "is-invalid": _vm.form.errors.has("category_name")
                     },
-                    attrs: { type: "text", name: "categoryName" },
-                    domProps: { value: _vm.form.categoryName },
+                    attrs: { type: "text", name: "category_name" },
+                    domProps: { value: _vm.form.category_name },
                     on: {
                       input: function($event) {
                         if ($event.target.composing) {
                           return
                         }
-                        _vm.$set(_vm.form, "categoryName", $event.target.value)
+                        _vm.$set(_vm.form, "category_name", $event.target.value)
                       }
                     }
                   }),
                   _vm._v(" "),
                   _c("has-error", {
-                    attrs: { form: _vm.form, field: "categoryName" }
+                    attrs: { form: _vm.form, field: "category_name" }
                   }),
                   _vm._v(" "),
                   _c("span", { staticClass: "text-danger" })
@@ -53085,7 +53083,7 @@ var render = function() {
                 "label",
                 {
                   staticClass: "col-sm-2 control-label",
-                  attrs: { for: "categoryDescription" }
+                  attrs: { for: "category_description" }
                 },
                 [_vm._v("Category Description")]
               ),
@@ -53099,16 +53097,16 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.form.categoryDescription,
-                        expression: "form.categoryDescription"
+                        value: _vm.form.category_description,
+                        expression: "form.category_description"
                       }
                     ],
                     staticClass: "form-control",
                     class: {
-                      "is-invalid": _vm.form.errors.has("categoryDescription")
+                      "is-invalid": _vm.form.errors.has("category_description")
                     },
-                    attrs: { name: "categoryDescription", rows: "8" },
-                    domProps: { value: _vm.form.categoryDescription },
+                    attrs: { name: "category_description", rows: "8" },
+                    domProps: { value: _vm.form.category_description },
                     on: {
                       input: function($event) {
                         if ($event.target.composing) {
@@ -53116,7 +53114,7 @@ var render = function() {
                         }
                         _vm.$set(
                           _vm.form,
-                          "categoryDescription",
+                          "category_description",
                           $event.target.value
                         )
                       }
@@ -53124,7 +53122,7 @@ var render = function() {
                   }),
                   _vm._v(" "),
                   _c("has-error", {
-                    attrs: { form: _vm.form, field: "categoryDescription" }
+                    attrs: { form: _vm.form, field: "category_description" }
                   }),
                   _vm._v(" "),
                   _c("span", { staticClass: "text-danger" })
@@ -53150,15 +53148,13 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.form.publicationStatus,
-                          expression: "form.publicationStatus"
+                          value: _vm.form.active,
+                          expression: "form.active"
                         }
                       ],
                       staticClass: "form-control",
-                      class: {
-                        "is-invalid": _vm.form.errors.has("publicationStatus")
-                      },
-                      attrs: { name: "publicationStatus" },
+                      class: { "is-invalid": _vm.form.errors.has("active") },
+                      attrs: { name: "active" },
                       on: {
                         change: function($event) {
                           var $$selectedVal = Array.prototype.filter
@@ -53171,7 +53167,7 @@ var render = function() {
                             })
                           _vm.$set(
                             _vm.form,
-                            "publicationStatus",
+                            "active",
                             $event.target.multiple
                               ? $$selectedVal
                               : $$selectedVal[0]
@@ -53195,7 +53191,7 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("has-error", {
-                    attrs: { form: _vm.form, field: "publicationStatus" }
+                    attrs: { form: _vm.form, field: "active" }
                   })
                 ],
                 1
@@ -53393,9 +53389,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             form: new Form({
-                manufacturerName: '',
-                manufacturerDescription: '',
-                publicationStatus: ""
+                manufacturer_name: '',
+                manufacturer_description: '',
+                active: ""
             })
         };
     },
@@ -53451,7 +53447,7 @@ var render = function() {
                 "label",
                 {
                   staticClass: "col-sm-2 control-label",
-                  attrs: { for: "manufacturerName" }
+                  attrs: { for: "manufacturer_name" }
                 },
                 [_vm._v("Manufacturer Name")]
               ),
@@ -53465,16 +53461,16 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.form.manufacturerName,
-                        expression: "form.manufacturerName"
+                        value: _vm.form.manufacturer_name,
+                        expression: "form.manufacturer_name"
                       }
                     ],
                     staticClass: "form-control",
                     class: {
-                      "is-invalid": _vm.form.errors.has("manufacturerName")
+                      "is-invalid": _vm.form.errors.has("manufacturer_name")
                     },
-                    attrs: { type: "text", name: "manufacturerName" },
-                    domProps: { value: _vm.form.manufacturerName },
+                    attrs: { type: "text", name: "manufacturer_name" },
+                    domProps: { value: _vm.form.manufacturer_name },
                     on: {
                       input: function($event) {
                         if ($event.target.composing) {
@@ -53482,7 +53478,7 @@ var render = function() {
                         }
                         _vm.$set(
                           _vm.form,
-                          "manufacturerName",
+                          "manufacturer_name",
                           $event.target.value
                         )
                       }
@@ -53490,7 +53486,7 @@ var render = function() {
                   }),
                   _vm._v(" "),
                   _c("has-error", {
-                    attrs: { form: _vm.form, field: "manufacturerName" }
+                    attrs: { form: _vm.form, field: "manufacturer_name" }
                   }),
                   _vm._v(" "),
                   _c("span", { staticClass: "text-danger" })
@@ -53504,7 +53500,7 @@ var render = function() {
                 "label",
                 {
                   staticClass: "col-sm-2 control-label",
-                  attrs: { for: "manufacturerDescription" }
+                  attrs: { for: "manufacturer_description" }
                 },
                 [_vm._v("Manufacturer Description")]
               ),
@@ -53518,18 +53514,18 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.form.manufacturerDescription,
-                        expression: "form.manufacturerDescription"
+                        value: _vm.form.manufacturer_description,
+                        expression: "form.manufacturer_description"
                       }
                     ],
                     staticClass: "form-control",
                     class: {
                       "is-invalid": _vm.form.errors.has(
-                        "manufacturerDescription"
+                        "manufacturer_description"
                       )
                     },
-                    attrs: { name: "manufacturerDescription", rows: "8" },
-                    domProps: { value: _vm.form.manufacturerDescription },
+                    attrs: { name: "manufacturer_description", rows: "8" },
+                    domProps: { value: _vm.form.manufacturer_description },
                     on: {
                       input: function($event) {
                         if ($event.target.composing) {
@@ -53537,7 +53533,7 @@ var render = function() {
                         }
                         _vm.$set(
                           _vm.form,
-                          "manufacturerDescription",
+                          "manufacturer_description",
                           $event.target.value
                         )
                       }
@@ -53545,7 +53541,7 @@ var render = function() {
                   }),
                   _vm._v(" "),
                   _c("has-error", {
-                    attrs: { form: _vm.form, field: "manufacturerDescription" }
+                    attrs: { form: _vm.form, field: "manufacturer_description" }
                   }),
                   _vm._v(" "),
                   _c("span", { staticClass: "text-danger" })
@@ -53571,15 +53567,13 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.form.publicationStatus,
-                          expression: "form.publicationStatus"
+                          value: _vm.form.active,
+                          expression: "form.active"
                         }
                       ],
                       staticClass: "form-control",
-                      class: {
-                        "is-invalid": _vm.form.errors.has("publicationStatus")
-                      },
-                      attrs: { name: "publicationStatus" },
+                      class: { "is-invalid": _vm.form.errors.has("active") },
+                      attrs: { name: "active" },
                       on: {
                         change: function($event) {
                           var $$selectedVal = Array.prototype.filter
@@ -53592,7 +53586,7 @@ var render = function() {
                             })
                           _vm.$set(
                             _vm.form,
-                            "publicationStatus",
+                            "active",
                             $event.target.multiple
                               ? $$selectedVal
                               : $$selectedVal[0]
@@ -53616,7 +53610,7 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("has-error", {
-                    attrs: { form: _vm.form, field: "publicationStatus" }
+                    attrs: { form: _vm.form, field: "active" }
                   })
                 ],
                 1
@@ -53839,12 +53833,12 @@ var render = function() {
           return _c("tr", { key: manufacturer.id }, [
             _c("td", { attrs: { scope: "row" } }, [_vm._v(_vm._s(index + 1))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(manufacturer.manufacturerName))]),
+            _c("td", [_vm._v(_vm._s(manufacturer.manufacturer_name))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(manufacturer.manufacturerDescription))]),
+            _c("td", [_vm._v(_vm._s(manufacturer.manufacturer_description))]),
             _vm._v(" "),
             _c("td", [
-              manufacturer.publicationStatus == 1
+              manufacturer.active == 1
                 ? _c("p", [_vm._v("Published")])
                 : _c("p", [_vm._v("Unpublished")])
             ]),
@@ -54031,9 +54025,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             form: new Form({
-                manufacturerName: '',
-                manufacturerDescription: '',
-                publicationStatus: ''
+                manufacturer_name: '',
+                manufacturer_description: '',
+                active: ''
             })
         };
     },
@@ -54088,7 +54082,7 @@ var render = function() {
                 "label",
                 {
                   staticClass: "col-sm-2 control-label",
-                  attrs: { for: "manufacturerName" }
+                  attrs: { for: "manufacturer_name" }
                 },
                 [_vm._v("Manufacturer Name")]
               ),
@@ -54102,16 +54096,16 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.form.manufacturerName,
-                        expression: "form.manufacturerName"
+                        value: _vm.form.manufacturer_name,
+                        expression: "form.manufacturer_name"
                       }
                     ],
                     staticClass: "form-control",
                     class: {
-                      "is-invalid": _vm.form.errors.has("manufacturerName")
+                      "is-invalid": _vm.form.errors.has("manufacturer_name")
                     },
-                    attrs: { type: "text", name: "manufacturerName" },
-                    domProps: { value: _vm.form.manufacturerName },
+                    attrs: { type: "text", name: "manufacturer_name" },
+                    domProps: { value: _vm.form.manufacturer_name },
                     on: {
                       input: function($event) {
                         if ($event.target.composing) {
@@ -54119,7 +54113,7 @@ var render = function() {
                         }
                         _vm.$set(
                           _vm.form,
-                          "manufacturerName",
+                          "manufacturer_name",
                           $event.target.value
                         )
                       }
@@ -54127,7 +54121,7 @@ var render = function() {
                   }),
                   _vm._v(" "),
                   _c("has-error", {
-                    attrs: { form: _vm.form, field: "manufacturerName" }
+                    attrs: { form: _vm.form, field: "manufacturer_name" }
                   }),
                   _vm._v(" "),
                   _c("span", { staticClass: "text-danger" })
@@ -54141,7 +54135,7 @@ var render = function() {
                 "label",
                 {
                   staticClass: "col-sm-2 control-label",
-                  attrs: { for: "manufacturerDescription" }
+                  attrs: { for: "manufacturer_description" }
                 },
                 [_vm._v("Manufacturer Description")]
               ),
@@ -54155,18 +54149,18 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.form.manufacturerDescription,
-                        expression: "form.manufacturerDescription"
+                        value: _vm.form.manufacturer_description,
+                        expression: "form.manufacturer_description"
                       }
                     ],
                     staticClass: "form-control",
                     class: {
                       "is-invalid": _vm.form.errors.has(
-                        "manufacturerDescription"
+                        "manufacturer_description"
                       )
                     },
-                    attrs: { name: "manufacturerDescription", rows: "8" },
-                    domProps: { value: _vm.form.manufacturerDescription },
+                    attrs: { name: "manufacturer_description", rows: "8" },
+                    domProps: { value: _vm.form.manufacturer_description },
                     on: {
                       input: function($event) {
                         if ($event.target.composing) {
@@ -54174,7 +54168,7 @@ var render = function() {
                         }
                         _vm.$set(
                           _vm.form,
-                          "manufacturerDescription",
+                          "manufacturer_description",
                           $event.target.value
                         )
                       }
@@ -54182,7 +54176,7 @@ var render = function() {
                   }),
                   _vm._v(" "),
                   _c("has-error", {
-                    attrs: { form: _vm.form, field: "manufacturerDescription" }
+                    attrs: { form: _vm.form, field: "manufacturer_description" }
                   }),
                   _vm._v(" "),
                   _c("span", { staticClass: "text-danger" })
@@ -54208,15 +54202,13 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.form.publicationStatus,
-                          expression: "form.publicationStatus"
+                          value: _vm.form.active,
+                          expression: "form.active"
                         }
                       ],
                       staticClass: "form-control",
-                      class: {
-                        "is-invalid": _vm.form.errors.has("publicationStatus")
-                      },
-                      attrs: { name: "publicationStatus" },
+                      class: { "is-invalid": _vm.form.errors.has("active") },
+                      attrs: { name: "active" },
                       on: {
                         change: function($event) {
                           var $$selectedVal = Array.prototype.filter
@@ -54229,7 +54221,7 @@ var render = function() {
                             })
                           _vm.$set(
                             _vm.form,
-                            "publicationStatus",
+                            "active",
                             $event.target.multiple
                               ? $$selectedVal
                               : $$selectedVal[0]
@@ -54253,7 +54245,7 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("has-error", {
-                    attrs: { form: _vm.form, field: "publicationStatus" }
+                    attrs: { form: _vm.form, field: "active" }
                   })
                 ],
                 1
@@ -54575,14 +54567,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   data: function data() {
     return {
       form: new Form({
-        productName: "",
-        categoryId: "",
-        manufacturerId: "",
-        productPrice: "",
-        productQuantity: "",
-        productShortDescription: "",
-        productLongDescription: "",
-        productImage: ""
+        product_name: "",
+        category_id: "",
+        manufacturer_id: "",
+        product_price: "",
+        product_quantity: "",
+        product_short_description: "",
+        product_long_description: "",
+        product_image: ""
       })
     };
   },
@@ -54615,7 +54607,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       } else {
         var reader = new FileReader();
         reader.onload = function (event) {
-          _this.form.productImage = event.target.result;
+          _this.form.product_image = event.target.result;
           //  console.log(event.target.result)
         };
         reader.readAsDataURL(file);
@@ -54624,7 +54616,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     addProduct: function addProduct() {
       var _this2 = this;
 
-      //console.log(this.form.productName);
+      //console.log(this.form.product_name);
 
       axios.post("/product/save", this.form).then(function (response) {
         _this2.$router.push("/product/list");
@@ -54672,7 +54664,7 @@ var render = function() {
                 "label",
                 {
                   staticClass: "col-sm-2 control-label",
-                  attrs: { for: "productName" }
+                  attrs: { for: "product_name" }
                 },
                 [_vm._v("Product Name")]
               ),
@@ -54686,30 +54678,32 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.form.productName,
-                        expression: "form.productName"
+                        value: _vm.form.product_name,
+                        expression: "form.product_name"
                       }
                     ],
                     staticClass: "form-control",
-                    class: { "is-invalid": _vm.form.errors.has("productName") },
+                    class: {
+                      "is-invalid": _vm.form.errors.has("product_name")
+                    },
                     attrs: {
                       type: "text",
-                      name: "productName",
+                      name: "product_name",
                       placeholder: "Add New Product"
                     },
-                    domProps: { value: _vm.form.productName },
+                    domProps: { value: _vm.form.product_name },
                     on: {
                       input: function($event) {
                         if ($event.target.composing) {
                           return
                         }
-                        _vm.$set(_vm.form, "productName", $event.target.value)
+                        _vm.$set(_vm.form, "product_name", $event.target.value)
                       }
                     }
                   }),
                   _vm._v(" "),
                   _c("has-error", {
-                    attrs: { form: _vm.form, field: "productName" }
+                    attrs: { form: _vm.form, field: "product_name" }
                   }),
                   _vm._v(" "),
                   _c("span", { staticClass: "text-danger" })
@@ -54736,15 +54730,15 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.form.categoryId,
-                          expression: "form.categoryId"
+                          value: _vm.form.category_id,
+                          expression: "form.category_id"
                         }
                       ],
                       staticClass: "form-control",
                       class: {
-                        "is-invalid": _vm.form.errors.has("categoryId")
+                        "is-invalid": _vm.form.errors.has("category_id")
                       },
-                      attrs: { name: "categoryId" },
+                      attrs: { name: "category_id" },
                       on: {
                         change: function($event) {
                           var $$selectedVal = Array.prototype.filter
@@ -54757,7 +54751,7 @@ var render = function() {
                             })
                           _vm.$set(
                             _vm.form,
-                            "categoryId",
+                            "category_id",
                             $event.target.multiple
                               ? $$selectedVal
                               : $$selectedVal[0]
@@ -54778,8 +54772,8 @@ var render = function() {
                               {
                                 name: "show",
                                 rawName: "v-show",
-                                value: category.publicationStatus == 1,
-                                expression: "category.publicationStatus == 1"
+                                value: category.active == 1,
+                                expression: "category.active == 1"
                               }
                             ],
                             key: category.id,
@@ -54793,7 +54787,7 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("has-error", {
-                    attrs: { form: _vm.form, field: "categoryId" }
+                    attrs: { form: _vm.form, field: "category_id" }
                   })
                 ],
                 1
@@ -54818,15 +54812,15 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.form.manufacturerId,
-                          expression: "form.manufacturerId"
+                          value: _vm.form.manufacturer_id,
+                          expression: "form.manufacturer_id"
                         }
                       ],
                       staticClass: "form-control",
                       class: {
-                        "is-invalid": _vm.form.errors.has("manufacturerId")
+                        "is-invalid": _vm.form.errors.has("manufacturer_id")
                       },
-                      attrs: { name: "manufacturerId" },
+                      attrs: { name: "manufacturer_id" },
                       on: {
                         change: function($event) {
                           var $$selectedVal = Array.prototype.filter
@@ -54839,7 +54833,7 @@ var render = function() {
                             })
                           _vm.$set(
                             _vm.form,
-                            "manufacturerId",
+                            "manufacturer_id",
                             $event.target.multiple
                               ? $$selectedVal
                               : $$selectedVal[0]
@@ -54860,9 +54854,8 @@ var render = function() {
                               {
                                 name: "show",
                                 rawName: "v-show",
-                                value: manufacturer.publicationStatus == 1,
-                                expression:
-                                  "manufacturer.publicationStatus == 1"
+                                value: manufacturer.active == 1,
+                                expression: "manufacturer.active == 1"
                               }
                             ],
                             key: manufacturer.id,
@@ -54876,7 +54869,7 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("has-error", {
-                    attrs: { form: _vm.form, field: "manufacturerId" }
+                    attrs: { form: _vm.form, field: "manufacturer_id" }
                   })
                 ],
                 1
@@ -54888,7 +54881,7 @@ var render = function() {
                 "label",
                 {
                   staticClass: "col-sm-2 control-label",
-                  attrs: { for: "productPrice" }
+                  attrs: { for: "product_price" }
                 },
                 [_vm._v("Product Price")]
               ),
@@ -54902,26 +54895,26 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.form.productPrice,
-                        expression: "form.productPrice"
+                        value: _vm.form.product_price,
+                        expression: "form.product_price"
                       }
                     ],
                     staticClass: "form-control",
                     class: {
-                      "is-invalid": _vm.form.errors.has("productPrice")
+                      "is-invalid": _vm.form.errors.has("product_price")
                     },
                     attrs: {
                       type: "number",
-                      name: "productPrice",
+                      name: "product_price",
                       placeholder: "Add product price"
                     },
-                    domProps: { value: _vm.form.productPrice },
+                    domProps: { value: _vm.form.product_price },
                     on: {
                       input: function($event) {
                         if ($event.target.composing) {
                           return
                         }
-                        _vm.$set(_vm.form, "productPrice", $event.target.value)
+                        _vm.$set(_vm.form, "product_price", $event.target.value)
                       }
                     }
                   }),
@@ -54929,7 +54922,7 @@ var render = function() {
                   _c("span", { staticClass: "text-danger" }),
                   _vm._v(" "),
                   _c("has-error", {
-                    attrs: { form: _vm.form, field: "productPrice" }
+                    attrs: { form: _vm.form, field: "product_price" }
                   })
                 ],
                 1
@@ -54941,7 +54934,7 @@ var render = function() {
                 "label",
                 {
                   staticClass: "col-sm-2 control-label",
-                  attrs: { for: "productQuantity" }
+                  attrs: { for: "product_quantity" }
                 },
                 [_vm._v("Product Quntity")]
               ),
@@ -54955,20 +54948,20 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.form.productQuantity,
-                        expression: "form.productQuantity"
+                        value: _vm.form.product_quantity,
+                        expression: "form.product_quantity"
                       }
                     ],
                     staticClass: "form-control",
                     class: {
-                      "is-invalid": _vm.form.errors.has("productQuantity")
+                      "is-invalid": _vm.form.errors.has("product_quantity")
                     },
                     attrs: {
                       type: "number",
-                      name: "productQuantity",
+                      name: "product_quantity",
                       placeholder: "Add product quantity"
                     },
-                    domProps: { value: _vm.form.productQuantity },
+                    domProps: { value: _vm.form.product_quantity },
                     on: {
                       input: function($event) {
                         if ($event.target.composing) {
@@ -54976,7 +54969,7 @@ var render = function() {
                         }
                         _vm.$set(
                           _vm.form,
-                          "productQuantity",
+                          "product_quantity",
                           $event.target.value
                         )
                       }
@@ -54986,7 +54979,7 @@ var render = function() {
                   _c("span", { staticClass: "text-danger" }),
                   _vm._v(" "),
                   _c("has-error", {
-                    attrs: { form: _vm.form, field: "productQuantity" }
+                    attrs: { form: _vm.form, field: "product_quantity" }
                   })
                 ],
                 1
@@ -54998,7 +54991,7 @@ var render = function() {
                 "label",
                 {
                   staticClass: "col-sm-2 control-label",
-                  attrs: { for: "productShortDescription" }
+                  attrs: { for: "product_short_description" }
                 },
                 [_vm._v("Product Short Description")]
               ),
@@ -55012,22 +55005,22 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.form.productShortDescription,
-                        expression: "form.productShortDescription"
+                        value: _vm.form.product_short_description,
+                        expression: "form.product_short_description"
                       }
                     ],
                     staticClass: "form-control",
                     class: {
                       "is-invalid": _vm.form.errors.has(
-                        "productShortDescription"
+                        "product_short_description"
                       )
                     },
                     attrs: {
-                      name: "productShortDescription",
+                      name: "product_short_description",
                       rows: "8",
                       placeholder: "Add product Short Description"
                     },
-                    domProps: { value: _vm.form.productShortDescription },
+                    domProps: { value: _vm.form.product_short_description },
                     on: {
                       input: function($event) {
                         if ($event.target.composing) {
@@ -55035,7 +55028,7 @@ var render = function() {
                         }
                         _vm.$set(
                           _vm.form,
-                          "productShortDescription",
+                          "product_short_description",
                           $event.target.value
                         )
                       }
@@ -55045,7 +55038,10 @@ var render = function() {
                   _c("span", { staticClass: "text-danger" }),
                   _vm._v(" "),
                   _c("has-error", {
-                    attrs: { form: _vm.form, field: "productShortDescription" }
+                    attrs: {
+                      form: _vm.form,
+                      field: "product_short_description"
+                    }
                   })
                 ],
                 1
@@ -55057,7 +55053,7 @@ var render = function() {
                 "label",
                 {
                   staticClass: "col-sm-2 control-label",
-                  attrs: { for: "productLongDescription" }
+                  attrs: { for: "product_long_description" }
                 },
                 [_vm._v("Product Long Description")]
               ),
@@ -55071,22 +55067,22 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.form.productLongDescription,
-                        expression: "form.productLongDescription"
+                        value: _vm.form.product_long_description,
+                        expression: "form.product_long_description"
                       }
                     ],
                     staticClass: "form-control",
                     class: {
                       "is-invalid": _vm.form.errors.has(
-                        "productLongDescription"
+                        "product_long_description"
                       )
                     },
                     attrs: {
-                      name: "productLongDescription",
+                      name: "product_long_description",
                       rows: "8",
                       placeholder: "Add product Long Description"
                     },
-                    domProps: { value: _vm.form.productLongDescription },
+                    domProps: { value: _vm.form.product_long_description },
                     on: {
                       input: function($event) {
                         if ($event.target.composing) {
@@ -55094,7 +55090,7 @@ var render = function() {
                         }
                         _vm.$set(
                           _vm.form,
-                          "productLongDescription",
+                          "product_long_description",
                           $event.target.value
                         )
                       }
@@ -55104,7 +55100,7 @@ var render = function() {
                   _c("span", { staticClass: "text-danger" }),
                   _vm._v(" "),
                   _c("has-error", {
-                    attrs: { form: _vm.form, field: "productLongDescription" }
+                    attrs: { form: _vm.form, field: "product_long_description" }
                   })
                 ],
                 1
@@ -55128,9 +55124,9 @@ var render = function() {
                   _c("input", {
                     staticClass: "form-control",
                     class: {
-                      "is-invalid": _vm.form.errors.has("productImage")
+                      "is-invalid": _vm.form.errors.has("product_image")
                     },
-                    attrs: { type: "file", name: "productImage" },
+                    attrs: { type: "file", name: "product_image" },
                     on: {
                       change: function($event) {
                         _vm.changeImage($event)
@@ -55142,7 +55138,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("img", {
                     attrs: {
-                      src: _vm.form.productImage,
+                      src: _vm.form.product_image,
                       alt: "",
                       width: "80",
                       height: "80"
@@ -55150,7 +55146,7 @@ var render = function() {
                   }),
                   _vm._v(" "),
                   _c("has-error", {
-                    attrs: { form: _vm.form, field: "productImage" }
+                    attrs: { form: _vm.form, field: "product_image" }
                   })
                 ],
                 1
@@ -55175,15 +55171,13 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.form.publicationStatus,
-                          expression: "form.publicationStatus"
+                          value: _vm.form.active,
+                          expression: "form.active"
                         }
                       ],
                       staticClass: "form-control",
-                      class: {
-                        "is-invalid": _vm.form.errors.has("publicationStatus")
-                      },
-                      attrs: { name: "publicationStatus" },
+                      class: { "is-invalid": _vm.form.errors.has("active") },
+                      attrs: { name: "active" },
                       on: {
                         change: function($event) {
                           var $$selectedVal = Array.prototype.filter
@@ -55196,7 +55190,7 @@ var render = function() {
                             })
                           _vm.$set(
                             _vm.form,
-                            "publicationStatus",
+                            "active",
                             $event.target.multiple
                               ? $$selectedVal
                               : $$selectedVal[0]
@@ -55220,7 +55214,7 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("has-error", {
-                    attrs: { form: _vm.form, field: "publicationStatus" }
+                    attrs: { form: _vm.form, field: "active" }
                   })
                 ],
                 1
@@ -55458,24 +55452,24 @@ var render = function() {
           return _c("tr", { key: product.id }, [
             _c("td", { attrs: { scope: "row" } }, [_vm._v(_vm._s(index + 1))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(product.productName))]),
+            _c("td", [_vm._v(_vm._s(product.product_name))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(product.categoryName))]),
+            _c("td", [_vm._v(_vm._s(product.category_name))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(product.manufacturerName))]),
+            _c("td", [_vm._v(_vm._s(product.manufacturer_name))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(product.productPrice))]),
+            _c("td", [_vm._v(_vm._s(product.product_price))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(product.productQuantity))]),
+            _c("td", [_vm._v(_vm._s(product.product_quantity))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(product.productShortDescription))]),
+            _c("td", [_vm._v(_vm._s(product.product_short_description))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(product.productLongDescription))]),
+            _c("td", [_vm._v(_vm._s(product.product_long_description))]),
             _vm._v(" "),
             _c("td", [
               _c("img", {
                 attrs: {
-                  src: _vm.ourImage(product.productImage),
+                  src: _vm.ourImage(product.product_image),
                   alt: "",
                   height: "150px",
                   width: "150px"
@@ -55484,7 +55478,7 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("td", [
-              product.publicationStatus == 1
+              product.active == 1
                 ? _c("p", [_vm._v("Published")])
                 : _c("p", [_vm._v("Unpublished")])
             ]),
@@ -55775,15 +55769,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             form: new Form({
-                productName: '',
-                categoryId: '',
-                manufacturerId: '',
-                productPrice: '',
-                productQuantity: '',
-                productShortDescription: '',
-                productLongDescription: '',
-                productImage: '',
-                publicationStatus: ''
+                product_name: '',
+                category_id: '',
+                manufacturer_id: '',
+                product_price: '',
+                product_quantity: '',
+                product_short_description: '',
+                product_long_description: '',
+                product_image: '',
+                active: ''
             })
         };
     },
@@ -55823,18 +55817,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             } else {
                 var reader = new FileReader();
                 reader.onload = function (event) {
-                    _this2.form.productImage = event.target.result;
+                    _this2.form.product_image = event.target.result;
                     console.log(event.target.result);
                 };
                 reader.readAsDataURL(file);
             }
         },
         updateImage: function updateImage() {
-            var img = this.form.productImage;
+            var img = this.form.product_image;
             if (img.length > 10000) {
-                return this.form.productImage;
+                return this.form.product_image;
             } else {
-                return 'public/productImage/' + this.form.productImage;
+                return 'public/productImage/' + this.form.product_image;
             }
         },
         updateProduct: function updateProduct() {
@@ -55887,7 +55881,7 @@ var render = function() {
                 "label",
                 {
                   staticClass: "col-sm-2 control-label",
-                  attrs: { for: "productName" }
+                  attrs: { for: "product_name" }
                 },
                 [_vm._v("Product Name")]
               ),
@@ -55901,30 +55895,32 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.form.productName,
-                        expression: "form.productName"
+                        value: _vm.form.product_name,
+                        expression: "form.product_name"
                       }
                     ],
                     staticClass: "form-control",
-                    class: { "is-invalid": _vm.form.errors.has("productName") },
+                    class: {
+                      "is-invalid": _vm.form.errors.has("product_name")
+                    },
                     attrs: {
                       type: "text",
-                      name: "productName",
+                      name: "product_name",
                       placeholder: "Add New Product"
                     },
-                    domProps: { value: _vm.form.productName },
+                    domProps: { value: _vm.form.product_name },
                     on: {
                       input: function($event) {
                         if ($event.target.composing) {
                           return
                         }
-                        _vm.$set(_vm.form, "productName", $event.target.value)
+                        _vm.$set(_vm.form, "product_name", $event.target.value)
                       }
                     }
                   }),
                   _vm._v(" "),
                   _c("has-error", {
-                    attrs: { form: _vm.form, field: "productName" }
+                    attrs: { form: _vm.form, field: "product_name" }
                   }),
                   _vm._v(" "),
                   _c("span", { staticClass: "text-danger" })
@@ -55951,15 +55947,15 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.form.categoryId,
-                          expression: "form.categoryId"
+                          value: _vm.form.category_id,
+                          expression: "form.category_id"
                         }
                       ],
                       staticClass: "form-control",
                       class: {
-                        "is-invalid": _vm.form.errors.has("categoryId")
+                        "is-invalid": _vm.form.errors.has("category_id")
                       },
-                      attrs: { name: "categoryId" },
+                      attrs: { name: "category_id" },
                       on: {
                         change: function($event) {
                           var $$selectedVal = Array.prototype.filter
@@ -55972,7 +55968,7 @@ var render = function() {
                             })
                           _vm.$set(
                             _vm.form,
-                            "categoryId",
+                            "category_id",
                             $event.target.multiple
                               ? $$selectedVal
                               : $$selectedVal[0]
@@ -55993,8 +55989,8 @@ var render = function() {
                               {
                                 name: "show",
                                 rawName: "v-show",
-                                value: category.publicationStatus == 1,
-                                expression: "category.publicationStatus == 1"
+                                value: category.active == 1,
+                                expression: "category.active == 1"
                               }
                             ],
                             key: category.id,
@@ -56008,7 +56004,7 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("has-error", {
-                    attrs: { form: _vm.form, field: "categoryId" }
+                    attrs: { form: _vm.form, field: "category_id" }
                   })
                 ],
                 1
@@ -56033,15 +56029,15 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.form.manufacturerId,
-                          expression: "form.manufacturerId"
+                          value: _vm.form.manufacturer_id,
+                          expression: "form.manufacturer_id"
                         }
                       ],
                       staticClass: "form-control",
                       class: {
-                        "is-invalid": _vm.form.errors.has("manufacturerId")
+                        "is-invalid": _vm.form.errors.has("manufacturer_id")
                       },
-                      attrs: { name: "manufacturerId" },
+                      attrs: { name: "manufacturer_id" },
                       on: {
                         change: function($event) {
                           var $$selectedVal = Array.prototype.filter
@@ -56054,7 +56050,7 @@ var render = function() {
                             })
                           _vm.$set(
                             _vm.form,
-                            "manufacturerId",
+                            "manufacturer_id",
                             $event.target.multiple
                               ? $$selectedVal
                               : $$selectedVal[0]
@@ -56075,9 +56071,8 @@ var render = function() {
                               {
                                 name: "show",
                                 rawName: "v-show",
-                                value: manufacturer.publicationStatus == 1,
-                                expression:
-                                  "manufacturer.publicationStatus == 1"
+                                value: manufacturer.active == 1,
+                                expression: "manufacturer.active == 1"
                               }
                             ],
                             key: manufacturer.id,
@@ -56091,7 +56086,7 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("has-error", {
-                    attrs: { form: _vm.form, field: "manufacturerId" }
+                    attrs: { form: _vm.form, field: "manufacturer_id" }
                   })
                 ],
                 1
@@ -56103,7 +56098,7 @@ var render = function() {
                 "label",
                 {
                   staticClass: "col-sm-2 control-label",
-                  attrs: { for: "productPrice" }
+                  attrs: { for: "product_price" }
                 },
                 [_vm._v("Product Price")]
               ),
@@ -56117,26 +56112,26 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.form.productPrice,
-                        expression: "form.productPrice"
+                        value: _vm.form.product_price,
+                        expression: "form.product_price"
                       }
                     ],
                     staticClass: "form-control",
                     class: {
-                      "is-invalid": _vm.form.errors.has("productPrice")
+                      "is-invalid": _vm.form.errors.has("product_price")
                     },
                     attrs: {
                       type: "number",
-                      name: "productPrice",
+                      name: "product_price",
                       placeholder: "Add product price"
                     },
-                    domProps: { value: _vm.form.productPrice },
+                    domProps: { value: _vm.form.product_price },
                     on: {
                       input: function($event) {
                         if ($event.target.composing) {
                           return
                         }
-                        _vm.$set(_vm.form, "productPrice", $event.target.value)
+                        _vm.$set(_vm.form, "product_price", $event.target.value)
                       }
                     }
                   }),
@@ -56144,7 +56139,7 @@ var render = function() {
                   _c("span", { staticClass: "text-danger" }),
                   _vm._v(" "),
                   _c("has-error", {
-                    attrs: { form: _vm.form, field: "productPrice" }
+                    attrs: { form: _vm.form, field: "product_price" }
                   })
                 ],
                 1
@@ -56156,7 +56151,7 @@ var render = function() {
                 "label",
                 {
                   staticClass: "col-sm-2 control-label",
-                  attrs: { for: "productQuantity" }
+                  attrs: { for: "product_quantity" }
                 },
                 [_vm._v("Product Quntity")]
               ),
@@ -56170,20 +56165,20 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.form.productQuantity,
-                        expression: "form.productQuantity"
+                        value: _vm.form.product_quantity,
+                        expression: "form.product_quantity"
                       }
                     ],
                     staticClass: "form-control",
                     class: {
-                      "is-invalid": _vm.form.errors.has("productQuantity")
+                      "is-invalid": _vm.form.errors.has("product_quantity")
                     },
                     attrs: {
                       type: "number",
-                      name: "productQuantity",
+                      name: "product_quantity",
                       placeholder: "Add product quantity"
                     },
-                    domProps: { value: _vm.form.productQuantity },
+                    domProps: { value: _vm.form.product_quantity },
                     on: {
                       input: function($event) {
                         if ($event.target.composing) {
@@ -56191,7 +56186,7 @@ var render = function() {
                         }
                         _vm.$set(
                           _vm.form,
-                          "productQuantity",
+                          "product_quantity",
                           $event.target.value
                         )
                       }
@@ -56201,7 +56196,7 @@ var render = function() {
                   _c("span", { staticClass: "text-danger" }),
                   _vm._v(" "),
                   _c("has-error", {
-                    attrs: { form: _vm.form, field: "productQuantity" }
+                    attrs: { form: _vm.form, field: "product_quantity" }
                   })
                 ],
                 1
@@ -56213,7 +56208,7 @@ var render = function() {
                 "label",
                 {
                   staticClass: "col-sm-2 control-label",
-                  attrs: { for: "productShortDescription" }
+                  attrs: { for: "product_short_description" }
                 },
                 [_vm._v("Product Short Description")]
               ),
@@ -56227,22 +56222,22 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.form.productShortDescription,
-                        expression: "form.productShortDescription"
+                        value: _vm.form.product_short_description,
+                        expression: "form.product_short_description"
                       }
                     ],
                     staticClass: "form-control",
                     class: {
                       "is-invalid": _vm.form.errors.has(
-                        "productShortDescription"
+                        "product_short_description"
                       )
                     },
                     attrs: {
-                      name: "productShortDescription",
+                      name: "product_short_description",
                       rows: "8",
                       placeholder: "Add product Short Description"
                     },
-                    domProps: { value: _vm.form.productShortDescription },
+                    domProps: { value: _vm.form.product_short_description },
                     on: {
                       input: function($event) {
                         if ($event.target.composing) {
@@ -56250,7 +56245,7 @@ var render = function() {
                         }
                         _vm.$set(
                           _vm.form,
-                          "productShortDescription",
+                          "product_short_description",
                           $event.target.value
                         )
                       }
@@ -56260,7 +56255,10 @@ var render = function() {
                   _c("span", { staticClass: "text-danger" }),
                   _vm._v(" "),
                   _c("has-error", {
-                    attrs: { form: _vm.form, field: "productShortDescription" }
+                    attrs: {
+                      form: _vm.form,
+                      field: "product_short_description"
+                    }
                   })
                 ],
                 1
@@ -56272,7 +56270,7 @@ var render = function() {
                 "label",
                 {
                   staticClass: "col-sm-2 control-label",
-                  attrs: { for: "productLongDescription" }
+                  attrs: { for: "product_long_description" }
                 },
                 [_vm._v("Product Long Description")]
               ),
@@ -56286,22 +56284,22 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.form.productLongDescription,
-                        expression: "form.productLongDescription"
+                        value: _vm.form.product_long_description,
+                        expression: "form.product_long_description"
                       }
                     ],
                     staticClass: "form-control",
                     class: {
                       "is-invalid": _vm.form.errors.has(
-                        "productLongDescription"
+                        "product_long_description"
                       )
                     },
                     attrs: {
-                      name: "productLongDescription",
+                      name: "product_long_description",
                       rows: "8",
                       placeholder: "Add product Long Description"
                     },
-                    domProps: { value: _vm.form.productLongDescription },
+                    domProps: { value: _vm.form.product_long_description },
                     on: {
                       input: function($event) {
                         if ($event.target.composing) {
@@ -56309,7 +56307,7 @@ var render = function() {
                         }
                         _vm.$set(
                           _vm.form,
-                          "productLongDescription",
+                          "product_long_description",
                           $event.target.value
                         )
                       }
@@ -56319,7 +56317,7 @@ var render = function() {
                   _c("span", { staticClass: "text-danger" }),
                   _vm._v(" "),
                   _c("has-error", {
-                    attrs: { form: _vm.form, field: "productLongDescription" }
+                    attrs: { form: _vm.form, field: "product_long_description" }
                   })
                 ],
                 1
@@ -56343,9 +56341,9 @@ var render = function() {
                   _c("input", {
                     staticClass: "form-control",
                     class: {
-                      "is-invalid": _vm.form.errors.has("productImage")
+                      "is-invalid": _vm.form.errors.has("product_image")
                     },
-                    attrs: { type: "file", name: "productImage" },
+                    attrs: { type: "file", name: "product_image" },
                     on: {
                       change: function($event) {
                         _vm.changeImage($event)
@@ -56365,7 +56363,7 @@ var render = function() {
                   }),
                   _vm._v(" "),
                   _c("has-error", {
-                    attrs: { form: _vm.form, field: "productImage" }
+                    attrs: { form: _vm.form, field: "product_image" }
                   })
                 ],
                 1
@@ -56390,15 +56388,13 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.form.publicationStatus,
-                          expression: "form.publicationStatus"
+                          value: _vm.form.active,
+                          expression: "form.active"
                         }
                       ],
                       staticClass: "form-control",
-                      class: {
-                        "is-invalid": _vm.form.errors.has("publicationStatus")
-                      },
-                      attrs: { name: "publicationStatus" },
+                      class: { "is-invalid": _vm.form.errors.has("active") },
+                      attrs: { name: "active" },
                       on: {
                         change: function($event) {
                           var $$selectedVal = Array.prototype.filter
@@ -56411,7 +56407,7 @@ var render = function() {
                             })
                           _vm.$set(
                             _vm.form,
-                            "publicationStatus",
+                            "active",
                             $event.target.multiple
                               ? $$selectedVal
                               : $$selectedVal[0]
@@ -56435,7 +56431,7 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("has-error", {
-                    attrs: { form: _vm.form, field: "publicationStatus" }
+                    attrs: { form: _vm.form, field: "active" }
                   })
                 ],
                 1
@@ -56694,7 +56690,7 @@ var render = function() {
                               _c("img", {
                                 staticClass: "pro-image-front",
                                 attrs: {
-                                  src: _vm.ourImage(product.productImage),
+                                  src: _vm.ourImage(product.product_image),
                                   alt: "image"
                                 }
                               }),
@@ -56702,7 +56698,7 @@ var render = function() {
                               _c("img", {
                                 staticClass: "pro-image-back",
                                 attrs: {
-                                  src: _vm.ourImage(product.productImage),
+                                  src: _vm.ourImage(product.product_image),
                                   alt: "image"
                                 }
                               }),
@@ -56737,7 +56733,7 @@ var render = function() {
                                   _c(
                                     "router-link",
                                     { attrs: { to: "/product/" + product.id } },
-                                    [_vm._v(_vm._s(product.productName))]
+                                    [_vm._v(_vm._s(product.product_name))]
                                   )
                                 ],
                                 1
@@ -56745,7 +56741,7 @@ var render = function() {
                               _vm._v(" "),
                               _c("div", { staticClass: "info-product-price" }, [
                                 _c("span", { staticClass: "item_price" }, [
-                                  _vm._v("BDT " + _vm._s(product.productPrice))
+                                  _vm._v("BDT " + _vm._s(product.product_price))
                                 ])
                               ]),
                               _vm._v(" "),
@@ -57008,7 +57004,7 @@ var render = function() {
                   _c("img", {
                     staticClass: "pro-image-front",
                     attrs: {
-                      src: _vm.ourImage(product.productImage),
+                      src: _vm.ourImage(product.product_image),
                       alt: product.productName
                     }
                   }),
@@ -57016,8 +57012,8 @@ var render = function() {
                   _c("img", {
                     staticClass: "pro-image-back",
                     attrs: {
-                      src: _vm.ourImage(product.productImage),
-                      alt: product.productName
+                      src: _vm.ourImage(product.product_image),
+                      alt: product.product_name
                     }
                   }),
                   _vm._v(" "),
@@ -57051,7 +57047,7 @@ var render = function() {
                       _c(
                         "router-link",
                         { attrs: { to: "/product/" + product.id } },
-                        [_vm._v(_vm._s(product.productName))]
+                        [_vm._v(_vm._s(product.product_name))]
                       )
                     ],
                     1
@@ -57059,7 +57055,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("div", { staticClass: "info-product-price" }, [
                     _c("span", { staticClass: "item_price" }, [
-                      _vm._v("BDT " + _vm._s(product.productPrice))
+                      _vm._v("BDT " + _vm._s(product.product_price))
                     ])
                   ]),
                   _vm._v(" "),
@@ -57367,7 +57363,8 @@ var render = function() {
                     staticClass: "img-responsive",
                     attrs: {
                       src:
-                        "public/productImage/" + _vm.singleproduct.productImage,
+                        "public/productImage/" +
+                        _vm.singleproduct.product_image,
                       "data-imagezoom": "true"
                     }
                   })
@@ -57392,11 +57389,11 @@ var render = function() {
             attrs: { "data-wow-delay": ".5s" }
           },
           [
-            _c("h3", [_vm._v(_vm._s(_vm.singleproduct.productName))]),
+            _c("h3", [_vm._v(_vm._s(_vm.singleproduct.product_name))]),
             _vm._v(" "),
             _c("p", [
               _c("span", { staticClass: "item_price" }, [
-                _vm._v("BDT " + _vm._s(_vm.singleproduct.productPrice))
+                _vm._v("BDT " + _vm._s(_vm.singleproduct.product_price))
               ])
             ]),
             _vm._v(" "),
@@ -57416,7 +57413,7 @@ var render = function() {
                   _c("i"),
                   _vm._v(
                     "\n              " +
-                      _vm._s(_vm.singleproduct.productName) +
+                      _vm._s(_vm.singleproduct.product_name) +
                       "\n            "
                   )
                 ])
@@ -57485,7 +57482,7 @@ var render = function() {
                         _vm._v(" "),
                         _c("p", [
                           _vm._v(
-                            _vm._s(_vm.singleproduct.productLongDescription)
+                            _vm._s(_vm.singleproduct.product_long_description)
                           )
                         ])
                       ]
@@ -59348,15 +59345,14 @@ var render = function() {
                                   {
                                     name: "show",
                                     rawName: "v-show",
-                                    value: category.publicationStatus == 1,
-                                    expression:
-                                      "category.publicationStatus == 1"
+                                    value: category.active == 1,
+                                    expression: "category.active == 1"
                                   }
                                 ],
                                 staticClass: "dropdown-toggle menu__link",
                                 attrs: { to: "/category/" + category.id }
                               },
-                              [_vm._v(_vm._s(category.categoryName))]
+                              [_vm._v(_vm._s(category.category_name))]
                             )
                           ],
                           1

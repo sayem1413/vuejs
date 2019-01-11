@@ -21,21 +21,21 @@ Add Category
                 </div>
             </div>
             <div class="form-group">
-                <label for="categoryName" class="col-sm-2 control-label">Category Name</label>
+                <label for="category_name" class="col-sm-2 control-label">Category Name</label>
                 <div class="col-sm-10">
-                    <input type="text" value="{{$categoryById->categoryName}}" class="form-control" name="categoryName">
+                    <input type="text" value="{{$categoryById->category_name}}" class="form-control" name="category_name">
                 </div>
             </div>
             <div class="form-group">
-                <label for="categoryDescription" class="col-sm-2 control-label">Category Description</label>
+                <label for="category_description" class="col-sm-2 control-label">Category Description</label>
                 <div class="col-sm-10">
-                    <textarea class="form-control" name="categoryDescription" rows="8">{{$categoryById->categoryDescription}}</textarea>
+                    <textarea class="form-control" name="category_description" rows="8">{{$categoryById->category_description}}</textarea>
                 </div>
             </div>
             <div class="form-group">
                 <label for="" class="col-sm-2 control-label"></label>
                 <div class="col-sm-10">
-                    <select class="form-control" name="publicationStatus">
+                    <select class="form-control" name="active">
                         <option>Select Publication Status</option>
                         <option value="1">Published</option>
                         <option value="0">Unpublished</option>
@@ -54,7 +54,7 @@ Add Category
 </div>
 
 <script>
-    document.forms['editCategoryForm'].elements['publicationStatus'].value = {{$categoryById->publicationStatus}};
+    document.forms['editCategoryForm'].elements['active'].value = {{$categoryById->active}};
 </script>
 
 @endsection

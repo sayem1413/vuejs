@@ -17,7 +17,7 @@ class AuthenticateMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::check() && Auth::user()->role == Role::USER)
+        if (Auth::user()->role == Role::USER)
             return $next($request);
         else
             return redirect('/');
