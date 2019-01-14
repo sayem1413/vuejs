@@ -38,11 +38,11 @@
               >
                 <option :value="null">Select Category</option>
                 <option
-                  v-for="category in getallCategory"
+                  v-for="category in allpublishedcategories"
                   v-show="category.active == 1"
                   :key="category.id"
                   :value="category.id"
-                >{{category.categoryName}}</option>
+                >{{category.category_name}}</option>
               </select>
               <has-error :form="form" field="category_id"></has-error>
             </div>
@@ -58,11 +58,11 @@
               >
                 <option :value="null">Select Manufacturer</option>
                 <option
-                  v-for="manufacturer in getallManufacturer"
+                  v-for="manufacturer in allpublishedmanufacturers"
                   v-show="manufacturer.active == 1"
                   :key="manufacturer.id"
                   :value="manufacturer.id"
-                >{{manufacturer.manufacturerName}}</option>
+                >{{manufacturer.manufacturer_name}}</option>
               </select>
               <has-error :form="form" field="manufacturer_id"></has-error>
             </div>
@@ -193,15 +193,15 @@ export default {
     };
   },
   mounted() {
-    this.$store.dispatch("allCategory");
-    this.$store.dispatch("allManufacturer");
+    this.$store.dispatch("all_category");
+    this.$store.dispatch("allmanufacturers");
   },
   computed: {
-    getallCategory() {
-      return this.$store.getters.getCategory;
+    allpublishedcategories() {
+      return this.$store.getters.allcategories;
     },
-    getallManufacturer() {
-      return this.$store.getters.getManufacturer;
+    allpublishedmanufacturers() {
+      return this.$store.getters.allmanufacturers;
     }
   },
   methods: {

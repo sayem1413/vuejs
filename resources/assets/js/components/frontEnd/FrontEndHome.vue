@@ -12,11 +12,11 @@
           <div class="resp-tabs-container">
             <div class="row single-pro">
               <!-- Foreach -->
-              <div v-for="product in getLatestProducts" :key="product.id" class="col-md-3">
+              <div v-for="product in latestproducts" :key="product.id" class="col-md-3">
                 <div class="men-pro-item simpleCart_shelfItem">
                   <div class="men-thumb-item">
-                    <img :src="ourImage(product.product_image)" alt="image" class="pro-image-front">
-                    <img :src="ourImage(product.product_image)" alt="image" class="pro-image-back">
+                    <img :src="ourimage(product.product_image)" alt="image" class="pro-image-front">
+                    <img :src="ourimage(product.product_image)" alt="image" class="pro-image-back">
                     <div class="men-cart-pro">
                       <div class="inner-men-cart-pro">
                         <router-link :to="`/product/${product.id}`" class="link-product-add-cart">Quick View</router-link>
@@ -33,7 +33,7 @@
                     </div>
                     <a
                       href="#"
-                      @click.prevent="addCart(product.id)"
+                      @click.prevent="addcart(product.id)"
                       class="item_add single-item hvr-outline-out button2"
                     >Add to cart</a>
                   </div>
@@ -54,18 +54,18 @@
 export default {
   name: "FrontEndHome",
   mounted() {
-    this.$store.dispatch("latestProducts");
+    this.$store.dispatch("latestproducts");
   },
   computed: {
-    getLatestProducts() {
-      return this.$store.getters.getLatestProducts;
+    latestproducts() {
+      return this.$store.getters.all_latest_products;
     }
   },
   methods: {
-    ourImage(img) {
+    ourimage(img) {
       return "public/productImage/" + img;
     },
-    addCart(id) {
+    addcart(id) {
       axios
         .get("/cart/add/" + id)
         .then(response => {

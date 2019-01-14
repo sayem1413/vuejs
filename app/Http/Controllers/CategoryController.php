@@ -81,9 +81,9 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $categoryById = Category::where('id',$id)->first();
+        $category_by_id = Category::where('id',$id)->first();
         return response()->json([
-            'categoryById'=>$categoryById
+            'category_by_id'=>$category_by_id
         ],200);
     }
 

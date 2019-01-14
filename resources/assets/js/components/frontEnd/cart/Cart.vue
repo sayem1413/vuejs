@@ -16,12 +16,12 @@
             </thead>
             <!-- php code -> $total = 0; -->
             <!-- foreach -->
-            <tr v-for="(cart,index) in getCartList" :key="cart.id">
+            <tr v-for="(cart,index) in cartproducts" :key="cart.id">
               <td>
                 <div>
                   <a
                     href
-                    @click.prevent="deleteProductCart(cart.rowId)"
+                    @click.prevent="delete_product_cart(cart.rowId)"
                     type="submit"
                     class="btn btn-danger"
                   >
@@ -37,13 +37,13 @@
                       type="number"
                       name="qty"
                       class="form-control"
-                      :value="getCartList[index].qty"
+                      :value="cartproducts[index].qty"
                       @change="qty=$event.target.value"
                     >
                     <span class="input-group-btn"></span>
                     <button
                       type="submit"
-                      @click="updateProductCart(cart.rowId)"
+                      @click="update_product_cart(cart.rowId)"
                       class="btn btn-primary"
                     >
                       <span class="glyphicon glyphicon-upload"></span>
@@ -77,7 +77,7 @@
           </div>
           <div class="hidden">{{totall = 0}}</div>
           <div
-            v-for="cart in getCartList"
+            v-for="cart in cartproducts"
             :key="cart.id"
             class="hidden"
           >{{ totall += cart.qty*cart.price}}</div>
@@ -106,23 +106,24 @@ export default {
     };
   },
   mounted() {
-    this.$store.dispatch("allCartProducts");
+    this.$store.dispatch("all_cart_products");
   },
   computed: {
       ...mapGetters([
           "getCartProducts"
       ]),
-    getCartList() {
-      return this.$store.getters.getCartProducts;
+    cartproducts() {
+      console.log(this.$store.getters.cart_products)
+      return this.$store.getters.cart_products;
     }
   },
   methods: {
-    deleteProductCart(id) {
+    delete_product_cart(id) {
       //   console.log(id);
       axios
         .get("/cart/delete/" + id, this.form)
         .then(() => {
-          this.$store.dispatch("allCartProducts");
+          this.$store.dispatch("all_cart_products");
           toast({
             type: "success",
             title: "Cart Product Deleted successfully"
@@ -130,12 +131,12 @@ export default {
         })
         .catch(() => {});
     },
-    updateProductCart(id) {
+    update_product_cart(id) {
       //   console.log(this.dataQty);
       axios
         .patch("/cart/update/" + id, { qty: this.qty })
         .then(() => {
-          this.$store.dispatch("allCartProducts");
+          this.$store.dispatch("all_cart_products");
           toast({
             type: "success",
             title: "Cart Product updated successfully"

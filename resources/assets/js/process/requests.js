@@ -9,82 +9,82 @@ export default {
         cartproduct:[]
     },
     getters:{
-        getCategory(state){
+        allcategories(state){
             return state.category
         },
-        getManufacturer(state){
+        allmanufacturers(state){
             return state.manufacturer
         },
-        getPrduct(state){
+        allproducts(state){
             return state.product
         },
-        getLatestProducts(state){
+        all_latest_products(state){
             // console.log(state.latestproduct)
             return state.latestproduct
         },
-        getAllProductsByCategoryId(state){
+        allproductsbycategoryid(state){
             // console.log(state.productsbycategoryid)
             return state.productsbycategoryid
         },
-        getproductbyid(state){
+        productbyid(state){
             // console.log(state.productbyid)
             return state.productbyid
         },
-        getCartProducts(state){
+        cart_products(state){
             // console.log(state.cartproduct)
             return state.cartproduct
         }
     },
     actions:{
-        allCategory(context){
+        all_category(context){
             axios.get('/category/manage')
                 .then((response)=>{
                     context.commit('categoreis',response.data.categories)
                 })
         },
-        allPublishedCategory(context){
+        allpublishedcategories(context){
             axios.get('/published/categories')
                 .then((response)=>{
                     context.commit('categoreis',response.data.categories)
                 })
         },
-        allManufacturer(context){
+        allmanufacturers(context){
             axios.get('/manufacturer/manage')
                 .then((response)=>{
                     context.commit('manufacturers',response.data.manufacturers)
                 })
         },
-        allProduct(context){
+        allproducts(context){
             axios.get('/product/manage')
                 .then((response) => {
                     context.commit('products',response.data.products)
                 })
         },
-        latestProducts(context){
+        latestproducts(context){
             axios.get('/latest/products')
                 .then((response) => {
-                    context.commit('latestproducts',response.data.latestPublishedProducts)
+                    context.commit('latestproducts',response.data.latest_published_products)
                 })
         },
-        getProductsByCatId(context,payload){
+        allproductsbycategoryid(context,payload){
             axios.get('/category-view/'+payload)
                 .then((response)=>{
                     // console.log(response.data)
-                    context.commit('productsByCategory',response.data.publishedCategoryProducts)
+                    context.commit('productsbycategory',response.data.published_category_products)
                 })
         },
-        getProductById(context,payload){
+        productbyid(context,payload){
             axios.get('/product-details/'+payload)
                 .then((response)=>{
                     // console.log(response.data)
-                    context.commit('productById',response.data.productById)
+                    context.commit('productById',response.data.product_by_id)
                 })
         },
-        allCartProducts(context){
+        all_cart_products(context){
             axios.get('/cart/show')
                 .then((response) => {
                     // console.log(response.data)
-                    context.commit('cartproducts',response.data.cartProducts)
+                    context.commit('cartproducts',response.data.cart_products)
                 })
         },
     },
@@ -101,7 +101,7 @@ export default {
         latestproducts(state,data){
             return state.latestproduct = data
         },
-        productsByCategory(state,payload){
+        productsbycategory(state,payload){
             return state.productsbycategoryid = payload
         },
         productById(state,payload){

@@ -5,7 +5,7 @@
       <h4 class="text-center text-success"></h4>
       <hr>
       <div class="well">
-        <form role="form" class="form-horizontal" @submit.prevent="addCategory()">
+        <form role="form" class="form-horizontal" @submit.prevent="add_category()">
           <div class="form-group">
             <label for="category_name" class="col-sm-2 control-label">Category Name</label>
             <div class="col-sm-10">
@@ -35,7 +35,7 @@
             </div>
           </div>
           <div class="form-group">
-            <label for class="col-sm-2 control-label"></label>
+            <label for="active" class="col-sm-2 control-label"></label>
             <div class="col-sm-10">
               <select
                 class="form-control"
@@ -75,7 +75,7 @@ export default {
     };
   },
   methods: {
-    addCategory() {
+    add_category() {
       console.log("okk");
       axios
         .post("/category/save", this.form)

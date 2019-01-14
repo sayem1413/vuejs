@@ -12,21 +12,21 @@ class WelcomeController extends Controller
 {
     public function category($id) {
         
-        $publishedCategoryProducts = Product::where('category_id',$id)
+        $published_category_products = Product::where('category_id',$id)
                                   ->where('active',1)
                                   ->get();
-        //return view('frontEnd.category.categoryContent',['publishedCategoryProducts'=>$publishedCategoryProducts]);
+        //return view('frontEnd.category.categoryContent',['published_category_products'=>$published_category_products]);
         return response()->json([
-            'publishedCategoryProducts'=>$publishedCategoryProducts
+            'published_category_products'=>$published_category_products
         ],200);
     }
     
     public function productDetails($id)
     {
-        $productById = Product::where('id',$id)->first();
-        //return view('frontEnd.product.productContent',['productById'=>$productById]);
+        $product_by_id = Product::where('id',$id)->first();
+        //return view('frontEnd.product.productContent',['product_by_id'=>$product_by_id]);
         return response()->json([
-            'productById'=>$productById
+            'product_by_id'=>$product_by_id
         ],200);
     }
   

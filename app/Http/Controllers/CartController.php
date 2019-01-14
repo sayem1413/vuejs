@@ -10,11 +10,11 @@ class CartController extends Controller {
 
     public function addToCart($id) {
         //echo $id;
-        $productById = Product::where('id',$id)->first();
+        $product_by_id = Product::where('id',$id)->first();
         Cart::add([
             'id' => $id,
-            'name' => $productById->product_name,
-            'price' => $productById->product_price,
+            'name' => $product_by_id->product_name,
+            'price' => $product_by_id->product_price,
             'qty' => 1,
         ]);
 //        $cartProducts = Cart::content();
@@ -25,10 +25,10 @@ class CartController extends Controller {
     }
 
     public function viewCart() {
-        $cartProducts = Cart::content();
+        $cart_products = Cart::content();
         //return view('frontEnd.checkOut.viewCart',['cartProducts' => $cartProducts]);
         return response()->json([
-            'cartProducts'=>$cartProducts
+            'cart_products'=>$cart_products
         ],200);
     }
 

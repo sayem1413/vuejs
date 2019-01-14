@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="row single-pro">
-      <div v-for="product in categoryProducts" :key="product.id" class="col-md-3 product-men">
+      <div v-for="product in categoryproducts" :key="product.id" class="col-md-3 product-men">
         <div class="men-pro-item simpleCart_shelfItem">
           <div class="men-thumb-item">
             <img
@@ -28,7 +28,7 @@
             <div class="info-product-price">
               <span class="item_price">BDT {{product.product_price}}</span>
             </div>
-            <a href="#" @click.prevent="addCart(product.id)" class="item_add single-item hvr-outline-out button2">Add to cart</a>
+            <a href="#" @click.prevent="addcart(product.id)" class="item_add single-item hvr-outline-out button2">Add to cart</a>
           </div>
         </div>
       </div>
@@ -40,15 +40,15 @@
 export default {
   name: "CategoryProducts",
   mounted() {
-    //this.$store.dispatch('getProductsByCatId',this.$route.params.categoryId);
+    //this.$store.dispatch('allproductsbycategoryid',this.$route.params.categoryId);
     //console.log('mounted!')
 
-    this.categoryProduct();
+    this.allcategoryproducts();
   },
   computed: {
-    categoryProducts() {
-      console.log(this.$store.getters.getAllProductsByCategoryId);
-      return this.$store.getters.getAllProductsByCategoryId;
+    categoryproducts() {
+      console.log(this.$store.getters.allproductsbycategoryid);
+      return this.$store.getters.allproductsbycategoryid;
       /* axios.get(`/category-view/${this.$route.params.categoryId}`)
                 .then((response)=>{
                     console.log(response.data.publishedCategoryProducts)
@@ -57,13 +57,13 @@ export default {
     }
   },
   methods: {
-    categoryProduct() {
-      this.$store.dispatch("getProductsByCatId", this.$route.params.categoryId);
+    allcategoryproducts() {
+      this.$store.dispatch("allproductsbycategoryid", this.$route.params.categoryId);
     },
     ourImage(img) {
       return "public/productImage/" + img;
     },
-    addCart(id) {
+    addcart(id) {
       axios
         .get("/cart/add/" + id)
         .then(response => {
@@ -78,7 +78,7 @@ export default {
   },
   watch: {
     $route(to, from) {
-      this.categoryProduct();
+      this.allcategoryproducts();
     }
   }
 };

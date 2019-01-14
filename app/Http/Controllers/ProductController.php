@@ -121,9 +121,9 @@ class ProductController extends Controller {
                 ->where('products.id', $id)
                 ->first(); */
         //return view('admin.product.editProduct', ['productById' => $productById, 'categories' => $categories, 'manufacturers' => $manufacturers]);
-        $productById = Product::where('id', $id)->first();
+        $product_by_id = Product::where('id', $id)->first();
         return response()->json([
-            'productById'=>$productById
+            'product_by_id'=>$product_by_id
         ],200);
         /* return view('admin.product.editProduct')
                         ->with('productById', $productById)

@@ -78,9 +78,9 @@ class ManufacturerController extends Controller
      */
     public function edit($id)
     {
-        $manufacturerById = Manufacturer::where('id',$id)->first();
+        $manufacturer_by_id = Manufacturer::where('id',$id)->first();
         return response()->json([
-            'manufacturerById'=>$manufacturerById
+            'manufacturer_by_id'=>$manufacturer_by_id
         ],200);
     }
 

@@ -70,7 +70,7 @@
             <div class="clearfix"></div>
           </div>
           <div class="occasion-cart">
-            <a href="#" @click.prevent="addCart(singleproduct.id)" class="item_add hvr-outline-out button2">Add to cart</a>
+            <a href="#" @click.prevent="addcart(singleproduct.id)" class="item_add hvr-outline-out button2">Add to cart</a>
           </div>
         </div>
         <div class="clearfix"></div>
@@ -107,17 +107,17 @@ export default {
   },
   computed: {
     singleproduct() {
-      return this.$store.getters.getproductbyid;
+      return this.$store.getters.productbyid;
     }
   },
   methods: {
     singleProduct() {
-      this.$store.dispatch("getProductById", this.$route.params.id);
+      this.$store.dispatch("productbyid", this.$route.params.id);
     },
     ourImage(img) {
       return "public/productImage/" + img;
     },
-    addCart(id) {
+    addcart(id) {
       axios
         .get("/cart/add/" + id)
         .then(response => {

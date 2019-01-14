@@ -5,7 +5,7 @@
             <h4 class="text-center text-success"></h4>
             <hr/>
             <div class="well">
-                <form role="form" class="form-horizontal" @submit.prevent="updateCategory()">
+                <form role="form" class="form-horizontal" @submit.prevent="update_category()">
                     <div class="form-group">
                         <label for="category_name" class="col-sm-2 control-label">Category Name</label>
                         <div class="col-sm-10">
@@ -67,7 +67,7 @@
         mounted(){
             axios.get(`/category/edit/${this.$route.params.categoryid}`)
                 .then((response)=>{
-                    this.form.fill(response.data.categoryById)
+                    this.form.fill(response.data.category_by_id)
                 })
         },
         data(){
@@ -80,7 +80,7 @@
             }
         },
         methods:{
-            updateCategory(){
+            update_category(){
                 axios.post(`/category/update/${this.$route.params.categoryid}`,  this.form)
                     .then((response)=>{
                         this.$router.push('/category/list')

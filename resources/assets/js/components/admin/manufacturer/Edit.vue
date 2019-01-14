@@ -5,7 +5,7 @@
             <h4 class="text-center text-success"></h4>
             <hr/>
             <div class="well">
-                <form role="form" class="form-horizontal" @submit.prevent="updateManufacturer()">
+                <form role="form" class="form-horizontal" @submit.prevent="updatemanufacturer()">
                     <div class="form-group">
                         <label for="manufacturer_name" class="col-sm-2 control-label">Manufacturer Name</label>
                         <div class="col-sm-10">
@@ -55,7 +55,7 @@
         mounted(){
             axios.get(`/manufacturer/edit/${this.$route.params.manufacturerid}`)
                 .then((response)=>{
-                    this.form.fill(response.data.manufacturerById)
+                    this.form.fill(response.data.manufacturer_by_id)
                 })
         },
         data(){
@@ -68,7 +68,7 @@
             }
         },
         methods:{
-            updateManufacturer(){
+            updatemanufacturer(){
                 axios.post(`/manufacturer/update/${this.$route.params.manufacturerid}`,  this.form)
                     .then((response)=>{
                         this.$router.push('/manufacturer/list')
