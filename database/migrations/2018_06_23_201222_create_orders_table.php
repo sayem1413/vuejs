@@ -20,6 +20,14 @@ class CreateOrdersTable extends Migration
             $table->float('order_totall', 10,2);
             $table->string('order_status')->default('pending');
             $table->timestamps();
+            $table->foreign('customer_id')
+                  ->references('id')
+                  ->on('customers')
+                  ->onDelete('cascade');
+            $table->foreign('shipment_id')
+                  ->references('id')
+                  ->on('shipments')
+                  ->onDelete('cascade');
         });
     }
 

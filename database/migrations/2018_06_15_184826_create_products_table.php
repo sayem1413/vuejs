@@ -25,6 +25,14 @@ class CreateProductsTable extends Migration
             $table->text('product_image');
             $table->tinyInteger('active');
             $table->timestamps();
+            $table->foreign('category_id')
+                  ->references('id')
+                  ->on('categories')
+                  ->onDelete('cascade');
+            $table->foreign('manufacturer_id')
+                  ->references('id')
+                  ->on('manufacturers')
+                  ->onDelete('cascade');
         });
     }
 

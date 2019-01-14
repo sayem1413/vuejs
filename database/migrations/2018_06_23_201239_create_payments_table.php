@@ -19,6 +19,10 @@ class CreatePaymentsTable extends Migration
             $table->string('payment_type');
             $table->string('payment_status')->default('Cash On Delivery');
             $table->timestamps();
+            $table->foreign('order_id')
+                  ->references('id')
+                  ->on('orders')
+                  ->onDelete('cascade');
         });
     }
 
