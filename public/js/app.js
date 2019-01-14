@@ -55419,7 +55419,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     methods: {
         ourImage: function ourImage(img) {
-            return "public/productImage/" + img;
+            return "productImage/" + img;
         },
         deleteProduct: function deleteProduct(id) {
             var _this = this;
@@ -55906,7 +55906,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       if (img.length > 10000) {
         return this.form.product_image;
       } else {
-        return "public/productImage/" + this.form.product_image;
+        return "productImage/" + this.form.product_image;
       }
     },
     updateProduct: function updateProduct() {
@@ -56715,7 +56715,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   methods: {
     ourimage: function ourimage(img) {
-      return "public/productImage/" + img;
+      return "productImage/" + img;
     },
     addcart: function addcart(id) {
       var _this = this;
@@ -57039,7 +57039,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.$store.dispatch("allproductsbycategoryid", this.$route.params.categoryId);
     },
     ourImage: function ourImage(img) {
-      return "public/productImage/" + img;
+      return "productImage/" + img;
     },
     addcart: function addcart(id) {
       var _this = this;
@@ -57390,7 +57390,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.$store.dispatch("productbyid", this.$route.params.id);
     },
     ourImage: function ourImage(img) {
-      return "public/productImage/" + img;
+      return "/productImage/" + img;
     },
     addcart: function addcart(id) {
       var _this = this;
@@ -57441,9 +57441,7 @@ var render = function() {
                   _c("img", {
                     staticClass: "img-responsive",
                     attrs: {
-                      src:
-                        "public/productImage/" +
-                        _vm.singleproduct.product_image,
+                      src: "productImage/" + _vm.singleproduct.product_image,
                       "data-imagezoom": "true"
                     }
                   })

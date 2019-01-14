@@ -11,7 +11,7 @@
             <div class="flexslider">
               <div class="thumb-image">
                 <img
-                  :src="`public/productImage/${singleproduct.product_image}`"
+                  :src="`productImage/${singleproduct.product_image}`"
                   data-imagezoom="true"
                   class="img-responsive"
                 >
@@ -115,7 +115,7 @@ export default {
       this.$store.dispatch("productbyid", this.$route.params.id);
     },
     ourImage(img) {
-      return "public/productImage/" + img;
+      return "/productImage/" + img;
     },
     addcart(id) {
       axios

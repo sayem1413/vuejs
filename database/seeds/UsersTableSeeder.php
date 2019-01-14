@@ -14,11 +14,16 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
-            'name' => 'admin',
-            'email' => 'admin@gmail.com',
-            'password' => bcrypt('123456'),
-            'role' => Role::ADMIN,
-        ]);
+        $email = 'admin@gmail.com';
+        $adminMailCheck = DB::table('users')->where('email', $email)->first();
+
+        if ($adminMailCheck == false) {
+            DB::table('users')->insert([
+                'name' => 'admin',
+                'email' => 'admin@gmail.com',
+                'password' => bcrypt('123456'),
+                'role' => Role::ADMIN,
+            ]);
+        }
     }
 }

@@ -56,7 +56,7 @@
         },
         methods:{
             ourImage(img){
-                return "public/productImage/"+img;
+                return "productImage/"+img;
             },
             deleteProduct(id){
                axios.get('/product/delete/'+id)

@@ -61,7 +61,7 @@ export default {
       this.$store.dispatch("allproductsbycategoryid", this.$route.params.categoryId);
     },
     ourImage(img) {
-      return "public/productImage/" + img;
+      return "productImage/" + img;
     },
     addcart(id) {
       axios

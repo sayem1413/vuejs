@@ -236,7 +236,7 @@ export default {
       if (img.length > 10000) {
         return this.form.product_image;
       } else {
-        return `public/productImage/${this.form.product_image}`;
+        return `productImage/${this.form.product_image}`;
       }
     },
     updateProduct() {

@@ -63,7 +63,7 @@ export default {
   },
   methods: {
     ourimage(img) {
-      return "public/productImage/" + img;
+      return "productImage/" + img;
     },
     addcart(id) {
       axios

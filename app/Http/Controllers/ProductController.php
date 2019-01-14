@@ -50,12 +50,12 @@ class ProductController extends Controller {
         $ex = explode('/',$sub)[1];
         $name = time().".".$ex;
         $img = Image::make($request->product_image)->resize(200, 200);
-        $upload_path = public_path()."/public/productImage/";
+        $upload_path = public_path()."/productImage/";
         $img->save($upload_path.$name);
 
         /* $product_image = $request->file('product_image');
         $image_name = $product_image->getClientOriginalName();
-        $upload_path = 'public/productImage/';
+        $upload_path = 'productImage/';
         $product_image->move($upload_path, $image_name);
         $imageUrl = $upload_path . $image_name; */
 
@@ -96,13 +96,13 @@ class ProductController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function show($id) {
-        $productById = DB::table('products')
+        $product_by_id = DB::table('products')
                 ->join('categories', 'products.category_id', '=', 'categories.id')
                 ->join('manufacturers', 'products.manufacturer_id', '=', 'manufacturers.id')
                 ->select('products.*', 'categories.category_name', 'manufacturers.manufacturer_name')
                 ->where('products.id', $id)
                 ->first();
-        return view('admin.product.viewProduct', ['product' => $productById]);
+        return view('admin.product.viewProduct', ['product' => $product_by_id]);
     }
 
     /**
@@ -114,19 +114,19 @@ class ProductController extends Controller {
     public function edit($id) {
         //$categories = Category::where('active', 1)->get();
         //$manufacturers = Manufacturer::where('active', 1)->get();
-        /* $productById = DB::table('products')
+        /* $product_by_id = DB::table('products')
                 ->join('categories', 'products.category_id', '=', 'categories.id')
                 ->join('manufacturers', 'products.manufacturer_id', '=', 'manufacturers.id')
                 ->select('products.*','categories.id as category_id', 'categories.categoryName','manufacturers.id as manufacturer_id', 'manufacturers.manufacturerName')
                 ->where('products.id', $id)
                 ->first(); */
-        //return view('admin.product.editProduct', ['productById' => $productById, 'categories' => $categories, 'manufacturers' => $manufacturers]);
+        //return view('admin.product.editProduct', ['product_by_id' => $product_by_id, 'categories' => $categories, 'manufacturers' => $manufacturers]);
         $product_by_id = Product::where('id', $id)->first();
         return response()->json([
             'product_by_id'=>$product_by_id
         ],200);
         /* return view('admin.product.editProduct')
-                        ->with('productById', $productById)
+                        ->with('product_by_id', $product_by_id)
                         ->with('categories', $categories)
                         ->with('manufacturers', $manufacturers); */
     }
@@ -158,37 +158,23 @@ class ProductController extends Controller {
     }
 
     private function imageExistStatus($request, $id) {
-        $productById = Product::where('id', $id)->first();
-        /* $product_image = $request->product_image;
-        if(file_exists($product_image)) {
-            //unlink($productById->product_image);
-            $strpos = strpos($request->product_image,';');
-            $sub = substr($request->product_image,0,$strpos);
-            $ex = explode('/',$sub)[1];
-            $name = time().".".$ex;
-            $img = Image::make($request->product_image)->resize(200, 200);
-            $upload_path = public_path()."/public/product_image/";
-            $img->save($upload_path.$name);
-        } else {
-            $name = $productById->product_image;
-        }
-        return $name; */
+        $product_by_id = Product::where('id', $id)->first();
 
-        if($request->product_image!=$productById->product_image){
+        if($request->product_image!=$product_by_id->product_image){
             $strpos = strpos($request->product_image,';');
             $sub = substr($request->product_image,0,$strpos);
             $ex = explode('/',$sub)[1];
             $name = time().".".$ex;
             $img = Image::make($request->product_image)->resize(200, 200);
-            $upload_path = public_path()."/public/productImage/";
-            $image = $upload_path. $productById->product_image;
+            $upload_path = public_path()."/productImage/";
+            $image = $upload_path. $product_by_id->product_image;
             $img->save($upload_path.$name);
 
             if(file_exists($image)){
                 @unlink($image);
             }
         }else{
-            $name = $productById->product_image;
+            $name = $product_by_id->product_image;
         }
         return $name;
     }
@@ -216,7 +202,7 @@ class ProductController extends Controller {
     public function destroy($id) {
         $product = Product::find($id);
 
-        $image_path = public_path()."/public/productImage/";
+        $image_path = public_path()."/productImage/";
         $image = $image_path. $product->product_image;
         if(file_exists($image)){
             @unlink($image);

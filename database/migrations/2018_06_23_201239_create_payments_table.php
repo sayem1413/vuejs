@@ -16,8 +16,8 @@ class CreatePaymentsTable extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('order_id');
-            $table->string('payment_type');
-            $table->string('payment_status')->default('Cash On Delivery');
+            $table->string('type');
+            $table->string('status')->default('Cash On Delivery');
             $table->timestamps();
             $table->foreign('order_id')
                   ->references('id')
