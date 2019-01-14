@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Enumeration\ActiveStatus;
+
 use Illuminate\Http\Request;
 use App\Category;
 use DB;
@@ -44,8 +46,8 @@ class CategoryController extends Controller
         ]);
         
         $category = new Category();
-        $category->category_name = $request->category_name;
-        $category->category_description = $request->category_description;
+        $category->name = $request->category_name;
+        $category->description = $request->category_description;
         $category->active = $request->active;
         $category->save();
         return response()->json(["success"=>true],200);
@@ -105,8 +107,8 @@ class CategoryController extends Controller
         ]);
         
         $category = Category::where('id',$id)->first();
-        $category->category_name = $request->category_name;
-        $category->category_description = $request->category_description;
+        $category->name = $request->category_name;
+        $category->description = $request->category_description;
         $category->active = $request->active;
         $category->save();
         return response()->json(["success"=>true],200);

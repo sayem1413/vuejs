@@ -43,8 +43,8 @@ class ManufacturerController extends Controller
         
         //return $request->all();
         $manufacturer = new Manufacturer();
-        $manufacturer->manufacturer_name = $request->manufacturer_name;
-        $manufacturer->manufacturer_description = $request->manufacturer_description;
+        $manufacturer->name = $request->manufacturer_name;
+        $manufacturer->description = $request->manufacturer_description;
         $manufacturer->active = $request->active;
         $manufacturer->save();
         
@@ -101,8 +101,8 @@ class ManufacturerController extends Controller
         
         //return $request->all();
         $manufacturer = Manufacturer::where('id',$id)->first();
-        $manufacturer->manufacturer_name = $request->manufacturer_name;
-        $manufacturer->manufacturer_description = $request->manufacturer_description;
+        $manufacturer->name = $request->manufacturer_name;
+        $manufacturer->description = $request->manufacturer_description;
         $manufacturer->active = $request->active;
         $manufacturer->save();
         

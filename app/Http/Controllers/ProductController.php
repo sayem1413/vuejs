@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Enumeration\ActiveStatus;
+
 use Illuminate\Http\Request;
 use App\Category;
 use App\Manufacturer;
@@ -12,8 +14,8 @@ use Image;
 class ProductController extends Controller {
 
     public function index() {
-        $categories = Category::where('active', 1)->get();
-        $manufacturers = Manufacturer::where('active', 1)->get();
+        $categories = Category::where('active',  ActiveStatus::PUBLISHED)->get();
+        $manufacturers = Manufacturer::where('active',  ActiveStatus::PUBLISHED)->get();
         return view('admin.product.createProduct', ['categories' => $categories, 'manufacturers' => $manufacturers]);
     }
 
@@ -65,14 +67,14 @@ class ProductController extends Controller {
 
     protected function saveProductInfo($request, $name) {
         $product = new Product();
-        $product->product_name = $request->product_name;
+        $product->name = $request->product_name;
         $product->category_id = $request->category_id;
         $product->manufacturer_id = $request->manufacturer_id;
-        $product->product_price = $request->product_price;
-        $product->product_quantity = $request->product_quantity;
-        $product->product_short_description = $request->product_short_description;
-        $product->product_long_description = $request->product_long_description;
-        $product->product_image = $name;
+        $product->price = $request->product_price;
+        $product->quantity = $request->product_quantity;
+        $product->short_description = $request->product_short_description;
+        $product->long_description = $request->product_long_description;
+        $product->image = $name;
         $product->active = $request->active;
         $product->save();
     }
@@ -82,7 +84,7 @@ class ProductController extends Controller {
         $products = DB::table('products')
                 ->join('categories', 'products.category_id', '=', 'categories.id')
                 ->join('manufacturers', 'products.manufacturer_id', '=', 'manufacturers.id')
-                ->select('products.id', 'products.product_name', 'categories.category_name', 'manufacturers.manufacturer_name', 'products.product_price', 'products.product_quantity', 'products.product_short_description', 'products.product_long_description', 'products.product_image', 'products.active')
+                ->select('products.id', 'products.name', 'categories.name as category_name', 'manufacturers.name as manufacturer_name', 'products.price', 'products.quantity', 'products.short_description', 'products.long_description', 'products.image', 'products.active')
                 ->get();
         return response()->json([
             'products'=>$products
@@ -99,7 +101,7 @@ class ProductController extends Controller {
         $product_by_id = DB::table('products')
                 ->join('categories', 'products.category_id', '=', 'categories.id')
                 ->join('manufacturers', 'products.manufacturer_id', '=', 'manufacturers.id')
-                ->select('products.*', 'categories.category_name', 'manufacturers.manufacturer_name')
+                ->select('products.*', 'categories.name as category_name', 'manufacturers.name as category_name')
                 ->where('products.id', $id)
                 ->first();
         return view('admin.product.viewProduct', ['product' => $product_by_id]);
@@ -160,35 +162,35 @@ class ProductController extends Controller {
     private function imageExistStatus($request, $id) {
         $product_by_id = Product::where('id', $id)->first();
 
-        if($request->product_image!=$product_by_id->product_image){
+        if($request->product_image!=$product_by_id->image){
             $strpos = strpos($request->product_image,';');
             $sub = substr($request->product_image,0,$strpos);
             $ex = explode('/',$sub)[1];
             $name = time().".".$ex;
             $img = Image::make($request->product_image)->resize(200, 200);
             $upload_path = public_path()."/productImage/";
-            $image = $upload_path. $product_by_id->product_image;
+            $image = $upload_path. $product_by_id->image;
             $img->save($upload_path.$name);
 
             if(file_exists($image)){
                 @unlink($image);
             }
         }else{
-            $name = $product_by_id->product_image;
+            $name = $product_by_id->image;
         }
         return $name;
     }
 
     protected function updateProductInfo($request, $imageUrl, $id) {
         $product = Product::find($id);
-        $product->product_name = $request->product_name;
+        $product->name = $request->product_name;
         $product->category_id = $request->category_id;
         $product->manufacturer_id = $request->manufacturer_id;
-        $product->product_price = $request->product_price;
-        $product->product_quantity = $request->product_quantity;
-        $product->product_short_description = $request->product_short_description;
-        $product->product_long_description = $request->product_long_description;
-        $product->product_image = $imageUrl;
+        $product->price = $request->product_price;
+        $product->quantity = $request->product_quantity;
+        $product->short_description = $request->product_short_description;
+        $product->long_description = $request->product_long_description;
+        $product->image = $imageUrl;
         $product->active = $request->active;
         $product->save();
     }
@@ -203,7 +205,7 @@ class ProductController extends Controller {
         $product = Product::find($id);
 
         $image_path = public_path()."/productImage/";
-        $image = $image_path. $product->product_image;
+        $image = $image_path. $product->image;
         if(file_exists($image)){
             @unlink($image);
         }

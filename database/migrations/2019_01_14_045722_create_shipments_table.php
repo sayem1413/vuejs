@@ -15,11 +15,11 @@ class CreateShipmentsTable extends Migration
     {
         Schema::create('shipments', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('full_name');
+            $table->string('full_name', 100);
             $table->string('email');
-            $table->text('address');
-            $table->string('phone_number');
-            $table->string('district_name');
+            $table->text('address', 200);
+            $table->string('phone_number', 30);
+            $table->string('district_name', 20);
             $table->timestamps();
         });
     }

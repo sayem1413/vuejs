@@ -16,8 +16,8 @@
             <tbody>
                 <tr v-for="(manufacturer,index) in allmanufacturers" :key="manufacturer.id">
                     <td scope="row">{{index+1}}</td>
-                    <td>{{manufacturer.manufacturer_name}}</td>
-                    <td>{{manufacturer.manufacturer_description}}</td>
+                    <td>{{manufacturer.name}}</td>
+                    <td>{{manufacturer.description}}</td>
                     <td><p v-if="manufacturer.active == 1">Published</p><p v-else>Unpublished</p></td>
                     <td>
                         <router-link :to="`/manufacturer/edit/${manufacturer.id}`" class="btn btn-success"><span class="glyphicon glyphicon-edit"></span></router-link>

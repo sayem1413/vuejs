@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Enumeration\ActiveStatus;
+
 use Illuminate\Http\Request;
 use App\Category;
 use App\Product;
@@ -13,7 +15,7 @@ class WelcomeController extends Controller
     public function category($id) {
         
         $published_category_products = Product::where('category_id',$id)
-                                  ->where('active',1)
+                                  ->where('active', ActiveStatus::PUBLISHED)
                                   ->get();
         //return view('frontEnd.category.categoryContent',['published_category_products'=>$published_category_products]);
         return response()->json([

@@ -16,8 +16,8 @@
       <tbody>
         <tr v-for="(category,index) in allcategories" :key="category.id">
           <td scope="row">{{index+1}}</td>
-          <td>{{category.category_name}}</td>
-          <td>{{category.category_description}}</td>
+          <td>{{category.name}}</td>
+          <td>{{category.description}}</td>
           <td>
             <p v-if="category.active == 1">Published</p>
             <p v-else>Unpublished</p>

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Enumeration\ActiveStatus;
+
 use Illuminate\Http\Request;
 use App\Category;
 use App\Product;
@@ -9,7 +11,7 @@ use App\Product;
 class HomeViewController extends Controller {
 
     public function index() {
-        $published_products = Product::where('active',1)->get();
+        $published_products = Product::where('active', ActiveStatus::PUBLISHED)->get();
         /* return response()->json([
             'publishedProducts'=>$publishedProducts
         ],200); */
@@ -17,7 +19,7 @@ class HomeViewController extends Controller {
         //return view('frontEnd.home.homeContent', ['publishedProducts'=>$publishedProducts]);
     }
     public function latestProducts(){
-        $latest_published_products = Product::where('active',1)->latest()->get();
+        $latest_published_products = Product::where('active', ActiveStatus::PUBLISHED)->latest()->get();
         return response()->json([
             'latest_published_products'=>$latest_published_products
         ],200);

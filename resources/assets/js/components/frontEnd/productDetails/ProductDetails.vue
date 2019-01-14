@@ -11,7 +11,7 @@
             <div class="flexslider">
               <div class="thumb-image">
                 <img
-                  :src="`productImage/${singleproduct.product_image}`"
+                  :src="`productImage/${singleproduct.image}`"
                   data-imagezoom="true"
                   class="img-responsive"
                 >
@@ -25,9 +25,9 @@
           data-wow-delay=".5s"
           style="visibility: visible; animation-delay: 0.5s; animation-name: slideInRight;"
         >
-          <h3>{{singleproduct.product_name}}</h3>
+          <h3>{{singleproduct.name}}</h3>
           <p>
-            <span class="item_price">BDT {{singleproduct.product_price}}</span>
+            <span class="item_price">BDT {{singleproduct.price}}</span>
           </p>
           <div class="rating1">
             <span class="starRating">
@@ -64,13 +64,17 @@
               <label class="radio">
                 <input type="radio" name="radio" checked>
                 <i></i>
-                {{singleproduct.product_name}}
+                {{singleproduct.name}}
               </label>
             </div>
             <div class="clearfix"></div>
           </div>
           <div class="occasion-cart">
-            <a href="#" @click.prevent="addcart(singleproduct.id)" class="item_add hvr-outline-out button2">Add to cart</a>
+            <a
+              href="#"
+              @click.prevent="addcart(singleproduct.id)"
+              class="item_add hvr-outline-out button2"
+            >Add to cart</a>
           </div>
         </div>
         <div class="clearfix"></div>
@@ -89,7 +93,7 @@
                 aria-labelledby="home-tab"
               >
                 <h5>Product Brief Description</h5>
-                <p>{{singleproduct.product_long_description}}</p>
+                <p>{{singleproduct.long_description}}</p>
               </div>
             </div>
           </div>

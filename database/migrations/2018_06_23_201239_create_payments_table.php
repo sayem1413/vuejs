@@ -1,5 +1,8 @@
 <?php
 
+use App\Enumeration\Status;
+use App\Enumeration\PaymentType;
+
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -16,8 +19,8 @@ class CreatePaymentsTable extends Migration
         Schema::create('payments', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('order_id');
-            $table->string('type');
-            $table->string('status')->default('Cash On Delivery');
+            $table->tinyInteger('type')->default(PaymentType::CASH_ON_DELIVERY);
+            $table->tinyInteger('status')->default(Status::PENDING);
             $table->timestamps();
             $table->foreign('order_id')
                   ->references('id')

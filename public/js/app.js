@@ -52778,9 +52778,9 @@ var render = function() {
           return _c("tr", { key: category.id }, [
             _c("td", { attrs: { scope: "row" } }, [_vm._v(_vm._s(index + 1))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(category.category_name))]),
+            _c("td", [_vm._v(_vm._s(category.name))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(category.category_description))]),
+            _c("td", [_vm._v(_vm._s(category.description))]),
             _vm._v(" "),
             _c("td", [
               category.active == 1
@@ -53838,9 +53838,9 @@ var render = function() {
           return _c("tr", { key: manufacturer.id }, [
             _c("td", { attrs: { scope: "row" } }, [_vm._v(_vm._s(index + 1))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(manufacturer.manufacturer_name))]),
+            _c("td", [_vm._v(_vm._s(manufacturer.name))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(manufacturer.manufacturer_description))]),
+            _c("td", [_vm._v(_vm._s(manufacturer.description))]),
             _vm._v(" "),
             _c("td", [
               manufacturer.active == 1
@@ -55459,24 +55459,24 @@ var render = function() {
           return _c("tr", { key: product.id }, [
             _c("td", { attrs: { scope: "row" } }, [_vm._v(_vm._s(index + 1))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(product.product_name))]),
+            _c("td", [_vm._v(_vm._s(product.name))]),
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(product.category_name))]),
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(product.manufacturer_name))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(product.product_price))]),
+            _c("td", [_vm._v(_vm._s(product.price))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(product.product_quantity))]),
+            _c("td", [_vm._v(_vm._s(product.quantity))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(product.product_short_description))]),
+            _c("td", [_vm._v(_vm._s(product.short_description))]),
             _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(product.product_long_description))]),
+            _c("td", [_vm._v(_vm._s(product.long_description))]),
             _vm._v(" "),
             _c("td", [
               _c("img", {
                 attrs: {
-                  src: _vm.ourImage(product.product_image),
+                  src: _vm.ourImage(product.image),
                   alt: "",
                   height: "150px",
                   width: "150px"
@@ -56769,7 +56769,7 @@ var render = function() {
                               _c("img", {
                                 staticClass: "pro-image-front",
                                 attrs: {
-                                  src: _vm.ourimage(product.product_image),
+                                  src: _vm.ourimage(product.image),
                                   alt: "image"
                                 }
                               }),
@@ -56777,7 +56777,7 @@ var render = function() {
                               _c("img", {
                                 staticClass: "pro-image-back",
                                 attrs: {
-                                  src: _vm.ourimage(product.product_image),
+                                  src: _vm.ourimage(product.image),
                                   alt: "image"
                                 }
                               }),
@@ -56812,7 +56812,7 @@ var render = function() {
                                   _c(
                                     "router-link",
                                     { attrs: { to: "/product/" + product.id } },
-                                    [_vm._v(_vm._s(product.product_name))]
+                                    [_vm._v(_vm._s(product.name))]
                                   )
                                 ],
                                 1
@@ -56820,7 +56820,7 @@ var render = function() {
                               _vm._v(" "),
                               _c("div", { staticClass: "info-product-price" }, [
                                 _c("span", { staticClass: "item_price" }, [
-                                  _vm._v("BDT " + _vm._s(product.product_price))
+                                  _vm._v("BDT " + _vm._s(product.price))
                                 ])
                               ]),
                               _vm._v(" "),
@@ -57083,16 +57083,16 @@ var render = function() {
                   _c("img", {
                     staticClass: "pro-image-front",
                     attrs: {
-                      src: _vm.ourImage(product.product_image),
-                      alt: product.productName
+                      src: _vm.ourImage(product.image),
+                      alt: product.name
                     }
                   }),
                   _vm._v(" "),
                   _c("img", {
                     staticClass: "pro-image-back",
                     attrs: {
-                      src: _vm.ourImage(product.product_image),
-                      alt: product.product_name
+                      src: _vm.ourImage(product.image),
+                      alt: product.name
                     }
                   }),
                   _vm._v(" "),
@@ -57126,7 +57126,7 @@ var render = function() {
                       _c(
                         "router-link",
                         { attrs: { to: "/product/" + product.id } },
-                        [_vm._v(_vm._s(product.product_name))]
+                        [_vm._v(_vm._s(product.name))]
                       )
                     ],
                     1
@@ -57134,7 +57134,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("div", { staticClass: "info-product-price" }, [
                     _c("span", { staticClass: "item_price" }, [
-                      _vm._v("BDT " + _vm._s(product.product_price))
+                      _vm._v("BDT " + _vm._s(product.price))
                     ])
                   ]),
                   _vm._v(" "),
@@ -57261,7 +57261,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -57272,6 +57272,10 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
 //
 //
 //
@@ -57441,7 +57445,7 @@ var render = function() {
                   _c("img", {
                     staticClass: "img-responsive",
                     attrs: {
-                      src: "productImage/" + _vm.singleproduct.product_image,
+                      src: "productImage/" + _vm.singleproduct.image,
                       "data-imagezoom": "true"
                     }
                   })
@@ -57466,11 +57470,11 @@ var render = function() {
             attrs: { "data-wow-delay": ".5s" }
           },
           [
-            _c("h3", [_vm._v(_vm._s(_vm.singleproduct.product_name))]),
+            _c("h3", [_vm._v(_vm._s(_vm.singleproduct.name))]),
             _vm._v(" "),
             _c("p", [
               _c("span", { staticClass: "item_price" }, [
-                _vm._v("BDT " + _vm._s(_vm.singleproduct.product_price))
+                _vm._v("BDT " + _vm._s(_vm.singleproduct.price))
               ])
             ]),
             _vm._v(" "),
@@ -57490,7 +57494,7 @@ var render = function() {
                   _c("i"),
                   _vm._v(
                     "\n              " +
-                      _vm._s(_vm.singleproduct.product_name) +
+                      _vm._s(_vm.singleproduct.name) +
                       "\n            "
                   )
                 ])
@@ -57558,9 +57562,7 @@ var render = function() {
                         _c("h5", [_vm._v("Product Brief Description")]),
                         _vm._v(" "),
                         _c("p", [
-                          _vm._v(
-                            _vm._s(_vm.singleproduct.product_long_description)
-                          )
+                          _vm._v(_vm._s(_vm.singleproduct.long_description))
                         ])
                       ]
                     )
