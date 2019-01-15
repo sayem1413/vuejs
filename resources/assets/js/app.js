@@ -22,8 +22,11 @@ Vue.component('admin-main', require('./components/admin/AdminMaster.vue'));
 Vue.component('frontend-main', require('./components/frontEnd/FrontEndMaster.vue'));
 Vue.component('frontend-menu', require('./components/frontEnd/FrontEndMenu.vue'));
 
+Vue.component('pagination', require('laravel-vue-pagination'));
+
+
 // V-form
-import {
+/* import {
     Form,
     HasError,
     AlertError
@@ -31,7 +34,7 @@ import {
 
 Vue.component(HasError.name, HasError)
 Vue.component(AlertError.name, AlertError)
-window.Form = Form;
+window.Form = Form; */
 
 // Sweet alert 2
 import swal from 'sweetalert2'

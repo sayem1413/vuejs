@@ -15304,10 +15304,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__process_requests__ = __webpack_require__(43);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue_router__ = __webpack_require__(44);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__routes__ = __webpack_require__(45);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vform__ = __webpack_require__(140);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_vform___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_vform__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_sweetalert2__ = __webpack_require__(141);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_sweetalert2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_sweetalert2__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_sweetalert2__ = __webpack_require__(141);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_sweetalert2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_sweetalert2__);
 __webpack_require__(18);
 window.Vue = __webpack_require__(40);
 
@@ -15328,17 +15326,23 @@ Vue.component('admin-main', __webpack_require__(128));
 Vue.component('frontend-main', __webpack_require__(130));
 Vue.component('frontend-menu', __webpack_require__(135));
 
+Vue.component('pagination', __webpack_require__(146));
+
 // V-form
+/* import {
+    Form,
+    HasError,
+    AlertError
+} from 'vform'
 
-
-Vue.component(__WEBPACK_IMPORTED_MODULE_5_vform__["HasError"].name, __WEBPACK_IMPORTED_MODULE_5_vform__["HasError"]);
-Vue.component(__WEBPACK_IMPORTED_MODULE_5_vform__["AlertError"].name, __WEBPACK_IMPORTED_MODULE_5_vform__["AlertError"]);
-window.Form = __WEBPACK_IMPORTED_MODULE_5_vform__["Form"];
+Vue.component(HasError.name, HasError)
+Vue.component(AlertError.name, AlertError)
+window.Form = Form; */
 
 // Sweet alert 2
 
-window.swal = __WEBPACK_IMPORTED_MODULE_6_sweetalert2___default.a;
-var toast = __WEBPACK_IMPORTED_MODULE_6_sweetalert2___default.a.mixin({
+window.swal = __WEBPACK_IMPORTED_MODULE_5_sweetalert2___default.a;
+var toast = __WEBPACK_IMPORTED_MODULE_5_sweetalert2___default.a.mixin({
     toast: true,
     position: 'top-end',
     showConfirmButton: false,
@@ -49078,13 +49082,13 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
         cartproduct: []
     },
     getters: {
-        allcategories: function allcategories(state) {
+        allCategories: function allCategories(state) {
             return state.category;
         },
-        allmanufacturers: function allmanufacturers(state) {
+        allManufacturers: function allManufacturers(state) {
             return state.manufacturer;
         },
-        allproducts: function allproducts(state) {
+        allProducts: function allProducts(state) {
             return state.product;
         },
         all_latest_products: function all_latest_products(state) {
@@ -49105,7 +49109,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
         }
     },
     actions: {
-        all_category: function all_category(context) {
+        allCategory: function allCategory(context) {
             axios.get('/category/manage').then(function (response) {
                 context.commit('categoreis', response.data.categories);
             });
@@ -49115,12 +49119,12 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
                 context.commit('categoreis', response.data.categories);
             });
         },
-        allmanufacturers: function allmanufacturers(context) {
+        allManufacturers: function allManufacturers(context) {
             axios.get('/manufacturer/manage').then(function (response) {
                 context.commit('manufacturers', response.data.manufacturers);
             });
         },
-        allproducts: function allproducts(context) {
+        allProducts: function allProducts(context) {
             axios.get('/product/manage').then(function (response) {
                 context.commit('products', response.data.products);
             });
@@ -52221,7 +52225,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -52319,35 +52323,32 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
+
+//import globalUrl from '../../../globalUrl';
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Add",
   data: function data() {
     return {
-      form: new Form({
-        category_name: "",
-        category_description: "",
-        active: ""
-      })
+      category: {
+        name: '',
+        description: '',
+        active: ''
+      }
     };
   },
-
   methods: {
     add_category: function add_category() {
       var _this = this;
 
+      //let url = globalUrl.ROOT_URL+"category/save";
+
+      var app = this;
+      var newCategory = app.category;
+
       console.log("okk");
-      axios.post("/category/save", this.form).then(function (response) {
+      axios.post('/category/save', newCategory).then(function (response) {
         _this.$router.push("/category/list");
         toast({
           type: "success",
@@ -52379,7 +52380,6 @@ var render = function() {
           "form",
           {
             staticClass: "form-horizontal",
-            attrs: { role: "form" },
             on: {
               submit: function($event) {
                 $event.preventDefault()
@@ -52393,48 +52393,36 @@ var render = function() {
                 "label",
                 {
                   staticClass: "col-sm-2 control-label",
-                  attrs: { for: "category_name" }
+                  attrs: { for: "name" }
                 },
                 [_vm._v("Category Name")]
               ),
               _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "col-sm-10" },
-                [
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.category_name,
-                        expression: "form.category_name"
-                      }
-                    ],
-                    staticClass: "form-control",
-                    class: {
-                      "is-invalid": _vm.form.errors.has("category_name")
-                    },
-                    attrs: { type: "text", name: "category_name" },
-                    domProps: { value: _vm.form.category_name },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.form, "category_name", $event.target.value)
-                      }
+              _c("div", { staticClass: "col-sm-10" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.category.name,
+                      expression: "category.name"
                     }
-                  }),
-                  _vm._v(" "),
-                  _c("has-error", {
-                    attrs: { form: _vm.form, field: "category_name" }
-                  }),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "text-danger" })
-                ],
-                1
-              )
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "text", name: "name" },
+                  domProps: { value: _vm.category.name },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.category, "name", $event.target.value)
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("span", { staticClass: "text-danger" })
+              ])
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
@@ -52442,119 +52430,93 @@ var render = function() {
                 "label",
                 {
                   staticClass: "col-sm-2 control-label",
-                  attrs: { for: "category_description" }
+                  attrs: { for: "description" }
                 },
                 [_vm._v("Category Description")]
               ),
               _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "col-sm-10" },
-                [
-                  _c("textarea", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.category_description,
-                        expression: "form.category_description"
-                      }
-                    ],
-                    staticClass: "form-control",
-                    class: {
-                      "is-invalid": _vm.form.errors.has("category_description")
-                    },
-                    attrs: { name: "category_description", rows: "8" },
-                    domProps: { value: _vm.form.category_description },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(
-                          _vm.form,
-                          "category_description",
-                          $event.target.value
-                        )
-                      }
+              _c("div", { staticClass: "col-sm-10" }, [
+                _c("textarea", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.category.description,
+                      expression: "category.description"
                     }
-                  }),
-                  _vm._v(" "),
-                  _c("has-error", {
-                    attrs: { form: _vm.form, field: "category_description" }
-                  }),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "text-danger" })
-                ],
-                1
-              )
+                  ],
+                  staticClass: "form-control",
+                  attrs: { name: "description", rows: "8" },
+                  domProps: { value: _vm.category.description },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.category, "description", $event.target.value)
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("span", { staticClass: "text-danger" })
+              ])
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
-              _c("label", {
-                staticClass: "col-sm-2 control-label",
-                attrs: { for: "active" }
-              }),
-              _vm._v(" "),
               _c(
-                "div",
-                { staticClass: "col-sm-10" },
-                [
-                  _c(
-                    "select",
+                "label",
+                {
+                  staticClass: "col-sm-2 control-label",
+                  attrs: { for: "active" }
+                },
+                [_vm._v("Publication Status")]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-5" }, [
+                _c("input", {
+                  directives: [
                     {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.form.active,
-                          expression: "form.active"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      class: { "is-invalid": _vm.form.errors.has("active") },
-                      attrs: { name: "active" },
-                      on: {
-                        change: function($event) {
-                          var $$selectedVal = Array.prototype.filter
-                            .call($event.target.options, function(o) {
-                              return o.selected
-                            })
-                            .map(function(o) {
-                              var val = "_value" in o ? o._value : o.value
-                              return val
-                            })
-                          _vm.$set(
-                            _vm.form,
-                            "active",
-                            $event.target.multiple
-                              ? $$selectedVal
-                              : $$selectedVal[0]
-                          )
-                        }
-                      }
-                    },
-                    [
-                      _c("option", { domProps: { value: null } }, [
-                        _vm._v("Select Publication Status")
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { domProps: { value: 1 } }, [
-                        _vm._v("Published")
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { domProps: { value: 0 } }, [
-                        _vm._v("Unpublished")
-                      ])
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c("has-error", {
-                    attrs: { form: _vm.form, field: "active" }
-                  })
-                ],
-                1
-              )
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.category.active,
+                      expression: "category.active"
+                    }
+                  ],
+                  attrs: { type: "radio", id: "active", value: "1" },
+                  domProps: { checked: _vm._q(_vm.category.active, "1") },
+                  on: {
+                    change: function($event) {
+                      _vm.$set(_vm.category, "active", "1")
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("label", { attrs: { for: "one" } }, [_vm._v("Published")])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-5" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.category.active,
+                      expression: "category.active"
+                    }
+                  ],
+                  attrs: { type: "radio", id: "active", value: "0" },
+                  domProps: { checked: _vm._q(_vm.category.active, "0") },
+                  on: {
+                    change: function($event) {
+                      _vm.$set(_vm.category, "active", "0")
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("label", { attrs: { for: "active" } }, [
+                  _vm._v("Unpublished")
+                ])
+              ])
             ]),
             _vm._v(" "),
             _vm._m(0)
@@ -52731,12 +52693,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "List",
   mounted: function mounted() {
-    this.$store.dispatch("all_category");
+    this.$store.dispatch("allCategory");
   },
 
   computed: {
-    allcategories: function allcategories() {
-      return this.$store.getters.allcategories;
+    allCategories: function allCategories() {
+      return this.$store.getters.allCategories;
     }
   },
   methods: {
@@ -52744,7 +52706,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this = this;
 
       axios.get("/category/delete/" + id).then(function () {
-        _this.$store.dispatch("all_category");
+        _this.$store.dispatch("allCategory");
         toast({
           type: "success",
           title: "Category Deleted successfully"
@@ -52774,7 +52736,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "tbody",
-        _vm._l(_vm.allcategories, function(category, index) {
+        _vm._l(_vm.allCategories, function(category, index) {
           return _c("tr", { key: category.id }, [
             _c("td", { attrs: { scope: "row" } }, [_vm._v(_vm._s(index + 1))]),
             _vm._v(" "),
@@ -52960,46 +52922,43 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: "Edit",
     mounted: function mounted() {
         var _this = this;
 
-        axios.get('/category/edit/' + this.$route.params.categoryid).then(function (response) {
-            _this.form.fill(response.data.category_by_id);
+        axios.get("/category/edit/" + this.$route.params.categoryid).then(function (response) {
+            //this.form.fill(response.data.categoryInfo)
+            _this.category = response.data.categoryInfo;
+            console.log(response.data.categoryInfo);
+        }).catch(function () {
+            alert("Could not load your category");
         });
     },
+
     data: function data() {
         return {
-            form: new Form({
-                category_name: '',
-                category_description: '',
+            category: {
+                name: '',
+                description: '',
                 active: ''
-            })
+            }
         };
     },
-
     methods: {
         update_category: function update_category() {
             var _this2 = this;
 
-            axios.post('/category/update/' + this.$route.params.categoryid, this.form).then(function (response) {
+            axios.post("/category/update/" + this.$route.params.categoryid, this.category).then(function (response) {
                 _this2.$router.push('/category/list');
                 toast({
                     type: 'success',
                     title: 'Category Updated successfully'
                 });
-            }).catch(function () {});
+            }).catch(function () {
+                alert("Could not save your category");
+            });
         }
     }
 });
@@ -53025,7 +52984,6 @@ var render = function() {
           "form",
           {
             staticClass: "form-horizontal",
-            attrs: { role: "form" },
             on: {
               submit: function($event) {
                 $event.preventDefault()
@@ -53044,39 +53002,31 @@ var render = function() {
                 [_vm._v("Category Name")]
               ),
               _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "col-sm-10" },
-                [
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.name,
-                        expression: "form.name"
-                      }
-                    ],
-                    staticClass: "form-control",
-                    class: { "is-invalid": _vm.form.errors.has("name") },
-                    attrs: { type: "text", name: "name" },
-                    domProps: { value: _vm.form.name },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.form, "name", $event.target.value)
-                      }
+              _c("div", { staticClass: "col-sm-10" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.category.name,
+                      expression: "category.name"
                     }
-                  }),
-                  _vm._v(" "),
-                  _c("has-error", { attrs: { form: _vm.form, field: "name" } }),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "text-danger" })
-                ],
-                1
-              )
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "text", name: "name" },
+                  domProps: { value: _vm.category.name },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.category, "name", $event.target.value)
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("span", { staticClass: "text-danger" })
+              ])
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
@@ -53089,108 +53039,88 @@ var render = function() {
                 [_vm._v("Category Description")]
               ),
               _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "col-sm-10" },
-                [
-                  _c("textarea", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.description,
-                        expression: "form.description"
-                      }
-                    ],
-                    staticClass: "form-control",
-                    class: { "is-invalid": _vm.form.errors.has("description") },
-                    attrs: { name: "description", rows: "8" },
-                    domProps: { value: _vm.form.description },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.form, "description", $event.target.value)
-                      }
+              _c("div", { staticClass: "col-sm-10" }, [
+                _c("textarea", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.category.description,
+                      expression: "category.description"
                     }
-                  }),
-                  _vm._v(" "),
-                  _c("has-error", {
-                    attrs: { form: _vm.form, field: "category_description" }
-                  }),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "text-danger" })
-                ],
-                1
-              )
+                  ],
+                  staticClass: "form-control",
+                  attrs: { name: "description", rows: "8" },
+                  domProps: { value: _vm.category.description },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.category, "description", $event.target.value)
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("span", { staticClass: "text-danger" })
+              ])
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
-              _c("label", {
-                staticClass: "col-sm-2 control-label",
-                attrs: { for: "" }
-              }),
-              _vm._v(" "),
               _c(
-                "div",
-                { staticClass: "col-sm-10" },
-                [
-                  _c(
-                    "select",
+                "label",
+                {
+                  staticClass: "col-sm-2 control-label",
+                  attrs: { for: "active" }
+                },
+                [_vm._v("Publication Status")]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-5" }, [
+                _c("input", {
+                  directives: [
                     {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.form.active,
-                          expression: "form.active"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      class: { "is-invalid": _vm.form.errors.has("active") },
-                      attrs: { name: "active" },
-                      on: {
-                        change: function($event) {
-                          var $$selectedVal = Array.prototype.filter
-                            .call($event.target.options, function(o) {
-                              return o.selected
-                            })
-                            .map(function(o) {
-                              var val = "_value" in o ? o._value : o.value
-                              return val
-                            })
-                          _vm.$set(
-                            _vm.form,
-                            "active",
-                            $event.target.multiple
-                              ? $$selectedVal
-                              : $$selectedVal[0]
-                          )
-                        }
-                      }
-                    },
-                    [
-                      _c("option", { domProps: { value: null } }, [
-                        _vm._v("Select Publication Status")
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { domProps: { value: 1 } }, [
-                        _vm._v("Published")
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { domProps: { value: 0 } }, [
-                        _vm._v("Unpublished")
-                      ])
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c("has-error", {
-                    attrs: { form: _vm.form, field: "active" }
-                  })
-                ],
-                1
-              )
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.category.active,
+                      expression: "category.active"
+                    }
+                  ],
+                  attrs: { type: "radio", id: "active", value: "1" },
+                  domProps: { checked: _vm._q(_vm.category.active, "1") },
+                  on: {
+                    change: function($event) {
+                      _vm.$set(_vm.category, "active", "1")
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("label", { attrs: { for: "one" } }, [_vm._v("Published")])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-5" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.category.active,
+                      expression: "category.active"
+                    }
+                  ],
+                  attrs: { type: "radio", id: "active", value: "0" },
+                  domProps: { checked: _vm._q(_vm.category.active, "0") },
+                  on: {
+                    change: function($event) {
+                      _vm.$set(_vm.category, "active", "0")
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("label", { attrs: { for: "active" } }, [
+                  _vm._v("Unpublished")
+                ])
+              ])
             ]),
             _vm._v(" "),
             _vm._m(0)
@@ -53314,7 +53244,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -53378,33 +53308,39 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    name: "Add",
-    data: function data() {
-        return {
-            form: new Form({
-                manufacturer_name: '',
-                manufacturer_description: '',
-                active: ""
-            })
-        };
-    },
+  name: "Add",
+  data: function data() {
+    return {
+      manufacturer: {
+        name: '',
+        description: '',
+        active: ''
+      }
+    };
+  },
+  methods: {
+    addManufacturer: function addManufacturer() {
+      var _this = this;
 
-    methods: {
-        addManufacturer: function addManufacturer() {
-            var _this = this;
-
-            console.log("okk");
-            axios.post("/manufacturer/save", this.form).then(function (response) {
-                _this.$router.push("/manufacturer/list");
-                toast({
-                    type: "success",
-                    title: "Manufacturer Added successfully"
-                });
-            }).catch(function () {});
-        }
+      console.log("okk");
+      var app = this;
+      var newManufacturer = app.manufacturer;
+      axios.post('/manufacturer/save', newManufacturer).then(function (response) {
+        _this.$router.push("/manufacturer/list");
+        toast({
+          type: "success",
+          title: "Manufacturer Added successfully"
+        });
+      }).catch(function () {});
     }
+  }
 });
 
 /***/ }),
@@ -53428,7 +53364,6 @@ var render = function() {
           "form",
           {
             staticClass: "form-horizontal",
-            attrs: { role: "form" },
             on: {
               submit: function($event) {
                 $event.preventDefault()
@@ -53442,52 +53377,36 @@ var render = function() {
                 "label",
                 {
                   staticClass: "col-sm-2 control-label",
-                  attrs: { for: "manufacturer_name" }
+                  attrs: { for: "name" }
                 },
                 [_vm._v("Manufacturer Name")]
               ),
               _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "col-sm-10" },
-                [
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.manufacturer_name,
-                        expression: "form.manufacturer_name"
-                      }
-                    ],
-                    staticClass: "form-control",
-                    class: {
-                      "is-invalid": _vm.form.errors.has("manufacturer_name")
-                    },
-                    attrs: { type: "text", name: "manufacturer_name" },
-                    domProps: { value: _vm.form.manufacturer_name },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(
-                          _vm.form,
-                          "manufacturer_name",
-                          $event.target.value
-                        )
-                      }
+              _c("div", { staticClass: "col-sm-10" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.manufacturer.name,
+                      expression: "manufacturer.name"
                     }
-                  }),
-                  _vm._v(" "),
-                  _c("has-error", {
-                    attrs: { form: _vm.form, field: "manufacturer_name" }
-                  }),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "text-danger" })
-                ],
-                1
-              )
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "text", name: "name" },
+                  domProps: { value: _vm.manufacturer.name },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.manufacturer, "name", $event.target.value)
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("span", { staticClass: "text-danger" })
+              ])
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
@@ -53495,121 +53414,94 @@ var render = function() {
                 "label",
                 {
                   staticClass: "col-sm-2 control-label",
-                  attrs: { for: "manufacturer_description" }
+                  attrs: { for: "description" }
                 },
                 [_vm._v("Manufacturer Description")]
               ),
               _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "col-sm-10" },
-                [
-                  _c("textarea", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.manufacturer_description,
-                        expression: "form.manufacturer_description"
-                      }
-                    ],
-                    staticClass: "form-control",
-                    class: {
-                      "is-invalid": _vm.form.errors.has(
-                        "manufacturer_description"
-                      )
-                    },
-                    attrs: { name: "manufacturer_description", rows: "8" },
-                    domProps: { value: _vm.form.manufacturer_description },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(
-                          _vm.form,
-                          "manufacturer_description",
-                          $event.target.value
-                        )
-                      }
+              _c("div", { staticClass: "col-sm-10" }, [
+                _c("textarea", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.manufacturer.description,
+                      expression: "manufacturer.description"
                     }
-                  }),
-                  _vm._v(" "),
-                  _c("has-error", {
-                    attrs: { form: _vm.form, field: "manufacturer_description" }
-                  }),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "text-danger" })
-                ],
-                1
-              )
+                  ],
+                  staticClass: "form-control",
+                  attrs: { name: "description", rows: "8" },
+                  domProps: { value: _vm.manufacturer.description },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(
+                        _vm.manufacturer,
+                        "description",
+                        $event.target.value
+                      )
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("span", { staticClass: "text-danger" })
+              ])
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
-              _c("label", {
-                staticClass: "col-sm-2 control-label",
-                attrs: { for: "" }
-              }),
-              _vm._v(" "),
               _c(
-                "div",
-                { staticClass: "col-sm-10" },
-                [
-                  _c(
-                    "select",
+                "label",
+                { staticClass: "col-sm-2 control-label", attrs: { for: "" } },
+                [_vm._v("Publication Status")]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-5" }, [
+                _c("input", {
+                  directives: [
                     {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.form.active,
-                          expression: "form.active"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      class: { "is-invalid": _vm.form.errors.has("active") },
-                      attrs: { name: "active" },
-                      on: {
-                        change: function($event) {
-                          var $$selectedVal = Array.prototype.filter
-                            .call($event.target.options, function(o) {
-                              return o.selected
-                            })
-                            .map(function(o) {
-                              var val = "_value" in o ? o._value : o.value
-                              return val
-                            })
-                          _vm.$set(
-                            _vm.form,
-                            "active",
-                            $event.target.multiple
-                              ? $$selectedVal
-                              : $$selectedVal[0]
-                          )
-                        }
-                      }
-                    },
-                    [
-                      _c("option", { domProps: { value: null } }, [
-                        _vm._v("Select Publication Status")
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { domProps: { value: 1 } }, [
-                        _vm._v("Published")
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { domProps: { value: 0 } }, [
-                        _vm._v("Unpublished")
-                      ])
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c("has-error", {
-                    attrs: { form: _vm.form, field: "active" }
-                  })
-                ],
-                1
-              )
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.manufacturer.active,
+                      expression: "manufacturer.active"
+                    }
+                  ],
+                  attrs: { type: "radio", id: "active", value: "1" },
+                  domProps: { checked: _vm._q(_vm.manufacturer.active, "1") },
+                  on: {
+                    change: function($event) {
+                      _vm.$set(_vm.manufacturer, "active", "1")
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("label", { attrs: { for: "one" } }, [_vm._v("Published")])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-5" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.manufacturer.active,
+                      expression: "manufacturer.active"
+                    }
+                  ],
+                  attrs: { type: "radio", id: "active", value: "0" },
+                  domProps: { checked: _vm._q(_vm.manufacturer.active, "0") },
+                  on: {
+                    change: function($event) {
+                      _vm.$set(_vm.manufacturer, "active", "0")
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("label", { attrs: { for: "active" } }, [
+                  _vm._v("Unpublished")
+                ])
+              ])
             ]),
             _vm._v(" "),
             _vm._m(0)
@@ -53781,12 +53673,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: "List",
     mounted: function mounted() {
-        this.$store.dispatch("allmanufacturers");
+        this.$store.dispatch("allManufacturers");
     },
 
     computed: {
-        allmanufacturers: function allmanufacturers() {
-            return this.$store.getters.allmanufacturers;
+        allManufacturers: function allManufacturers() {
+            return this.$store.getters.allManufacturers;
         }
     },
     methods: {
@@ -53794,7 +53686,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             axios.get('/manufacturer/delete/' + id).then(function () {
-                _this.$store.dispatch("allmanufacturers");
+                _this.$store.dispatch("allManufacturers");
                 toast({
                     type: 'success',
                     title: 'Manufacturer Deleted successfully'
@@ -53824,7 +53716,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "tbody",
-        _vm._l(_vm.allmanufacturers, function(manufacturer, index) {
+        _vm._l(_vm.allManufacturers, function(manufacturer, index) {
           return _c("tr", { key: manufacturer.id }, [
             _c("td", { attrs: { scope: "row" } }, [_vm._v(_vm._s(index + 1))]),
             _vm._v(" "),
@@ -54007,37 +53899,49 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: "Edit",
     mounted: function mounted() {
         var _this = this;
 
-        axios.get('/manufacturer/edit/' + this.$route.params.manufacturerid).then(function (response) {
-            _this.form.fill(response.data.manufacturer_by_id);
+        axios.get("/manufacturer/edit/" + this.$route.params.manufacturerid).then(function (response) {
+            //this.form.fill(response.data.manufacturer_by_id)
+            _this.manufacturer = response.data.manufacturerInfo;
+            console.log(response.data.manufacturerInfo);
+        }).catch(function () {
+            alert("Could not load your manufacturer");
         });
     },
+
     data: function data() {
         return {
-            form: new Form({
-                manufacturer_name: '',
-                manufacturer_description: '',
-                active: ''
-            })
+            manufacturer: {
+                name: "",
+                description: "",
+                active: ""
+            }
         };
     },
-
     methods: {
-        updatemanufacturer: function updatemanufacturer() {
+        updateManufacturer: function updateManufacturer() {
             var _this2 = this;
 
-            axios.post('/manufacturer/update/' + this.$route.params.manufacturerid, this.form).then(function (response) {
+            axios.post("/manufacturer/update/" + this.$route.params.manufacturerid, this.manufacturer).then(function (response) {
                 _this2.$router.push('/manufacturer/list');
                 toast({
                     type: 'success',
                     title: 'Manufacturer Updated successfully'
                 });
-            }).catch(function () {});
+            }).catch(function () {
+                alert("Could not save your manufacturer");
+            });
         }
     }
 });
@@ -54063,11 +53967,10 @@ var render = function() {
           "form",
           {
             staticClass: "form-horizontal",
-            attrs: { role: "form" },
             on: {
               submit: function($event) {
                 $event.preventDefault()
-                _vm.updatemanufacturer()
+                _vm.updateManufacturer()
               }
             }
           },
@@ -54077,52 +53980,36 @@ var render = function() {
                 "label",
                 {
                   staticClass: "col-sm-2 control-label",
-                  attrs: { for: "manufacturer_name" }
+                  attrs: { for: "name" }
                 },
                 [_vm._v("Manufacturer Name")]
               ),
               _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "col-sm-10" },
-                [
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.manufacturer_name,
-                        expression: "form.manufacturer_name"
-                      }
-                    ],
-                    staticClass: "form-control",
-                    class: {
-                      "is-invalid": _vm.form.errors.has("manufacturer_name")
-                    },
-                    attrs: { type: "text", name: "manufacturer_name" },
-                    domProps: { value: _vm.form.manufacturer_name },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(
-                          _vm.form,
-                          "manufacturer_name",
-                          $event.target.value
-                        )
-                      }
+              _c("div", { staticClass: "col-sm-10" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.manufacturer.name,
+                      expression: "manufacturer.name"
                     }
-                  }),
-                  _vm._v(" "),
-                  _c("has-error", {
-                    attrs: { form: _vm.form, field: "manufacturer_name" }
-                  }),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "text-danger" })
-                ],
-                1
-              )
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "text", name: "name" },
+                  domProps: { value: _vm.manufacturer.name },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.manufacturer, "name", $event.target.value)
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("span", { staticClass: "text-danger" })
+              ])
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
@@ -54130,121 +54017,94 @@ var render = function() {
                 "label",
                 {
                   staticClass: "col-sm-2 control-label",
-                  attrs: { for: "manufacturer_description" }
+                  attrs: { for: "description" }
                 },
                 [_vm._v("Manufacturer Description")]
               ),
               _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "col-sm-10" },
-                [
-                  _c("textarea", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.manufacturer_description,
-                        expression: "form.manufacturer_description"
-                      }
-                    ],
-                    staticClass: "form-control",
-                    class: {
-                      "is-invalid": _vm.form.errors.has(
-                        "manufacturer_description"
-                      )
-                    },
-                    attrs: { name: "manufacturer_description", rows: "8" },
-                    domProps: { value: _vm.form.manufacturer_description },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(
-                          _vm.form,
-                          "manufacturer_description",
-                          $event.target.value
-                        )
-                      }
+              _c("div", { staticClass: "col-sm-10" }, [
+                _c("textarea", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.manufacturer.description,
+                      expression: "manufacturer.description"
                     }
-                  }),
-                  _vm._v(" "),
-                  _c("has-error", {
-                    attrs: { form: _vm.form, field: "manufacturer_description" }
-                  }),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "text-danger" })
-                ],
-                1
-              )
+                  ],
+                  staticClass: "form-control",
+                  attrs: { name: "description", rows: "8" },
+                  domProps: { value: _vm.manufacturer.description },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(
+                        _vm.manufacturer,
+                        "description",
+                        $event.target.value
+                      )
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("span", { staticClass: "text-danger" })
+              ])
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
-              _c("label", {
-                staticClass: "col-sm-2 control-label",
-                attrs: { for: "" }
-              }),
-              _vm._v(" "),
               _c(
-                "div",
-                { staticClass: "col-sm-10" },
-                [
-                  _c(
-                    "select",
+                "label",
+                { staticClass: "col-sm-2 control-label", attrs: { for: "" } },
+                [_vm._v("Publication Status")]
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-5" }, [
+                _c("input", {
+                  directives: [
                     {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.form.active,
-                          expression: "form.active"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      class: { "is-invalid": _vm.form.errors.has("active") },
-                      attrs: { name: "active" },
-                      on: {
-                        change: function($event) {
-                          var $$selectedVal = Array.prototype.filter
-                            .call($event.target.options, function(o) {
-                              return o.selected
-                            })
-                            .map(function(o) {
-                              var val = "_value" in o ? o._value : o.value
-                              return val
-                            })
-                          _vm.$set(
-                            _vm.form,
-                            "active",
-                            $event.target.multiple
-                              ? $$selectedVal
-                              : $$selectedVal[0]
-                          )
-                        }
-                      }
-                    },
-                    [
-                      _c("option", { domProps: { value: null } }, [
-                        _vm._v("Select Publication Status")
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { domProps: { value: 1 } }, [
-                        _vm._v("Published")
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { domProps: { value: 0 } }, [
-                        _vm._v("Unpublished")
-                      ])
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c("has-error", {
-                    attrs: { form: _vm.form, field: "active" }
-                  })
-                ],
-                1
-              )
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.manufacturer.active,
+                      expression: "manufacturer.active"
+                    }
+                  ],
+                  attrs: { type: "radio", id: "active", value: "1" },
+                  domProps: { checked: _vm._q(_vm.manufacturer.active, "1") },
+                  on: {
+                    change: function($event) {
+                      _vm.$set(_vm.manufacturer, "active", "1")
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("label", { attrs: { for: "one" } }, [_vm._v("Published")])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-5" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.manufacturer.active,
+                      expression: "manufacturer.active"
+                    }
+                  ],
+                  attrs: { type: "radio", id: "active", value: "0" },
+                  domProps: { checked: _vm._q(_vm.manufacturer.active, "0") },
+                  on: {
+                    change: function($event) {
+                      _vm.$set(_vm.manufacturer, "active", "0")
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("label", { attrs: { for: "active" } }, [
+                  _vm._v("Unpublished")
+                ])
+              ])
             ]),
             _vm._v(" "),
             _vm._m(0)
@@ -54368,7 +54228,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -54534,56 +54394,35 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "New",
   data: function data() {
     return {
-      form: new Form({
-        product_name: "",
-        category_id: "",
-        manufacturer_id: "",
-        product_price: "",
-        product_quantity: "",
-        product_short_description: "",
-        product_long_description: "",
-        product_image: ""
-      })
+      product: {
+        name: '',
+        category_id: '',
+        manufacturer_id: '',
+        price: '',
+        quantity: '',
+        short_description: '',
+        long_description: '',
+        image: '',
+        active: ''
+      }
     };
   },
   mounted: function mounted() {
-    this.$store.dispatch("all_category");
-    this.$store.dispatch("allmanufacturers");
+    this.$store.dispatch("allCategory");
+    this.$store.dispatch("allManufacturers");
   },
 
   computed: {
-    allpublishedcategories: function allpublishedcategories() {
-      return this.$store.getters.allcategories;
+    allPublishedCategories: function allPublishedCategories() {
+      return this.$store.getters.allCategories;
     },
-    allpublishedmanufacturers: function allpublishedmanufacturers() {
-      return this.$store.getters.allmanufacturers;
+    allPublishedManufacturers: function allPublishedManufacturers() {
+      return this.$store.getters.allManufacturers;
     }
   },
   methods: {
@@ -54602,7 +54441,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       } else {
         var reader = new FileReader();
         reader.onload = function (event) {
-          _this.form.product_image = event.target.result;
+          _this.product.image = event.target.result;
           //  console.log(event.target.result)
         };
         reader.readAsDataURL(file);
@@ -54611,9 +54450,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     addProduct: function addProduct() {
       var _this2 = this;
 
-      //console.log(this.form.product_name);
+      //console.log(this.form.name);
 
-      axios.post("/product/save", this.form).then(function (response) {
+      axios.post("/product/save", this.product).then(function (response) {
         _this2.$router.push("/product/list");
         toast({
           type: "success",
@@ -54645,7 +54484,7 @@ var render = function() {
           "form",
           {
             staticClass: "form-horizontal",
-            attrs: { role: "form", enctype: "multipart/form-data" },
+            attrs: { enctype: "multipart/form-data" },
             on: {
               submit: function($event) {
                 $event.preventDefault()
@@ -54659,52 +54498,40 @@ var render = function() {
                 "label",
                 {
                   staticClass: "col-sm-2 control-label",
-                  attrs: { for: "product_name" }
+                  attrs: { for: "name" }
                 },
                 [_vm._v("Product Name")]
               ),
               _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "col-sm-10" },
-                [
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.product_name,
-                        expression: "form.product_name"
-                      }
-                    ],
-                    staticClass: "form-control",
-                    class: {
-                      "is-invalid": _vm.form.errors.has("product_name")
-                    },
-                    attrs: {
-                      type: "text",
-                      name: "product_name",
-                      placeholder: "Add New Product"
-                    },
-                    domProps: { value: _vm.form.product_name },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.form, "product_name", $event.target.value)
-                      }
+              _c("div", { staticClass: "col-sm-10" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.product.name,
+                      expression: "product.name"
                     }
-                  }),
-                  _vm._v(" "),
-                  _c("has-error", {
-                    attrs: { form: _vm.form, field: "product_name" }
-                  }),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "text-danger" })
-                ],
-                1
-              )
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "text",
+                    name: "name",
+                    placeholder: "Add New Product"
+                  },
+                  domProps: { value: _vm.product.name },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.product, "name", $event.target.value)
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("span", { staticClass: "text-danger" })
+              ])
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
@@ -54714,79 +54541,67 @@ var render = function() {
                 [_vm._v("Category")]
               ),
               _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "col-sm-10" },
-                [
-                  _c(
-                    "select",
-                    {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.form.category_id,
-                          expression: "form.category_id"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      class: {
-                        "is-invalid": _vm.form.errors.has("category_id")
-                      },
-                      attrs: { name: "category_id" },
-                      on: {
-                        change: function($event) {
-                          var $$selectedVal = Array.prototype.filter
-                            .call($event.target.options, function(o) {
-                              return o.selected
-                            })
-                            .map(function(o) {
-                              var val = "_value" in o ? o._value : o.value
-                              return val
-                            })
-                          _vm.$set(
-                            _vm.form,
-                            "category_id",
-                            $event.target.multiple
-                              ? $$selectedVal
-                              : $$selectedVal[0]
-                          )
-                        }
+              _c("div", { staticClass: "col-sm-10" }, [
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.product.category_id,
+                        expression: "product.category_id"
                       }
-                    },
-                    [
-                      _c("option", { domProps: { value: null } }, [
-                        _vm._v("Select Category")
-                      ]),
-                      _vm._v(" "),
-                      _vm._l(_vm.allpublishedcategories, function(category) {
-                        return _c(
-                          "option",
-                          {
-                            directives: [
-                              {
-                                name: "show",
-                                rawName: "v-show",
-                                value: category.active == 1,
-                                expression: "category.active == 1"
-                              }
-                            ],
-                            key: category.id,
-                            domProps: { value: category.id }
-                          },
-                          [_vm._v(_vm._s(category.category_name))]
-                        )
-                      })
                     ],
-                    2
-                  ),
-                  _vm._v(" "),
-                  _c("has-error", {
-                    attrs: { form: _vm.form, field: "category_id" }
-                  })
-                ],
-                1
-              )
+                    staticClass: "form-control",
+                    attrs: { name: "category_id" },
+                    on: {
+                      change: function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.$set(
+                          _vm.product,
+                          "category_id",
+                          $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        )
+                      }
+                    }
+                  },
+                  [
+                    _c("option", { domProps: { value: null } }, [
+                      _vm._v("Select Category")
+                    ]),
+                    _vm._v(" "),
+                    _vm._l(_vm.allPublishedCategories, function(category) {
+                      return _c(
+                        "option",
+                        {
+                          directives: [
+                            {
+                              name: "show",
+                              rawName: "v-show",
+                              value: category.active == 1,
+                              expression: "category.active == 1"
+                            }
+                          ],
+                          key: category.id,
+                          domProps: { value: category.id }
+                        },
+                        [_vm._v(_vm._s(category.name))]
+                      )
+                    })
+                  ],
+                  2
+                )
+              ])
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
@@ -54796,81 +54611,69 @@ var render = function() {
                 [_vm._v("Manufacturer")]
               ),
               _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "col-sm-10" },
-                [
-                  _c(
-                    "select",
-                    {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.form.manufacturer_id,
-                          expression: "form.manufacturer_id"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      class: {
-                        "is-invalid": _vm.form.errors.has("manufacturer_id")
-                      },
-                      attrs: { name: "manufacturer_id" },
-                      on: {
-                        change: function($event) {
-                          var $$selectedVal = Array.prototype.filter
-                            .call($event.target.options, function(o) {
-                              return o.selected
-                            })
-                            .map(function(o) {
-                              var val = "_value" in o ? o._value : o.value
-                              return val
-                            })
-                          _vm.$set(
-                            _vm.form,
-                            "manufacturer_id",
-                            $event.target.multiple
-                              ? $$selectedVal
-                              : $$selectedVal[0]
-                          )
-                        }
+              _c("div", { staticClass: "col-sm-10" }, [
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.product.manufacturer_id,
+                        expression: "product.manufacturer_id"
                       }
-                    },
-                    [
-                      _c("option", { domProps: { value: null } }, [
-                        _vm._v("Select Manufacturer")
-                      ]),
-                      _vm._v(" "),
-                      _vm._l(_vm.allpublishedmanufacturers, function(
-                        manufacturer
-                      ) {
-                        return _c(
-                          "option",
-                          {
-                            directives: [
-                              {
-                                name: "show",
-                                rawName: "v-show",
-                                value: manufacturer.active == 1,
-                                expression: "manufacturer.active == 1"
-                              }
-                            ],
-                            key: manufacturer.id,
-                            domProps: { value: manufacturer.id }
-                          },
-                          [_vm._v(_vm._s(manufacturer.manufacturer_name))]
-                        )
-                      })
                     ],
-                    2
-                  ),
-                  _vm._v(" "),
-                  _c("has-error", {
-                    attrs: { form: _vm.form, field: "manufacturer_id" }
-                  })
-                ],
-                1
-              )
+                    staticClass: "form-control",
+                    attrs: { name: "manufacturer_id" },
+                    on: {
+                      change: function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.$set(
+                          _vm.product,
+                          "manufacturer_id",
+                          $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        )
+                      }
+                    }
+                  },
+                  [
+                    _c("option", { domProps: { value: null } }, [
+                      _vm._v("Select Manufacturer")
+                    ]),
+                    _vm._v(" "),
+                    _vm._l(_vm.allPublishedManufacturers, function(
+                      manufacturer
+                    ) {
+                      return _c(
+                        "option",
+                        {
+                          directives: [
+                            {
+                              name: "show",
+                              rawName: "v-show",
+                              value: manufacturer.active == 1,
+                              expression: "manufacturer.active == 1"
+                            }
+                          ],
+                          key: manufacturer.id,
+                          domProps: { value: manufacturer.id }
+                        },
+                        [_vm._v(_vm._s(manufacturer.name))]
+                      )
+                    })
+                  ],
+                  2
+                )
+              ])
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
@@ -54878,52 +54681,40 @@ var render = function() {
                 "label",
                 {
                   staticClass: "col-sm-2 control-label",
-                  attrs: { for: "product_price" }
+                  attrs: { for: "price" }
                 },
                 [_vm._v("Product Price")]
               ),
               _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "col-sm-10" },
-                [
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.product_price,
-                        expression: "form.product_price"
-                      }
-                    ],
-                    staticClass: "form-control",
-                    class: {
-                      "is-invalid": _vm.form.errors.has("product_price")
-                    },
-                    attrs: {
-                      type: "number",
-                      name: "product_price",
-                      placeholder: "Add product price"
-                    },
-                    domProps: { value: _vm.form.product_price },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.form, "product_price", $event.target.value)
-                      }
+              _c("div", { staticClass: "col-sm-10" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.product.price,
+                      expression: "product.price"
                     }
-                  }),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "text-danger" }),
-                  _vm._v(" "),
-                  _c("has-error", {
-                    attrs: { form: _vm.form, field: "product_price" }
-                  })
-                ],
-                1
-              )
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "number",
+                    name: "price",
+                    placeholder: "Add product price"
+                  },
+                  domProps: { value: _vm.product.price },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.product, "price", $event.target.value)
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("span", { staticClass: "text-danger" })
+              ])
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
@@ -54931,56 +54722,40 @@ var render = function() {
                 "label",
                 {
                   staticClass: "col-sm-2 control-label",
-                  attrs: { for: "product_quantity" }
+                  attrs: { for: "quantity" }
                 },
                 [_vm._v("Product Quntity")]
               ),
               _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "col-sm-10" },
-                [
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.product_quantity,
-                        expression: "form.product_quantity"
-                      }
-                    ],
-                    staticClass: "form-control",
-                    class: {
-                      "is-invalid": _vm.form.errors.has("product_quantity")
-                    },
-                    attrs: {
-                      type: "number",
-                      name: "product_quantity",
-                      placeholder: "Add product quantity"
-                    },
-                    domProps: { value: _vm.form.product_quantity },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(
-                          _vm.form,
-                          "product_quantity",
-                          $event.target.value
-                        )
-                      }
+              _c("div", { staticClass: "col-sm-10" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.product.quantity,
+                      expression: "product.quantity"
                     }
-                  }),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "text-danger" }),
-                  _vm._v(" "),
-                  _c("has-error", {
-                    attrs: { form: _vm.form, field: "product_quantity" }
-                  })
-                ],
-                1
-              )
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "number",
+                    name: "quantity",
+                    placeholder: "Add product quantity"
+                  },
+                  domProps: { value: _vm.product.quantity },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.product, "quantity", $event.target.value)
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("span", { staticClass: "text-danger" })
+              ])
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
@@ -54988,61 +54763,44 @@ var render = function() {
                 "label",
                 {
                   staticClass: "col-sm-2 control-label",
-                  attrs: { for: "product_short_description" }
+                  attrs: { for: "short_description" }
                 },
                 [_vm._v("Product Short Description")]
               ),
               _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "col-sm-10" },
-                [
-                  _c("textarea", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.product_short_description,
-                        expression: "form.product_short_description"
+              _c("div", { staticClass: "col-sm-10" }, [
+                _c("textarea", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.product.short_description,
+                      expression: "product.short_description"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    name: "short_description",
+                    rows: "8",
+                    placeholder: "Add product Short Description"
+                  },
+                  domProps: { value: _vm.product.short_description },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
                       }
-                    ],
-                    staticClass: "form-control",
-                    class: {
-                      "is-invalid": _vm.form.errors.has(
-                        "product_short_description"
+                      _vm.$set(
+                        _vm.product,
+                        "short_description",
+                        $event.target.value
                       )
-                    },
-                    attrs: {
-                      name: "product_short_description",
-                      rows: "8",
-                      placeholder: "Add product Short Description"
-                    },
-                    domProps: { value: _vm.form.product_short_description },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(
-                          _vm.form,
-                          "product_short_description",
-                          $event.target.value
-                        )
-                      }
                     }
-                  }),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "text-danger" }),
-                  _vm._v(" "),
-                  _c("has-error", {
-                    attrs: {
-                      form: _vm.form,
-                      field: "product_short_description"
-                    }
-                  })
-                ],
-                1
-              )
+                  }
+                }),
+                _vm._v(" "),
+                _c("span", { staticClass: "text-danger" })
+              ])
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
@@ -55050,58 +54808,44 @@ var render = function() {
                 "label",
                 {
                   staticClass: "col-sm-2 control-label",
-                  attrs: { for: "product_long_description" }
+                  attrs: { for: "long_description" }
                 },
                 [_vm._v("Product Long Description")]
               ),
               _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "col-sm-10" },
-                [
-                  _c("textarea", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.product_long_description,
-                        expression: "form.product_long_description"
-                      }
-                    ],
-                    staticClass: "form-control",
-                    class: {
-                      "is-invalid": _vm.form.errors.has(
-                        "product_long_description"
-                      )
-                    },
-                    attrs: {
-                      name: "product_long_description",
-                      rows: "8",
-                      placeholder: "Add product Long Description"
-                    },
-                    domProps: { value: _vm.form.product_long_description },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(
-                          _vm.form,
-                          "product_long_description",
-                          $event.target.value
-                        )
-                      }
+              _c("div", { staticClass: "col-sm-10" }, [
+                _c("textarea", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.product.long_description,
+                      expression: "product.long_description"
                     }
-                  }),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "text-danger" }),
-                  _vm._v(" "),
-                  _c("has-error", {
-                    attrs: { form: _vm.form, field: "product_long_description" }
-                  })
-                ],
-                1
-              )
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    name: "long_description",
+                    rows: "8",
+                    placeholder: "Add product Long Description"
+                  },
+                  domProps: { value: _vm.product.long_description },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(
+                        _vm.product,
+                        "long_description",
+                        $event.target.value
+                      )
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("span", { staticClass: "text-danger" })
+              ])
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
@@ -55114,40 +54858,28 @@ var render = function() {
                 [_vm._v("Product Image")]
               ),
               _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "col-sm-10" },
-                [
-                  _c("input", {
-                    staticClass: "form-control",
-                    class: {
-                      "is-invalid": _vm.form.errors.has("product_image")
-                    },
-                    attrs: { type: "file", name: "product_image" },
-                    on: {
-                      change: function($event) {
-                        _vm.changeImage($event)
-                      }
+              _c("div", { staticClass: "col-sm-10" }, [
+                _c("input", {
+                  staticClass: "form-control",
+                  attrs: { type: "file", name: "image" },
+                  on: {
+                    change: function($event) {
+                      _vm.changeImage($event)
                     }
-                  }),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "text-danger" }),
-                  _vm._v(" "),
-                  _c("img", {
-                    attrs: {
-                      src: _vm.form.product_image,
-                      alt: "",
-                      width: "80",
-                      height: "80"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("has-error", {
-                    attrs: { form: _vm.form, field: "product_image" }
-                  })
-                ],
-                1
-              )
+                  }
+                }),
+                _vm._v(" "),
+                _c("span", { staticClass: "text-danger" }),
+                _vm._v(" "),
+                _c("img", {
+                  attrs: {
+                    src: _vm.product.image,
+                    alt: "",
+                    width: "80",
+                    height: "80"
+                  }
+                })
+              ])
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
@@ -55157,65 +54889,51 @@ var render = function() {
                 [_vm._v("Publication Status")]
               ),
               _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "col-sm-10" },
-                [
-                  _c(
-                    "select",
+              _c("div", { staticClass: "col-sm-5" }, [
+                _c("input", {
+                  directives: [
                     {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.form.active,
-                          expression: "form.active"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      class: { "is-invalid": _vm.form.errors.has("active") },
-                      attrs: { name: "active" },
-                      on: {
-                        change: function($event) {
-                          var $$selectedVal = Array.prototype.filter
-                            .call($event.target.options, function(o) {
-                              return o.selected
-                            })
-                            .map(function(o) {
-                              var val = "_value" in o ? o._value : o.value
-                              return val
-                            })
-                          _vm.$set(
-                            _vm.form,
-                            "active",
-                            $event.target.multiple
-                              ? $$selectedVal
-                              : $$selectedVal[0]
-                          )
-                        }
-                      }
-                    },
-                    [
-                      _c("option", { domProps: { value: null } }, [
-                        _vm._v("Select Publication Status")
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { domProps: { value: 1 } }, [
-                        _vm._v("Published")
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { domProps: { value: 0 } }, [
-                        _vm._v("Unpublished")
-                      ])
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c("has-error", {
-                    attrs: { form: _vm.form, field: "active" }
-                  })
-                ],
-                1
-              )
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.product.active,
+                      expression: "product.active"
+                    }
+                  ],
+                  attrs: { type: "radio", id: "active", value: "1" },
+                  domProps: { checked: _vm._q(_vm.product.active, "1") },
+                  on: {
+                    change: function($event) {
+                      _vm.$set(_vm.product, "active", "1")
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("label", { attrs: { for: "one" } }, [_vm._v("Published")])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-5" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.product.active,
+                      expression: "product.active"
+                    }
+                  ],
+                  attrs: { type: "radio", id: "active", value: "0" },
+                  domProps: { checked: _vm._q(_vm.product.active, "0") },
+                  on: {
+                    change: function($event) {
+                      _vm.$set(_vm.product, "active", "0")
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("label", { attrs: { for: "active" } }, [
+                  _vm._v("Unpublished")
+                ])
+              ])
             ]),
             _vm._v(" "),
             _vm._m(0)
@@ -55399,12 +55117,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: "List",
     mounted: function mounted() {
-        this.$store.dispatch("allproducts");
+        this.$store.dispatch("allProducts");
     },
 
     computed: {
-        allpublishedproducts: function allpublishedproducts() {
-            return this.$store.getters.allproducts;
+        allPublishedProducts: function allPublishedProducts() {
+            return this.$store.getters.allProducts;
         }
     },
     methods: {
@@ -55415,7 +55133,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             axios.get('/product/delete/' + id).then(function () {
-                _this.$store.dispatch("allproducts");
+                _this.$store.dispatch("allProducts");
                 toast({
                     type: 'success',
                     title: 'Product Deleted successfully'
@@ -55445,7 +55163,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "tbody",
-        _vm._l(_vm.allpublishedproducts, function(product, index) {
+        _vm._l(_vm.allPublishedProducts, function(product, index) {
           return _c("tr", { key: product.id }, [
             _c("td", { attrs: { scope: "row" } }, [_vm._v(_vm._s(index + 1))]),
             _vm._v(" "),
@@ -55643,7 +55361,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -55810,61 +55528,41 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Edit",
   data: function data() {
     return {
-      form: new Form({
-        product_name: "",
-        category_id: "",
-        manufacturer_id: "",
-        product_price: "",
-        product_quantity: "",
-        product_short_description: "",
-        product_long_description: "",
-        product_image: "",
-        active: ""
-      })
+      product: {
+        name: '',
+        category_id: '',
+        manufacturer_id: '',
+        price: '',
+        quantity: '',
+        short_description: '',
+        long_description: '',
+        image: '',
+        active: ''
+      }
     };
   },
   mounted: function mounted() {
     var _this = this;
 
-    this.$store.dispatch("all_category");
-    this.$store.dispatch("allmanufacturers");
-    axios.get("/product/edit/" + this.$route.params.productId).then(function (response) {
-      _this.form.fill(response.data.product_by_id);
+    this.$store.dispatch("allCategory");
+    this.$store.dispatch("allManufacturers");
+    axios.get('/product/edit/' + this.$route.params.productId).then(function (response) {
+      //this.form.fill(response.data.product_by_id);
+      _this.product = response.data.productInfo;
     });
   },
 
   computed: {
-    allpublishedcategories: function allpublishedcategories() {
-      return this.$store.getters.allcategories;
+    allPublishedCategories: function allPublishedCategories() {
+      return this.$store.getters.allCategories;
     },
-    allpublishedmanufacturers: function allpublishedmanufacturers() {
-      return this.$store.getters.allmanufacturers;
+    allPublishedManufacturers: function allPublishedManufacturers() {
+      return this.$store.getters.allManufacturers;
     }
   },
   created: function created() {},
@@ -55885,24 +55583,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       } else {
         var reader = new FileReader();
         reader.onload = function (event) {
-          _this2.form.product_image = event.target.result;
+          _this2.product.image = event.target.result;
           console.log(event.target.result);
         };
         reader.readAsDataURL(file);
       }
     },
     updateImage: function updateImage() {
-      var img = this.form.product_image;
+      var img = this.product.image;
       if (img.length > 10000) {
-        return this.form.product_image;
+        return this.product.image;
       } else {
-        return "productImage/" + this.form.product_image;
+        return 'productImage/' + this.product.image;
       }
     },
     updateProduct: function updateProduct() {
       var _this3 = this;
 
-      axios.post("/product/update/" + this.$route.params.productId, this.form).then(function (response) {
+      axios.post('/product/update/' + this.$route.params.productId, this.product).then(function (response) {
         _this3.$router.push("/product/list");
         toast({
           type: "success",
@@ -55948,52 +55646,40 @@ var render = function() {
                 "label",
                 {
                   staticClass: "col-sm-2 control-label",
-                  attrs: { for: "product_name" }
+                  attrs: { for: "name" }
                 },
                 [_vm._v("Product Name")]
               ),
               _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "col-sm-10" },
-                [
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.product_name,
-                        expression: "form.product_name"
-                      }
-                    ],
-                    staticClass: "form-control",
-                    class: {
-                      "is-invalid": _vm.form.errors.has("product_name")
-                    },
-                    attrs: {
-                      type: "text",
-                      name: "product_name",
-                      placeholder: "Add New Product"
-                    },
-                    domProps: { value: _vm.form.product_name },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.form, "product_name", $event.target.value)
-                      }
+              _c("div", { staticClass: "col-sm-10" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.product.name,
+                      expression: "product.name"
                     }
-                  }),
-                  _vm._v(" "),
-                  _c("has-error", {
-                    attrs: { form: _vm.form, field: "product_name" }
-                  }),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "text-danger" })
-                ],
-                1
-              )
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "text",
+                    name: "name",
+                    placeholder: "Add New Product"
+                  },
+                  domProps: { value: _vm.product.name },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.product, "name", $event.target.value)
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("span", { staticClass: "text-danger" })
+              ])
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
@@ -56003,79 +55689,67 @@ var render = function() {
                 [_vm._v("Category")]
               ),
               _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "col-sm-10" },
-                [
-                  _c(
-                    "select",
-                    {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.form.category_id,
-                          expression: "form.category_id"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      class: {
-                        "is-invalid": _vm.form.errors.has("category_id")
-                      },
-                      attrs: { name: "category_id" },
-                      on: {
-                        change: function($event) {
-                          var $$selectedVal = Array.prototype.filter
-                            .call($event.target.options, function(o) {
-                              return o.selected
-                            })
-                            .map(function(o) {
-                              var val = "_value" in o ? o._value : o.value
-                              return val
-                            })
-                          _vm.$set(
-                            _vm.form,
-                            "category_id",
-                            $event.target.multiple
-                              ? $$selectedVal
-                              : $$selectedVal[0]
-                          )
-                        }
+              _c("div", { staticClass: "col-sm-10" }, [
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.product.category_id,
+                        expression: "product.category_id"
                       }
-                    },
-                    [
-                      _c("option", { domProps: { value: null } }, [
-                        _vm._v("Select Category")
-                      ]),
-                      _vm._v(" "),
-                      _vm._l(_vm.allpublishedcategories, function(category) {
-                        return _c(
-                          "option",
-                          {
-                            directives: [
-                              {
-                                name: "show",
-                                rawName: "v-show",
-                                value: category.active == 1,
-                                expression: "category.active == 1"
-                              }
-                            ],
-                            key: category.id,
-                            domProps: { value: category.id }
-                          },
-                          [_vm._v(_vm._s(category.category_name))]
-                        )
-                      })
                     ],
-                    2
-                  ),
-                  _vm._v(" "),
-                  _c("has-error", {
-                    attrs: { form: _vm.form, field: "category_id" }
-                  })
-                ],
-                1
-              )
+                    staticClass: "form-control",
+                    attrs: { name: "category_id" },
+                    on: {
+                      change: function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.$set(
+                          _vm.product,
+                          "category_id",
+                          $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        )
+                      }
+                    }
+                  },
+                  [
+                    _c("option", { domProps: { value: null } }, [
+                      _vm._v("Select Category")
+                    ]),
+                    _vm._v(" "),
+                    _vm._l(_vm.allPublishedCategories, function(category) {
+                      return _c(
+                        "option",
+                        {
+                          directives: [
+                            {
+                              name: "show",
+                              rawName: "v-show",
+                              value: category.active == 1,
+                              expression: "category.active == 1"
+                            }
+                          ],
+                          key: category.id,
+                          domProps: { value: category.id }
+                        },
+                        [_vm._v(_vm._s(category.name))]
+                      )
+                    })
+                  ],
+                  2
+                )
+              ])
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
@@ -56085,81 +55759,69 @@ var render = function() {
                 [_vm._v("Manufacturer")]
               ),
               _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "col-sm-10" },
-                [
-                  _c(
-                    "select",
-                    {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.form.manufacturer_id,
-                          expression: "form.manufacturer_id"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      class: {
-                        "is-invalid": _vm.form.errors.has("manufacturer_id")
-                      },
-                      attrs: { name: "manufacturer_id" },
-                      on: {
-                        change: function($event) {
-                          var $$selectedVal = Array.prototype.filter
-                            .call($event.target.options, function(o) {
-                              return o.selected
-                            })
-                            .map(function(o) {
-                              var val = "_value" in o ? o._value : o.value
-                              return val
-                            })
-                          _vm.$set(
-                            _vm.form,
-                            "manufacturer_id",
-                            $event.target.multiple
-                              ? $$selectedVal
-                              : $$selectedVal[0]
-                          )
-                        }
+              _c("div", { staticClass: "col-sm-10" }, [
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.product.manufacturer_id,
+                        expression: "product.manufacturer_id"
                       }
-                    },
-                    [
-                      _c("option", { domProps: { value: null } }, [
-                        _vm._v("Select Manufacturer")
-                      ]),
-                      _vm._v(" "),
-                      _vm._l(_vm.allpublishedmanufacturers, function(
-                        manufacturer
-                      ) {
-                        return _c(
-                          "option",
-                          {
-                            directives: [
-                              {
-                                name: "show",
-                                rawName: "v-show",
-                                value: manufacturer.active == 1,
-                                expression: "manufacturer.active == 1"
-                              }
-                            ],
-                            key: manufacturer.id,
-                            domProps: { value: manufacturer.id }
-                          },
-                          [_vm._v(_vm._s(manufacturer.manufacturer_name))]
-                        )
-                      })
                     ],
-                    2
-                  ),
-                  _vm._v(" "),
-                  _c("has-error", {
-                    attrs: { form: _vm.form, field: "manufacturer_id" }
-                  })
-                ],
-                1
-              )
+                    staticClass: "form-control",
+                    attrs: { name: "manufacturer_id" },
+                    on: {
+                      change: function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.$set(
+                          _vm.product,
+                          "manufacturer_id",
+                          $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        )
+                      }
+                    }
+                  },
+                  [
+                    _c("option", { domProps: { value: null } }, [
+                      _vm._v("Select Manufacturer")
+                    ]),
+                    _vm._v(" "),
+                    _vm._l(_vm.allPublishedManufacturers, function(
+                      manufacturer
+                    ) {
+                      return _c(
+                        "option",
+                        {
+                          directives: [
+                            {
+                              name: "show",
+                              rawName: "v-show",
+                              value: manufacturer.active == 1,
+                              expression: "manufacturer.active == 1"
+                            }
+                          ],
+                          key: manufacturer.id,
+                          domProps: { value: manufacturer.id }
+                        },
+                        [_vm._v(_vm._s(manufacturer.name))]
+                      )
+                    })
+                  ],
+                  2
+                )
+              ])
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
@@ -56167,52 +55829,40 @@ var render = function() {
                 "label",
                 {
                   staticClass: "col-sm-2 control-label",
-                  attrs: { for: "product_price" }
+                  attrs: { for: "price" }
                 },
                 [_vm._v("Product Price")]
               ),
               _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "col-sm-10" },
-                [
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.product_price,
-                        expression: "form.product_price"
-                      }
-                    ],
-                    staticClass: "form-control",
-                    class: {
-                      "is-invalid": _vm.form.errors.has("product_price")
-                    },
-                    attrs: {
-                      type: "number",
-                      name: "product_price",
-                      placeholder: "Add product price"
-                    },
-                    domProps: { value: _vm.form.product_price },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.form, "product_price", $event.target.value)
-                      }
+              _c("div", { staticClass: "col-sm-10" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.product.price,
+                      expression: "product.price"
                     }
-                  }),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "text-danger" }),
-                  _vm._v(" "),
-                  _c("has-error", {
-                    attrs: { form: _vm.form, field: "product_price" }
-                  })
-                ],
-                1
-              )
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "number",
+                    name: "price",
+                    placeholder: "Add product price"
+                  },
+                  domProps: { value: _vm.product.price },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.product, "price", $event.target.value)
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("span", { staticClass: "text-danger" })
+              ])
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
@@ -56220,56 +55870,40 @@ var render = function() {
                 "label",
                 {
                   staticClass: "col-sm-2 control-label",
-                  attrs: { for: "product_quantity" }
+                  attrs: { for: "quantity" }
                 },
                 [_vm._v("Product Quntity")]
               ),
               _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "col-sm-10" },
-                [
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.product_quantity,
-                        expression: "form.product_quantity"
-                      }
-                    ],
-                    staticClass: "form-control",
-                    class: {
-                      "is-invalid": _vm.form.errors.has("product_quantity")
-                    },
-                    attrs: {
-                      type: "number",
-                      name: "product_quantity",
-                      placeholder: "Add product quantity"
-                    },
-                    domProps: { value: _vm.form.product_quantity },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(
-                          _vm.form,
-                          "product_quantity",
-                          $event.target.value
-                        )
-                      }
+              _c("div", { staticClass: "col-sm-10" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.product.quantity,
+                      expression: "product.quantity"
                     }
-                  }),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "text-danger" }),
-                  _vm._v(" "),
-                  _c("has-error", {
-                    attrs: { form: _vm.form, field: "product_quantity" }
-                  })
-                ],
-                1
-              )
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "number",
+                    name: "quantity",
+                    placeholder: "Add product quantity"
+                  },
+                  domProps: { value: _vm.product.quantity },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.product, "quantity", $event.target.value)
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("span", { staticClass: "text-danger" })
+              ])
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
@@ -56277,61 +55911,44 @@ var render = function() {
                 "label",
                 {
                   staticClass: "col-sm-2 control-label",
-                  attrs: { for: "product_short_description" }
+                  attrs: { for: "short_description" }
                 },
                 [_vm._v("Product Short Description")]
               ),
               _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "col-sm-10" },
-                [
-                  _c("textarea", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.product_short_description,
-                        expression: "form.product_short_description"
+              _c("div", { staticClass: "col-sm-10" }, [
+                _c("textarea", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.product.short_description,
+                      expression: "product.short_description"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    name: "short_description",
+                    rows: "8",
+                    placeholder: "Add product Short Description"
+                  },
+                  domProps: { value: _vm.product.short_description },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
                       }
-                    ],
-                    staticClass: "form-control",
-                    class: {
-                      "is-invalid": _vm.form.errors.has(
-                        "product_short_description"
+                      _vm.$set(
+                        _vm.product,
+                        "short_description",
+                        $event.target.value
                       )
-                    },
-                    attrs: {
-                      name: "product_short_description",
-                      rows: "8",
-                      placeholder: "Add product Short Description"
-                    },
-                    domProps: { value: _vm.form.product_short_description },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(
-                          _vm.form,
-                          "product_short_description",
-                          $event.target.value
-                        )
-                      }
                     }
-                  }),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "text-danger" }),
-                  _vm._v(" "),
-                  _c("has-error", {
-                    attrs: {
-                      form: _vm.form,
-                      field: "product_short_description"
-                    }
-                  })
-                ],
-                1
-              )
+                  }
+                }),
+                _vm._v(" "),
+                _c("span", { staticClass: "text-danger" })
+              ])
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
@@ -56339,58 +55956,44 @@ var render = function() {
                 "label",
                 {
                   staticClass: "col-sm-2 control-label",
-                  attrs: { for: "product_long_description" }
+                  attrs: { for: "long_description" }
                 },
                 [_vm._v("Product Long Description")]
               ),
               _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "col-sm-10" },
-                [
-                  _c("textarea", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.product_long_description,
-                        expression: "form.product_long_description"
-                      }
-                    ],
-                    staticClass: "form-control",
-                    class: {
-                      "is-invalid": _vm.form.errors.has(
-                        "product_long_description"
-                      )
-                    },
-                    attrs: {
-                      name: "product_long_description",
-                      rows: "8",
-                      placeholder: "Add product Long Description"
-                    },
-                    domProps: { value: _vm.form.product_long_description },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(
-                          _vm.form,
-                          "product_long_description",
-                          $event.target.value
-                        )
-                      }
+              _c("div", { staticClass: "col-sm-10" }, [
+                _c("textarea", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.product.long_description,
+                      expression: "product.long_description"
                     }
-                  }),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "text-danger" }),
-                  _vm._v(" "),
-                  _c("has-error", {
-                    attrs: { form: _vm.form, field: "product_long_description" }
-                  })
-                ],
-                1
-              )
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    name: "long_description",
+                    rows: "8",
+                    placeholder: "Add product Long Description"
+                  },
+                  domProps: { value: _vm.product.long_description },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(
+                        _vm.product,
+                        "long_description",
+                        $event.target.value
+                      )
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("span", { staticClass: "text-danger" })
+              ])
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
@@ -56403,40 +56006,28 @@ var render = function() {
                 [_vm._v("Product Image")]
               ),
               _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "col-sm-10" },
-                [
-                  _c("input", {
-                    staticClass: "form-control",
-                    class: {
-                      "is-invalid": _vm.form.errors.has("product_image")
-                    },
-                    attrs: { type: "file", name: "product_image" },
-                    on: {
-                      change: function($event) {
-                        _vm.changeImage($event)
-                      }
+              _c("div", { staticClass: "col-sm-10" }, [
+                _c("input", {
+                  staticClass: "form-control",
+                  attrs: { type: "file", name: "image" },
+                  on: {
+                    change: function($event) {
+                      _vm.changeImage($event)
                     }
-                  }),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "text-danger" }),
-                  _vm._v(" "),
-                  _c("img", {
-                    attrs: {
-                      src: _vm.updateImage(),
-                      alt: "",
-                      width: "80",
-                      height: "80"
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("has-error", {
-                    attrs: { form: _vm.form, field: "product_image" }
-                  })
-                ],
-                1
-              )
+                  }
+                }),
+                _vm._v(" "),
+                _c("span", { staticClass: "text-danger" }),
+                _vm._v(" "),
+                _c("img", {
+                  attrs: {
+                    src: _vm.updateImage(),
+                    alt: "",
+                    width: "80",
+                    height: "80"
+                  }
+                })
+              ])
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
@@ -56446,65 +56037,51 @@ var render = function() {
                 [_vm._v("Publication Status")]
               ),
               _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "col-sm-10" },
-                [
-                  _c(
-                    "select",
+              _c("div", { staticClass: "col-sm-5" }, [
+                _c("input", {
+                  directives: [
                     {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.form.active,
-                          expression: "form.active"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      class: { "is-invalid": _vm.form.errors.has("active") },
-                      attrs: { name: "active" },
-                      on: {
-                        change: function($event) {
-                          var $$selectedVal = Array.prototype.filter
-                            .call($event.target.options, function(o) {
-                              return o.selected
-                            })
-                            .map(function(o) {
-                              var val = "_value" in o ? o._value : o.value
-                              return val
-                            })
-                          _vm.$set(
-                            _vm.form,
-                            "active",
-                            $event.target.multiple
-                              ? $$selectedVal
-                              : $$selectedVal[0]
-                          )
-                        }
-                      }
-                    },
-                    [
-                      _c("option", { domProps: { value: null } }, [
-                        _vm._v("Select Publication Status")
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { domProps: { value: 1 } }, [
-                        _vm._v("Published")
-                      ]),
-                      _vm._v(" "),
-                      _c("option", { domProps: { value: 0 } }, [
-                        _vm._v("Unpublished")
-                      ])
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c("has-error", {
-                    attrs: { form: _vm.form, field: "active" }
-                  })
-                ],
-                1
-              )
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.product.active,
+                      expression: "product.active"
+                    }
+                  ],
+                  attrs: { type: "radio", id: "active", value: "1" },
+                  domProps: { checked: _vm._q(_vm.product.active, "1") },
+                  on: {
+                    change: function($event) {
+                      _vm.$set(_vm.product, "active", "1")
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("label", { attrs: { for: "one" } }, [_vm._v("Published")])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-sm-5" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.product.active,
+                      expression: "product.active"
+                    }
+                  ],
+                  attrs: { type: "radio", id: "active", value: "0" },
+                  domProps: { checked: _vm._q(_vm.product.active, "0") },
+                  on: {
+                    change: function($event) {
+                      _vm.$set(_vm.product, "active", "0")
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("label", { attrs: { for: "active" } }, [
+                  _vm._v("Unpublished")
+                ])
+              ])
             ]),
             _vm._v(" "),
             _vm._m(0)
@@ -59598,7 +59175,7 @@ var render = function() {
                                 staticClass: "dropdown-toggle menu__link",
                                 attrs: { to: "/category/" + category.id }
                               },
-                              [_vm._v(_vm._s(category.category_name))]
+                              [_vm._v(_vm._s(category.name))]
                             )
                           ],
                           1
@@ -59700,989 +59277,7 @@ if (false) {
 }
 
 /***/ }),
-/* 140 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports =
-/******/ (function(modules) { // webpackBootstrap
-/******/ 	// The module cache
-/******/ 	var installedModules = {};
-/******/
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
-/******/
-/******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId]) {
-/******/ 			return installedModules[moduleId].exports;
-/******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = installedModules[moduleId] = {
-/******/ 			i: moduleId,
-/******/ 			l: false,
-/******/ 			exports: {}
-/******/ 		};
-/******/
-/******/ 		// Execute the module function
-/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/
-/******/ 		// Flag the module as loaded
-/******/ 		module.l = true;
-/******/
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
-/******/
-/******/
-/******/ 	// expose the modules object (__webpack_modules__)
-/******/ 	__webpack_require__.m = modules;
-/******/
-/******/ 	// expose the module cache
-/******/ 	__webpack_require__.c = installedModules;
-/******/
-/******/ 	// define getter function for harmony exports
-/******/ 	__webpack_require__.d = function(exports, name, getter) {
-/******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, {
-/******/ 				configurable: false,
-/******/ 				enumerable: true,
-/******/ 				get: getter
-/******/ 			});
-/******/ 		}
-/******/ 	};
-/******/
-/******/ 	// getDefaultExport function for compatibility with non-harmony modules
-/******/ 	__webpack_require__.n = function(module) {
-/******/ 		var getter = module && module.__esModule ?
-/******/ 			function getDefault() { return module['default']; } :
-/******/ 			function getModuleExports() { return module; };
-/******/ 		__webpack_require__.d(getter, 'a', getter);
-/******/ 		return getter;
-/******/ 	};
-/******/
-/******/ 	// Object.prototype.hasOwnProperty.call
-/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
-/******/
-/******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "./";
-/******/
-/******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
-/******/ })
-/************************************************************************/
-/******/ ({
-
-/***/ 0:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__("lVK7");
-
-
-/***/ }),
-
-/***/ "OMN4":
-/***/ (function(module, exports) {
-
-module.exports = __webpack_require__(5);
-
-/***/ }),
-
-/***/ "lVK7":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-
-// EXTERNAL MODULE: external "axios"
-var external__axios_ = __webpack_require__("OMN4");
-var external__axios__default = /*#__PURE__*/__webpack_require__.n(external__axios_);
-
-// CONCATENATED MODULE: ./src/util.js
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-/**
- * Deep copy the given object.
- *
- * @param  {Object} obj
- * @return {Object}
- */
-function deepCopy(obj) {
-  if (obj === null || _typeof(obj) !== 'object') {
-    return obj;
-  }
-
-  var copy = Array.isArray(obj) ? [] : {};
-  Object.keys(obj).forEach(function (key) {
-    copy[key] = deepCopy(obj[key]);
-  });
-  return copy;
-}
-/**
- * If the given value is not an array, wrap it in one.
- *
- * @param  {Any} value
- * @return {Array}
- */
-
-function arrayWrap(value) {
-  return Array.isArray(value) ? value : [value];
-}
-// CONCATENATED MODULE: ./src/Errors.js
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
-function Errors__typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { Errors__typeof = function _typeof(obj) { return typeof obj; }; } else { Errors__typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return Errors__typeof(obj); }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-
-
-var Errors_Errors =
-/*#__PURE__*/
-function () {
-  /**
-   * Create a new error bag instance.
-   */
-  function Errors() {
-    _classCallCheck(this, Errors);
-
-    this.errors = {};
-  }
-  /**
-   * Set the errors object or field error messages.
-   *
-   * @param {Object|String} field
-   * @param {Array|String|undefined} messages
-   */
-
-
-  _createClass(Errors, [{
-    key: "set",
-    value: function set(field, messages) {
-      if (Errors__typeof(field) === 'object') {
-        this.errors = field;
-      } else {
-        this.set(_extends({}, this.errors, _defineProperty({}, field, arrayWrap(messages))));
-      }
-    }
-    /**
-     * Get all the errors.
-     *
-     * @return {Object}
-     */
-
-  }, {
-    key: "all",
-    value: function all() {
-      return this.errors;
-    }
-    /**
-     * Determine if there is an error for the given field.
-     *
-     * @param  {String} field
-     * @return {Boolean}
-     */
-
-  }, {
-    key: "has",
-    value: function has(field) {
-      return this.errors.hasOwnProperty(field);
-    }
-    /**
-     * Determine if there are any errors for the given fields.
-     *
-     * @param  {...String} fields
-     * @return {Boolean}
-     */
-
-  }, {
-    key: "hasAny",
-    value: function hasAny() {
-      var _this = this;
-
-      for (var _len = arguments.length, fields = new Array(_len), _key = 0; _key < _len; _key++) {
-        fields[_key] = arguments[_key];
-      }
-
-      return fields.some(function (field) {
-        return _this.has(field);
-      });
-    }
-    /**
-     * Determine if there are any errors.
-     *
-     * @return {Boolean}
-     */
-
-  }, {
-    key: "any",
-    value: function any() {
-      return Object.keys(this.errors).length > 0;
-    }
-    /**
-     * Get the first error message for the given field.
-     *
-     * @param  String} field
-     * @return {String|undefined}
-     */
-
-  }, {
-    key: "get",
-    value: function get(field) {
-      if (this.has(field)) {
-        return this.getAll(field)[0];
-      }
-    }
-    /**
-     * Get all the error messages for the given field.
-     *
-     * @param  {String} field
-     * @return {Array}
-     */
-
-  }, {
-    key: "getAll",
-    value: function getAll(field) {
-      return arrayWrap(this.errors[field] || []);
-    }
-    /**
-     * Get the error message for the given fields.
-     *
-     * @param  {...String} fields
-     * @return {Array}
-     */
-
-  }, {
-    key: "only",
-    value: function only() {
-      var _this2 = this;
-
-      var messages = [];
-
-      for (var _len2 = arguments.length, fields = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
-        fields[_key2] = arguments[_key2];
-      }
-
-      fields.forEach(function (field) {
-        var message = _this2.get(field);
-
-        if (message) {
-          messages.push(message);
-        }
-      });
-      return messages;
-    }
-    /**
-     * Get all the errors in a flat array.
-     *
-     * @return {Array}
-     */
-
-  }, {
-    key: "flatten",
-    value: function flatten() {
-      return Object.values(this.errors).reduce(function (a, b) {
-        return a.concat(b);
-      }, []);
-    }
-    /**
-     * Clear one or all error fields.
-     *
-     * @param {String|undefined} field
-     */
-
-  }, {
-    key: "clear",
-    value: function clear(field) {
-      var _this3 = this;
-
-      var errors = {};
-
-      if (field) {
-        Object.keys(this.errors).forEach(function (key) {
-          if (key !== field) {
-            errors[key] = _this3.errors[key];
-          }
-        });
-      }
-
-      this.set(errors);
-    }
-  }]);
-
-  return Errors;
-}();
-
-
-// CONCATENATED MODULE: ./src/Form.js
-function Form__typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { Form__typeof = function _typeof(obj) { return typeof obj; }; } else { Form__typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return Form__typeof(obj); }
-
-function Form__defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function Form__extends() { Form__extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return Form__extends.apply(this, arguments); }
-
-function Form__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function Form__defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function Form__createClass(Constructor, protoProps, staticProps) { if (protoProps) Form__defineProperties(Constructor.prototype, protoProps); if (staticProps) Form__defineProperties(Constructor, staticProps); return Constructor; }
-
-
-
-
-
-var Form_Form =
-/*#__PURE__*/
-function () {
-  /**
-   * Create a new form instance.
-   *
-   * @param {Object} data
-   */
-  function Form() {
-    var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-
-    Form__classCallCheck(this, Form);
-
-    this.busy = false;
-    this.successful = false;
-    this.errors = new Errors_Errors();
-    this.originalData = deepCopy(data);
-    Object.assign(this, data);
-  }
-  /**
-   * Fill form data.
-   *
-   * @param {Object} data
-   */
-
-
-  Form__createClass(Form, [{
-    key: "fill",
-    value: function fill(data) {
-      var _this = this;
-
-      this.keys().forEach(function (key) {
-        _this[key] = data[key];
-      });
-    }
-    /**
-     * Get the form data.
-     *
-     * @return {Object}
-     */
-
-  }, {
-    key: "data",
-    value: function data() {
-      var _this2 = this;
-
-      return this.keys().reduce(function (data, key) {
-        return Form__extends({}, data, Form__defineProperty({}, key, _this2[key]));
-      }, {});
-    }
-    /**
-     * Get the form data keys.
-     *
-     * @return {Array}
-     */
-
-  }, {
-    key: "keys",
-    value: function keys() {
-      return Object.keys(this).filter(function (key) {
-        return !Form.ignore.includes(key);
-      });
-    }
-    /**
-     * Start processing the form.
-     */
-
-  }, {
-    key: "startProcessing",
-    value: function startProcessing() {
-      this.errors.clear();
-      this.busy = true;
-      this.successful = false;
-    }
-    /**
-     * Finish processing the form.
-     */
-
-  }, {
-    key: "finishProcessing",
-    value: function finishProcessing() {
-      this.busy = false;
-      this.successful = true;
-    }
-    /**
-     * Clear the form errors.
-     */
-
-  }, {
-    key: "clear",
-    value: function clear() {
-      this.errors.clear();
-      this.successful = false;
-    }
-    /**
-     * Reset the form fields.
-     */
-
-  }, {
-    key: "reset",
-    value: function reset() {
-      var _this3 = this;
-
-      Object.keys(this).filter(function (key) {
-        return !Form.ignore.includes(key);
-      }).forEach(function (key) {
-        _this3[key] = deepCopy(_this3.originalData[key]);
-      });
-    }
-    /**
-     * Submit the from via a GET request.
-     *
-     * @param  {String} url
-     * @return {Promise}
-     */
-
-  }, {
-    key: "get",
-    value: function get(url) {
-      return this.submit('get', url);
-    }
-    /**
-     * Submit the from via a POST request.
-     *
-     * @param  {String} url
-     * @return {Promise}
-     */
-
-  }, {
-    key: "post",
-    value: function post(url) {
-      return this.submit('post', url);
-    }
-    /**
-     * Submit the from via a PATCH request.
-     *
-     * @param  {String} url
-     * @return {Promise}
-     */
-
-  }, {
-    key: "patch",
-    value: function patch(url) {
-      return this.submit('patch', url);
-    }
-    /**
-     * Submit the from via a PUT request.
-     *
-     * @param  {String} url
-     * @return {Promise}
-     */
-
-  }, {
-    key: "put",
-    value: function put(url) {
-      return this.submit('put', url);
-    }
-    /**
-     * Submit the from via a DELETE request.
-     *
-     * @param  {String} url
-     * @return {Promise}
-     */
-
-  }, {
-    key: "delete",
-    value: function _delete(url) {
-      return this.submit('delete', url);
-    }
-    /**
-     * Submit the form data via an HTTP request.
-     *
-     * @param  {String} method (get, post, patch, put)
-     * @param  {String} url
-     * @param  {Object} config (axios config)
-     * @return {Promise}
-     */
-
-  }, {
-    key: "submit",
-    value: function submit(method, url) {
-      var _this4 = this;
-
-      var config = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-      this.startProcessing();
-      var data = method === 'get' ? {
-        params: this.data()
-      } : this.data();
-      return new Promise(function (resolve, reject) {
-        external__axios__default.a.request(Form__extends({
-          url: _this4.route(url),
-          method: method,
-          data: data
-        }, config)).then(function (response) {
-          _this4.finishProcessing();
-
-          resolve(response);
-        }).catch(function (error) {
-          _this4.busy = false;
-
-          if (error.response) {
-            _this4.errors.set(_this4.extractErrors(error.response));
-          }
-
-          reject(error);
-        });
-      });
-    }
-    /**
-     * Extract the errors from the response object.
-     *
-     * @param  {Object} response
-     * @return {Object}
-     */
-
-  }, {
-    key: "extractErrors",
-    value: function extractErrors(response) {
-      if (!response.data || Form__typeof(response.data) !== 'object') {
-        return {
-          error: Form.errorMessage
-        };
-      }
-
-      if (response.data.errors) {
-        return Form__extends({}, response.data.errors);
-      }
-
-      if (response.data.message) {
-        return {
-          error: response.data.message
-        };
-      }
-
-      return Form__extends({}, response.data);
-    }
-    /**
-     * Get a named route.
-     *
-     * @param  {String} name
-     * @return {Object} parameters
-     * @return {String}
-     */
-
-  }, {
-    key: "route",
-    value: function route(name) {
-      var parameters = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-      var url = name;
-
-      if (Form.routes.hasOwnProperty(name)) {
-        url = decodeURI(Form.routes[name]);
-      }
-
-      if (Form__typeof(parameters) !== 'object') {
-        parameters = {
-          id: parameters
-        };
-      }
-
-      Object.keys(parameters).forEach(function (key) {
-        url = url.replace("{".concat(key, "}"), parameters[key]);
-      });
-      return url;
-    }
-    /**
-     * Clear errors on keydown.
-     *
-     * @param {KeyboardEvent} event
-     */
-
-  }, {
-    key: "onKeydown",
-    value: function onKeydown(event) {
-      if (event.target.name) {
-        this.errors.clear(event.target.name);
-      }
-    }
-  }]);
-
-  return Form;
-}();
-
-Form_Form.routes = {};
-Form_Form.errorMessage = 'Something went wrong. Please try again.';
-Form_Form.ignore = ['busy', 'successful', 'errors', 'originalData'];
-/* harmony default export */ var src_Form = (Form_Form);
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"C://Users//Otinsoft//Code//github//vform//node_modules//.cache//cache-loader"}!./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/components/HasError.vue
-//
-//
-//
-//
-/* harmony default export */ var HasError = ({
-  name: 'has-error',
-  props: {
-    form: {
-      type: Object,
-      required: true
-    },
-    field: {
-      type: String,
-      required: true
-    }
-  }
-});
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-4389a6dd","hasScoped":false,"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/components/HasError.vue
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.form.errors.has(_vm.field))?_c('div',{staticClass:"help-block invalid-feedback",domProps:{"innerHTML":_vm._s(_vm.form.errors.get(_vm.field))}}):_vm._e()}
-var staticRenderFns = []
-
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/runtime/component-normalizer.js
-/* globals __VUE_SSR_CONTEXT__ */
-
-// IMPORTANT: Do NOT use ES2015 features in this file (except for modules).
-// This module is a runtime utility for cleaner component module output and will
-// be included in the final webpack user bundle.
-
-function normalizeComponent (
-  scriptExports,
-  render,
-  staticRenderFns,
-  functionalTemplate,
-  injectStyles,
-  scopeId,
-  moduleIdentifier, /* server only */
-  shadowMode /* vue-cli only */
-) {
-  scriptExports = scriptExports || {}
-
-  // ES6 modules interop
-  var type = typeof scriptExports.default
-  if (type === 'object' || type === 'function') {
-    scriptExports = scriptExports.default
-  }
-
-  // Vue.extend constructor export interop
-  var options = typeof scriptExports === 'function'
-    ? scriptExports.options
-    : scriptExports
-
-  // render functions
-  if (render) {
-    options.render = render
-    options.staticRenderFns = staticRenderFns
-    options._compiled = true
-  }
-
-  // functional template
-  if (functionalTemplate) {
-    options.functional = true
-  }
-
-  // scopedId
-  if (scopeId) {
-    options._scopeId = scopeId
-  }
-
-  var hook
-  if (moduleIdentifier) { // server build
-    hook = function (context) {
-      // 2.3 injection
-      context =
-        context || // cached call
-        (this.$vnode && this.$vnode.ssrContext) || // stateful
-        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
-      // 2.2 with runInNewContext: true
-      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
-        context = __VUE_SSR_CONTEXT__
-      }
-      // inject component styles
-      if (injectStyles) {
-        injectStyles.call(this, context)
-      }
-      // register component module identifier for async chunk inferrence
-      if (context && context._registeredComponents) {
-        context._registeredComponents.add(moduleIdentifier)
-      }
-    }
-    // used by ssr in case component is cached and beforeCreate
-    // never gets called
-    options._ssrRegister = hook
-  } else if (injectStyles) {
-    hook = shadowMode
-      ? function () { injectStyles.call(this, this.$root.$options.shadowRoot) }
-      : injectStyles
-  }
-
-  if (hook) {
-    if (options.functional) {
-      // for template-only hot-reload because in that case the render fn doesn't
-      // go through the normalizer
-      options._injectStyles = hook
-      // register for functioal component in vue file
-      var originalRender = options.render
-      options.render = function renderWithStyleInjection (h, context) {
-        hook.call(context)
-        return originalRender(h, context)
-      }
-    } else {
-      // inject component registration as beforeCreate hook
-      var existing = options.beforeCreate
-      options.beforeCreate = existing
-        ? [].concat(existing, hook)
-        : [hook]
-    }
-  }
-
-  return {
-    exports: scriptExports,
-    options: options
-  }
-}
-
-// CONCATENATED MODULE: ./src/components/HasError.vue
-/* script */
-
-
-/* template */
-
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-
-var Component = normalizeComponent(
-  HasError,
-  render,
-  staticRenderFns,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-
-/* harmony default export */ var components_HasError = (Component.exports);
-
-// CONCATENATED MODULE: ./src/components/Alert.js
-/* harmony default export */ var Alert = ({
-  props: {
-    form: {
-      type: Object,
-      required: true
-    },
-    dismissible: {
-      type: Boolean,
-      default: true
-    }
-  },
-  methods: {
-    dismiss: function dismiss() {
-      if (this.dismissible) {
-        this.form.clear();
-      }
-    }
-  }
-});
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"C://Users//Otinsoft//Code//github//vform//node_modules//.cache//cache-loader"}!./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/components/AlertError.vue
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ var AlertError = ({
-  name: 'alert-error',
-  extends: Alert,
-  props: {
-    message: {
-      type: String,
-      default: 'There were some problems with your input.'
-    }
-  }
-});
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-e73aa7c8","hasScoped":false,"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/components/AlertError.vue
-var AlertError_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.form.errors.any())?_c('div',{staticClass:"alert alert-danger alert-dismissible",attrs:{"role":"alert"}},[(_vm.dismissible)?_c('button',{staticClass:"close",attrs:{"type":"button","aria-label":"Close"},on:{"click":_vm.dismiss}},[_c('span',{attrs:{"aria-hidden":"true"}},[_vm._v("×")])]):_vm._e(),_vm._v(" "),_vm._t("default",[(_vm.form.errors.has('error'))?_c('div',{domProps:{"innerHTML":_vm._s(_vm.form.errors.get('error'))}}):_c('div',{domProps:{"innerHTML":_vm._s(_vm.message)}})])],2):_vm._e()}
-var AlertError_staticRenderFns = []
-
-// CONCATENATED MODULE: ./src/components/AlertError.vue
-/* script */
-
-
-/* template */
-
-/* template functional */
-var AlertError___vue_template_functional__ = false
-/* styles */
-var AlertError___vue_styles__ = null
-/* scopeId */
-var AlertError___vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var AlertError___vue_module_identifier__ = null
-
-var AlertError_Component = normalizeComponent(
-  AlertError,
-  AlertError_render,
-  AlertError_staticRenderFns,
-  AlertError___vue_template_functional__,
-  AlertError___vue_styles__,
-  AlertError___vue_scopeId__,
-  AlertError___vue_module_identifier__
-)
-
-/* harmony default export */ var components_AlertError = (AlertError_Component.exports);
-
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"C://Users//Otinsoft//Code//github//vform//node_modules//.cache//cache-loader"}!./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/components/AlertErrors.vue
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ var AlertErrors = ({
-  name: 'alert-errors',
-  extends: Alert,
-  props: {
-    message: {
-      type: String,
-      default: 'There were some problems with your input.'
-    }
-  }
-});
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-422a6591","hasScoped":false,"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/components/AlertErrors.vue
-var AlertErrors_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.form.errors.any())?_c('div',{staticClass:"alert alert-danger alert-dismissible",attrs:{"role":"alert"}},[(_vm.dismissible)?_c('button',{staticClass:"close",attrs:{"type":"button","aria-label":"Close"},on:{"click":_vm.dismiss}},[_c('span',{attrs:{"aria-hidden":"true"}},[_vm._v("×")])]):_vm._e(),_vm._v(" "),(_vm.message)?_c('div',{domProps:{"innerHTML":_vm._s(_vm.message)}}):_vm._e(),_vm._v(" "),_c('ul',_vm._l((_vm.form.errors.flatten()),function(error){return _c('li',{domProps:{"innerHTML":_vm._s(error)}})}))]):_vm._e()}
-var AlertErrors_staticRenderFns = []
-
-// CONCATENATED MODULE: ./src/components/AlertErrors.vue
-/* script */
-
-
-/* template */
-
-/* template functional */
-var AlertErrors___vue_template_functional__ = false
-/* styles */
-var AlertErrors___vue_styles__ = null
-/* scopeId */
-var AlertErrors___vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var AlertErrors___vue_module_identifier__ = null
-
-var AlertErrors_Component = normalizeComponent(
-  AlertErrors,
-  AlertErrors_render,
-  AlertErrors_staticRenderFns,
-  AlertErrors___vue_template_functional__,
-  AlertErrors___vue_styles__,
-  AlertErrors___vue_scopeId__,
-  AlertErrors___vue_module_identifier__
-)
-
-/* harmony default export */ var components_AlertErrors = (AlertErrors_Component.exports);
-
-// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"C://Users//Otinsoft//Code//github//vform//node_modules//.cache//cache-loader"}!./node_modules/babel-loader/lib!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./src/components/AlertSuccess.vue
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ var AlertSuccess = ({
-  name: 'alert-success',
-  extends: Alert,
-  props: {
-    message: {
-      type: String,
-      default: ''
-    }
-  }
-});
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/template-compiler?{"id":"data-v-0afdb8a8","hasScoped":false,"buble":{"transforms":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./src/components/AlertSuccess.vue
-var AlertSuccess_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.form.successful)?_c('div',{staticClass:"alert alert-success alert-dismissible",attrs:{"role":"alert"}},[(_vm.dismissible)?_c('button',{staticClass:"close",attrs:{"type":"button","aria-label":"Close"},on:{"click":_vm.dismiss}},[_c('span',{attrs:{"aria-hidden":"true"}},[_vm._v("×")])]):_vm._e(),_vm._v(" "),_vm._t("default",[_c('div',{domProps:{"innerHTML":_vm._s(_vm.message)}})])],2):_vm._e()}
-var AlertSuccess_staticRenderFns = []
-
-// CONCATENATED MODULE: ./src/components/AlertSuccess.vue
-/* script */
-
-
-/* template */
-
-/* template functional */
-var AlertSuccess___vue_template_functional__ = false
-/* styles */
-var AlertSuccess___vue_styles__ = null
-/* scopeId */
-var AlertSuccess___vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var AlertSuccess___vue_module_identifier__ = null
-
-var AlertSuccess_Component = normalizeComponent(
-  AlertSuccess,
-  AlertSuccess_render,
-  AlertSuccess_staticRenderFns,
-  AlertSuccess___vue_template_functional__,
-  AlertSuccess___vue_styles__,
-  AlertSuccess___vue_scopeId__,
-  AlertSuccess___vue_module_identifier__
-)
-
-/* harmony default export */ var components_AlertSuccess = (AlertSuccess_Component.exports);
-
-// CONCATENATED MODULE: ./src/index.js
-/* concated harmony reexport */__webpack_require__.d(__webpack_exports__, "Form", function() { return src_Form; });
-/* concated harmony reexport */__webpack_require__.d(__webpack_exports__, "Errors", function() { return Errors_Errors; });
-/* concated harmony reexport */__webpack_require__.d(__webpack_exports__, "HasError", function() { return components_HasError; });
-/* concated harmony reexport */__webpack_require__.d(__webpack_exports__, "AlertError", function() { return components_AlertError; });
-/* concated harmony reexport */__webpack_require__.d(__webpack_exports__, "AlertErrors", function() { return components_AlertErrors; });
-/* concated harmony reexport */__webpack_require__.d(__webpack_exports__, "AlertSuccess", function() { return components_AlertSuccess; });
-/* concated harmony reexport */__webpack_require__.d(__webpack_exports__, "default", function() { return src_Form; });
-
-
-
-
-
-
-
-
-/***/ })
-
-/******/ });
-
-/***/ }),
+/* 140 */,
 /* 141 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -63442,6 +62037,1316 @@ if (typeof window !== 'undefined' && window.Sweetalert2){  window.Sweetalert2.ve
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 143 */,
+/* 144 */,
+/* 145 */,
+/* 146 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony default export */ __webpack_exports__["default"] = ((function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = "fb15");
+/******/ })
+/************************************************************************/
+/******/ ({
+
+/***/ "0d58":
+/***/ (function(module, exports, __webpack_require__) {
+
+// 19.1.2.14 / 15.2.3.14 Object.keys(O)
+var $keys = __webpack_require__("ce10");
+var enumBugKeys = __webpack_require__("e11e");
+
+module.exports = Object.keys || function keys(O) {
+  return $keys(O, enumBugKeys);
+};
+
+
+/***/ }),
+
+/***/ "11e9":
+/***/ (function(module, exports, __webpack_require__) {
+
+var pIE = __webpack_require__("52a7");
+var createDesc = __webpack_require__("4630");
+var toIObject = __webpack_require__("6821");
+var toPrimitive = __webpack_require__("6a99");
+var has = __webpack_require__("69a8");
+var IE8_DOM_DEFINE = __webpack_require__("c69a");
+var gOPD = Object.getOwnPropertyDescriptor;
+
+exports.f = __webpack_require__("9e1e") ? gOPD : function getOwnPropertyDescriptor(O, P) {
+  O = toIObject(O);
+  P = toPrimitive(P, true);
+  if (IE8_DOM_DEFINE) try {
+    return gOPD(O, P);
+  } catch (e) { /* empty */ }
+  if (has(O, P)) return createDesc(!pIE.f.call(O, P), O[P]);
+};
+
+
+/***/ }),
+
+/***/ "1495":
+/***/ (function(module, exports, __webpack_require__) {
+
+var dP = __webpack_require__("86cc");
+var anObject = __webpack_require__("cb7c");
+var getKeys = __webpack_require__("0d58");
+
+module.exports = __webpack_require__("9e1e") ? Object.defineProperties : function defineProperties(O, Properties) {
+  anObject(O);
+  var keys = getKeys(Properties);
+  var length = keys.length;
+  var i = 0;
+  var P;
+  while (length > i) dP.f(O, P = keys[i++], Properties[P]);
+  return O;
+};
+
+
+/***/ }),
+
+/***/ "1eb2":
+/***/ (function(module, exports, __webpack_require__) {
+
+// This file is imported into lib/wc client bundles.
+
+if (typeof window !== 'undefined') {
+  var i
+  if ((i = window.document.currentScript) && (i = i.src.match(/(.+\/)[^/]+\.js$/))) {
+    __webpack_require__.p = i[1] // eslint-disable-line
+  }
+}
+
+
+/***/ }),
+
+/***/ "230e":
+/***/ (function(module, exports, __webpack_require__) {
+
+var isObject = __webpack_require__("d3f4");
+var document = __webpack_require__("7726").document;
+// typeof document.createElement is 'object' in old IE
+var is = isObject(document) && isObject(document.createElement);
+module.exports = function (it) {
+  return is ? document.createElement(it) : {};
+};
+
+
+/***/ }),
+
+/***/ "2aba":
+/***/ (function(module, exports, __webpack_require__) {
+
+var global = __webpack_require__("7726");
+var hide = __webpack_require__("32e9");
+var has = __webpack_require__("69a8");
+var SRC = __webpack_require__("ca5a")('src');
+var TO_STRING = 'toString';
+var $toString = Function[TO_STRING];
+var TPL = ('' + $toString).split(TO_STRING);
+
+__webpack_require__("8378").inspectSource = function (it) {
+  return $toString.call(it);
+};
+
+(module.exports = function (O, key, val, safe) {
+  var isFunction = typeof val == 'function';
+  if (isFunction) has(val, 'name') || hide(val, 'name', key);
+  if (O[key] === val) return;
+  if (isFunction) has(val, SRC) || hide(val, SRC, O[key] ? '' + O[key] : TPL.join(String(key)));
+  if (O === global) {
+    O[key] = val;
+  } else if (!safe) {
+    delete O[key];
+    hide(O, key, val);
+  } else if (O[key]) {
+    O[key] = val;
+  } else {
+    hide(O, key, val);
+  }
+// add fake Function#toString for correct work wrapped methods / constructors with methods like LoDash isNative
+})(Function.prototype, TO_STRING, function toString() {
+  return typeof this == 'function' && this[SRC] || $toString.call(this);
+});
+
+
+/***/ }),
+
+/***/ "2aeb":
+/***/ (function(module, exports, __webpack_require__) {
+
+// 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
+var anObject = __webpack_require__("cb7c");
+var dPs = __webpack_require__("1495");
+var enumBugKeys = __webpack_require__("e11e");
+var IE_PROTO = __webpack_require__("613b")('IE_PROTO');
+var Empty = function () { /* empty */ };
+var PROTOTYPE = 'prototype';
+
+// Create object with fake `null` prototype: use iframe Object with cleared prototype
+var createDict = function () {
+  // Thrash, waste and sodomy: IE GC bug
+  var iframe = __webpack_require__("230e")('iframe');
+  var i = enumBugKeys.length;
+  var lt = '<';
+  var gt = '>';
+  var iframeDocument;
+  iframe.style.display = 'none';
+  __webpack_require__("fab2").appendChild(iframe);
+  iframe.src = 'javascript:'; // eslint-disable-line no-script-url
+  // createDict = iframe.contentWindow.Object;
+  // html.removeChild(iframe);
+  iframeDocument = iframe.contentWindow.document;
+  iframeDocument.open();
+  iframeDocument.write(lt + 'script' + gt + 'document.F=Object' + lt + '/script' + gt);
+  iframeDocument.close();
+  createDict = iframeDocument.F;
+  while (i--) delete createDict[PROTOTYPE][enumBugKeys[i]];
+  return createDict();
+};
+
+module.exports = Object.create || function create(O, Properties) {
+  var result;
+  if (O !== null) {
+    Empty[PROTOTYPE] = anObject(O);
+    result = new Empty();
+    Empty[PROTOTYPE] = null;
+    // add "__proto__" for Object.getPrototypeOf polyfill
+    result[IE_PROTO] = O;
+  } else result = createDict();
+  return Properties === undefined ? result : dPs(result, Properties);
+};
+
+
+/***/ }),
+
+/***/ "2d00":
+/***/ (function(module, exports) {
+
+module.exports = false;
+
+
+/***/ }),
+
+/***/ "2d95":
+/***/ (function(module, exports) {
+
+var toString = {}.toString;
+
+module.exports = function (it) {
+  return toString.call(it).slice(8, -1);
+};
+
+
+/***/ }),
+
+/***/ "32e9":
+/***/ (function(module, exports, __webpack_require__) {
+
+var dP = __webpack_require__("86cc");
+var createDesc = __webpack_require__("4630");
+module.exports = __webpack_require__("9e1e") ? function (object, key, value) {
+  return dP.f(object, key, createDesc(1, value));
+} : function (object, key, value) {
+  object[key] = value;
+  return object;
+};
+
+
+/***/ }),
+
+/***/ "4588":
+/***/ (function(module, exports) {
+
+// 7.1.4 ToInteger
+var ceil = Math.ceil;
+var floor = Math.floor;
+module.exports = function (it) {
+  return isNaN(it = +it) ? 0 : (it > 0 ? floor : ceil)(it);
+};
+
+
+/***/ }),
+
+/***/ "4630":
+/***/ (function(module, exports) {
+
+module.exports = function (bitmap, value) {
+  return {
+    enumerable: !(bitmap & 1),
+    configurable: !(bitmap & 2),
+    writable: !(bitmap & 4),
+    value: value
+  };
+};
+
+
+/***/ }),
+
+/***/ "52a7":
+/***/ (function(module, exports) {
+
+exports.f = {}.propertyIsEnumerable;
+
+
+/***/ }),
+
+/***/ "5537":
+/***/ (function(module, exports, __webpack_require__) {
+
+var core = __webpack_require__("8378");
+var global = __webpack_require__("7726");
+var SHARED = '__core-js_shared__';
+var store = global[SHARED] || (global[SHARED] = {});
+
+(module.exports = function (key, value) {
+  return store[key] || (store[key] = value !== undefined ? value : {});
+})('versions', []).push({
+  version: core.version,
+  mode: __webpack_require__("2d00") ? 'pure' : 'global',
+  copyright: '© 2018 Denis Pushkarev (zloirock.ru)'
+});
+
+
+/***/ }),
+
+/***/ "5ca1":
+/***/ (function(module, exports, __webpack_require__) {
+
+var global = __webpack_require__("7726");
+var core = __webpack_require__("8378");
+var hide = __webpack_require__("32e9");
+var redefine = __webpack_require__("2aba");
+var ctx = __webpack_require__("9b43");
+var PROTOTYPE = 'prototype';
+
+var $export = function (type, name, source) {
+  var IS_FORCED = type & $export.F;
+  var IS_GLOBAL = type & $export.G;
+  var IS_STATIC = type & $export.S;
+  var IS_PROTO = type & $export.P;
+  var IS_BIND = type & $export.B;
+  var target = IS_GLOBAL ? global : IS_STATIC ? global[name] || (global[name] = {}) : (global[name] || {})[PROTOTYPE];
+  var exports = IS_GLOBAL ? core : core[name] || (core[name] = {});
+  var expProto = exports[PROTOTYPE] || (exports[PROTOTYPE] = {});
+  var key, own, out, exp;
+  if (IS_GLOBAL) source = name;
+  for (key in source) {
+    // contains in native
+    own = !IS_FORCED && target && target[key] !== undefined;
+    // export native or passed
+    out = (own ? target : source)[key];
+    // bind timers to global for call from export context
+    exp = IS_BIND && own ? ctx(out, global) : IS_PROTO && typeof out == 'function' ? ctx(Function.call, out) : out;
+    // extend global
+    if (target) redefine(target, key, out, type & $export.U);
+    // export
+    if (exports[key] != out) hide(exports, key, exp);
+    if (IS_PROTO && expProto[key] != out) expProto[key] = out;
+  }
+};
+global.core = core;
+// type bitmap
+$export.F = 1;   // forced
+$export.G = 2;   // global
+$export.S = 4;   // static
+$export.P = 8;   // proto
+$export.B = 16;  // bind
+$export.W = 32;  // wrap
+$export.U = 64;  // safe
+$export.R = 128; // real proto method for `library`
+module.exports = $export;
+
+
+/***/ }),
+
+/***/ "5dbc":
+/***/ (function(module, exports, __webpack_require__) {
+
+var isObject = __webpack_require__("d3f4");
+var setPrototypeOf = __webpack_require__("8b97").set;
+module.exports = function (that, target, C) {
+  var S = target.constructor;
+  var P;
+  if (S !== C && typeof S == 'function' && (P = S.prototype) !== C.prototype && isObject(P) && setPrototypeOf) {
+    setPrototypeOf(that, P);
+  } return that;
+};
+
+
+/***/ }),
+
+/***/ "613b":
+/***/ (function(module, exports, __webpack_require__) {
+
+var shared = __webpack_require__("5537")('keys');
+var uid = __webpack_require__("ca5a");
+module.exports = function (key) {
+  return shared[key] || (shared[key] = uid(key));
+};
+
+
+/***/ }),
+
+/***/ "626a":
+/***/ (function(module, exports, __webpack_require__) {
+
+// fallback for non-array-like ES3 and non-enumerable old V8 strings
+var cof = __webpack_require__("2d95");
+// eslint-disable-next-line no-prototype-builtins
+module.exports = Object('z').propertyIsEnumerable(0) ? Object : function (it) {
+  return cof(it) == 'String' ? it.split('') : Object(it);
+};
+
+
+/***/ }),
+
+/***/ "6821":
+/***/ (function(module, exports, __webpack_require__) {
+
+// to indexed object, toObject with fallback for non-array-like ES3 strings
+var IObject = __webpack_require__("626a");
+var defined = __webpack_require__("be13");
+module.exports = function (it) {
+  return IObject(defined(it));
+};
+
+
+/***/ }),
+
+/***/ "69a8":
+/***/ (function(module, exports) {
+
+var hasOwnProperty = {}.hasOwnProperty;
+module.exports = function (it, key) {
+  return hasOwnProperty.call(it, key);
+};
+
+
+/***/ }),
+
+/***/ "6a99":
+/***/ (function(module, exports, __webpack_require__) {
+
+// 7.1.1 ToPrimitive(input [, PreferredType])
+var isObject = __webpack_require__("d3f4");
+// instead of the ES6 spec version, we didn't implement @@toPrimitive case
+// and the second argument - flag - preferred type is a string
+module.exports = function (it, S) {
+  if (!isObject(it)) return it;
+  var fn, val;
+  if (S && typeof (fn = it.toString) == 'function' && !isObject(val = fn.call(it))) return val;
+  if (typeof (fn = it.valueOf) == 'function' && !isObject(val = fn.call(it))) return val;
+  if (!S && typeof (fn = it.toString) == 'function' && !isObject(val = fn.call(it))) return val;
+  throw TypeError("Can't convert object to primitive value");
+};
+
+
+/***/ }),
+
+/***/ "7726":
+/***/ (function(module, exports) {
+
+// https://github.com/zloirock/core-js/issues/86#issuecomment-115759028
+var global = module.exports = typeof window != 'undefined' && window.Math == Math
+  ? window : typeof self != 'undefined' && self.Math == Math ? self
+  // eslint-disable-next-line no-new-func
+  : Function('return this')();
+if (typeof __g == 'number') __g = global; // eslint-disable-line no-undef
+
+
+/***/ }),
+
+/***/ "77f1":
+/***/ (function(module, exports, __webpack_require__) {
+
+var toInteger = __webpack_require__("4588");
+var max = Math.max;
+var min = Math.min;
+module.exports = function (index, length) {
+  index = toInteger(index);
+  return index < 0 ? max(index + length, 0) : min(index, length);
+};
+
+
+/***/ }),
+
+/***/ "79e5":
+/***/ (function(module, exports) {
+
+module.exports = function (exec) {
+  try {
+    return !!exec();
+  } catch (e) {
+    return true;
+  }
+};
+
+
+/***/ }),
+
+/***/ "8378":
+/***/ (function(module, exports) {
+
+var core = module.exports = { version: '2.5.7' };
+if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
+
+
+/***/ }),
+
+/***/ "86cc":
+/***/ (function(module, exports, __webpack_require__) {
+
+var anObject = __webpack_require__("cb7c");
+var IE8_DOM_DEFINE = __webpack_require__("c69a");
+var toPrimitive = __webpack_require__("6a99");
+var dP = Object.defineProperty;
+
+exports.f = __webpack_require__("9e1e") ? Object.defineProperty : function defineProperty(O, P, Attributes) {
+  anObject(O);
+  P = toPrimitive(P, true);
+  anObject(Attributes);
+  if (IE8_DOM_DEFINE) try {
+    return dP(O, P, Attributes);
+  } catch (e) { /* empty */ }
+  if ('get' in Attributes || 'set' in Attributes) throw TypeError('Accessors not supported!');
+  if ('value' in Attributes) O[P] = Attributes.value;
+  return O;
+};
+
+
+/***/ }),
+
+/***/ "8b97":
+/***/ (function(module, exports, __webpack_require__) {
+
+// Works with __proto__ only. Old v8 can't work with null proto objects.
+/* eslint-disable no-proto */
+var isObject = __webpack_require__("d3f4");
+var anObject = __webpack_require__("cb7c");
+var check = function (O, proto) {
+  anObject(O);
+  if (!isObject(proto) && proto !== null) throw TypeError(proto + ": can't set as prototype!");
+};
+module.exports = {
+  set: Object.setPrototypeOf || ('__proto__' in {} ? // eslint-disable-line
+    function (test, buggy, set) {
+      try {
+        set = __webpack_require__("9b43")(Function.call, __webpack_require__("11e9").f(Object.prototype, '__proto__').set, 2);
+        set(test, []);
+        buggy = !(test instanceof Array);
+      } catch (e) { buggy = true; }
+      return function setPrototypeOf(O, proto) {
+        check(O, proto);
+        if (buggy) O.__proto__ = proto;
+        else set(O, proto);
+        return O;
+      };
+    }({}, false) : undefined),
+  check: check
+};
+
+
+/***/ }),
+
+/***/ "9093":
+/***/ (function(module, exports, __webpack_require__) {
+
+// 19.1.2.7 / 15.2.3.4 Object.getOwnPropertyNames(O)
+var $keys = __webpack_require__("ce10");
+var hiddenKeys = __webpack_require__("e11e").concat('length', 'prototype');
+
+exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
+  return $keys(O, hiddenKeys);
+};
+
+
+/***/ }),
+
+/***/ "9b43":
+/***/ (function(module, exports, __webpack_require__) {
+
+// optional / simple context binding
+var aFunction = __webpack_require__("d8e8");
+module.exports = function (fn, that, length) {
+  aFunction(fn);
+  if (that === undefined) return fn;
+  switch (length) {
+    case 1: return function (a) {
+      return fn.call(that, a);
+    };
+    case 2: return function (a, b) {
+      return fn.call(that, a, b);
+    };
+    case 3: return function (a, b, c) {
+      return fn.call(that, a, b, c);
+    };
+  }
+  return function (/* ...args */) {
+    return fn.apply(that, arguments);
+  };
+};
+
+
+/***/ }),
+
+/***/ "9def":
+/***/ (function(module, exports, __webpack_require__) {
+
+// 7.1.15 ToLength
+var toInteger = __webpack_require__("4588");
+var min = Math.min;
+module.exports = function (it) {
+  return it > 0 ? min(toInteger(it), 0x1fffffffffffff) : 0; // pow(2, 53) - 1 == 9007199254740991
+};
+
+
+/***/ }),
+
+/***/ "9e1e":
+/***/ (function(module, exports, __webpack_require__) {
+
+// Thank's IE8 for his funny defineProperty
+module.exports = !__webpack_require__("79e5")(function () {
+  return Object.defineProperty({}, 'a', { get: function () { return 7; } }).a != 7;
+});
+
+
+/***/ }),
+
+/***/ "aa77":
+/***/ (function(module, exports, __webpack_require__) {
+
+var $export = __webpack_require__("5ca1");
+var defined = __webpack_require__("be13");
+var fails = __webpack_require__("79e5");
+var spaces = __webpack_require__("fdef");
+var space = '[' + spaces + ']';
+var non = '\u200b\u0085';
+var ltrim = RegExp('^' + space + space + '*');
+var rtrim = RegExp(space + space + '*$');
+
+var exporter = function (KEY, exec, ALIAS) {
+  var exp = {};
+  var FORCE = fails(function () {
+    return !!spaces[KEY]() || non[KEY]() != non;
+  });
+  var fn = exp[KEY] = FORCE ? exec(trim) : spaces[KEY];
+  if (ALIAS) exp[ALIAS] = fn;
+  $export($export.P + $export.F * FORCE, 'String', exp);
+};
+
+// 1 -> String#trimLeft
+// 2 -> String#trimRight
+// 3 -> String#trim
+var trim = exporter.trim = function (string, TYPE) {
+  string = String(defined(string));
+  if (TYPE & 1) string = string.replace(ltrim, '');
+  if (TYPE & 2) string = string.replace(rtrim, '');
+  return string;
+};
+
+module.exports = exporter;
+
+
+/***/ }),
+
+/***/ "be13":
+/***/ (function(module, exports) {
+
+// 7.2.1 RequireObjectCoercible(argument)
+module.exports = function (it) {
+  if (it == undefined) throw TypeError("Can't call method on  " + it);
+  return it;
+};
+
+
+/***/ }),
+
+/***/ "c366":
+/***/ (function(module, exports, __webpack_require__) {
+
+// false -> Array#indexOf
+// true  -> Array#includes
+var toIObject = __webpack_require__("6821");
+var toLength = __webpack_require__("9def");
+var toAbsoluteIndex = __webpack_require__("77f1");
+module.exports = function (IS_INCLUDES) {
+  return function ($this, el, fromIndex) {
+    var O = toIObject($this);
+    var length = toLength(O.length);
+    var index = toAbsoluteIndex(fromIndex, length);
+    var value;
+    // Array#includes uses SameValueZero equality algorithm
+    // eslint-disable-next-line no-self-compare
+    if (IS_INCLUDES && el != el) while (length > index) {
+      value = O[index++];
+      // eslint-disable-next-line no-self-compare
+      if (value != value) return true;
+    // Array#indexOf ignores holes, Array#includes - not
+    } else for (;length > index; index++) if (IS_INCLUDES || index in O) {
+      if (O[index] === el) return IS_INCLUDES || index || 0;
+    } return !IS_INCLUDES && -1;
+  };
+};
+
+
+/***/ }),
+
+/***/ "c5f6":
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var global = __webpack_require__("7726");
+var has = __webpack_require__("69a8");
+var cof = __webpack_require__("2d95");
+var inheritIfRequired = __webpack_require__("5dbc");
+var toPrimitive = __webpack_require__("6a99");
+var fails = __webpack_require__("79e5");
+var gOPN = __webpack_require__("9093").f;
+var gOPD = __webpack_require__("11e9").f;
+var dP = __webpack_require__("86cc").f;
+var $trim = __webpack_require__("aa77").trim;
+var NUMBER = 'Number';
+var $Number = global[NUMBER];
+var Base = $Number;
+var proto = $Number.prototype;
+// Opera ~12 has broken Object#toString
+var BROKEN_COF = cof(__webpack_require__("2aeb")(proto)) == NUMBER;
+var TRIM = 'trim' in String.prototype;
+
+// 7.1.3 ToNumber(argument)
+var toNumber = function (argument) {
+  var it = toPrimitive(argument, false);
+  if (typeof it == 'string' && it.length > 2) {
+    it = TRIM ? it.trim() : $trim(it, 3);
+    var first = it.charCodeAt(0);
+    var third, radix, maxCode;
+    if (first === 43 || first === 45) {
+      third = it.charCodeAt(2);
+      if (third === 88 || third === 120) return NaN; // Number('+0x1') should be NaN, old V8 fix
+    } else if (first === 48) {
+      switch (it.charCodeAt(1)) {
+        case 66: case 98: radix = 2; maxCode = 49; break; // fast equal /^0b[01]+$/i
+        case 79: case 111: radix = 8; maxCode = 55; break; // fast equal /^0o[0-7]+$/i
+        default: return +it;
+      }
+      for (var digits = it.slice(2), i = 0, l = digits.length, code; i < l; i++) {
+        code = digits.charCodeAt(i);
+        // parseInt parses a string to a first unavailable symbol
+        // but ToNumber should return NaN if a string contains unavailable symbols
+        if (code < 48 || code > maxCode) return NaN;
+      } return parseInt(digits, radix);
+    }
+  } return +it;
+};
+
+if (!$Number(' 0o1') || !$Number('0b1') || $Number('+0x1')) {
+  $Number = function Number(value) {
+    var it = arguments.length < 1 ? 0 : value;
+    var that = this;
+    return that instanceof $Number
+      // check on 1..constructor(foo) case
+      && (BROKEN_COF ? fails(function () { proto.valueOf.call(that); }) : cof(that) != NUMBER)
+        ? inheritIfRequired(new Base(toNumber(it)), that, $Number) : toNumber(it);
+  };
+  for (var keys = __webpack_require__("9e1e") ? gOPN(Base) : (
+    // ES3:
+    'MAX_VALUE,MIN_VALUE,NaN,NEGATIVE_INFINITY,POSITIVE_INFINITY,' +
+    // ES6 (in case, if modules with ES6 Number statics required before):
+    'EPSILON,isFinite,isInteger,isNaN,isSafeInteger,MAX_SAFE_INTEGER,' +
+    'MIN_SAFE_INTEGER,parseFloat,parseInt,isInteger'
+  ).split(','), j = 0, key; keys.length > j; j++) {
+    if (has(Base, key = keys[j]) && !has($Number, key)) {
+      dP($Number, key, gOPD(Base, key));
+    }
+  }
+  $Number.prototype = proto;
+  proto.constructor = $Number;
+  __webpack_require__("2aba")(global, NUMBER, $Number);
+}
+
+
+/***/ }),
+
+/***/ "c69a":
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = !__webpack_require__("9e1e") && !__webpack_require__("79e5")(function () {
+  return Object.defineProperty(__webpack_require__("230e")('div'), 'a', { get: function () { return 7; } }).a != 7;
+});
+
+
+/***/ }),
+
+/***/ "ca5a":
+/***/ (function(module, exports) {
+
+var id = 0;
+var px = Math.random();
+module.exports = function (key) {
+  return 'Symbol('.concat(key === undefined ? '' : key, ')_', (++id + px).toString(36));
+};
+
+
+/***/ }),
+
+/***/ "cb7c":
+/***/ (function(module, exports, __webpack_require__) {
+
+var isObject = __webpack_require__("d3f4");
+module.exports = function (it) {
+  if (!isObject(it)) throw TypeError(it + ' is not an object!');
+  return it;
+};
+
+
+/***/ }),
+
+/***/ "ce10":
+/***/ (function(module, exports, __webpack_require__) {
+
+var has = __webpack_require__("69a8");
+var toIObject = __webpack_require__("6821");
+var arrayIndexOf = __webpack_require__("c366")(false);
+var IE_PROTO = __webpack_require__("613b")('IE_PROTO');
+
+module.exports = function (object, names) {
+  var O = toIObject(object);
+  var i = 0;
+  var result = [];
+  var key;
+  for (key in O) if (key != IE_PROTO) has(O, key) && result.push(key);
+  // Don't enum bug & hidden keys
+  while (names.length > i) if (has(O, key = names[i++])) {
+    ~arrayIndexOf(result, key) || result.push(key);
+  }
+  return result;
+};
+
+
+/***/ }),
+
+/***/ "d3f4":
+/***/ (function(module, exports) {
+
+module.exports = function (it) {
+  return typeof it === 'object' ? it !== null : typeof it === 'function';
+};
+
+
+/***/ }),
+
+/***/ "d8e8":
+/***/ (function(module, exports) {
+
+module.exports = function (it) {
+  if (typeof it != 'function') throw TypeError(it + ' is not a function!');
+  return it;
+};
+
+
+/***/ }),
+
+/***/ "e11e":
+/***/ (function(module, exports) {
+
+// IE 8- don't enum bug keys
+module.exports = (
+  'constructor,hasOwnProperty,isPrototypeOf,propertyIsEnumerable,toLocaleString,toString,valueOf'
+).split(',');
+
+
+/***/ }),
+
+/***/ "fab2":
+/***/ (function(module, exports, __webpack_require__) {
+
+var document = __webpack_require__("7726").document;
+module.exports = document && document.documentElement;
+
+
+/***/ }),
+
+/***/ "fb15":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+
+// EXTERNAL MODULE: ./node_modules/@vue/cli-service/lib/commands/build/setPublicPath.js
+var setPublicPath = __webpack_require__("1eb2");
+
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js?{"cacheDirectory":"node_modules/.cache/vue-loader","cacheIdentifier":"0595ba96-vue-loader-template"}!./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/cache-loader/dist/cjs.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./src/LaravelVuePagination.vue?vue&type=template&id=07aadf89&
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('renderless-laravel-vue-pagination',{attrs:{"data":_vm.data,"limit":_vm.limit,"show-disabled":_vm.showDisabled},on:{"pagination-change-page":_vm.onPaginationChangePage},scopedSlots:_vm._u([{key:"default",fn:function(ref){
+var data = ref.data;
+var limit = ref.limit;
+var computed = ref.computed;
+var prevButtonEvents = ref.prevButtonEvents;
+var nextButtonEvents = ref.nextButtonEvents;
+var pageButtonEvents = ref.pageButtonEvents;
+return (computed.total > computed.perPage)?_c('ul',{staticClass:"pagination"},[(computed.prevPageUrl || _vm.showDisabled)?_c('li',{staticClass:"page-item pagination-prev-nav",class:{'disabled': !computed.prevPageUrl}},[_c('a',_vm._g({staticClass:"page-link",attrs:{"href":"#","aria-label":"Previous","tabindex":!computed.prevPageUrl && -1}},prevButtonEvents),[_vm._t("prev-nav",[_c('span',{attrs:{"aria-hidden":"true"}},[_vm._v("«")]),_c('span',{staticClass:"sr-only"},[_vm._v("Previous")])])],2)]):_vm._e(),_vm._l((computed.pageRange),function(page,key){return _c('li',{key:key,staticClass:"page-item pagination-page-nav",class:{ 'active': page == computed.currentPage }},[_c('a',_vm._g({staticClass:"page-link",attrs:{"href":"#"}},pageButtonEvents(page)),[_vm._v(_vm._s(page))])])}),(computed.nextPageUrl || _vm.showDisabled)?_c('li',{staticClass:"page-item pagination-next-nav",class:{'disabled': !computed.nextPageUrl}},[_c('a',_vm._g({staticClass:"page-link",attrs:{"href":"#","aria-label":"Next","tabindex":!computed.nextPageUrl && -1}},nextButtonEvents),[_vm._t("next-nav",[_c('span',{attrs:{"aria-hidden":"true"}},[_vm._v("»")]),_c('span',{staticClass:"sr-only"},[_vm._v("Next")])])],2)]):_vm._e()],2):_vm._e()}}])})}
+var staticRenderFns = []
+
+
+// CONCATENATED MODULE: ./src/LaravelVuePagination.vue?vue&type=template&id=07aadf89&
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.number.constructor.js
+var es6_number_constructor = __webpack_require__("c5f6");
+
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./src/RenderlessLaravelVuePagination.vue?vue&type=script&lang=js&
+
+/* harmony default export */ var RenderlessLaravelVuePaginationvue_type_script_lang_js_ = ({
+  props: {
+    data: {
+      type: Object,
+      default: function _default() {}
+    },
+    limit: {
+      type: Number,
+      default: 0
+    },
+    showDisabled: {
+      type: Boolean,
+      default: false
+    }
+  },
+  computed: {
+    isApiResource: function isApiResource() {
+      return !!this.data.meta;
+    },
+    currentPage: function currentPage() {
+      return this.isApiResource ? this.data.meta.current_page : this.data.current_page;
+    },
+    firstPageUrl: function firstPageUrl() {
+      return this.isApiResource ? this.data.links.first : null;
+    },
+    from: function from() {
+      return this.isApiResource ? this.data.meta.from : this.data.from;
+    },
+    lastPage: function lastPage() {
+      return this.isApiResource ? this.data.meta.last_page : this.data.last_page;
+    },
+    lastPageUrl: function lastPageUrl() {
+      return this.isApiResource ? this.data.links.last : null;
+    },
+    nextPageUrl: function nextPageUrl() {
+      return this.isApiResource ? this.data.links.next : this.data.next_page_url;
+    },
+    perPage: function perPage() {
+      return this.isApiResource ? this.data.meta.per_page : this.data.per_page;
+    },
+    prevPageUrl: function prevPageUrl() {
+      return this.isApiResource ? this.data.links.prev : this.data.prev_page_url;
+    },
+    to: function to() {
+      return this.isApiResource ? this.data.meta.to : this.data.to;
+    },
+    total: function total() {
+      return this.isApiResource ? this.data.meta.total : this.data.total;
+    },
+    pageRange: function pageRange() {
+      if (this.limit === -1) {
+        return 0;
+      }
+
+      if (this.limit === 0) {
+        return this.lastPage;
+      }
+
+      var current = this.currentPage;
+      var last = this.lastPage;
+      var delta = this.limit;
+      var left = current - delta;
+      var right = current + delta + 1;
+      var range = [];
+      var pages = [];
+      var l;
+
+      for (var i = 1; i <= last; i++) {
+        if (i === 1 || i === last || i >= left && i < right) {
+          range.push(i);
+        }
+      }
+
+      range.forEach(function (i) {
+        if (l) {
+          if (i - l === 2) {
+            pages.push(l + 1);
+          } else if (i - l !== 1) {
+            pages.push('...');
+          }
+        }
+
+        pages.push(i);
+        l = i;
+      });
+      return pages;
+    }
+  },
+  methods: {
+    previousPage: function previousPage() {
+      this.selectPage(this.currentPage - 1);
+    },
+    nextPage: function nextPage() {
+      this.selectPage(this.currentPage + 1);
+    },
+    selectPage: function selectPage(page) {
+      if (page === '...') {
+        return;
+      }
+
+      this.$emit('pagination-change-page', page);
+    }
+  },
+  render: function render() {
+    var _this = this;
+
+    return this.$scopedSlots.default({
+      data: this.data,
+      limit: this.limit,
+      computed: {
+        isApiResource: this.isApiResource,
+        currentPage: this.currentPage,
+        firstPageUrl: this.firstPageUrl,
+        from: this.from,
+        lastPage: this.lastPage,
+        lastPageUrl: this.lastPageUrl,
+        nextPageUrl: this.nextPageUrl,
+        perPage: this.perPage,
+        prevPageUrl: this.prevPageUrl,
+        to: this.to,
+        total: this.total,
+        pageRange: this.pageRange
+      },
+      prevButtonEvents: {
+        click: function click(e) {
+          e.preventDefault();
+
+          _this.previousPage();
+        }
+      },
+      nextButtonEvents: {
+        click: function click(e) {
+          e.preventDefault();
+
+          _this.nextPage();
+        }
+      },
+      pageButtonEvents: function pageButtonEvents(page) {
+        return {
+          click: function click(e) {
+            e.preventDefault();
+
+            _this.selectPage(page);
+          }
+        };
+      }
+    });
+  }
+});
+// CONCATENATED MODULE: ./src/RenderlessLaravelVuePagination.vue?vue&type=script&lang=js&
+ /* harmony default export */ var src_RenderlessLaravelVuePaginationvue_type_script_lang_js_ = (RenderlessLaravelVuePaginationvue_type_script_lang_js_); 
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/runtime/componentNormalizer.js
+/* globals __VUE_SSR_CONTEXT__ */
+
+// IMPORTANT: Do NOT use ES2015 features in this file (except for modules).
+// This module is a runtime utility for cleaner component module output and will
+// be included in the final webpack user bundle.
+
+function normalizeComponent (
+  scriptExports,
+  render,
+  staticRenderFns,
+  functionalTemplate,
+  injectStyles,
+  scopeId,
+  moduleIdentifier, /* server only */
+  shadowMode /* vue-cli only */
+) {
+  // Vue.extend constructor export interop
+  var options = typeof scriptExports === 'function'
+    ? scriptExports.options
+    : scriptExports
+
+  // render functions
+  if (render) {
+    options.render = render
+    options.staticRenderFns = staticRenderFns
+    options._compiled = true
+  }
+
+  // functional template
+  if (functionalTemplate) {
+    options.functional = true
+  }
+
+  // scopedId
+  if (scopeId) {
+    options._scopeId = 'data-v-' + scopeId
+  }
+
+  var hook
+  if (moduleIdentifier) { // server build
+    hook = function (context) {
+      // 2.3 injection
+      context =
+        context || // cached call
+        (this.$vnode && this.$vnode.ssrContext) || // stateful
+        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
+      // 2.2 with runInNewContext: true
+      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+        context = __VUE_SSR_CONTEXT__
+      }
+      // inject component styles
+      if (injectStyles) {
+        injectStyles.call(this, context)
+      }
+      // register component module identifier for async chunk inferrence
+      if (context && context._registeredComponents) {
+        context._registeredComponents.add(moduleIdentifier)
+      }
+    }
+    // used by ssr in case component is cached and beforeCreate
+    // never gets called
+    options._ssrRegister = hook
+  } else if (injectStyles) {
+    hook = shadowMode
+      ? function () { injectStyles.call(this, this.$root.$options.shadowRoot) }
+      : injectStyles
+  }
+
+  if (hook) {
+    if (options.functional) {
+      // for template-only hot-reload because in that case the render fn doesn't
+      // go through the normalizer
+      options._injectStyles = hook
+      // register for functioal component in vue file
+      var originalRender = options.render
+      options.render = function renderWithStyleInjection (h, context) {
+        hook.call(context)
+        return originalRender(h, context)
+      }
+    } else {
+      // inject component registration as beforeCreate hook
+      var existing = options.beforeCreate
+      options.beforeCreate = existing
+        ? [].concat(existing, hook)
+        : [hook]
+    }
+  }
+
+  return {
+    exports: scriptExports,
+    options: options
+  }
+}
+
+// CONCATENATED MODULE: ./src/RenderlessLaravelVuePagination.vue
+var RenderlessLaravelVuePagination_render, RenderlessLaravelVuePagination_staticRenderFns
+
+
+
+
+/* normalize component */
+
+var component = normalizeComponent(
+  src_RenderlessLaravelVuePaginationvue_type_script_lang_js_,
+  RenderlessLaravelVuePagination_render,
+  RenderlessLaravelVuePagination_staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+component.options.__file = "RenderlessLaravelVuePagination.vue"
+/* harmony default export */ var RenderlessLaravelVuePagination = (component.exports);
+// CONCATENATED MODULE: ./node_modules/cache-loader/dist/cjs.js??ref--12-0!./node_modules/thread-loader/dist/cjs.js!./node_modules/babel-loader/lib!./node_modules/vue-loader/lib??vue-loader-options!./src/LaravelVuePagination.vue?vue&type=script&lang=js&
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ var LaravelVuePaginationvue_type_script_lang_js_ = ({
+  props: {
+    data: {
+      type: Object,
+      default: function _default() {}
+    },
+    limit: {
+      type: Number,
+      default: 0
+    },
+    showDisabled: {
+      type: Boolean,
+      default: false
+    }
+  },
+  methods: {
+    onPaginationChangePage: function onPaginationChangePage(page) {
+      this.$emit('pagination-change-page', page);
+    }
+  },
+  components: {
+    RenderlessLaravelVuePagination: RenderlessLaravelVuePagination
+  }
+});
+// CONCATENATED MODULE: ./src/LaravelVuePagination.vue?vue&type=script&lang=js&
+ /* harmony default export */ var src_LaravelVuePaginationvue_type_script_lang_js_ = (LaravelVuePaginationvue_type_script_lang_js_); 
+// CONCATENATED MODULE: ./src/LaravelVuePagination.vue
+
+
+
+
+
+/* normalize component */
+
+var LaravelVuePagination_component = normalizeComponent(
+  src_LaravelVuePaginationvue_type_script_lang_js_,
+  render,
+  staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+LaravelVuePagination_component.options.__file = "LaravelVuePagination.vue"
+/* harmony default export */ var LaravelVuePagination = (LaravelVuePagination_component.exports);
+// CONCATENATED MODULE: ./node_modules/@vue/cli-service/lib/commands/build/entry-lib.js
+
+
+/* harmony default export */ var entry_lib = __webpack_exports__["default"] = (LaravelVuePagination);
+
+
+
+/***/ }),
+
+/***/ "fdef":
+/***/ (function(module, exports) {
+
+module.exports = '\x09\x0A\x0B\x0C\x0D\x20\xA0\u1680\u180E\u2000\u2001\u2002\u2003' +
+  '\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u3000\u2028\u2029\uFEFF';
+
+
+/***/ })
+
+/******/ })["default"]);
+//# sourceMappingURL=laravel-vue-pagination.common.js.map
 
 /***/ })
 /******/ ]);

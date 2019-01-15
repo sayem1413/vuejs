@@ -14,7 +14,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(category,index) in allcategories" :key="category.id">
+        <tr v-for="(category,index) in allCategories" :key="category.id">
           <td scope="row">{{index+1}}</td>
           <td>{{category.name}}</td>
           <td>{{category.description}}</td>
@@ -40,11 +40,11 @@
 export default {
   name: "List",
   mounted() {
-    this.$store.dispatch("all_category");
+    this.$store.dispatch("allCategory");
   },
   computed: {
-    allcategories() {
-      return this.$store.getters.allcategories;
+    allCategories() {
+      return this.$store.getters.allCategories;
     }
   },
   methods: {
@@ -52,7 +52,7 @@ export default {
       axios
         .get("/category/delete/" + id)
         .then(() => {
-          this.$store.dispatch("all_category");
+          this.$store.dispatch("allCategory");
           toast({
             type: "success",
             title: "Category Deleted successfully"

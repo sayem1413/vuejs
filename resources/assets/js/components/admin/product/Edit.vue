@@ -13,17 +13,15 @@
           @submit.prevent="updateProduct()"
         >
           <div class="form-group">
-            <label for="product_name" class="col-sm-2 control-label">Product Name</label>
+            <label for="name" class="col-sm-2 control-label">Product Name</label>
             <div class="col-sm-10">
               <input
                 type="text"
-                v-model="form.product_name"
-                :class="{ 'is-invalid': form.errors.has('product_name') }"
-                name="product_name"
+                v-model="product.name"
+                name="name"
                 placeholder="Add New Product"
                 class="form-control"
               >
-              <has-error :form="form" field="product_name"></has-error>
               <span class="text-danger"></span>
             </div>
           </div>
@@ -33,18 +31,16 @@
               <select
                 class="form-control"
                 name="category_id"
-                :class="{ 'is-invalid': form.errors.has('category_id') }"
-                v-model="form.category_id"
+                v-model="product.category_id"
               >
                 <option :value="null">Select Category</option>
                 <option
-                  v-for="category in allpublishedcategories"
-                  :key="category.id"
+                  v-for="category in allPublishedCategories"
                   v-show="category.active == 1"
+                  :key="category.id"
                   :value="category.id"
-                >{{category.category_name}}</option>
+                >{{category.name}}</option>
               </select>
-              <has-error :form="form" field="category_id"></has-error>
             </div>
           </div>
           <div class="form-group">
@@ -53,84 +49,74 @@
               <select
                 class="form-control"
                 name="manufacturer_id"
-                :class="{ 'is-invalid': form.errors.has('manufacturer_id') }"
-                v-model="form.manufacturer_id"
+                v-model="product.manufacturer_id"
               >
                 <option :value="null">Select Manufacturer</option>
                 <option
-                  v-for="manufacturer in allpublishedmanufacturers"
-                  :key="manufacturer.id"
+                  v-for="manufacturer in allPublishedManufacturers"
                   v-show="manufacturer.active == 1"
+                  :key="manufacturer.id"
                   :value="manufacturer.id"
-                >{{manufacturer.manufacturer_name}}</option>
+                >{{manufacturer.name}}</option>
               </select>
-              <has-error :form="form" field="manufacturer_id"></has-error>
             </div>
           </div>
           <div class="form-group">
-            <label for="product_price" class="col-sm-2 control-label">Product Price</label>
+            <label for="price" class="col-sm-2 control-label">Product Price</label>
             <div class="col-sm-10">
               <input
                 type="number"
-                v-model="form.product_price"
-                :class="{ 'is-invalid': form.errors.has('product_price') }"
+                v-model="product.price"
                 class="form-control"
-                name="product_price"
+                name="price"
                 placeholder="Add product price"
               >
               <span class="text-danger"></span>
-              <has-error :form="form" field="product_price"></has-error>
             </div>
           </div>
           <div class="form-group">
-            <label for="product_quantity" class="col-sm-2 control-label">Product Quntity</label>
+            <label for="quantity" class="col-sm-2 control-label">Product Quntity</label>
             <div class="col-sm-10">
               <input
                 type="number"
-                v-model="form.product_quantity"
-                :class="{ 'is-invalid': form.errors.has('product_quantity') }"
+                v-model="product.quantity"
                 class="form-control"
-                name="product_quantity"
+                name="quantity"
                 placeholder="Add product quantity"
               >
               <span class="text-danger"></span>
-              <has-error :form="form" field="product_quantity"></has-error>
             </div>
           </div>
           <div class="form-group">
             <label
-              for="product_short_description"
+              for="short_description"
               class="col-sm-2 control-label"
             >Product Short Description</label>
             <div class="col-sm-10">
               <textarea
-                v-model="form.product_short_description"
-                :class="{ 'is-invalid': form.errors.has('product_short_description') }"
+                v-model="product.short_description"
                 class="form-control"
-                name="product_short_description"
+                name="short_description"
                 rows="8"
                 placeholder="Add product Short Description"
               ></textarea>
               <span class="text-danger"></span>
-              <has-error :form="form" field="product_short_description"></has-error>
             </div>
           </div>
           <div class="form-group">
             <label
-              for="product_long_description"
+              for="long_description"
               class="col-sm-2 control-label"
             >Product Long Description</label>
             <div class="col-sm-10">
               <textarea
-                v-model="form.product_long_description"
-                :class="{ 'is-invalid': form.errors.has('product_long_description') }"
+                v-model="product.long_description"
                 class="form-control"
-                name="product_long_description"
+                name="long_description"
                 rows="8"
                 placeholder="Add product Long Description"
               ></textarea>
               <span class="text-danger"></span>
-              <has-error :form="form" field="product_long_description"></has-error>
             </div>
           </div>
           <div class="form-group">
@@ -140,28 +126,21 @@
                 @change="changeImage($event)"
                 type="file"
                 class="form-control"
-                name="product_image"
-                :class="{ 'is-invalid': form.errors.has('product_image') }"
+                name="image"
               >
               <span class="text-danger"></span>
               <img :src="updateImage()" alt width="80" height="80">
-              <has-error :form="form" field="product_image"></has-error>
             </div>
           </div>
           <div class="form-group">
             <label for class="col-sm-2 control-label">Publication Status</label>
-            <div class="col-sm-10">
-              <select
-                class="form-control"
-                name="active"
-                v-model="form.active"
-                :class="{ 'is-invalid': form.errors.has('active') }"
-              >
-                <option :value="null">Select Publication Status</option>
-                <option :value="1">Published</option>
-                <option :value="0">Unpublished</option>
-              </select>
-              <has-error :form="form" field="active"></has-error>
+            <div class="col-sm-5">
+              <input type="radio" id="active" value="1" v-model="product.active">
+              <label for="one">Published</label>
+            </div>
+            <div class="col-sm-5">
+              <input type="radio" id="active" value="0" v-model="product.active">
+              <label for="active">Unpublished</label>
             </div>
           </div>
           <div class="form-group">
@@ -178,36 +157,37 @@
 <script>
 export default {
   name: "Edit",
-  data() {
+  data: function() {
     return {
-      form: new Form({
-        product_name: "",
-        category_id: "",
-        manufacturer_id: "",
-        product_price: "",
-        product_quantity: "",
-        product_short_description: "",
-        product_long_description: "",
-        product_image: "",
-        active: ""
-      })
+      product: {
+        name: '',
+        category_id: '',
+        manufacturer_id: '',
+        price: '',
+        quantity: '',
+        short_description: '',
+        long_description: '',
+        image: '',
+        active:'',
+      }
     };
   },
   mounted() {
-    this.$store.dispatch("all_category");
-    this.$store.dispatch("allmanufacturers");
+    this.$store.dispatch("allCategory");
+    this.$store.dispatch("allManufacturers");
     axios
       .get(`/product/edit/${this.$route.params.productId}`)
       .then(response => {
-        this.form.fill(response.data.product_by_id);
+        //this.form.fill(response.data.product_by_id);
+        this.product = response.data.productInfo;
       });
   },
   computed: {
-    allpublishedcategories() {
-      return this.$store.getters.allcategories;
+    allPublishedCategories() {
+      return this.$store.getters.allCategories;
     },
-    allpublishedmanufacturers() {
-      return this.$store.getters.allmanufacturers;
+    allPublishedManufacturers() {
+      return this.$store.getters.allManufacturers;
     }
   },
   created() {},
@@ -225,23 +205,23 @@ export default {
       } else {
         let reader = new FileReader();
         reader.onload = event => {
-          this.form.product_image = event.target.result;
+          this.product.image = event.target.result;
           console.log(event.target.result);
         };
         reader.readAsDataURL(file);
       }
     },
     updateImage() {
-      let img = this.form.product_image;
+      let img = this.product.image;
       if (img.length > 10000) {
-        return this.form.product_image;
+        return this.product.image;
       } else {
-        return `productImage/${this.form.product_image}`;
+        return `productImage/${this.product.image}`;
       }
     },
     updateProduct() {
       axios
-        .post(`/product/update/${this.$route.params.productId}`, this.form)
+        .post(`/product/update/${this.$route.params.productId}`, this.product)
         .then(response => {
           this.$router.push("/product/list");
           toast({

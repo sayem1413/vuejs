@@ -5,49 +5,40 @@
             <h4 class="text-center text-success"></h4>
             <hr/>
             <div class="well">
-                <form role="form" class="form-horizontal" @submit.prevent="update_category()">
+                <form class="form-horizontal" @submit.prevent="update_category()">
                     <div class="form-group">
-                        <label for="category_name" class="col-sm-2 control-label">Category Name</label>
+                        <label for="name" class="col-sm-2 control-label">Category Name</label>
                         <div class="col-sm-10">
-                            <input
-                                type="text"
-                                class="form-control"
-                                v-model="form.category_name"
-                                name="category_name"
-                                :class="{ 'is-invalid': form.errors.has('category_name') }"
-                            >
-                            <has-error :form="form" field="category_name"></has-error>
-                            <span class="text-danger"></span>
+                        <input
+                            type="text"
+                            class="form-control"
+                            v-model="category.name"
+                            name="name"
+                        >
+                        <span class="text-danger"></span>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="category_description" class="col-sm-2 control-label">Category Description</label>
+                        <label for="description" class="col-sm-2 control-label">Category Description</label>
                         <div class="col-sm-10">
-                            <textarea
-                                class="form-control"
-                                v-model="form.category_description"
-                                name="category_description"
-                                rows="8"
-                                :class="{ 'is-invalid': form.errors.has('category_description') }"
-                            ></textarea>
-                            <has-error :form="form" field="category_description"></has-error>
-                            <span class="text-danger"></span>
+                        <textarea
+                            class="form-control"
+                            v-model="category.description"
+                            name="description"
+                            rows="8"
+                        ></textarea>
+                        <span class="text-danger"></span>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="" class="col-sm-2 control-label"></label>
-                        <div class="col-sm-10">
-                            <select
-                                class="form-control"
-                                name="active"
-                                v-model="form.active"
-                                :class="{ 'is-invalid': form.errors.has('active') }"
-                            >
-                                <option :value="null">Select Publication Status</option>
-                                <option :value="1">Published</option>
-                                <option :value="0">Unpublished</option>
-                            </select>
-                            <has-error :form="form" field="active"></has-error>
+                        <label for="active" class="col-sm-2 control-label">Publication Status</label>
+                        <div class="col-sm-5">
+                        <input type="radio" id="active" value="1" v-model="category.active">
+                        <label for="one">Published</label>
+                        </div>
+                        <div class="col-sm-5">
+                        <input type="radio" id="active" value="0" v-model="category.active">
+                        <label for="active">Unpublished</label>
                         </div>
                     </div>
                     <div class="form-group">
@@ -67,21 +58,26 @@
         mounted(){
             axios.get(`/category/edit/${this.$route.params.categoryid}`)
                 .then((response)=>{
-                    this.form.fill(response.data.category_by_id)
+                    //this.form.fill(response.data.categoryInfo)
+                    this.category = response.data.categoryInfo;
+                    console.log(response.data.categoryInfo)
                 })
+                .catch(function () {
+                    alert("Could not load your category")
+                });
         },
-        data(){
+        data: function(){
             return {
-                form: new Form({
-                    category_name:'',
-                    category_description:'',
+                category:{
+                    name:'',
+                    description:'',
                     active:''
-                })
+                }
             }
         },
         methods:{
             update_category(){
-                axios.post(`/category/update/${this.$route.params.categoryid}`,  this.form)
+                axios.post(`/category/update/${this.$route.params.categoryid}`,  this.category)
                     .then((response)=>{
                         this.$router.push('/category/list')
                         toast({
@@ -90,7 +86,7 @@
                         })
                     })
                     .catch(()=>{
-
+                        alert("Could not save your category")
                     })
             }
         }

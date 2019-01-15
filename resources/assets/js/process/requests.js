@@ -9,13 +9,13 @@ export default {
         cartproduct:[]
     },
     getters:{
-        allcategories(state){
+        allCategories(state){
             return state.category
         },
-        allmanufacturers(state){
+        allManufacturers(state){
             return state.manufacturer
         },
-        allproducts(state){
+        allProducts(state){
             return state.product
         },
         all_latest_products(state){
@@ -36,7 +36,7 @@ export default {
         }
     },
     actions:{
-        all_category(context){
+        allCategory(context){
             axios.get('/category/manage')
                 .then((response)=>{
                     context.commit('categoreis',response.data.categories)
@@ -48,13 +48,13 @@ export default {
                     context.commit('categoreis',response.data.categories)
                 })
         },
-        allmanufacturers(context){
+        allManufacturers(context){
             axios.get('/manufacturer/manage')
                 .then((response)=>{
                     context.commit('manufacturers',response.data.manufacturers)
                 })
         },
-        allproducts(context){
+        allProducts(context){
             axios.get('/product/manage')
                 .then((response) => {
                     context.commit('products',response.data.products)

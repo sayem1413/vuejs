@@ -36,17 +36,17 @@ class ManufacturerController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'manufacturer_name'=>'required',
-            'manufacturer_description'=>'required',
+            'name'=>'required',
+            'description'=>'required',
         ]);
         
         
         //return $request->all();
-        $manufacturer = new Manufacturer();
-        $manufacturer->name = $request->manufacturer_name;
-        $manufacturer->description = $request->manufacturer_description;
-        $manufacturer->active = $request->active;
-        $manufacturer->save();
+        $manufacturerInfo = new Manufacturer();
+        $manufacturerInfo->name = $request->name;
+        $manufacturerInfo->description = $request->description;
+        $manufacturerInfo->active = $request->active;
+        $manufacturerInfo->save();
         
         return response()->json(["success"=>true],200);
     }
@@ -55,7 +55,8 @@ class ManufacturerController extends Controller
     {
         $manufacturers = Manufacturer::all();
         return response()->json([
-            'manufacturers'=>$manufacturers
+            'manufacturers'=>$manufacturers,
+            "success" => true
         ],200);
     }
 
@@ -78,9 +79,10 @@ class ManufacturerController extends Controller
      */
     public function edit($id)
     {
-        $manufacturer_by_id = Manufacturer::where('id',$id)->first();
+        $manufacturerInfo = Manufacturer::where('id',$id)->first();
         return response()->json([
-            'manufacturer_by_id'=>$manufacturer_by_id
+            'manufacturerInfo'=>$manufacturerInfo,
+            "success" => true
         ],200);
     }
 
@@ -94,17 +96,17 @@ class ManufacturerController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request,[
-            'manufacturer_name'=>'required',
-            'manufacturer_description'=>'required',
+            'name'=>'required',
+            'description'=>'required',
         ]);
         
         
         //return $request->all();
-        $manufacturer = Manufacturer::where('id',$id)->first();
-        $manufacturer->name = $request->manufacturer_name;
-        $manufacturer->description = $request->manufacturer_description;
-        $manufacturer->active = $request->active;
-        $manufacturer->save();
+        $manufacturerInfo = Manufacturer::where('id',$id)->first();
+        $manufacturerInfo->name = $request->name;
+        $manufacturerInfo->description = $request->description;
+        $manufacturerInfo->active = $request->active;
+        $manufacturerInfo->save();
         
         return response()->json(["success"=>true],200);
     }
@@ -117,8 +119,8 @@ class ManufacturerController extends Controller
      */
     public function destroy($id)
     {
-        $manufacturer = Manufacturer::find($id);
-        $manufacturer->delete();
+        $manufacturerInfo = Manufacturer::find($id);
+        $manufacturerInfo->delete();
         return response()->json(["success"=>true],200);
     }
 }

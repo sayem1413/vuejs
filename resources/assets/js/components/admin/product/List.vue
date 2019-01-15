@@ -20,7 +20,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(product,index) in allpublishedproducts" :key="product.id">
+                <tr v-for="(product,index) in allPublishedProducts" :key="product.id">
                     <td scope="row">{{index+1}}</td>
                     <td>{{product.name}}</td>
                     <td>{{product.category_name}}</td>
@@ -47,11 +47,11 @@
     export default {
         name: "List",
         mounted(){
-            this.$store.dispatch("allproducts")
+            this.$store.dispatch("allProducts")
         },
         computed:{
-           allpublishedproducts(){
-               return this.$store.getters.allproducts
+           allPublishedProducts(){
+               return this.$store.getters.allProducts
            }
         },
         methods:{
@@ -61,7 +61,7 @@
             deleteProduct(id){
                axios.get('/product/delete/'+id)
                    .then(()=>{
-                       this.$store.dispatch("allproducts")
+                       this.$store.dispatch("allProducts")
                        toast({
                            type: 'success',
                            title: 'Product Deleted successfully'

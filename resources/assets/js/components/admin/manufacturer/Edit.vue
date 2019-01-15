@@ -5,37 +5,43 @@
             <h4 class="text-center text-success"></h4>
             <hr/>
             <div class="well">
-                <form role="form" class="form-horizontal" @submit.prevent="updatemanufacturer()">
+                <form class="form-horizontal" @submit.prevent="updateManufacturer()">
                     <div class="form-group">
-                        <label for="manufacturer_name" class="col-sm-2 control-label">Manufacturer Name</label>
+                        <label for="name" class="col-sm-2 control-label">Manufacturer Name</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="form.manufacturer_name" name="manufacturer_name" :class="{ 'is-invalid': form.errors.has('manufacturer_name') }">
-                            <has-error :form="form" field="manufacturer_name"></has-error>
-                            <span class="text-danger"></span>
+                        <input
+                            type="text"
+                            class="form-control"
+                            v-model="manufacturer.name"
+                            name="name"
+                        >
+                        <span class="text-danger"></span>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="manufacturer_description" class="col-sm-2 control-label">Manufacturer Description</label>
+                        <label
+                        for="description"
+                        class="col-sm-2 control-label"
+                        >Manufacturer Description</label>
                         <div class="col-sm-10">
-                            <textarea class="form-control" v-model="form.manufacturer_description" name="manufacturer_description" rows="8" :class="{ 'is-invalid': form.errors.has('manufacturer_description') }"></textarea>
-                            <has-error :form="form" field="manufacturer_description"></has-error>
-                            <span class="text-danger"></span>
+                        <textarea
+                            class="form-control"
+                            v-model="manufacturer.description"
+                            name="description"
+                            rows="8"
+                        ></textarea>
+                        <span class="text-danger"></span>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="" class="col-sm-2 control-label"></label>
-                        <div class="col-sm-10">
-                            <select
-                                class="form-control"
-                                name="active"
-                                v-model="form.active"
-                                :class="{ 'is-invalid': form.errors.has('active') }"
-                            >
-                                <option :value="null">Select Publication Status</option>
-                                <option :value="1">Published</option>
-                                <option :value="0">Unpublished</option>
-                            </select>
-                            <has-error :form="form" field="active"></has-error>
+                        <label for class="col-sm-2 control-label">Publication Status</label>
+                        <div class="col-sm-5">
+                        <input type="radio" id="active" value="1" v-model="manufacturer.active">
+                        <label for="one">Published</label>
+                        </div>
+                        <div class="col-sm-5">
+                        <input type="radio" id="active" value="0" v-model="manufacturer.active">
+                        <label for="active">Unpublished</label>
                         </div>
                     </div>
                     <div class="form-group">
@@ -55,21 +61,26 @@
         mounted(){
             axios.get(`/manufacturer/edit/${this.$route.params.manufacturerid}`)
                 .then((response)=>{
-                    this.form.fill(response.data.manufacturer_by_id)
+                    //this.form.fill(response.data.manufacturer_by_id)
+                    this.manufacturer = response.data.manufacturerInfo;
+                    console.log(response.data.manufacturerInfo)
                 })
+                .catch(function () {
+                    alert("Could not load your manufacturer")
+                });
         },
-        data(){
+        data: function() {
             return {
-                form: new Form({
-                    manufacturer_name:'',
-                    manufacturer_description:'',
-                    active: ''
-                })
+            manufacturer: {
+                name: "",
+                description: "",
+                active: ""
             }
+            };
         },
         methods:{
-            updatemanufacturer(){
-                axios.post(`/manufacturer/update/${this.$route.params.manufacturerid}`,  this.form)
+            updateManufacturer(){
+                axios.post(`/manufacturer/update/${this.$route.params.manufacturerid}`,  this.manufacturer)
                     .then((response)=>{
                         this.$router.push('/manufacturer/list')
                         toast({
@@ -78,7 +89,7 @@
                         })
                     })
                     .catch(()=>{
-
+                        alert("Could not save your manufacturer")
                     })
             }
         }

@@ -1,85 +1,92 @@
 <template>
-    <div class="row">
-        <div class="col-lg-12">
-            <h3 class="text-center">Add Manufacturer</h3>
-            <h4 class="text-center text-success"></h4>
-            
-            <hr/>
-            <div class="well">
-                <form role="form" class="form-horizontal" @submit.prevent="addManufacturer()">
-                    <div class="form-group">
-                        <label for="manufacturer_name" class="col-sm-2 control-label">Manufacturer Name</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" v-model="form.manufacturer_name" name="manufacturer_name" :class="{ 'is-invalid': form.errors.has('manufacturer_name') }">
-                            <has-error :form="form" field="manufacturer_name"></has-error>
-                            <span class="text-danger"></span>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="manufacturer_description" class="col-sm-2 control-label">Manufacturer Description</label>
-                        <div class="col-sm-10">
-                            <textarea class="form-control" v-model="form.manufacturer_description" name="manufacturer_description" rows="8" :class="{ 'is-invalid': form.errors.has('manufacturer_description') }"></textarea>
-                            <has-error :form="form" field="manufacturer_description"></has-error>
-                            <span class="text-danger"></span>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="" class="col-sm-2 control-label"></label>
-                        <div class="col-sm-10">
-                            <select
-                                class="form-control"
-                                name="active"
-                                v-model="form.active"
-                                :class="{ 'is-invalid': form.errors.has('active') }"
-                            >
-                                <option :value="null">Select Publication Status</option>
-                                <option :value="1">Published</option>
-                                <option :value="0">Unpublished</option>
-                            </select>
-                            <has-error :form="form" field="active"></has-error>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-10">
-                            <button type="submit" class="btn btn-success btn-block" name="">Save Manufacturer Info</button>
-                        </div>
-                    </div>
-                    
-                </form>
+  <div class="row">
+    <div class="col-lg-12">
+      <h3 class="text-center">Add Manufacturer</h3>
+      <h4 class="text-center text-success"></h4>
+
+      <hr>
+      <div class="well">
+        <form class="form-horizontal" @submit.prevent="addManufacturer()">
+          <div class="form-group">
+            <label for="name" class="col-sm-2 control-label">Manufacturer Name</label>
+            <div class="col-sm-10">
+              <input
+                type="text"
+                class="form-control"
+                v-model="manufacturer.name"
+                name="name"
+              >
+              <span class="text-danger"></span>
             </div>
-        </div>
+          </div>
+          <div class="form-group">
+            <label
+              for="description"
+              class="col-sm-2 control-label"
+            >Manufacturer Description</label>
+            <div class="col-sm-10">
+              <textarea
+                class="form-control"
+                v-model="manufacturer.description"
+                name="description"
+                rows="8"
+              ></textarea>
+              <span class="text-danger"></span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for class="col-sm-2 control-label">Publication Status</label>
+            <div class="col-sm-5">
+              <input type="radio" id="active" value="1" v-model="manufacturer.active">
+              <label for="one">Published</label>
+            </div>
+            <div class="col-sm-5">
+              <input type="radio" id="active" value="0" v-model="manufacturer.active">
+              <label for="active">Unpublished</label>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button type="submit" class="btn btn-success btn-block" name>Save Manufacturer Info</button>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
+  </div>
 </template>
 
 <script>
-    export default {
-        name: "Add",
-        data(){
-            return {
-                form: new Form({
-                    manufacturer_name:'',
-                    manufacturer_description:'',
-                    active: ""
-                })
-            }
-        },
-        methods:{
-            addManufacturer(){
-                console.log("okk");
-                axios.post("/manufacturer/save", this.form)
-                    .then(response => {
-                        this.$router.push("/manufacturer/list");
-                        toast({
-                            type: "success",
-                            title: "Manufacturer Added successfully"
-                        });
-                    })
-                    .catch(() => {});
-            }
-        }
+export default {
+  name: "Add",
+  data: function() {
+    return {
+      manufacturer: {
+        name: '',
+        description: '',
+        active: '',
+      }
+    };
+  },
+  methods: {
+    addManufacturer() {
+      console.log("okk");
+      var app = this;
+      var newManufacturer = app.manufacturer;
+      axios
+        .post('/manufacturer/save', newManufacturer)
+        .then(response => {
+          this.$router.push("/manufacturer/list");
+          toast({
+            type: "success",
+            title: "Manufacturer Added successfully"
+          });
+        })
+        .catch(() => {});
     }
+  }
+};
 </script>
 
 <style scoped>
-
 </style>

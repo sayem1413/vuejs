@@ -20,7 +20,7 @@ class UsersTableSeeder extends Seeder
         if ($adminMailCheck == false) {
             DB::table('users')->insert([
                 'name' => 'admin',
-                'email' => 'admin@gmail.com',
+                'email' => $email,
                 'password' => bcrypt('123456'),
                 'role' => Role::ADMIN,
             ]);

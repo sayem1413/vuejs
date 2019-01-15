@@ -41,13 +41,13 @@ class CategoryController extends Controller
         // return $request->all();
         
         $this->validate($request,[
-            'category_name'=>'required',
-            'category_description'=>'required',
+            'name'=>'required',
+            'description'=>'required',
         ]);
         
         $category = new Category();
-        $category->name = $request->category_name;
-        $category->description = $request->category_description;
+        $category->name = $request->name;
+        $category->description = $request->description;
         $category->active = $request->active;
         $category->save();
         return response()->json(["success"=>true],200);
@@ -83,9 +83,10 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        $category_by_id = Category::where('id',$id)->first();
+        $categoryInfo = Category::where('id',$id)->first();
         return response()->json([
-            'category_by_id'=>$category_by_id
+            'categoryInfo'=>$categoryInfo,
+            "success"=>true
         ],200);
     }
 
@@ -102,15 +103,15 @@ class CategoryController extends Controller
         //return $id;
 
         $this->validate($request,[
-            'category_name'=>'required',
-            'category_description'=>'required',
+            'name'=>'required',
+            'description'=>'required',
         ]);
         
-        $category = Category::where('id',$id)->first();
-        $category->name = $request->category_name;
-        $category->description = $request->category_description;
-        $category->active = $request->active;
-        $category->save();
+        $categoryInfo = Category::where('id',$id)->first();
+        $categoryInfo->name = $request->name;
+        $categoryInfo->description = $request->description;
+        $categoryInfo->active = $request->active;
+        $categoryInfo->save();
         return response()->json(["success"=>true],200);
     }
 
@@ -122,8 +123,8 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $category = Category::find($id);
-        $category->delete();
+        $categoryInfo = Category::find($id);
+        $categoryInfo->delete();
         return response()->json(["success"=>true],200);
     }
 }

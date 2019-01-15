@@ -14,7 +14,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(manufacturer,index) in allmanufacturers" :key="manufacturer.id">
+                <tr v-for="(manufacturer,index) in allManufacturers" :key="manufacturer.id">
                     <td scope="row">{{index+1}}</td>
                     <td>{{manufacturer.name}}</td>
                     <td>{{manufacturer.description}}</td>
@@ -35,18 +35,18 @@
     export default {
         name: "List",
         mounted(){
-            this.$store.dispatch("allmanufacturers")
+            this.$store.dispatch("allManufacturers")
         },
         computed:{
-           allmanufacturers(){
-               return this.$store.getters.allmanufacturers
+           allManufacturers(){
+               return this.$store.getters.allManufacturers
            }
         },
         methods:{
             deletemanufacturer(id){
                axios.get('/manufacturer/delete/'+id)
                    .then(()=>{
-                       this.$store.dispatch("allmanufacturers")
+                       this.$store.dispatch("allManufacturers")
                        toast({
                            type: 'success',
                            title: 'Manufacturer Deleted successfully'
