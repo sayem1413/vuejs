@@ -42,7 +42,7 @@
                   v-show="category.active == 1"
                   :key="category.id"
                   :value="category.id"
-                >{{category.category_name}}</option>
+                >{{category.name}}</option>
               </select>
               <has-error :form="form" field="category_id"></has-error>
             </div>
@@ -62,7 +62,7 @@
                   v-show="manufacturer.active == 1"
                   :key="manufacturer.id"
                   :value="manufacturer.id"
-                >{{manufacturer.manufacturer_name}}</option>
+                >{{manufacturer.name}}</option>
               </select>
               <has-error :form="form" field="manufacturer_id"></has-error>
             </div>

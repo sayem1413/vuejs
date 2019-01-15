@@ -37,7 +37,7 @@
                       v-show="category.active == 1"
                       :to="`/category/${category.id}`"
                       class="dropdown-toggle menu__link"
-                    >{{category.category_name}}</router-link>
+                    >{{category.name}}</router-link>
                   </li>
                 </ul>
               </div>

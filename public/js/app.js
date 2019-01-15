@@ -53039,7 +53039,7 @@ var render = function() {
                 "label",
                 {
                   staticClass: "col-sm-2 control-label",
-                  attrs: { for: "category_name" }
+                  attrs: { for: "name" }
                 },
                 [_vm._v("Category Name")]
               ),
@@ -53053,29 +53053,25 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.form.category_name,
-                        expression: "form.category_name"
+                        value: _vm.form.name,
+                        expression: "form.name"
                       }
                     ],
                     staticClass: "form-control",
-                    class: {
-                      "is-invalid": _vm.form.errors.has("category_name")
-                    },
-                    attrs: { type: "text", name: "category_name" },
-                    domProps: { value: _vm.form.category_name },
+                    class: { "is-invalid": _vm.form.errors.has("name") },
+                    attrs: { type: "text", name: "name" },
+                    domProps: { value: _vm.form.name },
                     on: {
                       input: function($event) {
                         if ($event.target.composing) {
                           return
                         }
-                        _vm.$set(_vm.form, "category_name", $event.target.value)
+                        _vm.$set(_vm.form, "name", $event.target.value)
                       }
                     }
                   }),
                   _vm._v(" "),
-                  _c("has-error", {
-                    attrs: { form: _vm.form, field: "category_name" }
-                  }),
+                  _c("has-error", { attrs: { form: _vm.form, field: "name" } }),
                   _vm._v(" "),
                   _c("span", { staticClass: "text-danger" })
                 ],
@@ -53088,7 +53084,7 @@ var render = function() {
                 "label",
                 {
                   staticClass: "col-sm-2 control-label",
-                  attrs: { for: "category_description" }
+                  attrs: { for: "description" }
                 },
                 [_vm._v("Category Description")]
               ),
@@ -53102,26 +53098,20 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.form.category_description,
-                        expression: "form.category_description"
+                        value: _vm.form.description,
+                        expression: "form.description"
                       }
                     ],
                     staticClass: "form-control",
-                    class: {
-                      "is-invalid": _vm.form.errors.has("category_description")
-                    },
-                    attrs: { name: "category_description", rows: "8" },
-                    domProps: { value: _vm.form.category_description },
+                    class: { "is-invalid": _vm.form.errors.has("description") },
+                    attrs: { name: "description", rows: "8" },
+                    domProps: { value: _vm.form.description },
                     on: {
                       input: function($event) {
                         if ($event.target.composing) {
                           return
                         }
-                        _vm.$set(
-                          _vm.form,
-                          "category_description",
-                          $event.target.value
-                        )
+                        _vm.$set(_vm.form, "description", $event.target.value)
                       }
                     }
                   }),
