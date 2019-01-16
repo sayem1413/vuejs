@@ -1,3 +1,4 @@
+import ROOT_URL from '../config';
 export default {
     state:{
         category:[],
@@ -37,51 +38,59 @@ export default {
     },
     actions:{
         allCategory(context){
-            axios.get('/category/manage')
+            let url = ROOT_URL+"category/manage";
+            axios.get(url)
                 .then((response)=>{
                     context.commit('categoreis',response.data.categories)
                 })
         },
         allPublishedCategories(context){
-            axios.get('/published/categories')
+            let url = ROOT_URL+"published/categories";
+            axios.get(url)
                 .then((response)=>{
                     context.commit('categoreis',response.data.categories)
                 })
         },
         allManufacturers(context){
-            axios.get('/manufacturer/manage')
+            let url = ROOT_URL+"manufacturer/manage";
+            axios.get(url)
                 .then((response)=>{
                     context.commit('manufacturers',response.data.manufacturers)
                 })
         },
         allProducts(context){
-            axios.get('/product/manage')
+            let url = ROOT_URL+"product/manage";
+            axios.get(url)
                 .then((response) => {
                     context.commit('products',response.data.products)
                 })
         },
         latestProducts(context){
-            axios.get('/latest/products')
+            let url = ROOT_URL+"latest/products";
+            axios.get(url)
                 .then((response) => {
                     context.commit('latestProducts',response.data.latestPublishedProducts)
                 })
         },
         allProductsByCategoryId(context,payload){
-            axios.get('/category-view/'+payload)
+            let url = ROOT_URL+"category-view/";
+            axios.get(url+payload)
                 .then((response)=>{
                     console.log(response.data.categoryWiseProducts)
                     context.commit('productsByCategory',response.data.categoryWiseProducts)
                 })
         },
         productById(context,payload){
-            axios.get('/product-details/'+payload)
+            let url = ROOT_URL+"product-details/";
+            axios.get(url+payload)
                 .then((response)=>{
                     // console.log(response.data)
                     context.commit('productById',response.data.productInfo)
                 })
         },
         allCartProducts(context){
-            axios.get('/cart/show')
+            let url = ROOT_URL+"cart/show";
+            axios.get(url)
                 .then((response) => {
                     //console.log(response.data.cartInfo)
                     context.commit('cartProducts',response.data.cartInfo)

@@ -126,8 +126,8 @@
                 @change="changeImage($event)"
                 type="file"
                 class="form-control"
-                name="image"
                 id="image"
+                ref="image"
               >
               <span class="text-danger"></span>
               <img :src="updateImage()" alt width="80" height="80">
@@ -156,6 +156,7 @@
 </template>
 
 <script>
+import ROOT_URL from "../../../config";
 export default {
   name: "Edit",
   data: function() {
@@ -174,10 +175,11 @@ export default {
     };
   },
   mounted() {
+    let url = ROOT_URL+"product/edit/";
     this.$store.dispatch("allCategory");
     this.$store.dispatch("allManufacturers");
     axios
-      .get(`/product/edit/${this.$route.params.productId}`)
+      .get(url +this.$route.params.productId)
       .then(response => {
         //this.form.fill(response.data.product_by_id);
         this.product = response.data.productInfo;
@@ -221,6 +223,7 @@ export default {
       }
     },
     updateProduct() {
+      let url = ROOT_URL+"product/update/";
       var formData = new FormData();
       formData.append('name',this.product.name);
       formData.append('category_id',this.product.category_id);
@@ -229,10 +232,10 @@ export default {
       formData.append('quantity',this.product.quantity);
       formData.append('short_description',this.product.short_description);
       formData.append('long_description',this.product.long_description);
-      formData.append('image',document.getElementById("image").files[0]);
+      formData.append('image', this.$refs.image.files[0]);
       formData.append('active',this.product.active);
       axios
-        .post(`/product/update/${this.$route.params.productId}`, formData,
+        .post(url +this.$route.params.productId, formData,
           {
             headers: {
                 'Content-Type': 'multipart/form-data'

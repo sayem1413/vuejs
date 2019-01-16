@@ -57,6 +57,7 @@
 </template>
 
 <script>
+import ROOT_URL from '../../../config';
 export default {
   name: "Add",
   data: function() {
@@ -70,11 +71,12 @@ export default {
   },
   methods: {
     addManufacturer() {
+      let url = ROOT_URL+"manufacturer/save";
       console.log("okk");
       var app = this;
       var newManufacturer = app.manufacturer;
       axios
-        .post('/manufacturer/save', newManufacturer)
+        .post(url, newManufacturer)
         .then(response => {
           this.$router.push("/manufacturer/list");
           toast({

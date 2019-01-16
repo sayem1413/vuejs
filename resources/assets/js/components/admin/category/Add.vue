@@ -54,7 +54,7 @@
 
 <script>
 
-//import globalUrl from '../../../globalUrl';
+import ROOT_URL from '../../../config';
 
 export default {
   name: "Add",
@@ -69,14 +69,14 @@ export default {
   },
   methods: {
     add_category() {
-      //let url = globalUrl.ROOT_URL+"category/save";
-
+      let url = ROOT_URL+"category/save";
+      //console.log(url)
       var app = this;
       var newCategory = app.category;
       
       console.log("okk");
       axios
-        .post('/category/save', newCategory)
+        .post(url, newCategory)
         .then(response => {
           this.$router.push("/category/list");
           toast({

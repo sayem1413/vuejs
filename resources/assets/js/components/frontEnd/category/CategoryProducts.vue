@@ -37,6 +37,7 @@
   </div>
 </template>
 <script>
+import ROOT_URL from "../../../config";
 export default {
   name: "CategoryProducts",
   mounted() {
@@ -56,8 +57,9 @@ export default {
       return "productImage/" + img;
     },
     addcart(id) {
+      let url = ROOT_URL + "cart/add/";
       axios
-        .get("/cart/add/" + id)
+        .get(url + id)
         .then(response => {
           this.$router.push("/cart");
           toast({

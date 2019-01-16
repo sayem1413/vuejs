@@ -49071,6 +49071,8 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__config__ = __webpack_require__(147);
+
 /* harmony default export */ __webpack_exports__["a"] = ({
     state: {
         category: [],
@@ -49110,44 +49112,52 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
     },
     actions: {
         allCategory: function allCategory(context) {
-            axios.get('/category/manage').then(function (response) {
+            var url = __WEBPACK_IMPORTED_MODULE_0__config__["a" /* default */] + "category/manage";
+            axios.get(url).then(function (response) {
                 context.commit('categoreis', response.data.categories);
             });
         },
         allPublishedCategories: function allPublishedCategories(context) {
-            axios.get('/published/categories').then(function (response) {
+            var url = __WEBPACK_IMPORTED_MODULE_0__config__["a" /* default */] + "published/categories";
+            axios.get(url).then(function (response) {
                 context.commit('categoreis', response.data.categories);
             });
         },
         allManufacturers: function allManufacturers(context) {
-            axios.get('/manufacturer/manage').then(function (response) {
+            var url = __WEBPACK_IMPORTED_MODULE_0__config__["a" /* default */] + "manufacturer/manage";
+            axios.get(url).then(function (response) {
                 context.commit('manufacturers', response.data.manufacturers);
             });
         },
         allProducts: function allProducts(context) {
-            axios.get('/product/manage').then(function (response) {
+            var url = __WEBPACK_IMPORTED_MODULE_0__config__["a" /* default */] + "product/manage";
+            axios.get(url).then(function (response) {
                 context.commit('products', response.data.products);
             });
         },
         latestProducts: function latestProducts(context) {
-            axios.get('/latest/products').then(function (response) {
+            var url = __WEBPACK_IMPORTED_MODULE_0__config__["a" /* default */] + "latest/products";
+            axios.get(url).then(function (response) {
                 context.commit('latestProducts', response.data.latestPublishedProducts);
             });
         },
         allProductsByCategoryId: function allProductsByCategoryId(context, payload) {
-            axios.get('/category-view/' + payload).then(function (response) {
+            var url = __WEBPACK_IMPORTED_MODULE_0__config__["a" /* default */] + "category-view/";
+            axios.get(url + payload).then(function (response) {
                 console.log(response.data.categoryWiseProducts);
                 context.commit('productsByCategory', response.data.categoryWiseProducts);
             });
         },
         productById: function productById(context, payload) {
-            axios.get('/product-details/' + payload).then(function (response) {
+            var url = __WEBPACK_IMPORTED_MODULE_0__config__["a" /* default */] + "product-details/";
+            axios.get(url + payload).then(function (response) {
                 // console.log(response.data)
                 context.commit('productById', response.data.productInfo);
             });
         },
         allCartProducts: function allCartProducts(context) {
-            axios.get('/cart/show').then(function (response) {
+            var url = __WEBPACK_IMPORTED_MODULE_0__config__["a" /* default */] + "cart/show";
+            axios.get(url).then(function (response) {
                 //console.log(response.data.cartInfo)
                 context.commit('cartProducts', response.data.cartInfo);
             });
@@ -52269,6 +52279,7 @@ module.exports = function listToStyles (parentId, list) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__config__ = __webpack_require__(147);
 //
 //
 //
@@ -52325,7 +52336,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 
-//import globalUrl from '../../../globalUrl';
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Add",
@@ -52342,13 +52353,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     add_category: function add_category() {
       var _this = this;
 
-      //let url = globalUrl.ROOT_URL+"category/save";
-
+      var url = __WEBPACK_IMPORTED_MODULE_0__config__["a" /* default */] + "category/save";
+      //console.log(url)
       var app = this;
       var newCategory = app.category;
 
       console.log("okk");
-      axios.post('/category/save', newCategory).then(function (response) {
+      axios.post(url, newCategory).then(function (response) {
         _this.$router.push("/category/list");
         toast({
           type: "success",
@@ -52640,7 +52651,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -52651,6 +52662,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__config__ = __webpack_require__(147);
 //
 //
 //
@@ -52689,6 +52701,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "List",
@@ -52705,7 +52718,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     deleteCategory: function deleteCategory(id) {
       var _this = this;
 
-      axios.get("/category/delete/" + id).then(function () {
+      var url = __WEBPACK_IMPORTED_MODULE_0__config__["a" /* default */] + "category/delete/";
+      axios.get(url + id).then(function () {
         _this.$store.dispatch("allCategory");
         toast({
           type: "success",
@@ -52868,6 +52882,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__config__ = __webpack_require__(147);
 //
 //
 //
@@ -52916,51 +52931,48 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    name: "Edit",
-    mounted: function mounted() {
-        var _this = this;
+  name: "Edit",
+  mounted: function mounted() {
+    var _this = this;
 
-        axios.get("/category/edit/" + this.$route.params.categoryid).then(function (response) {
-            //this.form.fill(response.data.categoryInfo)
-            _this.category = response.data.categoryInfo;
-            console.log(response.data.categoryInfo);
-        }).catch(function () {
-            alert("Could not load your category");
+    var url = __WEBPACK_IMPORTED_MODULE_0__config__["a" /* default */] + "category/edit/";
+    axios.get(url + this.$route.params.categoryid).then(function (response) {
+      //this.form.fill(response.data.categoryInfo)
+      _this.category = response.data.categoryInfo;
+      console.log(response.data.categoryInfo);
+    }).catch(function () {
+      alert("Could not load your category");
+    });
+  },
+
+  data: function data() {
+    return {
+      category: {
+        name: "",
+        description: "",
+        active: ""
+      }
+    };
+  },
+  methods: {
+    update_category: function update_category() {
+      var _this2 = this;
+
+      var url = __WEBPACK_IMPORTED_MODULE_0__config__["a" /* default */] + "category/update/";
+      axios.post(url + this.$route.params.categoryid, this.category).then(function (response) {
+        _this2.$router.push("/category/list");
+        toast({
+          type: "success",
+          title: "Category Updated successfully"
         });
-    },
-
-    data: function data() {
-        return {
-            category: {
-                name: '',
-                description: '',
-                active: ''
-            }
-        };
-    },
-    methods: {
-        update_category: function update_category() {
-            var _this2 = this;
-
-            axios.post("/category/update/" + this.$route.params.categoryid, this.category).then(function (response) {
-                _this2.$router.push('/category/list');
-                toast({
-                    type: 'success',
-                    title: 'Category Updated successfully'
-                });
-            }).catch(function () {
-                alert("Could not save your category");
-            });
-        }
+      }).catch(function () {
+        alert("Could not save your category");
+      });
     }
+  }
 });
 
 /***/ }),
@@ -53244,7 +53256,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -53255,6 +53267,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__config__ = __webpack_require__(147);
 //
 //
 //
@@ -53313,6 +53326,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Add",
@@ -53329,10 +53343,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     addManufacturer: function addManufacturer() {
       var _this = this;
 
+      var url = __WEBPACK_IMPORTED_MODULE_0__config__["a" /* default */] + "manufacturer/save";
       console.log("okk");
       var app = this;
       var newManufacturer = app.manufacturer;
-      axios.post('/manufacturer/save', newManufacturer).then(function (response) {
+      axios.post(url, newManufacturer).then(function (response) {
         _this.$router.push("/manufacturer/list");
         toast({
           type: "success",
@@ -53625,7 +53640,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -53636,6 +53651,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__config__ = __webpack_require__(147);
 //
 //
 //
@@ -53669,31 +53685,38 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    name: "List",
-    mounted: function mounted() {
-        this.$store.dispatch("allManufacturers");
-    },
+  name: "List",
+  mounted: function mounted() {
+    this.$store.dispatch("allManufacturers");
+  },
 
-    computed: {
-        allManufacturers: function allManufacturers() {
-            return this.$store.getters.allManufacturers;
-        }
-    },
-    methods: {
-        deletemanufacturer: function deletemanufacturer(id) {
-            var _this = this;
-
-            axios.get('/manufacturer/delete/' + id).then(function () {
-                _this.$store.dispatch("allManufacturers");
-                toast({
-                    type: 'success',
-                    title: 'Manufacturer Deleted successfully'
-                });
-            }).catch(function () {});
-        }
+  computed: {
+    allManufacturers: function allManufacturers() {
+      return this.$store.getters.allManufacturers;
     }
+  },
+  methods: {
+    deletemanufacturer: function deletemanufacturer(id) {
+      var _this = this;
+
+      var url = __WEBPACK_IMPORTED_MODULE_0__config__["a" /* default */] + "manufacturer/delete/";
+      axios.get(url + id).then(function () {
+        _this.$store.dispatch("allManufacturers");
+        toast({
+          type: "success",
+          title: "Manufacturer Deleted successfully"
+        });
+      }).catch(function () {});
+    }
+  }
 });
 
 /***/ }),
@@ -53848,6 +53871,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__config__ = __webpack_require__(147);
 //
 //
 //
@@ -53896,54 +53920,48 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    name: "Edit",
-    mounted: function mounted() {
-        var _this = this;
+  name: "Edit",
+  mounted: function mounted() {
+    var _this = this;
 
-        axios.get("/manufacturer/edit/" + this.$route.params.manufacturerid).then(function (response) {
-            //this.form.fill(response.data.manufacturer_by_id)
-            _this.manufacturer = response.data.manufacturerInfo;
-            console.log(response.data.manufacturerInfo);
-        }).catch(function () {
-            alert("Could not load your manufacturer");
+    var url = __WEBPACK_IMPORTED_MODULE_0__config__["a" /* default */] + "manufacturer/edit/";
+    axios.get(url + this.$route.params.manufacturerid).then(function (response) {
+      //this.form.fill(response.data.manufacturer_by_id)
+      _this.manufacturer = response.data.manufacturerInfo;
+      console.log(response.data.manufacturerInfo);
+    }).catch(function () {
+      alert("Could not load your manufacturer");
+    });
+  },
+
+  data: function data() {
+    return {
+      manufacturer: {
+        name: "",
+        description: "",
+        active: ""
+      }
+    };
+  },
+  methods: {
+    updateManufacturer: function updateManufacturer() {
+      var _this2 = this;
+
+      var url = __WEBPACK_IMPORTED_MODULE_0__config__["a" /* default */] + "manufacturer/update/";
+      axios.post(url + this.$route.params.manufacturerid, this.manufacturer).then(function (response) {
+        _this2.$router.push("/manufacturer/list");
+        toast({
+          type: "success",
+          title: "Manufacturer Updated successfully"
         });
-    },
-
-    data: function data() {
-        return {
-            manufacturer: {
-                name: "",
-                description: "",
-                active: ""
-            }
-        };
-    },
-    methods: {
-        updateManufacturer: function updateManufacturer() {
-            var _this2 = this;
-
-            axios.post("/manufacturer/update/" + this.$route.params.manufacturerid, this.manufacturer).then(function (response) {
-                _this2.$router.push('/manufacturer/list');
-                toast({
-                    type: 'success',
-                    title: 'Manufacturer Updated successfully'
-                });
-            }).catch(function () {
-                alert("Could not save your manufacturer");
-            });
-        }
+      }).catch(function () {
+        alert("Could not save your manufacturer");
+      });
     }
+  }
 });
 
 /***/ }),
@@ -54228,7 +54246,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -54239,6 +54257,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__config__ = __webpack_require__(147);
 //
 //
 //
@@ -54395,6 +54414,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "New",
@@ -54431,7 +54451,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this = this;
 
       var file = event.target.files[0];
-
+      //this.product.image = this.$refs.image.files[0];
       if (file.size > 9048576) {
         swal({
           type: "error",
@@ -54451,6 +54471,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     addProduct: function addProduct() {
       var _this2 = this;
 
+      var url = __WEBPACK_IMPORTED_MODULE_0__config__["a" /* default */] + "product/save";
+
       var formData = new FormData();
       formData.append('name', this.product.name);
       formData.append('category_id', this.product.category_id);
@@ -54459,9 +54481,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       formData.append('quantity', this.product.quantity);
       formData.append('short_description', this.product.short_description);
       formData.append('long_description', this.product.long_description);
-      formData.append('image', document.getElementById("image").files[0]);
+      //formData.append('image',document.getElementById("image").files[0]);
+      formData.append('image', this.$refs.image.files[0]);
       formData.append('active', this.product.active);
-      axios.post("/product/save", formData, {
+      axios.post(url, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
@@ -54873,8 +54896,9 @@ var render = function() {
               _vm._v(" "),
               _c("div", { staticClass: "col-sm-10" }, [
                 _c("input", {
+                  ref: "image",
                   staticClass: "form-control",
-                  attrs: { type: "file", name: "image", id: "image" },
+                  attrs: { type: "file", id: "image" },
                   on: {
                     change: function($event) {
                       _vm.changeImage($event)
@@ -55070,7 +55094,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -55081,6 +55105,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__config__ = __webpack_require__(147);
 //
 //
 //
@@ -55126,34 +55151,43 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    name: "List",
-    mounted: function mounted() {
-        this.$store.dispatch("allProducts");
-    },
+  name: "List",
+  mounted: function mounted() {
+    this.$store.dispatch("allProducts");
+  },
 
-    computed: {
-        allPublishedProducts: function allPublishedProducts() {
-            return this.$store.getters.allProducts;
-        }
-    },
-    methods: {
-        ourImage: function ourImage(img) {
-            return "productImage/" + img;
-        },
-        deleteProduct: function deleteProduct(id) {
-            var _this = this;
-
-            axios.get('/product/delete/' + id).then(function () {
-                _this.$store.dispatch("allProducts");
-                toast({
-                    type: 'success',
-                    title: 'Product Deleted successfully'
-                });
-            }).catch(function () {});
-        }
+  computed: {
+    allPublishedProducts: function allPublishedProducts() {
+      return this.$store.getters.allProducts;
     }
+  },
+  methods: {
+    ourImage: function ourImage(img) {
+      return "productImage/" + img;
+    },
+    deleteProduct: function deleteProduct(id) {
+      var _this = this;
+
+      var url = __WEBPACK_IMPORTED_MODULE_0__config__["a" /* default */] + "product/delete/";
+      axios.get(url + id).then(function () {
+        _this.$store.dispatch("allProducts");
+        toast({
+          type: "success",
+          title: "Product Deleted successfully"
+        });
+      }).catch(function () {});
+    }
+  }
 });
 
 /***/ }),
@@ -55374,7 +55408,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -55385,6 +55419,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__config__ = __webpack_require__(147);
 //
 //
 //
@@ -55542,6 +55577,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Edit",
@@ -55563,9 +55599,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   mounted: function mounted() {
     var _this = this;
 
+    var url = __WEBPACK_IMPORTED_MODULE_0__config__["a" /* default */] + "product/edit/";
     this.$store.dispatch("allCategory");
     this.$store.dispatch("allManufacturers");
-    axios.get('/product/edit/' + this.$route.params.productId).then(function (response) {
+    axios.get(url + this.$route.params.productId).then(function (response) {
       //this.form.fill(response.data.product_by_id);
       _this.product = response.data.productInfo;
     });
@@ -55608,12 +55645,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       if (img.length > 10000) {
         return this.product.image;
       } else {
-        return '' + this.product.image;
+        return "" + this.product.image;
       }
     },
     updateProduct: function updateProduct() {
       var _this3 = this;
 
+      var url = __WEBPACK_IMPORTED_MODULE_0__config__["a" /* default */] + "product/update/";
       var formData = new FormData();
       formData.append('name', this.product.name);
       formData.append('category_id', this.product.category_id);
@@ -55622,9 +55660,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       formData.append('quantity', this.product.quantity);
       formData.append('short_description', this.product.short_description);
       formData.append('long_description', this.product.long_description);
-      formData.append('image', document.getElementById("image").files[0]);
+      formData.append('image', this.$refs.image.files[0]);
       formData.append('active', this.product.active);
-      axios.post('/product/update/' + this.$route.params.productId, formData, {
+      axios.post(url + this.$route.params.productId, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
@@ -56036,8 +56074,9 @@ var render = function() {
               _vm._v(" "),
               _c("div", { staticClass: "col-sm-10" }, [
                 _c("input", {
+                  ref: "image",
                   staticClass: "form-control",
-                  attrs: { type: "file", name: "image", id: "image" },
+                  attrs: { type: "file", id: "image" },
                   on: {
                     change: function($event) {
                       _vm.changeImage($event)
@@ -56233,7 +56272,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -56244,6 +56283,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__config__ = __webpack_require__(147);
 //
 //
 //
@@ -56296,6 +56336,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "FrontEndHome",
@@ -56315,7 +56356,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     addcart: function addcart(id) {
       var _this = this;
 
-      axios.get("/cart/add/" + id).then(function (response) {
+      var url = __WEBPACK_IMPORTED_MODULE_0__config__["a" /* default */] + "cart/add/";
+      axios.get(url + id).then(function (response) {
         _this.$router.push("/cart");
         toast({
           type: "success",
@@ -56553,7 +56595,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -56564,6 +56606,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__config__ = __webpack_require__(147);
 //
 //
 //
@@ -56602,6 +56645,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "CategoryProducts",
@@ -56625,7 +56669,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     addcart: function addcart(id) {
       var _this = this;
 
-      axios.get("/cart/add/" + id).then(function (response) {
+      var url = __WEBPACK_IMPORTED_MODULE_0__config__["a" /* default */] + "cart/add/";
+      axios.get(url + id).then(function (response) {
         _this.$router.push("/cart");
         toast({
           type: "success",
@@ -56836,7 +56881,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -56847,6 +56892,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__config__ = __webpack_require__(147);
 //
 //
 //
@@ -56952,6 +56998,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ProductDetails",
@@ -56974,7 +57021,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     addcart: function addcart(id) {
       var _this = this;
 
-      axios.get("/cart/add/" + id).then(function (response) {
+      var url = __WEBPACK_IMPORTED_MODULE_0__config__["a" /* default */] + "cart/add/";
+      axios.get(url + id).then(function (response) {
         _this.$router.push("/cart");
         toast({
           type: "success",
@@ -57319,7 +57367,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -57330,6 +57378,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__config__ = __webpack_require__(147);
 //
 //
 //
@@ -57428,6 +57477,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "Cart",
@@ -57450,8 +57500,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     deleteCartProduct: function deleteCartProduct(id) {
       var _this = this;
 
+      var url = __WEBPACK_IMPORTED_MODULE_0__config__["a" /* default */] + "cart/delete/";
       //   console.log(id);
-      axios.get("/cart/delete/" + id, this.form).then(function () {
+      axios.get(url + id, this.form).then(function () {
         _this.$store.dispatch("allCartProducts");
         toast({
           type: "success",
@@ -57462,8 +57513,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     updateCartProduct: function updateCartProduct(id) {
       var _this2 = this;
 
+      var url = __WEBPACK_IMPORTED_MODULE_0__config__["a" /* default */] + "cart/update/";
       //   console.log(this.dataQty);
-      axios.patch("/cart/update/" + id, { qty: this.qty }).then(function () {
+      axios.patch(url + id, { qty: this.qty }).then(function () {
         _this2.$store.dispatch("allCartProducts");
         toast({
           type: "success",
@@ -63347,6 +63399,19 @@ if (typeof window !== 'undefined' && window.Sweetalert2){  window.Sweetalert2.ve
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 143 */,
+/* 144 */,
+/* 145 */,
+/* 146 */,
+/* 147 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+var ROOT_URL = 'http://localhost/vue-laravel/vuejs/public/';
+
+/* harmony default export */ __webpack_exports__["a"] = (ROOT_URL);
 
 /***/ })
 /******/ ]);

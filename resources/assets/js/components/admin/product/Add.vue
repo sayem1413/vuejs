@@ -125,8 +125,8 @@
                 @change="changeImage($event)"
                 type="file"
                 class="form-control"
-                name="image"
                 id="image"
+                ref="image"
               >
               <span class="text-danger"></span>
               <img :src="product.image" alt width="100" height="100">
@@ -155,6 +155,7 @@
 </template>
 
 <script>
+import ROOT_URL from '../../../config';
 export default {
   name: "New",
   data: function() {
@@ -187,7 +188,7 @@ export default {
   methods: {
     changeImage(event) {
       let file = event.target.files[0];
-      
+      //this.product.image = this.$refs.image.files[0];
       if (file.size > 9048576) {
         swal({
           type: "error",
@@ -205,6 +206,8 @@ export default {
       }
     },
     addProduct() {
+      let url = ROOT_URL+"product/save";
+      
       var formData = new FormData();
       formData.append('name',this.product.name);
       formData.append('category_id',this.product.category_id);
@@ -213,10 +216,11 @@ export default {
       formData.append('quantity',this.product.quantity);
       formData.append('short_description',this.product.short_description);
       formData.append('long_description',this.product.long_description);
-      formData.append('image',document.getElementById("image").files[0]);
+      //formData.append('image',document.getElementById("image").files[0]);
+      formData.append('image', this.$refs.image.files[0]);
       formData.append('active',this.product.active);
       axios
-        .post("/product/save", formData,
+        .post(url, formData,
           {
             headers: {
                 'Content-Type': 'multipart/form-data'

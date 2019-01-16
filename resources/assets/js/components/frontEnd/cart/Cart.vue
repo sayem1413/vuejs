@@ -97,6 +97,7 @@
 </template>
 
 <script>
+import ROOT_URL from "../../../config";
 export default {
   name: "Cart",
   data() {
@@ -115,9 +116,10 @@ export default {
   },
   methods: {
     deleteCartProduct(id) {
+      let url = ROOT_URL + "cart/delete/";
       //   console.log(id);
       axios
-        .get("/cart/delete/" + id, this.form)
+        .get(url + id, this.form)
         .then(() => {
           this.$store.dispatch("allCartProducts");
           toast({
@@ -128,9 +130,10 @@ export default {
         .catch(() => {});
     },
     updateCartProduct(id) {
+      let url = ROOT_URL + "cart/update/";
       //   console.log(this.dataQty);
       axios
-        .patch("/cart/update/" + id, { qty: this.qty })
+        .patch(url + id, { qty: this.qty })
         .then(() => {
           this.$store.dispatch("allCartProducts");
           toast({

@@ -58,18 +58,9 @@ class ProductController extends Controller {
         $this->saveProductInfo($request, $name); */
 
         $productImage = $request->file('image');
-        Image::make($productImage)->resize(200, 200);
-        $imageName =  time().'_'.$productImage->getClientOriginalName();
-        $uploadPath = 'productImage/';
-        $productImage->move($uploadPath, $imageName);
-        $imageUrl = $uploadPath . $imageName;
-        $this->saveProductInfo($request, $imageUrl);
 
-        
-        return response()->json(["success"=>true],200);
-    }
+        $imageUrl = $this->uploadImageProcess($productImage);
 
-    protected function saveProductInfo($request, $imageUrl) {
         $productInfo = new Product();
         $productInfo->name = $request->name;
         $productInfo->category_id = $request->category_id;
@@ -81,6 +72,18 @@ class ProductController extends Controller {
         $productInfo->image = $imageUrl;
         $productInfo->active = $request->active;
         $productInfo->save();
+        
+        return response()->json(["success"=>true],200);
+    }
+
+    protected function uploadImageProcess($productImage)
+    {
+        Image::make($productImage)->resize(200, 200);
+        $imageName =  time().'_'.$productImage->getClientOriginalName();
+        $uploadPath = 'productImage/';
+        $productImage->move($uploadPath, $imageName);
+        $imageUrl = $uploadPath . $imageName;
+        return $imageUrl;
     }
 
     public function manageProduct() {
@@ -169,8 +172,8 @@ class ProductController extends Controller {
         $productImage = $request->file('image');
         $oldImage = $productInfoById->image;
         
-        if($productImage!=$oldImage){
-            if($oldImage){
+        if($productImage){
+            if(file_exists($oldImage)){
                 unlink($oldImage);
             }
             Image::make($productImage)->resize(200, 200);

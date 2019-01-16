@@ -37,6 +37,7 @@
 </template>
 
 <script>
+import ROOT_URL from '../../../config';
 export default {
   name: "List",
   mounted() {
@@ -49,8 +50,9 @@ export default {
   },
   methods: {
     deleteCategory(id) {
+      let url = ROOT_URL+"category/delete/";
       axios
-        .get("/category/delete/" + id)
+        .get(url + id)
         .then(() => {
           this.$store.dispatch("allCategory");
           toast({
