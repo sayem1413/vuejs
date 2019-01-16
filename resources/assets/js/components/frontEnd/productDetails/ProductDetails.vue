@@ -11,7 +11,7 @@
             <div class="flexslider">
               <div class="thumb-image">
                 <img
-                  :src="`productImage/${singleproduct.image}`"
+                  :src="singleproduct.image"
                   data-imagezoom="true"
                   class="img-responsive"
                 >
@@ -111,12 +111,12 @@ export default {
   },
   computed: {
     singleproduct() {
-      return this.$store.getters.productbyid;
+      return this.$store.getters.productById;
     }
   },
   methods: {
     singleProduct() {
-      this.$store.dispatch("productbyid", this.$route.params.id);
+      this.$store.dispatch("productById", this.$route.params.id);
     },
     ourImage(img) {
       return "/productImage/" + img;

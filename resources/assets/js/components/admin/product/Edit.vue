@@ -127,6 +127,7 @@
                 type="file"
                 class="form-control"
                 name="image"
+                id="image"
               >
               <span class="text-danger"></span>
               <img :src="updateImage()" alt width="80" height="80">
@@ -216,12 +217,27 @@ export default {
       if (img.length > 10000) {
         return this.product.image;
       } else {
-        return `productImage/${this.product.image}`;
+        return `${this.product.image}`;
       }
     },
     updateProduct() {
+      var formData = new FormData();
+      formData.append('name',this.product.name);
+      formData.append('category_id',this.product.category_id);
+      formData.append('manufacturer_id',this.product.manufacturer_id);
+      formData.append('price',this.product.price);
+      formData.append('quantity',this.product.quantity);
+      formData.append('short_description',this.product.short_description);
+      formData.append('long_description',this.product.long_description);
+      formData.append('image',document.getElementById("image").files[0]);
+      formData.append('active',this.product.active);
       axios
-        .post(`/product/update/${this.$route.params.productId}`, this.product)
+        .post(`/product/update/${this.$route.params.productId}`, formData,
+          {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+          })
         .then(response => {
           this.$router.push("/product/list");
           toast({

@@ -35,6 +35,7 @@ class ProductController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
+        //dd($request->all());
         $this->validate($request, [
             'name' => 'required',
             'category_id' => 'required|not_in:""',
@@ -47,25 +48,28 @@ class ProductController extends Controller {
             'active' => 'required|not_in:""',
         ]);
 
-        $strpos = strpos($request->image,';');
+        /* $strpos = strpos($request->image,';');
         $sub = substr($request->image,0,$strpos);
         $ex = explode('/',$sub)[1];
         $name = time().".".$ex;
         $img = Image::make($request->image)->resize(200, 200);
         $uploadPath = public_path()."/productImage/";
         $img->save($uploadPath.$name);
+        $this->saveProductInfo($request, $name); */
 
-        /* $productImage = $request->file('image');
-        $imageName = $productImage->getClientOriginalName();
+        $productImage = $request->file('image');
+        Image::make($productImage)->resize(200, 200);
+        $imageName =  time().'_'.$productImage->getClientOriginalName();
         $uploadPath = 'productImage/';
         $productImage->move($uploadPath, $imageName);
-        $imageUrl = $uploadPath . $image_name; */
+        $imageUrl = $uploadPath . $imageName;
+        $this->saveProductInfo($request, $imageUrl);
 
-        $this->saveProductInfo($request, $name);
+        
         return response()->json(["success"=>true],200);
     }
 
-    protected function saveProductInfo($request, $name) {
+    protected function saveProductInfo($request, $imageUrl) {
         $productInfo = new Product();
         $productInfo->name = $request->name;
         $productInfo->category_id = $request->category_id;
@@ -74,7 +78,7 @@ class ProductController extends Controller {
         $productInfo->quantity = $request->quantity;
         $productInfo->short_description = $request->short_description;
         $productInfo->long_description = $request->long_description;
-        $productInfo->image = $name;
+        $productInfo->image = $imageUrl;
         $productInfo->active = $request->active;
         $productInfo->save();
     }
@@ -161,25 +165,23 @@ class ProductController extends Controller {
     }
 
     private function imageExistStatus($request, $id) {
-        $productById = Product::where('id', $id)->first();
-
-        if($request->image!=$productById->image){
-            $strpos = strpos($request->image,';');
-            $sub = substr($request->image,0,$strpos);
-            $ex = explode('/',$sub)[1];
-            $name = time().".".$ex;
-            $img = Image::make($request->image)->resize(200, 200);
-            $uploadPath = public_path()."/productImage/";
-            $image = $uploadPath. $productById->image;
-            $img->save($uploadPath.$name);
-
-            if(file_exists($image)){
-                @unlink($image);
+        $productInfoById = Product::where('id', $id)->first();
+        $productImage = $request->file('image');
+        $oldImage = $productInfoById->image;
+        
+        if($productImage!=$oldImage){
+            if($oldImage){
+                unlink($oldImage);
             }
+            Image::make($productImage)->resize(200, 200);
+            $imageName =  time().'_'.$productImage->getClientOriginalName();
+            $uploadPath = 'productImage/';
+            $productImage->move($uploadPath, $imageName);
+            $imageUrl = $uploadPath . $imageName;
         }else{
-            $name = $productById->image;
+            $imageUrl = $oldImage;
         }
-        return $name;
+        return $imageUrl;
     }
 
     protected function updateProductInfo($request, $imageUrl, $id) {
@@ -205,10 +207,9 @@ class ProductController extends Controller {
     public function destroy($id) {
         $productInfo = Product::find($id);
 
-        $imagePath = public_path()."/productImage/";
-        $image = $imagePath. $productInfo->image;
+        $image = $productInfo->image;
         if(file_exists($image)){
-            @unlink($image);
+            unlink($image);
         }
         $productInfo->delete();
         return response()->json(["success"=>true],200);

@@ -29,7 +29,7 @@
                     <td>{{product.quantity}}</td>
                     <td>{{product.short_description}}</td>
                     <td>{{product.long_description}}</td>
-                    <td><img :src="ourImage(product.image)" alt="" height="150px" width="150px"></td>
+                    <td><img :src="product.image" alt="" height="150px" width="150px"></td>
                     <td><p v-if="product.active == 1">Published</p><p v-else>Unpublished</p></td>
                     <td>
                         <router-link :to="`/product/edit/${product.id}`" class="btn btn-success"><span class="glyphicon glyphicon-edit"></span></router-link>

@@ -3,10 +3,10 @@ export default {
         category:[],
         manufacturer:[],
         product:[],
-        latestproduct:[],
-        productsbycategoryid:[],
-        productbyid:[],
-        cartproduct:[]
+        latestProduct:[],
+        productsByCategoryId:[],
+        productById:[],
+        cartProduct:[]
     },
     getters:{
         allCategories(state){
@@ -18,21 +18,21 @@ export default {
         allProducts(state){
             return state.product
         },
-        all_latest_products(state){
-            // console.log(state.latestproduct)
-            return state.latestproduct
+        allLatestProducts(state){
+            // console.log(state.latestProduct)
+            return state.latestProduct
         },
-        allproductsbycategoryid(state){
-            // console.log(state.productsbycategoryid)
-            return state.productsbycategoryid
+        allProductsByCategoryId(state){
+            console.log(state.productsByCategoryId)
+            return state.productsByCategoryId
         },
-        productbyid(state){
-            // console.log(state.productbyid)
-            return state.productbyid
+        productById(state){
+            // console.log(state.productById)
+            return state.productById
         },
-        cart_products(state){
-            // console.log(state.cartproduct)
-            return state.cartproduct
+        cartProducts(state){
+            // console.log(state.cartProduct)
+            return state.cartProduct
         }
     },
     actions:{
@@ -42,7 +42,7 @@ export default {
                     context.commit('categoreis',response.data.categories)
                 })
         },
-        allpublishedcategories(context){
+        allPublishedCategories(context){
             axios.get('/published/categories')
                 .then((response)=>{
                     context.commit('categoreis',response.data.categories)
@@ -60,31 +60,31 @@ export default {
                     context.commit('products',response.data.products)
                 })
         },
-        latestproducts(context){
+        latestProducts(context){
             axios.get('/latest/products')
                 .then((response) => {
-                    context.commit('latestproducts',response.data.latest_published_products)
+                    context.commit('latestProducts',response.data.latestPublishedProducts)
                 })
         },
-        allproductsbycategoryid(context,payload){
+        allProductsByCategoryId(context,payload){
             axios.get('/category-view/'+payload)
                 .then((response)=>{
-                    // console.log(response.data)
-                    context.commit('productsbycategory',response.data.published_category_products)
+                    console.log(response.data.categoryWiseProducts)
+                    context.commit('productsByCategory',response.data.categoryWiseProducts)
                 })
         },
-        productbyid(context,payload){
+        productById(context,payload){
             axios.get('/product-details/'+payload)
                 .then((response)=>{
                     // console.log(response.data)
-                    context.commit('productById',response.data.product_by_id)
+                    context.commit('productById',response.data.productInfo)
                 })
         },
-        all_cart_products(context){
+        allCartProducts(context){
             axios.get('/cart/show')
                 .then((response) => {
-                    // console.log(response.data)
-                    context.commit('cartproducts',response.data.cart_products)
+                    //console.log(response.data.cartInfo)
+                    context.commit('cartProducts',response.data.cartInfo)
                 })
         },
     },
@@ -98,17 +98,17 @@ export default {
         products(state,data){
             return state.product = data
         },
-        latestproducts(state,data){
-            return state.latestproduct = data
+        latestProducts(state,data){
+            return state.latestProduct = data
         },
-        productsbycategory(state,payload){
-            return state.productsbycategoryid = payload
+        productsByCategory(state,payload){
+            return state.productsByCategoryId = payload
         },
         productById(state,payload){
-            return state.productbyid = payload
+            return state.productById = payload
         },
-        cartproducts(state,payload){
-            return state.cartproduct = payload
+        cartProducts(state,payload){
+            return state.cartProduct = payload
         }
     }
 }

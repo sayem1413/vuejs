@@ -16,7 +16,7 @@ class WelcomeController extends Controller
         
         $categoryWiseProducts = Product::where('category_id',$id)
                                   ->where('active', ActiveStatus::PUBLISHED)
-                                  ->paginate();
+                                  ->get();
         //return view('frontEnd.category.categoryContent',['published_category_products'=>$published_category_products]);
         return response()->json([
             'categoryWiseProducts'=>$categoryWiseProducts

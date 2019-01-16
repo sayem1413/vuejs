@@ -1,16 +1,16 @@
 <template>
   <div>
     <div class="row single-pro">
-      <div v-for="product in categoryproducts" :key="product.id" class="col-md-3 product-men">
+      <div v-for="product in categoryProducts" :key="product.id" class="col-md-3 product-men">
         <div class="men-pro-item simpleCart_shelfItem">
           <div class="men-thumb-item">
             <img
-              :src="ourImage(product.image)"
+              :src="product.image"
               :alt="product.name"
               class="pro-image-front"
             >
             <img
-              :src="ourImage(product.image)"
+              :src="product.image"
               :alt="product.name"
               class="pro-image-back"
             >
@@ -40,25 +40,17 @@
 export default {
   name: "CategoryProducts",
   mounted() {
-    //this.$store.dispatch('allproductsbycategoryid',this.$route.params.categoryId);
-    //console.log('mounted!')
-
-    this.allcategoryproducts();
+    //console.log(this.$route.params.categoryId);
+    this.allCategoryProducts();
   },
   computed: {
-    categoryproducts() {
-      console.log(this.$store.getters.allproductsbycategoryid);
-      return this.$store.getters.allproductsbycategoryid;
-      /* axios.get(`/category-view/${this.$route.params.categoryId}`)
-                .then((response)=>{
-                    console.log(response.data.publishedCategoryProducts)
-                    return response.data.publishedCategoryProducts
-                }) */
+    categoryProducts() {
+      return this.$store.getters.allProductsByCategoryId;
     }
   },
   methods: {
-    allcategoryproducts() {
-      this.$store.dispatch("allproductsbycategoryid", this.$route.params.categoryId);
+    allCategoryProducts() {
+      this.$store.dispatch("allProductsByCategoryId", this.$route.params.categoryId);
     },
     ourImage(img) {
       return "productImage/" + img;
@@ -78,7 +70,7 @@ export default {
   },
   watch: {
     $route(to, from) {
-      this.allcategoryproducts();
+      this.allCategoryProducts();
     }
   }
 };

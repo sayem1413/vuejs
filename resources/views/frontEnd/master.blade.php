@@ -82,7 +82,7 @@
                                         </div>
                                         <div class="sign-in">
                                             <h4>Password :</h4>
-                                            <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+                                            <input type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
 
                                             @if ($errors->has('password'))
                                                 <span class="help-block">

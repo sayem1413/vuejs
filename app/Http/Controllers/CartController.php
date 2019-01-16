@@ -25,10 +25,10 @@ class CartController extends Controller {
     }
 
     public function viewCart() {
-        $cart_products = Cart::content();
+        $cartInfo = Cart::content();
         //return view('frontEnd.checkOut.viewCart',['cartProducts' => $cartProducts]);
         return response()->json([
-            'cart_products'=>$cart_products
+            'cartInfo'=>$cartInfo
         ],200);
     }
 

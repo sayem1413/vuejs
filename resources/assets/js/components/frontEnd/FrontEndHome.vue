@@ -12,11 +12,11 @@
           <div class="resp-tabs-container">
             <div class="row single-pro">
               <!-- Foreach -->
-              <div v-for="product in latestproducts" :key="product.id" class="col-md-3">
+              <div v-for="product in latestProducts" :key="product.id" class="col-md-3">
                 <div class="men-pro-item simpleCart_shelfItem">
                   <div class="men-thumb-item">
-                    <img :src="ourimage(product.image)" alt="image" class="pro-image-front">
-                    <img :src="ourimage(product.image)" alt="image" class="pro-image-back">
+                    <img :src="product.image" alt="image" class="pro-image-front">
+                    <img :src="product.image" alt="image" class="pro-image-back">
                     <div class="men-cart-pro">
                       <div class="inner-men-cart-pro">
                         <router-link :to="`/product/${product.id}`" class="link-product-add-cart">Quick View</router-link>
@@ -54,11 +54,11 @@
 export default {
   name: "FrontEndHome",
   mounted() {
-    this.$store.dispatch("latestproducts");
+    this.$store.dispatch("latestProducts");
   },
   computed: {
-    latestproducts() {
-      return this.$store.getters.all_latest_products;
+    latestProducts() {
+      return this.$store.getters.allLatestProducts;
     }
   },
   methods: {

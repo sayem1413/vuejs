@@ -29,7 +29,7 @@
                     </router-link>
                   </li>
                   <li
-                    v-for="category in allpublishedcategories"
+                    v-for="category in allPublishedCategories"
                     :key="category.id"
                     class="dropdown menu__item"
                   >
@@ -70,11 +70,11 @@
 export default {
   name: "FrontEndMenu",
   mounted() {
-    this.$store.dispatch("allpublishedcategories");
+    this.$store.dispatch("allPublishedCategories");
   },
   computed: {
-    allpublishedcategories() {
-      return this.$store.getters.allcategories;
+    allPublishedCategories() {
+      return this.$store.getters.allCategories;
     }
   }
 };
