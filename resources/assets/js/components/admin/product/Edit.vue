@@ -135,13 +135,9 @@
           </div>
           <div class="form-group">
             <label for class="col-sm-2 control-label">Publication Status</label>
-            <div class="col-sm-5">
-              <input type="radio" id="active" value="1" v-model="product.active">
-              <label for="one">Published</label>
-            </div>
-            <div class="col-sm-5">
-              <input type="radio" id="active" value="0" v-model="product.active">
-              <label for="active">Unpublished</label>
+            <div class="col-sm-10">
+              <input type="checkbox" id="active" value="1" v-model="product.active">
+              <label for="checkbox">Published</label>
             </div>
           </div>
           <div class="form-group">
@@ -181,7 +177,7 @@ export default {
     axios
       .get(url +this.$route.params.productId)
       .then(response => {
-        //this.form.fill(response.data.product_by_id);
+        //this.form.fill(response.data.productInfo);
         this.product = response.data.productInfo;
       });
   },
@@ -223,6 +219,7 @@ export default {
       }
     },
     updateProduct() {
+      //console.log(this.product)
       let url = ROOT_URL+"product/update/";
       var formData = new FormData();
       formData.append('name',this.product.name);

@@ -12,11 +12,7 @@ class HomeViewController extends Controller {
 
     public function index() {
         $publishedProducts = Product::where('active', ActiveStatus::PUBLISHED)->get();
-        /* return response()->json([
-            'publishedProducts'=>$publishedProducts
-        ],200); */
         return view('frontEnd.master');
-        //return view('frontEnd.home.homeContent', ['publishedProducts'=>$publishedProducts]);
     }
     public function latestProducts(){
         $latestPublishedProducts = Product::where('active', ActiveStatus::PUBLISHED)->latest()->get();

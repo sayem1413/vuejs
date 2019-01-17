@@ -27,13 +27,9 @@
           </div>
           <div class="form-group">
             <label for class="col-sm-2 control-label">Publication Status</label>
-            <div class="col-sm-5">
-              <input type="radio" id="active" value="1" v-model="manufacturer.active">
-              <label for="one">Published</label>
-            </div>
-            <div class="col-sm-5">
-              <input type="radio" id="active" value="0" v-model="manufacturer.active">
-              <label for="active">Unpublished</label>
+            <div class="col-sm-10">
+              <input type="checkbox" id="active" value="1" v-model="manufacturer.active">
+              <label for="checkbox">Published</label>
             </div>
           </div>
           <div class="form-group">

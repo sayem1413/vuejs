@@ -9,24 +9,18 @@ use Cart;
 class CartController extends Controller {
 
     public function addToCart($id) {
-        //echo $id;
-        $product_by_id = Product::where('id',$id)->first();
+        $productInfo = Product::where('id',$id)->first();
         Cart::add([
             'id' => $id,
-            'name' => $product_by_id->name,
-            'price' => $product_by_id->price,
+            'name' => $productInfo->name,
+            'price' => $productInfo->price,
             'qty' => 1,
         ]);
-//        $cartProducts = Cart::content();
-//        echo '<pre>';
-//        print_r($cartProducts);
-        //return redirect('/cart/show');
         return response()->json(["success"=>true],200);
     }
 
     public function viewCart() {
         $cartInfo = Cart::content();
-        //return view('frontEnd.checkOut.viewCart',['cartProducts' => $cartProducts]);
         return response()->json([
             'cartInfo'=>$cartInfo
         ],200);

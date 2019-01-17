@@ -13,11 +13,13 @@ use Cart;
 
 class CheckOutController extends Controller {
 
-    public function index() {
+    public function index()
+    {
         return view('frontEnd.checkOut.checkoutContent');
     }
 
-    public function customerRegistration(Request $request) {
+    public function customerRegistration(Request $request)
+    {
         $customerInfo = new Customer();
         $customerInfo->first_name = $request->first_name;
         $customerInfo->last_name = $request->last_name;
@@ -32,15 +34,16 @@ class CheckOutController extends Controller {
         return redirect('/checkout/shipping');
     }
 
-    public function showShippingForm() {
+    public function showShippingForm()
+    {
         $customerId = Session::get('customerId');
         $customerInfo = Customer::where('id', $customerId)->first();
         return view('frontEnd.checkOut.shippingContent', ['customerInfo' => $customerInfo]);
     }
 
-    public function saveShippingInfo(Request $request) {
+    public function saveShippingInfo(Request $request)
+    {
         $shipmentInfo = new Shipment();
-
         $shipmentInfo->full_name = $request->full_name;
         $shipmentInfo->email = $request->email;
         $shipmentInfo->address = $request->address;
@@ -52,11 +55,13 @@ class CheckOutController extends Controller {
         return redirect('/checkout/payment');
     }
 
-    public function showPaymentForm() {
+    public function showPaymentForm()
+    {
         return view('frontEnd.checkOut.PaymentContent');
     }
 
-    public function saveOrderInfo(Request $request) {
+    public function saveOrderInfo(Request $request)
+    {
         $paymentType = $request->paymentType;
 
         if ($payment_type == 'cashOnDelivery') {

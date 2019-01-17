@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
+use App\Enumeration\ActiveStatus;
+
 class CreateProductsTable extends Migration
 {
     /**
@@ -23,7 +25,7 @@ class CreateProductsTable extends Migration
             $table->text('short_description',2000);
             $table->text('long_description');
             $table->string('image');
-            $table->tinyInteger('active');
+            $table->tinyInteger('active')->default(ActiveStatus::UNPUBLISHED);
             $table->timestamps();
             $table->foreign('category_id')
                   ->references('id')

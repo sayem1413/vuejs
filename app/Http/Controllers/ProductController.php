@@ -34,7 +34,8 @@ class ProductController extends Controller {
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         //dd($request->all());
         $this->validate($request, [
             'name' => 'required',
@@ -45,21 +46,9 @@ class ProductController extends Controller {
             'short_description' => 'required',
             'long_description' => 'required',
             'image' => 'required',
-            'active' => 'required|not_in:""',
         ]);
 
-        /* $strpos = strpos($request->image,';');
-        $sub = substr($request->image,0,$strpos);
-        $ex = explode('/',$sub)[1];
-        $name = time().".".$ex;
-        $img = Image::make($request->image)->resize(200, 200);
-        $uploadPath = public_path()."/productImage/";
-        $img->save($uploadPath.$name);
-        $this->saveProductInfo($request, $name); */
-
-        $productImage = $request->file('image');
-
-        $imageUrl = $this->uploadImageProcess($productImage);
+        $imageUrl = $this->uploadImageProcess($request);
 
         $productInfo = new Product();
         $productInfo->name = $request->name;
@@ -70,24 +59,29 @@ class ProductController extends Controller {
         $productInfo->short_description = $request->short_description;
         $productInfo->long_description = $request->long_description;
         $productInfo->image = $imageUrl;
-        $productInfo->active = $request->active;
+        if($request->active === "true"){
+            $productInfo->active = ActiveStatus::PUBLISHED;
+        }
         $productInfo->save();
         
         return response()->json(["success"=>true],200);
     }
 
-    protected function uploadImageProcess($productImage)
+    protected function uploadImageProcess($request)
     {
-        Image::make($productImage)->resize(200, 200);
-        $imageName =  time().'_'.$productImage->getClientOriginalName();
-        $uploadPath = 'productImage/';
-        $productImage->move($uploadPath, $imageName);
-        $imageUrl = $uploadPath . $imageName;
+        $image = $request->file('image');
+        $filename = time().'_'.$image->getClientOriginalName();
+        $uploadPath = 'product_image/';
+        $imageResize = Image::make($image->getRealPath());              
+        $imageResize->resize(200, 200);
+        $imageResize->save(public_path('product_image/' .$filename));
+
+        $imageUrl = $uploadPath . $filename;
         return $imageUrl;
     }
 
-    public function manageProduct() {
-        //$products = Product::all();
+    public function manageProduct()
+    {
         $products = DB::table('products')
                 ->join('categories', 'products.category_id', '=', 'categories.id')
                 ->join('manufacturers', 'products.manufacturer_id', '=', 'manufacturers.id')
@@ -105,7 +99,8 @@ class ProductController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id) {
+    public function show($id)
+    {
         $productInfo = DB::table('products')
                 ->join('categories', 'products.category_id', '=', 'categories.id')
                 ->join('manufacturers', 'products.manufacturer_id', '=', 'manufacturers.id')
@@ -121,24 +116,12 @@ class ProductController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id) {
-        //$categories = Category::where('active', 1)->get();
-        //$manufacturers = Manufacturer::where('active', 1)->get();
-        /* $product_by_id = DB::table('products')
-                ->join('categories', 'products.category_id', '=', 'categories.id')
-                ->join('manufacturers', 'products.manufacturer_id', '=', 'manufacturers.id')
-                ->select('products.*','categories.id as category_id', 'categories.categoryName','manufacturers.id as manufacturer_id', 'manufacturers.manufacturerName')
-                ->where('products.id', $id)
-                ->first(); */
-        //return view('admin.product.editProduct', ['product_by_id' => $product_by_id, 'categories' => $categories, 'manufacturers' => $manufacturers]);
+    public function edit($id)
+    {
         $productInfo = Product::where('id', $id)->first();
         return response()->json([
             'productInfo'=>$productInfo
         ],200);
-        /* return view('admin.product.editProduct')
-                        ->with('product_by_id', $product_by_id)
-                        ->with('categories', $categories)
-                        ->with('manufacturers', $manufacturers); */
     }
 
     /**
@@ -149,6 +132,8 @@ class ProductController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id) {
+        //dd($request->all());
+        //return response()->json(['data' => $request->active]);
         $this->validate($request, [
             'name' => 'required',
             'category_id' => 'required|not_in:""',
@@ -158,7 +143,6 @@ class ProductController extends Controller {
             'short_description' => 'required',
             'long_description' => 'required',
             'image' => 'required',
-            'active' => 'required|not_in:""',
         ]);
 
         $imageUrl = $this->imageExistStatus($request, $id);
@@ -169,25 +153,29 @@ class ProductController extends Controller {
 
     private function imageExistStatus($request, $id) {
         $productInfoById = Product::where('id', $id)->first();
-        $productImage = $request->file('image');
+        $image = $request->file('image');
         $oldImage = $productInfoById->image;
         
-        if($productImage){
+        if($image){
             if(file_exists($oldImage)){
                 unlink($oldImage);
             }
-            Image::make($productImage)->resize(200, 200);
-            $imageName =  time().'_'.$productImage->getClientOriginalName();
-            $uploadPath = 'productImage/';
-            $productImage->move($uploadPath, $imageName);
-            $imageUrl = $uploadPath . $imageName;
+            $filename = time().'_'.$image->getClientOriginalName();
+            $uploadPath = 'product_image/';
+            $imageResize = Image::make($image->getRealPath());              
+            $imageResize->resize(200, 200);
+            $imageResize->save(public_path('product_image/' .$filename));
+
+            $imageUrl = $uploadPath . $filename;
         }else{
             $imageUrl = $oldImage;
         }
         return $imageUrl;
     }
 
-    protected function updateProductInfo($request, $imageUrl, $id) {
+    protected function updateProductInfo($request, $imageUrl, $id)
+    {
+        
         $productInfo = Product::find($id);
         $productInfo->name = $request->name;
         $productInfo->category_id = $request->category_id;
@@ -197,7 +185,12 @@ class ProductController extends Controller {
         $productInfo->short_description = $request->short_description;
         $productInfo->long_description = $request->long_description;
         $productInfo->image = $imageUrl;
-        $productInfo->active = $request->active;
+        if($request->active === "true"){
+            $productInfo->active = ActiveStatus::PUBLISHED;
+        }
+        else if($request->active === "false"){
+            $productInfo->active = ActiveStatus::UNPUBLISHED;
+        }
         $productInfo->save();
     }
 
@@ -207,7 +200,8 @@ class ProductController extends Controller {
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id) {
+    public function destroy($id)
+    {
         $productInfo = Product::find($id);
 
         $image = $productInfo->image;

@@ -15,8 +15,8 @@
               <div v-for="product in latestProducts" :key="product.id" class="col-md-3">
                 <div class="men-pro-item simpleCart_shelfItem">
                   <div class="men-thumb-item">
-                    <img :src="product.image" alt="image" class="pro-image-front">
-                    <img :src="product.image" alt="image" class="pro-image-back">
+                    <img :src="product.image" class="pro-image-front">
+                    <img :src="product.image" class="pro-image-back">
                     <div class="men-cart-pro">
                       <div class="inner-men-cart-pro">
                         <router-link :to="`/product/${product.id}`" class="link-product-add-cart">Quick View</router-link>

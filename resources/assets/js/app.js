@@ -24,19 +24,7 @@ Vue.component('frontend-menu', require('./components/frontEnd/FrontEndMenu.vue')
 
 Vue.component('pagination', require('laravel-vue-pagination'));
 
-
-// V-form
-/* import {
-    Form,
-    HasError,
-    AlertError
-} from 'vform'
-
-Vue.component(HasError.name, HasError)
-Vue.component(AlertError.name, AlertError)
-window.Form = Form; */
-
-// Sweet alert 2
+// Sweet alert2
 import swal from 'sweetalert2'
 window.swal = swal;
 const toast = swal.mixin({

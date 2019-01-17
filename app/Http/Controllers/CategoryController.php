@@ -45,13 +45,14 @@ class CategoryController extends Controller
             'description'=>'required',
         ]);
         
-        $category = new Category();
-        $category->name = $request->name;
-        $category->description = $request->description;
-        $category->active = $request->active;
-        $category->save();
+        $categoryInfo = new Category();
+        $categoryInfo->name = $request->name;
+        $categoryInfo->description = $request->description;
+        if($request->active == ActiveStatus::PUBLISHED){
+            $categoryInfo->active = $request->active;
+        }
+        $categoryInfo->save();
         return response()->json(["success"=>true],200);
-        //return redirect('/category/add')->with('message','Category info save successfully!');
     }
     
     public function manageCategory()
@@ -60,7 +61,6 @@ class CategoryController extends Controller
         return response()->json([
             'categories'=>$categories
         ],200);
-        //return view('admin.category.manageCategory',['categories'=>$categories]);
 
     }
 
@@ -110,7 +110,12 @@ class CategoryController extends Controller
         $categoryInfo = Category::where('id',$id)->first();
         $categoryInfo->name = $request->name;
         $categoryInfo->description = $request->description;
-        $categoryInfo->active = $request->active;
+        if($request->active == ActiveStatus::PUBLISHED){
+            $categoryInfo->active = $request->active;
+        }
+        if($request->active == null){
+            $categoryInfo->active = ActiveStatus::UNPUBLISHED;
+        }
         $categoryInfo->save();
         return response()->json(["success"=>true],200);
     }

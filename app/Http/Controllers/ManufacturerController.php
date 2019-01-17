@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Manufacturer;
+use DB;
+
+use App\Enumeration\ActiveStatus;
 
 class ManufacturerController extends Controller
 {
@@ -35,17 +38,18 @@ class ManufacturerController extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request->all());
         $this->validate($request,[
             'name'=>'required',
             'description'=>'required',
         ]);
         
-        
-        //return $request->all();
         $manufacturerInfo = new Manufacturer();
         $manufacturerInfo->name = $request->name;
         $manufacturerInfo->description = $request->description;
-        $manufacturerInfo->active = $request->active;
+        if($request->active == ActiveStatus::PUBLISHED){
+            $manufacturerInfo->active = $request->active;
+        }
         $manufacturerInfo->save();
         
         return response()->json(["success"=>true],200);
@@ -105,7 +109,12 @@ class ManufacturerController extends Controller
         $manufacturerInfo = Manufacturer::where('id',$id)->first();
         $manufacturerInfo->name = $request->name;
         $manufacturerInfo->description = $request->description;
-        $manufacturerInfo->active = $request->active;
+        if($request->active == ActiveStatus::PUBLISHED){
+            $manufacturerInfo->active = $request->active;
+        }
+        if($request->active == null){
+            $manufacturerInfo->active = ActiveStatus::UNPUBLISHED;
+        }
         $manufacturerInfo->save();
         
         return response()->json(["success"=>true],200);
