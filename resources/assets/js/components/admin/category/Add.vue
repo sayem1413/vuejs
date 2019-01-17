@@ -77,7 +77,7 @@ export default {
           this.$router.push("/category/list");
           toast({
             type: "success",
-            title: "Category Added successfully"
+            title: "Category Added successfully",
           });
         })
         .catch(() => {});
@@ -87,7 +87,4 @@ export default {
 </script>
 
 <style scoped>
-.swal2-popup {
-  font-size: 3rem !important;
-}
 </style>

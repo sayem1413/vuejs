@@ -14397,9 +14397,11 @@ Vue.component('pagination', __webpack_require__(141));
 window.swal = __WEBPACK_IMPORTED_MODULE_5_sweetalert2___default.a;
 var toast = __WEBPACK_IMPORTED_MODULE_5_sweetalert2___default.a.mixin({
     toast: true,
-    position: 'top-end',
+    position: 'top',
     showConfirmButton: false,
-    timer: 3000
+    timer: 3000,
+    width: "400px"
+
 });
 
 window.toast = toast;
@@ -52233,7 +52235,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.swal2-popup[data-v-74e32d07] {\n  font-size: 3rem !important;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
