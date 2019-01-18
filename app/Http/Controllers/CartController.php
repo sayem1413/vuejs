@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Product;
 use Cart;
 
 class CartController extends Controller {
 
     public function addToCart($id) {
+
         $productInfo = Product::where('id',$id)->first();
         Cart::add([
             'id' => $id,
@@ -20,9 +22,17 @@ class CartController extends Controller {
     }
 
     public function viewCart() {
+        $user = Auth::user();
+        if($user){
+            $userLoginCheck = true;
+        }else{
+            $userLoginCheck = false;
+        }
+        
         $cartInfo = Cart::content();
         return response()->json([
-            'cartInfo'=>$cartInfo
+            'cartInfo'=>$cartInfo,
+            'userLoginCheck'=>$userLoginCheck
         ],200);
     }
 

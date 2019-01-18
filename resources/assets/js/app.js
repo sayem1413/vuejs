@@ -17,7 +17,6 @@ import {
     routes
 } from './routes';
 
-//import AdminMaster from './components/admin/AdminMaster.vue'
 Vue.component('admin-main', require('./components/admin/AdminMaster.vue'));
 Vue.component('frontend-main', require('./components/frontEnd/FrontEndMaster.vue'));
 Vue.component('frontend-menu', require('./components/frontEnd/FrontEndMenu.vue'));
@@ -34,12 +33,13 @@ const toast = swal.mixin({
     timer: 3000,
     width: "400px",
     
+    
 });
 
 window.toast = toast
 
 const router = new VueRouter({
-    routes, // short for `routes: routes`
+    routes,
     mode: 'hash'
 })
 
@@ -47,7 +47,4 @@ const app = new Vue({
     el: '#app',
     router,
     store,
-    // components: {
-    //     AdminMaster
-    // }
 });
