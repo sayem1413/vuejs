@@ -66,9 +66,16 @@
                             $shippingId = Session::get('shippingId');
                             if($customerId!=null && $shippingId!=null){
             -->
-            <router-link to="/register" >
-              <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>Checkout
-            </router-link>
+              
+                <router-link v-if="authCheck" to="/" >
+                  <span class="glyphicon glyphicon-menu-right" aria-hidden="true">Checkout</span>
+                </router-link>
+                <router-link v-else to="/register" >
+                  <span class="glyphicon glyphicon-menu-right" aria-hidden="true">Checkout</span>
+                </router-link>
+              
+              
+            
             <!-- php code -> } else if($customerId!=null){ -->
             <!-- <a href="#checkout/shipping"><span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>Checkout</a> -->
             <!-- php code -> } else { -->
@@ -107,11 +114,16 @@ export default {
   },
   mounted() {
     this.$store.dispatch("allCartProducts");
+    this.$store.dispatch("authCheck");
   },
   computed: {
     cartProducts() {
       //console.log(this.$store.getters.cartProducts)
       return this.$store.getters.cartProducts;
+    },
+    authCheck() {
+      //console.log(this.$store.getters.authCheck)
+      return this.$store.getters.authCheck;
     }
   },
   methods: {
@@ -142,7 +154,7 @@ export default {
           });
         })
         .catch(() => {});
-    }
+    },
   }
 };
 </script>

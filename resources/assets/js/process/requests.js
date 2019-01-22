@@ -7,7 +7,8 @@ export default {
         latestProduct:[],
         productsByCategoryId:[],
         productById:[],
-        cartProduct:[]
+        cartProduct:[],
+        authCheck:null
     },
     getters:{
         allCategories(state){
@@ -34,6 +35,10 @@ export default {
         cartProducts(state){
             // console.log(state.cartProduct)
             return state.cartProduct
+        },
+        authCheck(state){
+            // console.log(state.authCheck)
+            return state.authCheck
         }
     },
     actions:{
@@ -96,6 +101,14 @@ export default {
                     context.commit('cartProducts',response.data.cartInfo)
                 })
         },
+        authCheck(context){
+            let url = ROOT_URL+"auth-check";
+            axios.get(url)
+                .then((response) => {
+                    //console.log(response.data.authCheck)
+                    context.commit('authCheck',response.data.authCheck)
+                })
+        },
     },
     mutations:{
         categoreis(state,data){
@@ -118,6 +131,9 @@ export default {
         },
         cartProducts(state,payload){
             return state.cartProduct = payload
+        },
+        authCheck(state,data){
+            return state.authCheck = data
         }
     }
 }

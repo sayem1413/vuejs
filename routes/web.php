@@ -38,7 +38,7 @@ Auth::routes();
 
 Route::get("/test","WelcomeController@test");
 
-
+Route::get("/auth-check","WelcomeController@checkAuth");
 Route::post('/user/login', 'UserLoginController@login');
 
 

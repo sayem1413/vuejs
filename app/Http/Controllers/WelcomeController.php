@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Enumeration\ActiveStatus;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Category;
 use App\Product;
 use DB;
@@ -17,18 +18,24 @@ class WelcomeController extends Controller
         $categoryWiseProducts = Product::where('category_id',$id)
                                   ->where('active', ActiveStatus::PUBLISHED)
                                   ->get();
-        //return view('frontEnd.category.categoryContent',['published_category_products'=>$published_category_products]);
         return response()->json([
-            'categoryWiseProducts'=>$categoryWiseProducts
+            'categoryWiseProducts'=>$categoryWiseProducts,
+            'success' => true,
         ],200);
     }
     
     public function productDetails($id)
     {
         $productInfo = Product::where('id',$id)->first();
-        //return view('frontEnd.product.productContent',['product_by_id'=>$product_by_id]);
         return response()->json([
-            'productInfo'=>$productInfo
+            'productInfo'=>$productInfo,
+            'success' => true,
+        ],200);
+    }
+
+    public function checkAuth(){
+        return response()->json([
+            'authCheck'=>Auth::check()
         ],200);
     }
   
